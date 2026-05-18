@@ -1,0 +1,8 @@
+[features]
+memories = true
+
+[memories]
+generate_memories = true
+use_memories = true
+disable_on_external_context = false
+min_rate_limit_remaining_percent = 10

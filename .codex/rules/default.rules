@@ -1,0 +1,155 @@
+prefix_rule(
+pattern = ["git", "status"],
+decision = "allow",
+justification = "Read-only git inspection"
+)
+
+prefix_rule(
+pattern = ["git", "diff"],
+decision = "allow",
+justification = "Read-only git diff inspection"
+)
+
+prefix_rule(
+pattern = ["git", "rev-parse"],
+decision = "allow",
+justification = "Read-only git repository validation"
+)
+
+prefix_rule(
+pattern = ["git", "config", "user.name"],
+decision = "allow",
+justification = "Local Git identity validation"
+)
+
+prefix_rule(
+pattern = ["git", "config", "user.email"],
+decision = "allow",
+justification = "Local Git identity validation"
+)
+
+prefix_rule(
+pattern = ["python3", "-m", "compileall"],
+decision = "allow",
+justification = "Python syntax validation"
+)
+
+prefix_rule(
+pattern = ["python3", "scripts/audit_code_paper_consistency.py"],
+decision = "allow",
+justification = "Lightweight audit validation"
+)
+
+prefix_rule(
+pattern = ["python3", "scripts/build_paper_evidence.py", "--help"],
+decision = "allow",
+justification = "Help text validation"
+)
+
+prefix_rule(
+pattern = ["python3", "scripts/generate_predictions_current_best.py", "--help"],
+decision = "allow",
+justification = "Help text validation"
+)
+
+prefix_rule(
+pattern = ["python3", "scripts/download_models.py", "--help"],
+decision = "allow",
+justification = "Help text validation"
+)
+
+prefix_rule(
+pattern = ["python3", "scripts/update_paper_from_evidence.py", "--help"],
+decision = "allow",
+justification = "Help text validation"
+)
+
+prefix_rule(
+pattern = ["bash", "-n"],
+decision = "allow",
+justification = "Bash syntax validation"
+)
+
+prefix_rule(
+pattern = ["python3", "scripts/download_models.py"],
+decision = "forbidden",
+justification = "Do not download models on the local machine; run this only on target RTX4090"
+)
+
+prefix_rule(
+pattern = ["python3", "scripts/generate_predictions_current_best.py"],
+decision = "forbidden",
+justification = "Do not run inference on the local machine; run this only on target RTX4090"
+)
+
+prefix_rule(
+pattern = ["python3", "scripts/run_optional_qwen3_prompt_baseline.py"],
+decision = "forbidden",
+justification = "Do not run optional GPU baseline on the local machine"
+)
+
+prefix_rule(
+pattern = ["bash", "scripts/run_full_pipeline.sh"],
+decision = "forbidden",
+justification = "Full pipeline may download models or run inference; use target RTX4090 machine"
+)
+
+prefix_rule(
+pattern = ["bash", "scripts/run_target_rtx4090_full_pipeline.sh"],
+decision = "forbidden",
+justification = "Target GPU pipeline must not run on the local machine"
+)
+
+prefix_rule(
+pattern = ["git", "add"],
+decision = "prompt",
+justification = "Staging files requires review"
+)
+
+prefix_rule(
+pattern = ["git", "commit"],
+decision = "prompt",
+justification = "Committing requires review"
+)
+
+prefix_rule(
+pattern = ["git", "push"],
+decision = "prompt",
+justification = "Pushing requires review and may request browser/device authentication"
+)
+
+prefix_rule(
+pattern = ["git", "push", "--force"],
+decision = "forbidden",
+justification = "Force push is forbidden"
+)
+
+prefix_rule(
+pattern = ["git", "push", "-f"],
+decision = "forbidden",
+justification = "Force push is forbidden"
+)
+
+prefix_rule(
+pattern = ["rm", "-rf"],
+decision = "forbidden",
+justification = "Destructive recursive deletion is forbidden"
+)
+
+prefix_rule(
+pattern = ["cat", ".env"],
+decision = "forbidden",
+justification = "Do not print secrets"
+)
+
+prefix_rule(
+pattern = ["grep", "HF_TOKEN", ".env"],
+decision = "forbidden",
+justification = "Do not print secrets"
+)
+
+prefix_rule(
+pattern = ["echo", "$HF_TOKEN"],
+decision = "forbidden",
+justification = "Do not print secrets"
+)

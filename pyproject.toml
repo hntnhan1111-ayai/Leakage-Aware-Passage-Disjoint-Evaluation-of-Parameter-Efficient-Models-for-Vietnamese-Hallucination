@@ -1,0 +1,25 @@
+[project]
+name = "hallu-paper"
+version = "0.1.0"
+description = "Reproducible ICIT 2026 evidence pipeline for Vietnamese hallucination detection."
+requires-python = ">=3.10"
+dependencies = [
+  "torch",
+  "transformers",
+  "datasets",
+  "accelerate",
+  "peft",
+  "trl",
+  "bitsandbytes",
+  "scikit-learn",
+  "pandas",
+  "numpy",
+  "matplotlib",
+  "tqdm",
+  "huggingface_hub",
+  "python-dotenv",
+  "pyyaml",
+]
+
+[tool.uv]
+package = false

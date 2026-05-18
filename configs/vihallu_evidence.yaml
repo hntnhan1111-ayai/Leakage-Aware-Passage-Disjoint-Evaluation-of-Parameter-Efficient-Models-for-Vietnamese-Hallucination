@@ -1,0 +1,37 @@
+seed: 42
+labels:
+  - no
+  - intrinsic
+  - extrinsic
+datasets:
+  train:
+    - vihallu-train.csv
+    - data/vihallu-train.csv
+    - materials/vihallu-train.csv
+  test:
+    - vihallu-test.csv
+    - data/vihallu-test.csv
+    - materials/vihallu-test.csv
+  private_test:
+    - vihallu-private-test.csv
+    - data/vihallu-private-test.csv
+    - materials/vihallu-private-test.csv
+predictions:
+  default_candidates:
+    - final_submission_scratch.csv
+    - results/predictions.csv
+    - results/paper_evidence/predictions.csv
+evaluation:
+  gold_csv: vihallu-test.csv
+  output_dir: results/paper_evidence
+  label_col: label
+  pred_col: predict_label
+generation:
+  do_sample: false
+  temperature: 0.0
+  max_new_tokens: 10
+hardware:
+  target_gpu: NVIDIA RTX 4090 24GB
+  torch_dtype: bfloat16
+  tf32: true
+  causal_lm_quantization: nf4_4bit
