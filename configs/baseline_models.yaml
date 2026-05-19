@@ -24,23 +24,59 @@ baselines:
     enabled: true
     type: encoder_classifier
     hf_id: vinai/phobert-base-v2
+    canonical_model_id: vinai/phobert-base-v2
+    accepted_aliases:
+      - vinai/phobert-base-v2
+      - models/phobert-base-v2
     local_dir: models/phobert-base-v2
+    model_type: encoder_classifier
+    expected_loader: AutoModelForSequenceClassification
+    required_files:
+      - config.json
+      - tokenizer_config.json
     output_dir: results/baselines/phobert
   xlmr:
     enabled: true
     type: encoder_classifier
     hf_id: FacebookAI/xlm-roberta-base
+    canonical_model_id: FacebookAI/xlm-roberta-base
+    accepted_aliases:
+      - FacebookAI/xlm-roberta-base
+      - xlm-roberta-base
+      - models/xlm-roberta-base
     local_dir: models/xlm-roberta-base
+    model_type: encoder_classifier
+    expected_loader: AutoModelForSequenceClassification
+    required_files:
+      - config.json
+      - tokenizer_config.json
     output_dir: results/baselines/xlmr
   qwen3_4b_prompt:
     enabled: false
     type: prompt_only_causal_lm
     hf_id: Qwen/Qwen3-4B-Instruct-2507
+    canonical_model_id: Qwen/Qwen3-4B-Instruct-2507
+    accepted_aliases:
+      - Qwen/Qwen3-4B-Instruct-2507
+      - models/Qwen3-4B-Instruct-2507
     local_dir: models/Qwen3-4B-Instruct-2507
+    model_type: causal_lm
+    expected_loader: AutoModelForCausalLM
+    required_files:
+      - config.json
+      - tokenizer_config.json
     output_dir: results/baselines/qwen3_4b_prompt
   gemma4_e2b_prompt:
     enabled: false
     type: future_prompt_only
     hf_id: google/gemma-4-E2B-it
+    canonical_model_id: google/gemma-4-E2B-it
+    accepted_aliases:
+      - google/gemma-4-E2B-it
+      - models/gemma-4-E2B-it
     local_dir: models/gemma-4-E2B-it
+    model_type: future_prompt_only
+    expected_loader: AutoModelForImageTextToText
+    required_files:
+      - config.json
     output_dir: results/baselines/gemma4_e2b_prompt

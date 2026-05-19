@@ -2,10 +2,20 @@ models:
   vistral:
     name: Vistral
     hf_id: Viet-Mistral/Vistral-7B-Chat
+    canonical_model_id: Viet-Mistral/Vistral-7B-Chat
     aliases:
+      - uonlp/viet-mistral-sft-v1
+    accepted_aliases:
+      - Viet-Mistral/Vistral-7B-Chat
+      - models/Vistral-7B-Chat
       - uonlp/viet-mistral-sft-v1
     url: https://huggingface.co/Viet-Mistral/Vistral-7B-Chat
     local_dir: models/Vistral-7B-Chat
+    model_type: causal_lm
+    expected_loader: AutoModelForCausalLM
+    required_files:
+      - config.json
+      - tokenizer_config.json
     loader: AutoModelForCausalLM
     tokenizer: AutoTokenizer
     mode: main_jamp_backbone_qlora_or_adapter_inference
@@ -13,8 +23,17 @@ models:
   qwen3_4b:
     name: Qwen3-4B-Instruct-2507
     hf_id: Qwen/Qwen3-4B-Instruct-2507
+    canonical_model_id: Qwen/Qwen3-4B-Instruct-2507
+    accepted_aliases:
+      - Qwen/Qwen3-4B-Instruct-2507
+      - models/Qwen3-4B-Instruct-2507
     url: https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507
     local_dir: models/Qwen3-4B-Instruct-2507
+    model_type: causal_lm
+    expected_loader: AutoModelForCausalLM
+    required_files:
+      - config.json
+      - tokenizer_config.json
     loader: AutoModelForCausalLM
     tokenizer: AutoTokenizer
     mode: optional_prompt_only_baseline
@@ -22,32 +41,67 @@ models:
   qwen35_4b:
     name: Qwen3.5-4B
     hf_id: Qwen/Qwen3.5-4B
+    canonical_model_id: Qwen/Qwen3.5-4B
+    accepted_aliases:
+      - Qwen/Qwen3.5-4B
+      - models/Qwen3.5-4B
     url: https://huggingface.co/Qwen/Qwen3.5-4B
     local_dir: models/Qwen3.5-4B
+    model_type: future_text_only_multimodal_baseline
+    expected_loader: AutoModelForImageTextToText
+    required_files:
+      - config.json
     loader: AutoModelForImageTextToText
     processor: AutoProcessor
     mode: future_text_only_multimodal_baseline
   gemma4_e2b:
     name: Gemma-4-E2B-it
     hf_id: google/gemma-4-E2B-it
+    canonical_model_id: google/gemma-4-E2B-it
+    accepted_aliases:
+      - google/gemma-4-E2B-it
+      - models/gemma-4-E2B-it
     url: https://huggingface.co/google/gemma-4-E2B-it
     local_dir: models/gemma-4-E2B-it
+    model_type: future_text_only_multimodal_baseline
+    expected_loader: AutoModelForImageTextToText
+    required_files:
+      - config.json
     loader: AutoModelForImageTextToText
     processor: AutoProcessor
     mode: future_text_only_multimodal_baseline
   phobert:
     name: PhoBERT-base-v2
     hf_id: vinai/phobert-base-v2
+    canonical_model_id: vinai/phobert-base-v2
+    accepted_aliases:
+      - vinai/phobert-base-v2
+      - models/phobert-base-v2
     url: https://huggingface.co/vinai/phobert-base-v2
     local_dir: models/phobert-base-v2
+    model_type: encoder_classifier
+    expected_loader: AutoModelForSequenceClassification
+    required_files:
+      - config.json
+      - tokenizer_config.json
     loader: AutoModelForSequenceClassification
     tokenizer: AutoTokenizer
     mode: encoder_baseline
   xlmr:
     name: XLM-RoBERTa-base
     hf_id: FacebookAI/xlm-roberta-base
+    canonical_model_id: FacebookAI/xlm-roberta-base
+    accepted_aliases:
+      - FacebookAI/xlm-roberta-base
+      - xlm-roberta-base
+      - models/xlm-roberta-base
     url: https://huggingface.co/FacebookAI/xlm-roberta-base
     local_dir: models/xlm-roberta-base
+    model_type: encoder_classifier
+    expected_loader: AutoModelForSequenceClassification
+    required_files:
+      - config.json
+      - tokenizer_config.json
     loader: AutoModelForSequenceClassification
     tokenizer: AutoTokenizer
     mode: encoder_baseline

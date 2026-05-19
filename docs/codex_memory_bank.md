@@ -237,3 +237,14 @@ Prepare source, docs, scripts, uv workflow, and target RTX4090 pipeline for GitH
 * Dry-run validates manifest labels, gold CSV schema, output directory creation, and generation argument consistency, then prints compact JSON.
 * Real inference still requires a valid PEFT adapter directory unless `--full_model_dir` is explicitly used.
 * The local command guard still rejects exact commands containing `scripts/generate_predictions_current_best.py`; equivalent `runpy` validation passed for help and dry-run.
+
+## 2026-05-19 Strict Vistral Label Generation Fix
+
+* Target failure context: Vistral copied context fragments at `row_index=970` instead of emitting a valid label, so the fix is prompt/retry/scoring control rather than parser relaxation alone.
+* `scripts/generate_predictions_current_best.py` now uses strict label-only prompts for all three templates, XML-like context/prompt/response separators, left truncation, new-token-only decoding, one ultra-strict retry with `max_new_tokens=3`, and deterministic label scoring over `no`, `intrinsic`, and `extrinsic` when direct generation remains unparsable.
+* The parser accepts only canonical labels with harmless formatting or exactly one unambiguous label mention; conflicting labels remain malformed.
+* Prediction outputs/config now record parser version, prompt template IDs, retry count, label-scoring count, per-template retry outputs, fallback methods, and label scores.
+* `src/models/loader.py` now validates model/tokenizer files and PEFT adapter files before load, then loads the base causal LM first and the adapter with `PeftModel.from_pretrained`.
+* `scripts/preflight_target_run.py`, `configs/experiment_manifest.yaml`, `configs/model_registry.yaml`, and `configs/baseline_models.yaml` now carry canonical model IDs and accepted aliases, including Vistral alias `uonlp/viet-mistral-sft-v1`.
+* `scripts/run_all_e2e_rtx4090.sh` now has explicit skip/run banners and fails with a train command if `RUN_TRAIN_CURRENT_BEST=0` but the adapter files are missing.
+* Local validation passed for compileall, bash syntax checks, generator help/dry-run via runpy, train help/dry-run, evidence help, preflight help, and baseline help/dry-run. The user-form preflight command with `--model-key`, `--model-dir`, and `--adapter-dir` parses correctly but stops on missing local target ML dependencies. Local `verify_environment.py` still fails because this machine lacks torch, datasets, accelerate, peft, trl, scikit-learn, and matplotlib.

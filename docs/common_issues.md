@@ -78,6 +78,18 @@ Dry-run does not require:
 * CUDA
 * `HF_TOKEN`
 
+## Malformed Vistral Generations
+
+Symptom:
+
+```text
+Malformed generation detected ... raw_output contains copied context text instead of no/intrinsic/extrinsic
+```
+
+The fix should not map copied context to `no`. The current-best generator uses strict label-only prompts, decodes only newly generated tokens, retries once with an ultra-strict prompt, and then uses deterministic label scoring over `no`, `intrinsic`, and `extrinsic` if generation remains unparsable.
+
+Final paper runs must still finish with `malformed_count=0` in `results/prediction_config.json` and zero rows in `results/paper_evidence/malformed_predictions.csv`.
+
 ## Leakage Guard
 
 Default behavior fails when public train/test leakage is detected. This prevents accidentally reporting the public split as an independent holdout estimate.

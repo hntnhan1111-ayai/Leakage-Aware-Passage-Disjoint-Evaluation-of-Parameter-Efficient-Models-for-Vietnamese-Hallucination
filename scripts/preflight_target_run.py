@@ -41,10 +41,14 @@ def unique_refs(*values):
 
 
 def accepted_model_refs(model_entry, model_dir):
-    aliases = model_entry.get("aliases", [])
-    if isinstance(aliases, str):
-        aliases = [aliases]
-    return unique_refs(model_entry["hf_id"], *aliases, model_entry["local_dir"], model_dir)
+    aliases = []
+    for key in ["aliases", "accepted_aliases"]:
+        values = model_entry.get(key, [])
+        if isinstance(values, str):
+            values = [values]
+        aliases.extend(values)
+    canonical = model_entry.get("canonical_model_id") or model_entry["hf_id"]
+    return unique_refs(canonical, model_entry["hf_id"], *aliases, model_entry["local_dir"], model_dir)
 
 
 def match_reference(actual, allowed_refs):
@@ -139,8 +143,9 @@ def validate_model_dir(model_dir, model_entry):
     config = load_json(model_root / MODEL_REQUIRED_FILES[0])
     tokenizer_config = load_json(model_root / TOKENIZER_REQUIRED_FILES[0])
     allowed_refs = accepted_model_refs(model_entry, model_dir)
-    model_reference = validate_reference_match(config.get("_name_or_path") or config.get("name_or_path"), f"{model_root / MODEL_REQUIRED_FILES[0]} base model reference", allowed_refs, model_entry["hf_id"])
-    tokenizer_reference = validate_reference_match(tokenizer_config.get("name_or_path"), f"{model_root / TOKENIZER_REQUIRED_FILES[0]} tokenizer reference", allowed_refs, model_entry["hf_id"])
+    canonical = model_entry.get("canonical_model_id") or model_entry["hf_id"]
+    model_reference = validate_reference_match(config.get("_name_or_path") or config.get("name_or_path"), f"{model_root / MODEL_REQUIRED_FILES[0]} base model reference", allowed_refs, canonical)
+    tokenizer_reference = validate_reference_match(tokenizer_config.get("_name_or_path") or tokenizer_config.get("name_or_path"), f"{model_root / TOKENIZER_REQUIRED_FILES[0]} tokenizer reference", allowed_refs, canonical)
     return {
         "model_dir": str(model_root),
         "model_config": str(model_root / MODEL_REQUIRED_FILES[0]),
@@ -149,6 +154,7 @@ def validate_model_dir(model_dir, model_entry):
         "reference_validation": {
             "model_config": model_reference,
             "tokenizer_config": tokenizer_reference,
+            "accepted_aliases": allowed_refs,
         },
     }
 
@@ -162,7 +168,8 @@ def validate_adapter_dir(adapter_dir, model_entry, model_dir):
     if not base_model:
         raise ValueError(f"{adapter_config_path} missing base_model_name_or_path")
     allowed_refs = accepted_model_refs(model_entry, model_dir)
-    base_model_reference = validate_reference_match(base_model, f"{adapter_config_path} base_model_name_or_path", allowed_refs, model_entry["hf_id"])
+    canonical = model_entry.get("canonical_model_id") or model_entry["hf_id"]
+    base_model_reference = validate_reference_match(base_model, f"{adapter_config_path} base_model_name_or_path", allowed_refs, canonical)
     if "r" not in adapter_config:
         raise ValueError(f"{adapter_config_path} missing LoRA rank field r")
     return {
@@ -171,8 +178,13 @@ def validate_adapter_dir(adapter_dir, model_entry, model_dir):
         "adapter_weights": str(adapter_weights),
         "base_model_name_or_path": str(base_model),
         "lora_r": int(adapter_config["r"]),
+        "lora_alpha": adapter_config.get("lora_alpha"),
+        "target_modules": adapter_config.get("target_modules"),
+        "task_type": adapter_config.get("task_type"),
+        "peft_type": adapter_config.get("peft_type"),
         "reference_validation": {
             "base_model_name_or_path": base_model_reference,
+            "accepted_aliases": allowed_refs,
         },
     }
 
@@ -310,12 +322,12 @@ def build_summary(args, env_summary, model_key, model_entry, gold_info, output_i
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--manifest", default="configs/experiment_manifest.yaml")
-    parser.add_argument("--model_key", default="vistral")
-    parser.add_argument("--model_dir", default="models/Vistral-7B-Chat")
+    parser.add_argument("--model_key", "--model-key", dest="model_key", default="vistral")
+    parser.add_argument("--model_dir", "--model-dir", dest="model_dir", default="models/Vistral-7B-Chat")
     parser.add_argument("--gold_csv", default=None)
     parser.add_argument("--pred_csv", default=None)
     parser.add_argument("--pred_col", default="predict_label")
-    parser.add_argument("--adapter_dir", default=None)
+    parser.add_argument("--adapter_dir", "--adapter-dir", dest="adapter_dir", default=None)
     parser.add_argument("--out_dir", default="results/paper_evidence")
     parser.add_argument("--pred_out_csv", default="results/predictions.csv")
     parser.add_argument("--config_json", default="results/prediction_config.json")

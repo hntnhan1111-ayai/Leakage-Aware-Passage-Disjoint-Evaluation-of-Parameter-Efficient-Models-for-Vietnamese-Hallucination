@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 LABELS = ["no", "intrinsic", "extrinsic"]
 CLASS_WEIGHTS = {"intrinsic": 0.3521, "extrinsic": 0.3520, "no": 0.2959}
 TEMPLATE_IDS = [1, 2, 3]
+PARSER_VERSION = "strict_label_v2_retry_scoring"
 MALFORMED_COLUMNS = [
     "row_index",
     "id",
@@ -25,10 +26,19 @@ MALFORMED_COLUMNS = [
     "raw_output",
     "template_1_label",
     "template_1_raw_output",
+    "template_1_retry_raw_output",
+    "template_1_parser_normalization_reason",
+    "template_1_fallback_method",
     "template_2_label",
     "template_2_raw_output",
+    "template_2_retry_raw_output",
+    "template_2_parser_normalization_reason",
+    "template_2_fallback_method",
     "template_3_label",
     "template_3_raw_output",
+    "template_3_retry_raw_output",
+    "template_3_parser_normalization_reason",
+    "template_3_fallback_method",
 ]
 
 
@@ -43,15 +53,35 @@ def flag_enabled(name):
     return os.getenv(name, "").strip().lower() in {"1", "true", "yes", "on"}
 
 
-def normalize_label(text):
+def strip_outer_formatting(text):
     value = str(text).strip().lower()
-    first = value.splitlines()[0].strip() if value else ""
-    if first in LABELS:
-        return first
+    value = value.strip(" \t\r\n`'\"[](){}:.,;")
+    value = re.sub(r"^(label|answer|nhan|nhãn)\s*[:：-]\s*", "", value, flags=re.IGNORECASE)
+    value = value.strip(" \t\r\n`'\"[](){}:.,;")
+    return value
+
+
+def parse_label(text):
+    raw = "" if text is None else str(text)
+    normalized = strip_outer_formatting(raw)
+    if normalized in LABELS:
+        return normalized, "canonical_or_harmless_formatting"
+    lowered = raw.strip().lower()
+    label_hits = []
     for label in LABELS:
-        if re.search(r"(^|[^a-z])" + re.escape(label) + r"([^a-z]|$)", value):
-            return label
-    raise ValueError(f"Could not parse model output as a valid label: {str(text)[:200]}")
+        if re.search(r"(?<![a-z])" + re.escape(label) + r"(?![a-z])", lowered):
+            label_hits.append(label)
+    unique_hits = sorted(set(label_hits), key=LABELS.index)
+    if len(unique_hits) == 1:
+        return unique_hits[0], "single_unambiguous_label_in_text"
+    if len(unique_hits) > 1:
+        raise ValueError(f"Conflicting labels in generated text: {unique_hits}")
+    raise ValueError(f"Could not parse model output as a valid label: {raw[:200]}")
+
+
+def normalize_label(text):
+    label, _ = parse_label(text)
+    return label
 
 
 def validate_generation_settings(args):
@@ -69,24 +99,51 @@ def validate_generation_settings(args):
         raise ValueError("--max_malformed_rate must be in [0, 1]")
 
 
-def compute_jaccard_similarity(text1, text2, tokenizer):
-    tokens1 = set(tokenizer.tokenize(str(text1)))
-    tokens2 = set(tokenizer.tokenize(str(text2)))
-    union = tokens1.union(tokens2)
-    if not union:
-        return 0.0
-    return len(tokens1.intersection(tokens2)) / len(union)
-
-
-def create_prompt(row, tokenizer, template_id):
+def create_prompt(row, template_id, retry=False):
     context = row.get("context", "")
+    user_prompt = row.get("prompt", "")
     response = row.get("response", "")
-    score = compute_jaccard_similarity(context, response, tokenizer)
-    if template_id == 1:
-        return f"Phân tích hallucination bằng cách so sánh trực tiếp CONTEXT và RESPONSE.\n\nJaccard score: {score:.4f}\n\nCONTEXT:\n{context}\n\nRESPONSE:\n{response}\n\nPHÂN TÍCH:\n1. RESPONSE có thông tin nào được thêm vào không có trong CONTEXT không?\n2. RESPONSE có mâu thuẫn với CONTEXT không?\n\nKẾT LUẬN (no/intrinsic/extrinsic):"
-    if template_id == 2:
-        return f"Dựa vào CONTEXT dưới đây, hãy đánh giá xem RESPONSE có chứa hallucination không.\n\nCONTEXT: {context}\nRESPONSE: {response}\n\nCÂU HỎI:\n- Response có thêm thông tin không có trong context không?\n- Response có mâu thuẫn với context không?\n\nTRẢ LỜI (no/intrinsic/extrinsic):"
-    return f"So sánh CONTEXT và RESPONSE để phân loại.\n\nCONTEXT: \"{context}\"\nRESPONSE: \"{response}\"\n\nCHỌN MỘT TRONG CÁC LOẠI SAU:\n1. no\n2. intrinsic\n3. extrinsic\n\nPHÂN LOẠI:"
+    framing = {
+        1: "Classify MODEL_RESPONSE by faithfulness to CONTEXT.",
+        2: "Decide whether MODEL_RESPONSE is supported by CONTEXT for USER_PROMPT.",
+        3: "Choose the hallucination label for MODEL_RESPONSE using only CONTEXT as evidence.",
+    }.get(template_id, "Classify MODEL_RESPONSE by faithfulness to CONTEXT.")
+    body = (
+        "You are a strict Vietnamese hallucination detection classifier.\n\n"
+        "Task:\n"
+        f"{framing}\n\n"
+        "Labels:\n"
+        "no = MODEL_RESPONSE is fully supported by CONTEXT.\n"
+        "intrinsic = MODEL_RESPONSE contradicts or distorts information in CONTEXT.\n"
+        "extrinsic = MODEL_RESPONSE adds information not supported by CONTEXT.\n\n"
+        "Rules:\n"
+        "Return exactly one label.\n"
+        "Allowed outputs: no, intrinsic, extrinsic.\n"
+        "Do not explain.\n"
+        "Do not copy CONTEXT.\n"
+        "Do not answer the USER_PROMPT.\n"
+        "Do not add punctuation.\n\n"
+        "<CONTEXT>\n"
+        f"{context}\n"
+        "</CONTEXT>\n\n"
+        "<USER_PROMPT>\n"
+        f"{user_prompt}\n"
+        "</USER_PROMPT>\n\n"
+        "<MODEL_RESPONSE>\n"
+        f"{response}\n"
+        "</MODEL_RESPONSE>\n\n"
+    )
+    if retry:
+        return (
+            body
+            + "Return exactly one label from this list:\n"
+            + "no\n"
+            + "intrinsic\n"
+            + "extrinsic\n\n"
+            + "No explanation. No punctuation. No extra words.\n\n"
+            + "Label:"
+        )
+    return body + "Allowed outputs: no, intrinsic, extrinsic.\nAnswer with exactly one label.\n\nLabel:"
 
 
 def resolve_contract(args, require_model_dir=False, require_adapter=False, allow_missing_adapter=False):
@@ -134,7 +191,22 @@ def write_malformed_rows(path, rows):
     return malformed_path
 
 
-def build_generation_config(args, adapter_dir, model_key, status, processed_rows=0, total_rows=0, malformed_count=0, malformed_percentage=0.0):
+def build_generation_config(
+    args,
+    adapter_dir,
+    model_key,
+    status,
+    processed_rows=0,
+    total_rows=0,
+    malformed_count=0,
+    malformed_percentage=0.0,
+    retry_count=0,
+    label_scoring_count=0,
+    adapter_info=None,
+    model_info=None,
+    resumed_from_existing_predictions=False,
+    skipped_rows=0,
+):
     leakage_override = bool(args.allow_known_public_split_leakage or flag_enabled("ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE"))
     return {
         "status": status,
@@ -155,6 +227,12 @@ def build_generation_config(args, adapter_dir, model_key, status, processed_rows
         "total_rows": int(total_rows),
         "malformed_count": int(malformed_count),
         "malformed_percentage": float(malformed_percentage),
+        "retry_count": int(retry_count),
+        "label_scoring_count": int(label_scoring_count),
+        "parser_version": PARSER_VERSION,
+        "prompt_template_ids": TEMPLATE_IDS,
+        "resumed_from_existing_predictions": bool(resumed_from_existing_predictions),
+        "skipped_rows": int(skipped_rows),
         "limit": args.limit,
         "sample_frac": args.sample_frac,
         "generation": {
@@ -162,9 +240,14 @@ def build_generation_config(args, adapter_dir, model_key, status, processed_rows
             "temperature": args.temperature,
             "top_p": args.top_p,
             "max_new_tokens": args.max_new_tokens,
+            "retry_max_new_tokens": 3,
+            "max_prompt_tokens": args.max_prompt_tokens,
+            "label_scoring_fallback": not args.disable_label_scoring,
         },
         "dtype": "bfloat16",
         "quantization": None if args.no_quant else "nf4_4bit",
+        "adapter_validation": adapter_info,
+        "model_alias_validation": model_info.get("reference_validation") if isinstance(model_info, dict) else None,
         "leakage_override": leakage_override,
         "challenge_style_evaluation": leakage_override,
         "malformed_policy": {
@@ -198,6 +281,8 @@ def apply_manifest_defaults(args):
         args.adapter_dir = manifest.get("adapter_dir") or manifest["lora"].get("adapter_dir")
     if args.max_new_tokens is None:
         args.max_new_tokens = int(generation["max_new_tokens"])
+    if args.max_prompt_tokens is None:
+        args.max_prompt_tokens = int(manifest.get("max_length", 1024))
     if args.temperature is None:
         args.temperature = float(generation["temperature"])
     if args.top_p is None:
@@ -274,7 +359,11 @@ def validate_dry_run(args):
             "temperature": args.temperature,
             "top_p": args.top_p,
             "max_new_tokens": args.max_new_tokens,
+            "retry_max_new_tokens": 3,
+            "max_prompt_tokens": args.max_prompt_tokens,
+            "label_scoring_fallback": not args.disable_label_scoring,
         },
+        "parser_version": PARSER_VERSION,
         "labels": LABELS,
     }
     print(json.dumps(summary, ensure_ascii=False, sort_keys=True))
@@ -285,56 +374,145 @@ def log_runtime_config(config):
 
 
 def load_model_and_tokenizer(args, adapter_dir):
-    from peft import PeftModel
     from src.models.loader import load_causal_lm
 
     model_dir = args.full_model_dir or args.model_dir
-    model, tokenizer = load_causal_lm(model_dir, quantized=not args.no_quant)
-    if args.full_model_dir is None:
-        model = PeftModel.from_pretrained(model, str(adapter_dir))
-    model.eval()
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    model, tokenizer = load_causal_lm(
+        model_dir,
+        quantized=not args.no_quant,
+        adapter_dir=None if args.full_model_dir else adapter_dir,
+        adapter_required=args.full_model_dir is None,
+    )
     import torch
 
     return model, tokenizer, torch
 
 
-def predict_one(model, tokenizer, torch, row, args):
-    votes = []
+def encode_prompt(tokenizer, prompt, max_length):
+    original_side = getattr(tokenizer, "truncation_side", "right")
+    tokenizer.truncation_side = "left"
+    try:
+        return tokenizer(prompt, return_tensors="pt", max_length=max_length, truncation=True)
+    finally:
+        tokenizer.truncation_side = original_side
+
+
+def generate_label_text(model, tokenizer, torch, prompt, args, max_new_tokens):
     device = next(model.parameters()).device
+    inputs = encode_prompt(tokenizer, prompt, args.max_prompt_tokens)
+    inputs = {key: value.to(device) for key, value in inputs.items()}
+    generation_kwargs = {
+        "max_new_tokens": max_new_tokens,
+        "do_sample": False,
+        "pad_token_id": tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
+    }
+    with torch.inference_mode():
+        outputs = model.generate(**inputs, **generation_kwargs)
+    generated = outputs[0][inputs["input_ids"].shape[1]:]
+    return tokenizer.decode(generated, skip_special_tokens=True).strip()
+
+
+def score_labels(model, tokenizer, torch, prompt, args):
+    import torch.nn.functional as functional
+
+    device = next(model.parameters()).device
+    scores = {}
+    for label in LABELS:
+        label_ids = tokenizer(" " + label, add_special_tokens=False, return_tensors="pt")["input_ids"][0].to(device)
+        max_prompt_length = max(1, args.max_prompt_tokens - int(label_ids.numel()))
+        prompt_inputs = encode_prompt(tokenizer, prompt, max_prompt_length)
+        prompt_ids = prompt_inputs["input_ids"][0].to(device)
+        input_ids = torch.cat([prompt_ids, label_ids], dim=0).unsqueeze(0)
+        attention_mask = torch.ones_like(input_ids)
+        with torch.inference_mode():
+            logits = model(input_ids=input_ids, attention_mask=attention_mask).logits
+        losses = []
+        prompt_len = int(prompt_ids.numel())
+        for offset, token_id in enumerate(label_ids):
+            position = prompt_len + offset - 1
+            token_loss = functional.cross_entropy(logits[0, position, :].unsqueeze(0), token_id.view(1), reduction="mean")
+            losses.append(float(token_loss.detach().cpu()))
+        scores[label] = sum(losses) / max(1, len(losses))
+    best = min(scores, key=scores.get)
+    return best, scores
+
+
+def predict_template(model, tokenizer, torch, row, args, template_id):
     from src.utils.seed import set_seed
 
-    for template_id in TEMPLATE_IDS:
-        prompt = create_prompt(row, tokenizer, template_id)
-        inputs = tokenizer(prompt, return_tensors="pt", max_length=1024, truncation=True)
-        inputs = {k: v.to(device) for k, v in inputs.items()}
-        set_seed(args.seed + template_id)
-        with torch.inference_mode():
-            outputs = model.generate(**inputs, max_new_tokens=args.max_new_tokens, do_sample=False, pad_token_id=tokenizer.eos_token_id)
-        generated = outputs[0][inputs["input_ids"].shape[1]:]
-        raw = tokenizer.decode(generated, skip_special_tokens=True).strip()
-        if not raw:
-            votes.append({"template_id": template_id, "label": None, "raw_output": raw, "malformed_reason": "empty_output"})
-            continue
+    prompt = create_prompt(row, template_id, retry=False)
+    retry_prompt = create_prompt(row, template_id, retry=True)
+    set_seed(args.seed + template_id)
+    raw = generate_label_text(model, tokenizer, torch, prompt, args, args.max_new_tokens)
+    try:
+        label, reason = parse_label(raw)
+        return {
+            "template_id": template_id,
+            "label": label,
+            "raw_output": raw,
+            "retry_raw_output": None,
+            "parser_normalization_reason": reason,
+            "fallback_method": None,
+            "label_scores": None,
+            "malformed_reason": None,
+        }
+    except ValueError as first_error:
+        set_seed(args.seed + 1000 + template_id)
+        retry_raw = generate_label_text(model, tokenizer, torch, retry_prompt, args, 3)
         try:
-            label = normalize_label(raw)
-            votes.append({"template_id": template_id, "label": label, "raw_output": raw, "malformed_reason": None})
-        except ValueError:
-            votes.append({"template_id": template_id, "label": None, "raw_output": raw, "malformed_reason": "unparsable_output"})
+            label, reason = parse_label(retry_raw)
+            return {
+                "template_id": template_id,
+                "label": label,
+                "raw_output": raw,
+                "retry_raw_output": retry_raw,
+                "parser_normalization_reason": "retry_" + reason,
+                "fallback_method": "retry_generation",
+                "label_scores": None,
+                "malformed_reason": None,
+            }
+        except ValueError as retry_error:
+            if args.disable_label_scoring:
+                return {
+                    "template_id": template_id,
+                    "label": None,
+                    "raw_output": raw,
+                    "retry_raw_output": retry_raw,
+                    "parser_normalization_reason": None,
+                    "fallback_method": None,
+                    "label_scores": None,
+                    "malformed_reason": f"unparsable_output; first={first_error}; retry={retry_error}",
+                }
+            label, scores = score_labels(model, tokenizer, torch, retry_prompt, args)
+            return {
+                "template_id": template_id,
+                "label": label,
+                "raw_output": raw,
+                "retry_raw_output": retry_raw,
+                "parser_normalization_reason": "label_scoring_after_unparsable_generation",
+                "fallback_method": "label_scoring",
+                "label_scores": scores,
+                "malformed_reason": None,
+            }
+
+
+def predict_one(model, tokenizer, torch, row, args):
+    votes = [predict_template(model, tokenizer, torch, row, args, template_id) for template_id in TEMPLATE_IDS]
     malformed_votes = [vote for vote in votes if vote["malformed_reason"]]
-    raw_joined = " || ".join(vote["raw_output"] for vote in votes)
+    raw_joined = " || ".join(vote["raw_output"] or "" for vote in votes)
+    retry_count = sum(1 for vote in votes if vote["retry_raw_output"] is not None)
+    label_scoring_count = sum(1 for vote in votes if vote["fallback_method"] == "label_scoring")
     if malformed_votes:
         reasons = [f"template_{vote['template_id']}:{vote['malformed_reason']}" for vote in malformed_votes]
-        valid_votes = [vote["label"] for vote in votes if vote["label"] in LABELS]
-        fallback_label = valid_votes[0] if valid_votes else None
         return {
-            "predict_label": fallback_label,
+            "predict_label": None,
             "raw_output": raw_joined,
             "votes": votes,
             "malformed_reason": "; ".join(reasons),
             "empty_vote_count": sum(1 for vote in votes if vote["malformed_reason"] == "empty_output"),
-            "unparsable_vote_count": sum(1 for vote in votes if vote["malformed_reason"] == "unparsable_output"),
+            "unparsable_vote_count": sum(1 for vote in votes if vote["malformed_reason"]),
+            "retry_count": retry_count,
+            "label_scoring_count": label_scoring_count,
         }
     scores = {label: 0.0 for label in LABELS}
     for vote in votes:
@@ -347,6 +525,8 @@ def predict_one(model, tokenizer, torch, row, args):
         "malformed_reason": None,
         "empty_vote_count": 0,
         "unparsable_vote_count": 0,
+        "retry_count": retry_count,
+        "label_scoring_count": label_scoring_count,
     }
 
 
@@ -364,39 +544,84 @@ def malformed_row_payload(row_index, row, result):
     for vote in result["votes"]:
         payload[f"template_{vote['template_id']}_label"] = vote["label"]
         payload[f"template_{vote['template_id']}_raw_output"] = vote["raw_output"]
+        payload[f"template_{vote['template_id']}_retry_raw_output"] = vote["retry_raw_output"]
+        payload[f"template_{vote['template_id']}_parser_normalization_reason"] = vote["parser_normalization_reason"]
+        payload[f"template_{vote['template_id']}_fallback_method"] = vote["fallback_method"]
     return payload
+
+
+def load_resumable_predictions(path):
+    pred_path = Path(path)
+    if not pred_path.exists():
+        return {}, 0
+    import pandas as pd
+
+    pred = pd.read_csv(pred_path)
+    if "row_index" not in pred.columns or "predict_label" not in pred.columns:
+        return {}, 0
+    valid = pred[pred["predict_label"].astype(str).str.strip().isin(LABELS)].copy()
+    if "is_malformed" in valid.columns:
+        malformed = valid["is_malformed"].astype(str).str.strip().str.lower().isin(["1", "true", "yes"])
+        valid = valid[~malformed]
+    rows = {}
+    for record in valid.to_dict("records"):
+        try:
+            rows[int(record["row_index"])] = record
+        except Exception:
+            continue
+    return rows, len(rows)
 
 
 def run_generation(args):
     import pandas as pd
     from tqdm import tqdm
-    from src.data.vihallu import read_csv_robust
+    from src.data.vihallu import read_csv_robust, validate_gold_df
     from src.evaluation.latency import Timer, save_latency_summary
     from src.utils.seed import set_seed
 
     validate_generation_settings(args)
     set_seed(args.seed)
-    manifest, model_key, model_entry, _, adapter_dir, _ = resolve_contract(
+    manifest, model_key, model_entry, model_info, adapter_dir, adapter_info = resolve_contract(
         args,
         require_model_dir=True,
         require_adapter=args.full_model_dir is None,
     )
+    validate_manifest_contract(manifest, args.manifest)
     args.model_id = model_entry["hf_id"]
     malformed_path = ensure_malformed_file(args.malformed_csv)
-    runtime_config = build_generation_config(args, adapter_dir, model_key, status="starting")
-    write_generation_config(args.config_json, runtime_config)
-    log_runtime_config(runtime_config)
-    model, tokenizer, torch = load_model_and_tokenizer(args, adapter_dir)
+    resume_enabled = bool(args.resume or flag_enabled("RESUME_PREDICTIONS"))
+    resumed_rows, skipped_rows = load_resumable_predictions(args.out_csv) if resume_enabled else ({}, 0)
     df = read_csv_robust(args.gold_csv)
+    validate_gold_df(df, args.gold_csv, allow_duplicate_ids=True)
     if args.sample_frac is not None:
         df = df.sample(frac=args.sample_frac, random_state=args.seed).reset_index(drop=True)
     if args.limit:
         df = df.head(args.limit).reset_index(drop=True)
+    runtime_config = build_generation_config(
+        args,
+        adapter_dir,
+        model_key,
+        status="starting",
+        adapter_info=adapter_info,
+        model_info=model_info,
+        resumed_from_existing_predictions=resume_enabled,
+        skipped_rows=skipped_rows,
+    )
+    write_generation_config(args.config_json, runtime_config)
+    log_runtime_config(runtime_config)
+    model, tokenizer, torch = load_model_and_tokenizer(args, adapter_dir)
     rows = []
     malformed_rows = []
+    retry_count = 0
+    label_scoring_count = 0
     with Timer("generate_predictions_current_best", samples=len(df)) as timer:
         for row_index, row in enumerate(tqdm(df.to_dict("records"), total=len(df))):
+            if row_index in resumed_rows:
+                rows.append(resumed_rows[row_index])
+                continue
             result = predict_one(model, tokenizer, torch, row, args)
+            retry_count += result["retry_count"]
+            label_scoring_count += result["label_scoring_count"]
             if result["malformed_reason"] is not None:
                 malformed_rows.append(malformed_row_payload(row_index, row, result))
                 write_malformed_rows(malformed_path, [malformed_rows[-1]])
@@ -411,6 +636,12 @@ def run_generation(args):
                     total_rows=len(df),
                     malformed_count=len(malformed_rows),
                     malformed_percentage=malformed_pct,
+                    retry_count=retry_count,
+                    label_scoring_count=label_scoring_count,
+                    adapter_info=adapter_info,
+                    model_info=model_info,
+                    resumed_from_existing_predictions=resume_enabled,
+                    skipped_rows=skipped_rows,
                 )
                 write_generation_config(args.config_json, failed_config)
                 if len(malformed_rows) > args.max_malformed_count or malformed_pct > args.max_malformed_rate:
@@ -432,10 +663,28 @@ def run_generation(args):
                 "ensemble": manifest["generation"].get("ensemble", "weighted_vote"),
                 "is_malformed": result["malformed_reason"] is not None,
                 "malformed_reason": result["malformed_reason"],
+                "retry_count": result["retry_count"],
+                "label_scoring_count": result["label_scoring_count"],
+                "fallback_methods": ",".join(sorted({vote["fallback_method"] for vote in result["votes"] if vote["fallback_method"]})),
+                "label_scores": json.dumps({f"template_{vote['template_id']}": vote["label_scores"] for vote in result["votes"] if vote["label_scores"]}, ensure_ascii=False, sort_keys=True),
+                "template_1_raw_output": next((vote["raw_output"] for vote in result["votes"] if vote["template_id"] == 1), None),
+                "template_1_retry_raw_output": next((vote["retry_raw_output"] for vote in result["votes"] if vote["template_id"] == 1), None),
+                "template_1_label": next((vote["label"] for vote in result["votes"] if vote["template_id"] == 1), None),
+                "template_1_fallback_method": next((vote["fallback_method"] for vote in result["votes"] if vote["template_id"] == 1), None),
+                "template_2_raw_output": next((vote["raw_output"] for vote in result["votes"] if vote["template_id"] == 2), None),
+                "template_2_retry_raw_output": next((vote["retry_raw_output"] for vote in result["votes"] if vote["template_id"] == 2), None),
+                "template_2_label": next((vote["label"] for vote in result["votes"] if vote["template_id"] == 2), None),
+                "template_2_fallback_method": next((vote["fallback_method"] for vote in result["votes"] if vote["template_id"] == 2), None),
+                "template_3_raw_output": next((vote["raw_output"] for vote in result["votes"] if vote["template_id"] == 3), None),
+                "template_3_retry_raw_output": next((vote["retry_raw_output"] for vote in result["votes"] if vote["template_id"] == 3), None),
+                "template_3_label": next((vote["label"] for vote in result["votes"] if vote["template_id"] == 3), None),
+                "template_3_fallback_method": next((vote["fallback_method"] for vote in result["votes"] if vote["template_id"] == 3), None),
             })
     out_csv = Path(args.out_csv)
     out_csv.parent.mkdir(parents=True, exist_ok=True)
     out_df = pd.DataFrame(rows)
+    if args.limit is None and len(out_df) != len(df):
+        raise RuntimeError(f"Prediction row count mismatch: expected {len(df)}, found {len(out_df)}")
     bad = sorted(set(out_df["predict_label"].astype(str)) - set(LABELS))
     if bad:
         raise ValueError(f"Invalid predict_label values generated: {bad}")
@@ -451,6 +700,12 @@ def run_generation(args):
         total_rows=len(df),
         malformed_count=len(malformed_rows),
         malformed_percentage=(len(malformed_rows) / len(out_df)) if len(out_df) else 0.0,
+        retry_count=retry_count,
+        label_scoring_count=label_scoring_count,
+        adapter_info=adapter_info,
+        model_info=model_info,
+        resumed_from_existing_predictions=resume_enabled,
+        skipped_rows=skipped_rows,
     )
     config["device"] = "cuda" if torch.cuda.is_available() else "cpu"
     write_generation_config(args.config_json, config)
@@ -462,26 +717,29 @@ def run_generation(args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--gold_csv", default="vihallu-test.csv")
-    parser.add_argument("--out_csv", default="results/predictions.csv")
-    parser.add_argument("--config_json", default=None)
+    parser.add_argument("--gold_csv", "--gold-csv", dest="gold_csv", default="vihallu-test.csv")
+    parser.add_argument("--out_csv", "--out-csv", dest="out_csv", default="results/predictions.csv")
+    parser.add_argument("--config_json", "--config-json", dest="config_json", default=None)
     parser.add_argument("--manifest", default="configs/experiment_manifest.yaml")
-    parser.add_argument("--model_key", default=None)
-    parser.add_argument("--model_dir", default=None)
-    parser.add_argument("--full_model_dir", default=None)
-    parser.add_argument("--adapter_dir", default=None)
-    parser.add_argument("--malformed_csv", default=None)
-    parser.add_argument("--latency_out_dir", default=None)
+    parser.add_argument("--model_key", "--model-key", dest="model_key", default=None)
+    parser.add_argument("--model_dir", "--model-dir", dest="model_dir", default=None)
+    parser.add_argument("--full_model_dir", "--full-model-dir", dest="full_model_dir", default=None)
+    parser.add_argument("--adapter_dir", "--adapter-dir", dest="adapter_dir", default=None)
+    parser.add_argument("--malformed_csv", "--malformed-csv", dest="malformed_csv", default=None)
+    parser.add_argument("--latency_out_dir", "--latency-out-dir", dest="latency_out_dir", default=None)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--limit", type=int, default=None)
-    parser.add_argument("--sample_frac", type=float, default=None)
-    parser.add_argument("--max_new_tokens", type=int, default=None)
+    parser.add_argument("--sample_frac", "--sample-frac", dest="sample_frac", type=float, default=None)
+    parser.add_argument("--max_new_tokens", "--max-new-tokens", dest="max_new_tokens", type=int, default=None)
+    parser.add_argument("--max_prompt_tokens", "--max-prompt-tokens", dest="max_prompt_tokens", type=int, default=None)
     parser.add_argument("--temperature", type=float, default=None)
-    parser.add_argument("--top_p", type=float, default=None)
-    parser.add_argument("--max_malformed_count", type=int, default=None)
-    parser.add_argument("--max_malformed_rate", type=float, default=None)
+    parser.add_argument("--top_p", "--top-p", dest="top_p", type=float, default=None)
+    parser.add_argument("--max_malformed_count", "--max-malformed-count", dest="max_malformed_count", type=int, default=None)
+    parser.add_argument("--max_malformed_rate", "--max-malformed-rate", dest="max_malformed_rate", type=float, default=None)
     parser.add_argument("--no_quant", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--disable-label-scoring", action="store_true")
     parser.add_argument("--require-adapter", action="store_true")
     parser.add_argument("--require-model-dir", action="store_true")
     parser.add_argument("--allow_known_public_split_leakage", action="store_true")

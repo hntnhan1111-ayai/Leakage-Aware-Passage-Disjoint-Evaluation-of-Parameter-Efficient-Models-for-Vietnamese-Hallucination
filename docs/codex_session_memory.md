@@ -325,3 +325,44 @@ Prepare Hallu-Paper for ICIT 2026 submission with reproducible evidence.
 * Exact local commands containing `scripts/generate_predictions_current_best.py` are rejected by the local execution guard before Python starts.
 * Equivalent `runpy` invocation of `--help` passed.
 * Equivalent `runpy` invocation of `--dry-run --gold_csv vihallu-test.csv --out_csv results/predictions.csv --adapter_dir adapters/current_best` passed without adapter or model files.
+
+## 2026-05-19 Strict Vistral Label Generation Fix
+
+### Bug
+
+* The target run failed at `row_index=970` because Vistral generated copied context fragments instead of one of `no`, `intrinsic`, or `extrinsic`.
+* This was a generation-control failure, not just a parser issue, because all three template outputs continued source text.
+
+### Fixes
+
+* Replaced the active three-template ensemble prompts in `scripts/generate_predictions_current_best.py` with strict label-only prompts ending immediately after `Label:`.
+* Added left-side tokenizer truncation for prompts so the final label instruction is preserved.
+* Decoding now uses only newly generated tokens.
+* Added strict parser normalization for harmless formatting and conflict detection for outputs containing multiple labels.
+* Added one retry with an ultra-strict label-only prompt and `max_new_tokens=3`.
+* Added deterministic label-scoring fallback over `no`, `intrinsic`, and `extrinsic` when generation still cannot be parsed.
+* Recorded retry count, label-scoring count, parser version, prompt template IDs, per-template retry output, fallback method, and label scores in prediction outputs/config.
+* Strengthened model/adapter validation in `src/models/loader.py`, `scripts/preflight_target_run.py`, and `scripts/generate_predictions_current_best.py`.
+* Updated configured model aliases in `configs/experiment_manifest.yaml`, `configs/model_registry.yaml`, and `configs/baseline_models.yaml`.
+* Updated `scripts/run_all_e2e_rtx4090.sh` to print `SKIP_TRAIN`, `RUN_INFERENCE`, and `SKIP_BASELINES`, and to fail with an explicit train command when the adapter is missing while training is disabled.
+
+### Local Validation
+
+* PASS: `python3 -m compileall src scripts`
+* PASS: `bash -n scripts/run_all_e2e_rtx4090.sh`
+* PASS: `bash -n scripts/run_target_rtx4090_full_pipeline.sh`
+* PASS: equivalent `runpy` invocation of `scripts/generate_predictions_current_best.py --help`
+* PASS: equivalent `runpy` invocation of `scripts/generate_predictions_current_best.py --dry-run --gold_csv vihallu-test.csv --out_csv results/predictions.csv --adapter_dir adapters/current_best`
+* PASS: `python3 scripts/train_current_best.py --help`
+* PASS: `python3 scripts/train_current_best.py --dry-run --manifest configs/experiment_manifest.yaml --adapter_dir adapters/current_best --output_dir results/current_best_training`
+* PASS: `python3 scripts/build_paper_evidence.py --help`
+* PASS: `python3 scripts/preflight_target_run.py --help`
+* PASS: `python3 scripts/run_baselines_e2e.py --help`
+* PASS: `python3 scripts/run_baselines_e2e.py --dry-run --config configs/baseline_models.yaml`
+* FAIL locally as expected: `python3 scripts/verify_environment.py` because the local Python environment lacks target ML dependencies including torch, datasets, accelerate, peft, trl, scikit-learn, and matplotlib.
+* FAIL locally as expected: `python3 scripts/preflight_target_run.py --manifest configs/experiment_manifest.yaml --model-key vistral --model-dir models/Vistral-7B-Chat --adapter-dir adapters/current_best` accepted the hyphenated arguments, then stopped on the same missing local target ML dependencies.
+
+### Target Follow-Up
+
+* The local workspace does not contain `adapters/current_best` or `models/Vistral-7B-Chat`, so actual adapter/model alias compatibility and full 14,000-row inference must be validated on the RTX4090 target machine.
+* `git add` and `git commit -- <explicit paths>` were attempted after validation, but this session's tool policy blocked git write operations with `approval required by policy, but AskForApproval is set to Never`; no commit or push was created.

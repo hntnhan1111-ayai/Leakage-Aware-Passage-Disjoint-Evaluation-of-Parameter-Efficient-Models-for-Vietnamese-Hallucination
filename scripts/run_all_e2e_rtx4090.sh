@@ -25,6 +25,11 @@ if [ "${ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE:-0}" = "1" ]; then
   LEAKAGE_ARGS+=(--allow_known_public_split_leakage)
 fi
 
+RESUME_ARGS=()
+if [ "${RESUME_PREDICTIONS:-0}" = "1" ]; then
+  RESUME_ARGS+=(--resume)
+fi
+
 echo "RTX4090 E2E execution contract"
 echo "manifest=$MANIFEST"
 echo "baseline_config=$BASELINE_CONFIG"
@@ -76,10 +81,14 @@ python3 scripts/preflight_target_run.py \
   "${LEAKAGE_ARGS[@]}"
 
 if [ "${RUN_DOWNLOAD_MODELS:-0}" = "1" ]; then
+  echo "RUN_DOWNLOAD_MODELS"
   python3 scripts/download_models.py
+else
+  echo "SKIP_DOWNLOAD_MODELS"
 fi
 
 if [ "${RUN_TRAIN_CURRENT_BEST:-0}" = "1" ]; then
+  echo "RUN_TRAIN"
   python3 scripts/train_current_best.py \
     --manifest "$MANIFEST" \
     --model_key "$MODEL_KEY" \
@@ -88,9 +97,11 @@ if [ "${RUN_TRAIN_CURRENT_BEST:-0}" = "1" ]; then
     --output_dir "$TRAINING_DIR" \
     --adapter_dir "$ADAPTER_DIR" \
     --seed "$SEED"
+else
+  echo "SKIP_TRAIN"
 fi
 
-python3 -c 'from pathlib import Path; p=Path("'"$ADAPTER_DIR"'"); missing=[]; missing.append(str(p/"adapter_config.json")) if not (p/"adapter_config.json").is_file() else None; weights=[p/"adapter_model.safetensors",p/"adapter_model.bin"]; missing.append("adapter_model.safetensors or adapter_model.bin in "+str(p)) if not any(w.is_file() and w.stat().st_size>0 for w in weights) else None; raise SystemExit("Missing PEFT adapter files: "+", ".join(missing) if missing else 0)'
+python3 -c 'from pathlib import Path; p=Path("'"$ADAPTER_DIR"'"); missing=[]; missing.append(str(p/"adapter_config.json")) if not (p/"adapter_config.json").is_file() else None; weights=[p/"adapter_model.safetensors",p/"adapter_model.bin"]; missing.append("adapter_model.safetensors or adapter_model.bin in "+str(p)) if not any(w.is_file() and w.stat().st_size>0 for w in weights) else None; raise SystemExit("Missing PEFT adapter files: "+", ".join(missing)+"\nRun: RUN_TRAIN_CURRENT_BEST=1 RUN_GENERATE_PREDICTIONS=0 RUN_BASELINES=0 bash scripts/run_all_e2e_rtx4090.sh" if missing else 0)'
 
 python3 scripts/preflight_target_run.py \
   --manifest "$MANIFEST" \
@@ -113,6 +124,7 @@ python3 scripts/preflight_target_run.py \
   "${LEAKAGE_ARGS[@]}"
 
 if [ "${RUN_GENERATE_PREDICTIONS:-0}" = "1" ]; then
+  echo "RUN_INFERENCE"
   python3 scripts/generate_predictions_current_best.py \
     --manifest "$MANIFEST" \
     --model_key "$MODEL_KEY" \
@@ -124,7 +136,10 @@ if [ "${RUN_GENERATE_PREDICTIONS:-0}" = "1" ]; then
     --malformed_csv "$MALFORMED_CSV" \
     --latency_out_dir "$EVIDENCE_DIR" \
     --seed "$SEED" \
+    "${RESUME_ARGS[@]}" \
     "${LEAKAGE_ARGS[@]}"
+else
+  echo "SKIP_INFERENCE"
 fi
 
 if [ ! -s "$OUT_CSV" ]; then
@@ -155,6 +170,7 @@ python3 scripts/write_run_metadata.py \
   "${LEAKAGE_ARGS[@]}"
 
 if [ "${RUN_BASELINES:-0}" = "1" ]; then
+  echo "RUN_BASELINES"
   BASELINE_ARGS=(
     --config "$BASELINE_CONFIG"
     --gold_csv "$GOLD_CSV"
@@ -171,12 +187,12 @@ if [ "${RUN_BASELINES:-0}" = "1" ]; then
     fi
     echo "One or more optional baselines failed. Main method artifacts will still be validated."
   }
+else
+  echo "SKIP_BASELINES"
 fi
 
 REQUIRED_ARTIFACTS=(
   "$ADAPTER_DIR/adapter_config.json"
-  "$TRAINING_DIR/training_config_resolved.json"
-  "$TRAINING_DIR/train_runtime.json"
   "$OUT_CSV"
   "$CONFIG_JSON"
   "$EVIDENCE_DIR/predictions_merged.csv"
@@ -193,6 +209,9 @@ REQUIRED_ARTIFACTS=(
   "$EVIDENCE_DIR/validation_report.md"
   "$EVIDENCE_DIR/run_metadata.json"
 )
+if [ "${RUN_TRAIN_CURRENT_BEST:-0}" = "1" ]; then
+  REQUIRED_ARTIFACTS+=("$TRAINING_DIR/training_config_resolved.json" "$TRAINING_DIR/train_runtime.json")
+fi
 if [ "${ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE:-0}" = "1" ]; then
   REQUIRED_ARTIFACTS+=("$EVIDENCE_DIR/leakage_report.md")
 fi
