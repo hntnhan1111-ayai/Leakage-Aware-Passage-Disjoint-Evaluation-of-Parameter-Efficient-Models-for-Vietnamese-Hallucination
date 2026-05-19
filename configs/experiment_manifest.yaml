@@ -1,0 +1,107 @@
+seed: 42
+labels:
+  - "no"
+  - intrinsic
+  - extrinsic
+models:
+  vistral:
+    role: main_adapter_inference_backbone
+    hf_id: Viet-Mistral/Vistral-7B-Chat
+    local_dir: models/Vistral-7B-Chat
+    loader: AutoModelForCausalLM
+    tokenizer: AutoTokenizer
+    quantization: nf4_4bit
+  qwen3_4b:
+    role: optional_prompt_only_baseline
+    hf_id: Qwen/Qwen3-4B-Instruct-2507
+    local_dir: models/Qwen3-4B-Instruct-2507
+    loader: AutoModelForCausalLM
+    tokenizer: AutoTokenizer
+    quantization: nf4_4bit
+  phobert:
+    role: legacy_encoder_baseline
+    hf_id: vinai/phobert-base-v2
+    local_dir: models/phobert-base-v2
+    loader: AutoModelForSequenceClassification
+    tokenizer: AutoTokenizer
+  xlmr:
+    role: legacy_encoder_baseline
+    hf_id: FacebookAI/xlm-roberta-base
+    local_dir: models/xlm-roberta-base
+    loader: AutoModelForSequenceClassification
+    tokenizer: AutoTokenizer
+datasets:
+  train:
+    canonical: vihallu-train.csv
+    fallback_paths:
+      - vihallu-train.csv
+      - data/vihallu-train.csv
+      - materials/vihallu-train.csv
+  test:
+    canonical: vihallu-test.csv
+    fallback_paths:
+      - vihallu-test.csv
+      - data/vihallu-test.csv
+      - materials/vihallu-test.csv
+  private_test:
+    canonical: vihallu-private-test.csv
+    fallback_paths:
+      - vihallu-private-test.csv
+      - data/vihallu-private-test.csv
+      - materials/vihallu-private-test.csv
+generation:
+  do_sample: false
+  temperature: 0.0
+  top_p: 1.0
+  max_new_tokens: 10
+  max_malformed_count: 0
+  max_malformed_rate: 0.0
+  prompt_template_ids:
+    - 1
+    - 2
+    - 3
+  ensemble: weighted_vote
+  class_weights:
+    intrinsic: 0.3521
+    extrinsic: 0.3520
+    "no": 0.2959
+runtime:
+  inference_model_key: vistral
+  target_os: Ubuntu Linux
+  target_gpu: NVIDIA RTX 4090 24GB
+  python: "3.12"
+  torch_dtype: bfloat16
+  bf16_required_for_target: true
+  cuda_required_for_target: true
+  tf32: true
+  quantization: nf4_4bit
+lora:
+  adapter_required_for_generation: true
+  adapter_search_paths:
+    - adapters
+    - checkpoints
+    - results_scratch_train_pipeline
+  adapter_markers:
+    - adapter_config.json
+    - config.json
+  rank_source: adapter_config.json
+  rank_claim: null
+evidence:
+  gold_csv: vihallu-test.csv
+  output_dir: results/paper_evidence
+  label_col: label
+  pred_col: predict_label
+  row_alignment:
+    preferred_key: row_index
+    fallback_key: id_occurrence
+    duplicate_id_policy: preserve_full_test_rows_without_cartesian_merge
+  required_artifacts:
+    - classification_report.csv
+    - classification_report.json
+    - confusion_matrix.csv
+    - confusion_matrix.png
+    - wrong_predictions.csv
+    - selected_error_cases.md
+    - summary_metrics.json
+    - latency_summary.csv
+    - code_paper_consistency_audit.md

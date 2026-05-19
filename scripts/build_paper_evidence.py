@@ -6,6 +6,22 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 
 LABELS = ["no", "intrinsic", "extrinsic"]
+MALFORMED_COLUMNS = [
+    "row_index",
+    "id",
+    "label",
+    "predict_label",
+    "malformed_reason",
+    "empty_vote_count",
+    "unparsable_vote_count",
+    "raw_output",
+    "template_1_label",
+    "template_1_raw_output",
+    "template_2_label",
+    "template_2_raw_output",
+    "template_3_label",
+    "template_3_raw_output",
+]
 
 
 def resolve_gold(path):
@@ -79,6 +95,24 @@ def validate_summary(summary):
     return True
 
 
+def load_malformed_info(path, total_rows):
+    if not path:
+        return {"path": None, "rows": 0, "percentage": 0.0}
+    malformed_path = Path(path)
+    if not malformed_path.exists():
+        import pandas as pd
+
+        malformed_path.parent.mkdir(parents=True, exist_ok=True)
+        pd.DataFrame(columns=MALFORMED_COLUMNS).to_csv(malformed_path, index=False)
+        return {"path": str(malformed_path), "rows": 0, "percentage": 0.0}
+    import pandas as pd
+
+    malformed = pd.read_csv(malformed_path)
+    rows = int(len(malformed))
+    percentage = (rows / total_rows) if total_rows else 0.0
+    return {"path": str(malformed_path), "rows": rows, "percentage": percentage}
+
+
 def write_validation_report(out, checks):
     lines = ["# Evidence Validation Report", ""]
     failed = [name for name, ok in checks if not ok]
@@ -106,38 +140,71 @@ def main():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--latency_seconds", type=float, default=None)
     parser.add_argument("--allow_partial", action="store_true")
+    parser.add_argument("--validate-only", action="store_true")
+    parser.add_argument("--malformed_csv", default=None)
     args = parser.parse_args()
 
     import pandas as pd
-    from src.data.vihallu import read_csv_robust, validate_gold_df
+    from src.data.vihallu import make_id_occurrence_key, normalize_id_series, read_csv_robust, validate_gold_df, validate_prediction_df
     from src.evaluation.latency import save_latency_summary
     from src.evaluation.metrics import compute_and_save
     from src.utils.seed import set_seed
 
     set_seed(args.seed)
-    out = Path(args.out_dir)
-    out.mkdir(parents=True, exist_ok=True)
     gold_path = resolve_gold(args.gold_csv)
     pred_path = resolve_pred(args.pred_csv)
     gold = read_csv_robust(gold_path)
     pred = read_csv_robust(pred_path)
-    validate_gold_df(gold, gold_path)
+    gold_has_duplicate_ids = normalize_id_series(gold["id"]).duplicated(keep=False).any() if "id" in gold.columns else False
+    validate_gold_df(gold, gold_path, allow_duplicate_ids=True)
     validate_columns(gold, ["id", "context", "prompt", "response", args.label_col], gold_path)
-    validate_columns(pred, ["id", args.pred_col], pred_path)
-    if gold["id"].duplicated().any():
-        raise ValueError(f"{gold_path} contains duplicate id values")
-    if pred["id"].duplicated().any():
-        raise ValueError(f"{pred_path} contains duplicate id values")
+    validate_prediction_df(pred, pred_path, pred_col=args.pred_col, expected_ids=gold["id"], expected_count=len(gold), allow_partial=args.allow_partial, allow_duplicate_ids=gold_has_duplicate_ids)
     validate_prediction_labels(pred[args.pred_col], pred_path)
+    malformed_info = load_malformed_info(args.malformed_csv, len(gold))
+    if malformed_info["rows"] > 0:
+        raise RuntimeError(
+            f"Malformed predictions detected before metrics computation: rows={malformed_info['rows']} "
+            f"percentage={malformed_info['percentage']:.6f} path={malformed_info['path']}"
+        )
+    if "is_malformed" in pred.columns:
+        malformed_mask = pred["is_malformed"].astype(str).str.strip().str.lower().isin(["1", "true", "yes"])
+        malformed_count = int(malformed_mask.sum())
+        if malformed_count > 0:
+            malformed_pct = malformed_count / len(pred) if len(pred) else 0.0
+            raise RuntimeError(
+                f"{pred_path} contains malformed predictions before metrics computation: "
+                f"rows={malformed_count} percentage={malformed_pct:.6f}"
+            )
     keep_gold = [c for c in ["id", "context", "prompt", "response", args.label_col] if c in gold.columns]
-    merged = gold[keep_gold].merge(pred[["id", args.pred_col]], on="id", how="inner")
+    gold_for_merge = gold[keep_gold].copy()
+    pred_for_merge = pred[["id", args.pred_col]].copy()
+    if "row_index" in pred.columns:
+        pred_for_merge["row_index"] = pred["row_index"]
+        gold_for_merge["__contract_id"] = gold_for_merge.index.astype(str)
+        pred_for_merge["__contract_id"] = normalize_id_series(pred_for_merge["row_index"])
+    else:
+        gold_for_merge["__contract_id"] = make_id_occurrence_key(gold_for_merge)
+        pred_for_merge["__contract_id"] = make_id_occurrence_key(pred_for_merge)
+    merged = gold_for_merge.merge(pred_for_merge[["__contract_id", args.pred_col]], on="__contract_id", how="inner").drop(columns=["__contract_id"])
     checks = []
     checks.append(("merged predictions are non-empty", len(merged) > 0))
-    missing_ids = sorted(set(gold["id"]) - set(merged["id"]))
-    checks.append(("no missing gold IDs", len(missing_ids) == 0 or args.allow_partial))
+    missing_keys = sorted(set(gold_for_merge["__contract_id"]) - set(pred_for_merge["__contract_id"]))
+    checks.append(("no missing gold rows", len(missing_keys) == 0 or args.allow_partial))
+    checks.append((f"malformed predictions count is zero ({malformed_info['rows']} rows, {malformed_info['percentage']:.6%})", malformed_info["rows"] == 0))
+    if args.validate_only:
+        if len(merged) == 0:
+            raise RuntimeError("Prediction contract validation failed: merged predictions are empty")
+        if missing_keys and not args.allow_partial:
+            raise RuntimeError("Prediction contract validation failed: missing gold rows")
+        if malformed_info["rows"] > 0:
+            raise RuntimeError("Prediction contract validation failed: malformed predictions detected")
+        print(f"VALIDATE_ONLY_OK gold_rows={len(gold)} pred_rows={len(pred)} merged_rows={len(merged)} pred_csv={pred_path}")
+        return
+    out = Path(args.out_dir)
+    out.mkdir(parents=True, exist_ok=True)
     if len(merged) == 0:
         write_validation_report(out, checks)
-    if missing_ids and not args.allow_partial:
+    if missing_keys and not args.allow_partial:
         write_validation_report(out, checks)
     merged = merged.rename(columns={args.label_col: "label", args.pred_col: "predict_label"})
     merged.to_csv(out / "predictions_merged.csv", index=False)

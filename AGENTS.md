@@ -103,3 +103,84 @@ Push only source, configs, docs, README, paper edits, and small non-sensitive re
 * Do not claim evidence metrics exist unless target-machine pipeline has generated them.
 * Keep `docs/codex_memory_bank.md` updated.
 * If context grows too large, compact current state into `docs/codex_memory_bank.md` before continuing.
+
+## Project Overview
+
+* Hallu-Paper is the Vietnamese hallucination-detection repository for ICIT 2026.
+* The rescue branch is `submit/icit2026-evidence-revision`.
+* The current workflow focuses on reproducible evidence, target-machine execution, and conservative paper claims.
+
+## Current Goal
+
+* Finish the evidence-generation path on the RTX4090 target machine.
+* Keep local work limited to code, docs, validation, and Git operations.
+* Preserve a concise handoff trail for Codex CLI, Codex Desktop, and the Codex IDE extension.
+
+## Research Constraints
+
+* Avoid overclaiming novelty or state-of-the-art status.
+* Use the full `vihallu-test.csv` by default on the target machine.
+* Keep legacy scripts until the target pipeline is validated and any archival decision is explicit.
+
+## Local Machine Restrictions
+
+* Do not download Hugging Face models locally.
+* Do not run inference, training, or optional baselines locally.
+* Do not run GPU workloads locally.
+* Do not stage `.env`, datasets, model weights, checkpoints, adapters, caches, or other large artifacts.
+
+## Target RTX4090 Machine Rules
+
+* The Linux Ubuntu RTX4090 machine accessed through AnyDesk is the authoritative execution environment.
+* Use the target machine for model download, inference, training, optional baselines, and paper-evidence generation.
+* Use `uv` on the target machine when available.
+
+## Reproducibility Rules
+
+* Default seed is `42`.
+* Generation paths should be deterministic by default.
+* Read `HF_TOKEN` only from `.env` or process environment.
+* Never print or hardcode token values.
+* Validate required files, columns, labels, and outputs before treating a run as valid.
+
+## Paper Evidence Requirements
+
+* Required artifacts include classification report, confusion matrix, wrong predictions, selected error cases, summary metrics, latency summary, and code-paper audit outputs.
+* Do not update paper metrics unless the generated evidence exists.
+* Do not claim `r=64` unless the audited evidence actually shows `r=64`.
+
+## Required Validation Commands
+
+* `python3 -m compileall src scripts`
+* `python3 scripts/audit_code_paper_consistency.py --out results/paper_evidence/code_paper_consistency_audit.md --fail-on-secret`
+* `python3 scripts/build_paper_evidence.py --help`
+* `python3 scripts/generate_predictions_current_best.py --help`
+* `python3 scripts/generate_predictions_current_best.py --dry-run --gold_csv vihallu-test.csv --out_csv results/predictions.csv`
+* `bash -n scripts/run_full_pipeline.sh`
+* `bash -n scripts/run_target_rtx4090_full_pipeline.sh`
+
+## Git Safety Rules
+
+* Configure local repo identity with `git config user.name "hntnhan1111-ayai"` and `git config user.email "hntnhan1111@gmail.com"`.
+* Use explicit `git add` paths only.
+* Do not use `git add .`.
+* Do not force push.
+* If GitHub authentication is needed, use browser/device auth, Git Credential Manager, or SSH.
+
+## Known Research Risks
+
+* Target-machine evidence has not been generated yet in this workspace.
+* The current branch still contains unarchived legacy root-level script copies.
+* Some runs may require a valid adapter or existing prediction CSV on the target machine.
+
+## Handoff Files
+
+* `docs/codex_memory_bank.md` is the rolling persistent state file.
+* `docs/project_handoff.md` is the concise cross-session overview.
+* `docs/current_status.md` is the quick status snapshot.
+* `docs/open_tasks.md` tracks prioritized TODOs.
+* `docs/known_bugs.md` tracks reproducible failures only.
+* `docs/research_direction.md` captures realistic ICIT 2026 research upgrades.
+* `docs/runtime_constraints.md` documents local versus target execution rules.
+* `docs/target_machine_runbook.md` is the target RTX4090 execution guide.
+* `docs/paper_submission_status.md` tracks paper readiness and missing evidence.

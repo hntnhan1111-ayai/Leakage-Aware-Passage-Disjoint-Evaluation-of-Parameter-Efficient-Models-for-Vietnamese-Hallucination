@@ -14,8 +14,11 @@ git fetch origin
 git checkout submit/icit2026-evidence-revision
 git pull
 source .venv/bin/activate
-RUN_DOWNLOAD_MODELS=1 RUN_GENERATE_PREDICTIONS=1 bash scripts/run_target_rtx4090_full_pipeline.sh
+RUN_GENERATE_PREDICTIONS=1 ADAPTER_DIR=adapters/current_best PRECHECK_ONLY=1 bash scripts/run_target_rtx4090_full_pipeline.sh
+RUN_DOWNLOAD_MODELS=1 RUN_GENERATE_PREDICTIONS=1 ADAPTER_DIR=adapters/current_best bash scripts/run_target_rtx4090_full_pipeline.sh
 ```
+
+Replace `adapters/current_best` with the real adapter directory. The precheck must pass before the full command.
 
 ## Existing Prediction CSV
 
@@ -23,6 +26,12 @@ If a prediction CSV already exists and contains `id,predict_label`:
 
 ```bash
 PRED_CSV=final_submission_scratch.csv bash scripts/run_target_rtx4090_full_pipeline.sh
+```
+
+Preflight for an existing prediction CSV:
+
+```bash
+PRED_CSV=final_submission_scratch.csv PRECHECK_ONLY=1 bash scripts/run_target_rtx4090_full_pipeline.sh
 ```
 
 ## Expected Artifacts

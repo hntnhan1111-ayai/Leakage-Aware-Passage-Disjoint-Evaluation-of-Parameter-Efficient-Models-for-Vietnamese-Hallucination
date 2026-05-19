@@ -78,7 +78,7 @@ def main():
     device = next(model.parameters()).device
     rows = []
     with Timer("qwen3_prompt_baseline", samples=len(df)) as timer:
-        for row in tqdm(df.to_dict("records"), total=len(df)):
+        for row_index, row in enumerate(tqdm(df.to_dict("records"), total=len(df))):
             prompt = build_prompt(row)
             inputs = encode_prompt(tokenizer, prompt)
             inputs = {k: v.to(device) for k, v in inputs.items()}
@@ -88,6 +88,7 @@ def main():
             raw = tokenizer.decode(generated, skip_special_tokens=True).strip()
             pred = normalize_label(raw)
             rows.append({
+                "row_index": row_index,
                 "id": row["id"],
                 "label": row["label"],
                 "predict_label": pred,

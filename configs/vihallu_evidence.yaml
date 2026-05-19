@@ -1,6 +1,6 @@
 seed: 42
 labels:
-  - no
+  - "no"
   - intrinsic
   - extrinsic
 datasets:
