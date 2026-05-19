@@ -1,4 +1,5 @@
 import argparse
+import json
 from pathlib import Path
 import sys
 
@@ -113,9 +114,13 @@ def load_malformed_info(path, total_rows):
     return {"path": str(malformed_path), "rows": rows, "percentage": percentage}
 
 
-def write_validation_report(out, checks):
+def write_validation_report(out, checks, leakage_info=None):
     lines = ["# Evidence Validation Report", ""]
     failed = [name for name, ok in checks if not ok]
+    if leakage_info:
+        lines.append(f"leakage_override={str(leakage_info.get('leakage_override', False)).lower()}")
+        lines.append(f"challenge_style_evaluation={str(leakage_info.get('challenge_style_evaluation', False)).lower()}")
+        lines.append("")
     for name, ok in checks:
         status = "PASS" if ok else "FAIL"
         lines.append(f"* {status}: {name}")
@@ -142,15 +147,19 @@ def main():
     parser.add_argument("--allow_partial", action="store_true")
     parser.add_argument("--validate-only", action="store_true")
     parser.add_argument("--malformed_csv", default=None)
+    parser.add_argument("--allow_known_public_split_leakage", action="store_true")
+    parser.add_argument("--allow_malformed_debug", action="store_true")
     args = parser.parse_args()
 
     import pandas as pd
-    from src.data.vihallu import make_id_occurrence_key, normalize_id_series, read_csv_robust, validate_gold_df, validate_prediction_df
+    from src.data.vihallu import load_vihallu_split, make_id_occurrence_key, normalize_id_series, read_csv_robust, validate_gold_df, validate_or_report_public_split_leakage, validate_prediction_df
     from src.evaluation.latency import save_latency_summary
     from src.evaluation.metrics import compute_and_save
     from src.utils.seed import set_seed
 
     set_seed(args.seed)
+    out = Path(args.out_dir)
+    out.mkdir(parents=True, exist_ok=True)
     gold_path = resolve_gold(args.gold_csv)
     pred_path = resolve_pred(args.pred_csv)
     gold = read_csv_robust(gold_path)
@@ -160,8 +169,15 @@ def main():
     validate_columns(gold, ["id", "context", "prompt", "response", args.label_col], gold_path)
     validate_prediction_df(pred, pred_path, pred_col=args.pred_col, expected_ids=gold["id"], expected_count=len(gold), allow_partial=args.allow_partial, allow_duplicate_ids=gold_has_duplicate_ids)
     validate_prediction_labels(pred[args.pred_col], pred_path)
-    malformed_info = load_malformed_info(args.malformed_csv, len(gold))
-    if malformed_info["rows"] > 0:
+    leakage_info = validate_or_report_public_split_leakage(
+        load_vihallu_split("train"),
+        load_vihallu_split("test"),
+        allow_known_public_split_leakage=args.allow_known_public_split_leakage,
+        report_path=out / "leakage_report.md",
+    )
+    malformed_csv = args.malformed_csv or str(out / "malformed_predictions.csv")
+    malformed_info = load_malformed_info(malformed_csv, len(gold))
+    if malformed_info["rows"] > 0 and not args.allow_malformed_debug:
         raise RuntimeError(
             f"Malformed predictions detected before metrics computation: rows={malformed_info['rows']} "
             f"percentage={malformed_info['percentage']:.6f} path={malformed_info['path']}"
@@ -169,7 +185,7 @@ def main():
     if "is_malformed" in pred.columns:
         malformed_mask = pred["is_malformed"].astype(str).str.strip().str.lower().isin(["1", "true", "yes"])
         malformed_count = int(malformed_mask.sum())
-        if malformed_count > 0:
+        if malformed_count > 0 and not args.allow_malformed_debug:
             malformed_pct = malformed_count / len(pred) if len(pred) else 0.0
             raise RuntimeError(
                 f"{pred_path} contains malformed predictions before metrics computation: "
@@ -191,6 +207,7 @@ def main():
     missing_keys = sorted(set(gold_for_merge["__contract_id"]) - set(pred_for_merge["__contract_id"]))
     checks.append(("no missing gold rows", len(missing_keys) == 0 or args.allow_partial))
     checks.append((f"malformed predictions count is zero ({malformed_info['rows']} rows, {malformed_info['percentage']:.6%})", malformed_info["rows"] == 0))
+    checks.append((f"challenge-style leakage override is {str(leakage_info['leakage_override']).lower()}", True))
     if args.validate_only:
         if len(merged) == 0:
             raise RuntimeError("Prediction contract validation failed: merged predictions are empty")
@@ -200,12 +217,10 @@ def main():
             raise RuntimeError("Prediction contract validation failed: malformed predictions detected")
         print(f"VALIDATE_ONLY_OK gold_rows={len(gold)} pred_rows={len(pred)} merged_rows={len(merged)} pred_csv={pred_path}")
         return
-    out = Path(args.out_dir)
-    out.mkdir(parents=True, exist_ok=True)
     if len(merged) == 0:
-        write_validation_report(out, checks)
+        write_validation_report(out, checks, leakage_info=leakage_info)
     if missing_keys and not args.allow_partial:
-        write_validation_report(out, checks)
+        write_validation_report(out, checks, leakage_info=leakage_info)
     merged = merged.rename(columns={args.label_col: "label", args.pred_col: "predict_label"})
     merged.to_csv(out / "predictions_merged.csv", index=False)
     wrong = merged[merged["label"] != merged["predict_label"]].copy()
@@ -226,7 +241,13 @@ def main():
         "cuda_max_memory_allocated": None,
         "cuda_max_memory_reserved": None,
     }
-    save_latency_summary([latency_row], out)
+    existing_latency = []
+    latency_json = out / "latency_summary.json"
+    if latency_json.exists():
+        loaded = json.loads(latency_json.read_text(encoding="utf-8"))
+        if isinstance(loaded, list):
+            existing_latency = loaded
+    save_latency_summary(existing_latency + [latency_row], out)
     required = [
         "predictions_merged.csv",
         "wrong_predictions.csv",
@@ -238,11 +259,14 @@ def main():
         "summary_metrics.json",
         "latency_summary.csv",
         "latency_summary.json",
+        "malformed_predictions.csv",
     ]
+    if leakage_info["leakage_override"]:
+        required.append("leakage_report.md")
     for name in required:
         p = out / name
         checks.append((f"{p} exists and is non-empty", p.exists() and p.stat().st_size > 0))
-    write_validation_report(out, checks)
+    write_validation_report(out, checks, leakage_info=leakage_info)
     print(summary)
 
 

@@ -1,0 +1,46 @@
+seed: 42
+strict_default: false
+train_csv: vihallu-train.csv
+test_csv: vihallu-test.csv
+labels:
+  - "no"
+  - intrinsic
+  - extrinsic
+
+encoder_defaults:
+  num_train_epochs: 2
+  per_device_train_batch_size: 16
+  per_device_eval_batch_size: 32
+  learning_rate: 0.00002
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_length: 256
+  logging_steps: 20
+  save_strategy: "no"
+  report_to: none
+
+baselines:
+  phobert:
+    enabled: true
+    type: encoder_classifier
+    hf_id: vinai/phobert-base-v2
+    local_dir: models/phobert-base-v2
+    output_dir: results/baselines/phobert
+  xlmr:
+    enabled: true
+    type: encoder_classifier
+    hf_id: FacebookAI/xlm-roberta-base
+    local_dir: models/xlm-roberta-base
+    output_dir: results/baselines/xlmr
+  qwen3_4b_prompt:
+    enabled: false
+    type: prompt_only_causal_lm
+    hf_id: Qwen/Qwen3-4B-Instruct-2507
+    local_dir: models/Qwen3-4B-Instruct-2507
+    output_dir: results/baselines/qwen3_4b_prompt
+  gemma4_e2b_prompt:
+    enabled: false
+    type: future_prompt_only
+    hf_id: google/gemma-4-E2B-it
+    local_dir: models/gemma-4-E2B-it
+    output_dir: results/baselines/gemma4_e2b_prompt

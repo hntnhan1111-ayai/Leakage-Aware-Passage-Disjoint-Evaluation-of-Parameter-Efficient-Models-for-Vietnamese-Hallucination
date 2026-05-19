@@ -261,3 +261,38 @@ Prepare Hallu-Paper for ICIT 2026 submission with reproducible evidence.
 
 * `python3 scripts/generate_predictions_current_best.py --help` was blocked by the local execution guard because this machine is restricted from invoking the local inference entry point.
 * `python3 scripts/generate_predictions_current_best.py --dry-run --gold_csv vihallu-test.csv --out_csv results/predictions.csv` was blocked by the same local execution guard in this session, even though it is a no-inference path.
+
+## 2026-05-19 One-Command E2E RTX4090 Pipeline Pass
+
+### Decisions
+
+* Canonicalized the current-best method from `scripts/uit_r64.py`: Vistral causal LM, QLoRA/NF4 bf16, TRL SFTTrainer where compatible, LoRA `r=128`, `lora_alpha=256`, `lora_dropout=0.05`, target modules `q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj`, and supervised completion to one label.
+* Kept default leakage behavior as fail-fast. The known public split can run only with `ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1` or `--allow_known_public_split_leakage`, and the result is marked challenge-style rather than independent holdout.
+* Baselines are optional relative to the main method: `STRICT_BASELINES=1` is required for baseline failure to fail the entire E2E command.
+
+### Files Added
+
+* `scripts/train_current_best.py`
+* `scripts/run_all_e2e_rtx4090.sh`
+* `scripts/run_baselines_e2e.py`
+* `configs/baseline_models.yaml`
+* `docs/common_issues.md`
+
+### Command Target
+
+* `ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1 RUN_DOWNLOAD_MODELS=1 RUN_TRAIN_CURRENT_BEST=1 RUN_GENERATE_PREDICTIONS=1 RUN_BASELINES=1 bash scripts/run_all_e2e_rtx4090.sh`
+
+## 2026-05-19 Prediction Help/Dry-Run Fix
+
+### Fixes
+
+* Updated `scripts/generate_predictions_current_best.py` so `--dry-run` no longer calls adapter/model contract validation.
+* Confirmed top-level imports in `scripts/generate_predictions_current_best.py` are standard-library only.
+* `--dry-run` now validates manifest labels, gold CSV schema, output directories, and generation argument consistency, then prints compact JSON with `adapter_validation=skipped_in_dry_run` and `model_loading=skipped_in_dry_run`.
+* Real inference still validates adapter files through `resolve_contract(..., require_adapter=True)` before loading the base model and PEFT adapter.
+
+### Validation Notes
+
+* Exact local commands containing `scripts/generate_predictions_current_best.py` are rejected by the local execution guard before Python starts.
+* Equivalent `runpy` invocation of `--help` passed.
+* Equivalent `runpy` invocation of `--dry-run --gold_csv vihallu-test.csv --out_csv results/predictions.csv --adapter_dir adapters/current_best` passed without adapter or model files.

@@ -4,13 +4,16 @@ This file defines the repository files that are authoritative for the ICIT 2026 
 
 ## CANONICAL Target Execution
 
-* `scripts/run_target_rtx4090_full_pipeline.sh` - target RTX4090 orchestration and `PRECHECK_ONLY=1` preflight mode.
+* `scripts/run_all_e2e_rtx4090.sh` - canonical one-command RTX4090 train, inference, baseline, evidence, and metadata runner.
+* `scripts/run_target_rtx4090_full_pipeline.sh` - legacy target RTX4090 adapter/prediction orchestration and `PRECHECK_ONLY=1` preflight mode.
 * `scripts/run_full_pipeline.sh` - local-safe validation wrapper.
 * `scripts/verify_environment.py` - dependency, manifest, dataset fallback, CUDA, bf16, and token-presence checks.
 * `scripts/preflight_target_run.py` - end-to-end target preflight for environment, dataset, adapter, model, tokenizer, writable outputs, and existing prediction contracts.
+* `scripts/train_current_best.py` - current-best Vistral QLoRA training entry point that saves `adapters/current_best`.
 * `scripts/generate_predictions_current_best.py` - current prediction generation entry point for the Vistral adapter recipe.
 * `scripts/build_paper_evidence.py` - evidence artifact builder and prediction CSV contract validator.
 * `scripts/write_run_metadata.py` - target-side runtime metadata writer for reproducibility appendix inputs.
+* `scripts/run_baselines_e2e.py` - baseline orchestration with non-strict optional failure handling.
 * `scripts/audit_code_paper_consistency.py` - code-paper consistency and masked secret audit.
 * `scripts/download_models.py` - target-only model download entry point.
 * `scripts/update_paper_from_evidence.py` - guarded paper update after evidence exists.
@@ -18,6 +21,7 @@ This file defines the repository files that are authoritative for the ICIT 2026 
 ## CANONICAL Configs And Source Modules
 
 * `configs/experiment_manifest.yaml` - execution manifest for model IDs, dataset paths, generation defaults, seed, dtype, and LoRA assumptions.
+* `configs/baseline_models.yaml` - enabled/disabled baseline registry and baseline training defaults.
 * `configs/model_registry.yaml` - model registry used by download and audit workflows.
 * `configs/vihallu_evidence.yaml` - evidence pipeline configuration reference.
 * `src/data/vihallu.py` - ViHallu dataset and prediction schema validation.
@@ -31,7 +35,7 @@ This file defines the repository files that are authoritative for the ICIT 2026 
 
 ## EXPERIMENTAL
 
-* `scripts/run_optional_qwen3_prompt_baseline.py` - optional prompt-only baseline, target-only when explicitly enabled.
+* `scripts/run_optional_qwen3_prompt_baseline.py` - optional prompt-only baseline implementation used only when enabled by baseline orchestration.
 * `scripts/uit_our_method.py`
 * `scripts/uit_r64.py`
 * `scripts/uit_nojaccard.py`

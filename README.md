@@ -34,7 +34,7 @@ uv pip install -r requirements.txt
 
 printf 'HF_TOKEN=your_token_here\n' > .env
 
-RUN_DOWNLOAD_MODELS=1 RUN_GENERATE_PREDICTIONS=1 bash scripts/run_target_rtx4090_full_pipeline.sh
+ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1 RUN_DOWNLOAD_MODELS=1 RUN_TRAIN_CURRENT_BEST=1 RUN_GENERATE_PREDICTIONS=1 RUN_BASELINES=1 bash scripts/run_all_e2e_rtx4090.sh
 ```
 
 To evaluate an existing prediction CSV instead:
@@ -42,6 +42,10 @@ To evaluate an existing prediction CSV instead:
 ```bash
 PRED_CSV=final_submission_scratch.csv bash scripts/run_target_rtx4090_full_pipeline.sh
 ```
+
+Preflight details are documented in `docs/target_preflight.md`. Runtime validation details are documented in `docs/runtime_validation.md`.
+
+The public ViHallu train/test files contain known overlap. By default the target pipeline fails on that leakage. The one-command example above sets `ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1`, which marks the run as challenge-style public split evaluation and writes `results/paper_evidence/leakage_report.md`.
 
 ## Environment
 
@@ -63,6 +67,9 @@ Prediction CSV files must contain:
 
 * `id`
 * `predict_label`
+
+Generated prediction CSVs also include `row_index` so duplicate test IDs are aligned row-for-row. Existing prediction CSVs without `row_index` are aligned by deterministic `id` occurrence order.
+Generated prediction runs also maintain `results/paper_evidence/malformed_predictions.csv` and fail before evidence generation if malformed outputs are detected.
 
 Valid labels are exactly:
 
@@ -92,6 +99,8 @@ Required artifacts:
 * `summary_metrics.json`
 * `latency_summary.csv`
 * `latency_summary.json`
+* `run_metadata.json`
+* `leakage_report.md` when `ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1`
 * `validation_report.md`
 * `code_paper_consistency_audit.md`
 * `secret_scan_report.md`

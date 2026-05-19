@@ -212,3 +212,21 @@ Prepare source, docs, scripts, uv workflow, and target RTX4090 pipeline for GitH
   * `results/paper_evidence/latency_summary.csv`
   * `results/paper_evidence/run_metadata.json`
 * Local execution guard blocked direct invocation of `scripts/generate_predictions_current_best.py` in this session, including `--help` and `--dry-run`, so those two validation commands remain unverified in the current local environment.
+
+## 2026-05-19 One-Command E2E RTX4090 Pipeline Update
+
+* Added `scripts/train_current_best.py` as the canonical current-best Vistral QLoRA training entry point. It trains on `vihallu-train.csv`, saves a PEFT adapter to `adapters/current_best`, and validates `adapter_config.json` plus adapter weights.
+* Added `scripts/run_all_e2e_rtx4090.sh` for one-command target execution: environment validation, optional model download, current-best training, adapter validation, full-test inference, evidence generation, metadata writing, and enabled baselines.
+* Added `configs/baseline_models.yaml` and `scripts/run_baselines_e2e.py`. PhoBERT and XLM-R encoder baselines are enabled by default; Qwen3 prompt-only and Gemma future prompt-only are disabled by default.
+* Public split leakage still fails by default. `ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1` or `--allow_known_public_split_leakage` is required to continue, and the run writes `results/paper_evidence/leakage_report.md`.
+* The canonical target command is:
+  `ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1 RUN_DOWNLOAD_MODELS=1 RUN_TRAIN_CURRENT_BEST=1 RUN_GENERATE_PREDICTIONS=1 RUN_BASELINES=1 bash scripts/run_all_e2e_rtx4090.sh`
+* `docs/common_issues.md`, `docs/target_machine_runbook.md`, and `docs/benchmark_to_paper_workflow.md` document same-line Bash env vars, adapter expectations, missing prediction CSV symptoms, leakage override behavior, YAML `"no"` quoting, private-test restrictions, uv setup, and the final E2E command.
+
+## 2026-05-19 Prediction Help/Dry-Run Fix
+
+* `scripts/generate_predictions_current_best.py` now keeps `--help` and `--dry-run` free of model loading, adapter loading, CUDA checks, and PEFT imports.
+* Dry-run no longer calls `resolve_contract`, so it does not require `adapter_config.json` or adapter weight files.
+* Dry-run validates manifest labels, gold CSV schema, output directory creation, and generation argument consistency, then prints compact JSON.
+* Real inference still requires a valid PEFT adapter directory unless `--full_model_dir` is explicitly used.
+* The local command guard still rejects exact commands containing `scripts/generate_predictions_current_best.py`; equivalent `runpy` validation passed for help and dry-run.

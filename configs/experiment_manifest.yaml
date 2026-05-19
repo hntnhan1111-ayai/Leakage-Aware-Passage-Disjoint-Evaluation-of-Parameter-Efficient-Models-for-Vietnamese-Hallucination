@@ -3,9 +3,18 @@ labels:
   - "no"
   - intrinsic
   - extrinsic
+
+model_key: vistral
+model_id: Viet-Mistral/Vistral-7B-Chat
+model_dir: models/Vistral-7B-Chat
+adapter_dir: adapters/current_best
+train_csv: vihallu-train.csv
+test_csv: vihallu-test.csv
+private_test_csv: vihallu-private-test.csv
+
 models:
   vistral:
-    role: main_adapter_inference_backbone
+    role: main_current_best_qlora_backbone
     hf_id: Viet-Mistral/Vistral-7B-Chat
     local_dir: models/Vistral-7B-Chat
     loader: AutoModelForCausalLM
@@ -19,17 +28,18 @@ models:
     tokenizer: AutoTokenizer
     quantization: nf4_4bit
   phobert:
-    role: legacy_encoder_baseline
+    role: encoder_baseline
     hf_id: vinai/phobert-base-v2
     local_dir: models/phobert-base-v2
     loader: AutoModelForSequenceClassification
     tokenizer: AutoTokenizer
   xlmr:
-    role: legacy_encoder_baseline
+    role: encoder_baseline
     hf_id: FacebookAI/xlm-roberta-base
     local_dir: models/xlm-roberta-base
     loader: AutoModelForSequenceClassification
     tokenizer: AutoTokenizer
+
 datasets:
   train:
     canonical: vihallu-train.csv
@@ -49,6 +59,14 @@ datasets:
       - vihallu-private-test.csv
       - data/vihallu-private-test.csv
       - materials/vihallu-private-test.csv
+
+prompt_template_ids:
+  - 1
+  - 2
+  - 3
+max_length: 1024
+max_new_tokens: 10
+
 generation:
   do_sample: false
   temperature: 0.0
@@ -65,18 +83,28 @@ generation:
     intrinsic: 0.3521
     extrinsic: 0.3520
     "no": 0.2959
+
 runtime:
   inference_model_key: vistral
   target_os: Ubuntu Linux
   target_gpu: NVIDIA RTX 4090 24GB
   python: "3.12"
   torch_dtype: bfloat16
+  dtype: bfloat16
   bf16_required_for_target: true
   cuda_required_for_target: true
   tf32: true
   quantization: nf4_4bit
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_compute_dtype: bfloat16
+  bnb_4bit_use_double_quant: true
+
 lora:
   adapter_required_for_generation: true
+  adapter_dir: adapters/current_best
   adapter_search_paths:
     - adapters
     - checkpoints
@@ -85,7 +113,65 @@ lora:
     - adapter_config.json
     - config.json
   rank_source: adapter_config.json
-  rank_claim: null
+  rank_claim: 128
+  r: 128
+  lora_alpha: 256
+  lora_dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  bias: none
+  task_type: CAUSAL_LM
+
+training:
+  output_dir: results/current_best_training
+  adapter_dir: adapters/current_best
+  num_train_epochs: 3
+  epochs: 3
+  per_device_train_batch_size: 1
+  batch_size: 1
+  gradient_accumulation_steps: 16
+  learning_rate: 0.0001
+  warmup_ratio: 0.0
+  warmup_steps: 50
+  weight_decay: 0.01
+  max_seq_length: 1024
+  max_length: 1024
+  max_grad_norm: 1.0
+  lr_scheduler_type: cosine
+  save_strategy: "no"
+  logging_steps: 10
+  gradient_checkpointing: true
+  bf16: true
+  optim: paged_adamw_32bit
+  label_smoothing_factor: 0.1
+  packing: false
+  report_to: none
+
+artifacts:
+  predictions_csv: results/predictions.csv
+  prediction_config_json: results/prediction_config.json
+  training_dir: results/current_best_training
+  training_config_resolved_json: results/current_best_training/training_config_resolved.json
+  train_runtime_json: results/current_best_training/train_runtime.json
+  train_log_jsonl: results/current_best_training/train_log.jsonl
+  evidence_dir: results/paper_evidence
+  malformed_predictions_csv: results/paper_evidence/malformed_predictions.csv
+  run_metadata_json: results/paper_evidence/run_metadata.json
+  leakage_report_md: results/paper_evidence/leakage_report.md
+  baseline_root: results/baselines
+
+leakage:
+  default_policy: fail
+  override_env: ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE
+  challenge_style_evaluation: false
+  limitation_sentence: "The public ViHallu split used in this challenge-style evaluation contains overlap with the released training split; therefore, we report it as a reproducible challenge-style evaluation rather than an independent holdout estimate."
+
 evidence:
   gold_csv: vihallu-test.csv
   output_dir: results/paper_evidence
@@ -96,6 +182,7 @@ evidence:
     fallback_key: id_occurrence
     duplicate_id_policy: preserve_full_test_rows_without_cartesian_merge
   required_artifacts:
+    - predictions_merged.csv
     - classification_report.csv
     - classification_report.json
     - confusion_matrix.csv
@@ -104,4 +191,7 @@ evidence:
     - selected_error_cases.md
     - summary_metrics.json
     - latency_summary.csv
-    - code_paper_consistency_audit.md
+    - latency_summary.json
+    - validation_report.md
+    - malformed_predictions.csv
+    - run_metadata.json

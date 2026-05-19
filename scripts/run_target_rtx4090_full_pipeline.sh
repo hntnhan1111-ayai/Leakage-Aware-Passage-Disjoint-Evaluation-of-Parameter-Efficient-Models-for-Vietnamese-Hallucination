@@ -34,6 +34,10 @@ MAX_NEW_TOKENS="${MAX_NEW_TOKENS:-10}"
 TEMPERATURE="${TEMPERATURE:-0.0}"
 TOP_P="${TOP_P:-1.0}"
 PRED="${PRED_CSV:-}"
+LEAKAGE_ARGS=()
+if [ "${ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE:-0}" = "1" ]; then
+  LEAKAGE_ARGS+=(--allow_known_public_split_leakage)
+fi
 
 echo "Target execution contract"
 echo "manifest=$MANIFEST"
@@ -72,6 +76,7 @@ PREFLIGHT_ARGS=(
 if [ -n "${ADAPTER_DIR:-}" ]; then
   PREFLIGHT_ARGS+=(--adapter_dir "$ADAPTER_DIR")
 fi
+PREFLIGHT_ARGS+=("${LEAKAGE_ARGS[@]}")
 
 run_preflight() {
   python3 scripts/preflight_target_run.py "${PREFLIGHT_ARGS[@]}" "$@"
@@ -96,6 +101,7 @@ fi
 if [ "${NO_QUANT:-0}" = "1" ]; then
   GEN_ARGS+=(--no_quant)
 fi
+GEN_ARGS+=("${LEAKAGE_ARGS[@]}")
 
 if [ -z "$PRED" ] && [ -f "final_submission_scratch.csv" ]; then
   PRED="final_submission_scratch.csv"
@@ -108,7 +114,7 @@ fi
 if [ "$PRECHECK_ONLY" = "1" ]; then
   if [ -n "$PRED" ]; then
     run_preflight --precheck_only --pred_csv "$PRED"
-    python3 scripts/build_paper_evidence.py --validate-only --gold_csv "$GOLD_CSV" --pred_csv "$PRED" --label_col label --pred_col predict_label --seed "$SEED"
+    python3 scripts/build_paper_evidence.py --validate-only --gold_csv "$GOLD_CSV" --pred_csv "$PRED" --label_col label --pred_col predict_label --seed "$SEED" "${LEAKAGE_ARGS[@]}"
   elif [ "${RUN_GENERATE_PREDICTIONS:-0}" = "1" ]; then
     run_preflight --precheck_only --require_model_dir --require_adapter --malformed_csv "$MALFORMED_CSV"
     python3 scripts/generate_predictions_current_best.py --dry-run "${GEN_ARGS[@]}" --require-adapter --require-model-dir
@@ -156,15 +162,15 @@ if [ -z "$PRED" ]; then
   exit 1
 fi
 
-python3 scripts/build_paper_evidence.py --gold_csv "$GOLD_CSV" --pred_csv "$PRED" --out_dir results/paper_evidence --label_col label --pred_col predict_label --seed "$SEED" --malformed_csv "$MALFORMED_CSV"
-python3 scripts/write_run_metadata.py --manifest "$MANIFEST" --model_key "$MODEL_KEY" --model_dir "$MODEL_DIR" --config_json "$CONFIG_JSON" --adapter_dir "${ADAPTER_DIR:-}" --seed "$SEED" --out results/paper_evidence/run_metadata.json
+python3 scripts/build_paper_evidence.py --gold_csv "$GOLD_CSV" --pred_csv "$PRED" --out_dir results/paper_evidence --label_col label --pred_col predict_label --seed "$SEED" --malformed_csv "$MALFORMED_CSV" "${LEAKAGE_ARGS[@]}"
+python3 scripts/write_run_metadata.py --manifest "$MANIFEST" --model_key "$MODEL_KEY" --model_dir "$MODEL_DIR" --config_json "$CONFIG_JSON" --adapter_dir "${ADAPTER_DIR:-}" --seed "$SEED" --out results/paper_evidence/run_metadata.json "${LEAKAGE_ARGS[@]}"
 
 if [ "${RUN_QWEN3_BASELINE:-0}" = "1" ]; then
   python3 scripts/download_models.py --include-modern
   RUN_QWEN3_BASELINE=1 python3 scripts/run_optional_qwen3_prompt_baseline.py --gold_csv "$GOLD_CSV" --out_dir results/qwen3_prompt_baseline --seed "$SEED"
 fi
 
-python3 -c 'from src.utils.io import assert_nonempty_files; required=["results/paper_evidence/malformed_predictions.csv","results/paper_evidence/predictions_merged.csv","results/paper_evidence/classification_report.csv","results/paper_evidence/classification_report.json","results/paper_evidence/confusion_matrix.csv","results/paper_evidence/confusion_matrix.png","results/paper_evidence/wrong_predictions.csv","results/paper_evidence/selected_error_cases.md","results/paper_evidence/summary_metrics.json","results/paper_evidence/latency_summary.csv","results/paper_evidence/latency_summary.json","results/paper_evidence/run_metadata.json","results/paper_evidence/code_paper_consistency_audit.md","results/paper_evidence/secret_scan_report.md","results/paper_evidence/validation_report.md"]; assert_nonempty_files(required); print("All required target artifacts exist:"); [print(item) for item in required]'
+python3 -c 'import os; from src.utils.io import assert_nonempty_files; required=["results/paper_evidence/malformed_predictions.csv","results/paper_evidence/predictions_merged.csv","results/paper_evidence/classification_report.csv","results/paper_evidence/classification_report.json","results/paper_evidence/confusion_matrix.csv","results/paper_evidence/confusion_matrix.png","results/paper_evidence/wrong_predictions.csv","results/paper_evidence/selected_error_cases.md","results/paper_evidence/summary_metrics.json","results/paper_evidence/latency_summary.csv","results/paper_evidence/latency_summary.json","results/paper_evidence/run_metadata.json","results/paper_evidence/code_paper_consistency_audit.md","results/paper_evidence/secret_scan_report.md","results/paper_evidence/validation_report.md"]; required += ["results/paper_evidence/leakage_report.md"] if os.getenv("ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE") == "1" else []; assert_nonempty_files(required); print("All required target artifacts exist:"); [print(item) for item in required]'
 
 UTC_NOW="$(python3 -c 'from datetime import datetime, timezone; print(datetime.now(timezone.utc).isoformat())')"
 mkdir -p docs

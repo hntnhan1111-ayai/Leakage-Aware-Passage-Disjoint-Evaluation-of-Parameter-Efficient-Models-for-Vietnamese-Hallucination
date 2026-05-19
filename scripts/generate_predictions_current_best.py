@@ -2,8 +2,10 @@ import argparse
 import csv
 from datetime import datetime, timezone
 import json
+import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -28,6 +30,17 @@ MALFORMED_COLUMNS = [
     "template_3_label",
     "template_3_raw_output",
 ]
+
+
+def git_output(args):
+    try:
+        return subprocess.check_output(args, text=True, stderr=subprocess.DEVNULL).strip()
+    except Exception:
+        return None
+
+
+def flag_enabled(name):
+    return os.getenv(name, "").strip().lower() in {"1", "true", "yes", "on"}
 
 
 def normalize_label(text):
@@ -76,19 +89,28 @@ def create_prompt(row, tokenizer, template_id):
     return f"So sánh CONTEXT và RESPONSE để phân loại.\n\nCONTEXT: \"{context}\"\nRESPONSE: \"{response}\"\n\nCHỌN MỘT TRONG CÁC LOẠI SAU:\n1. no\n2. intrinsic\n3. extrinsic\n\nPHÂN LOẠI:"
 
 
-def resolve_contract(args, require_model_dir=False, require_adapter=False):
+def resolve_contract(args, require_model_dir=False, require_adapter=False, allow_missing_adapter=False):
     import preflight_target_run as preflight
 
     manifest = preflight.verify_environment.load_manifest(args.manifest)
     model_key, model_entry = preflight.find_manifest_model(manifest, args.model_key, args.model_dir)
     model_info = None
-    if require_model_dir or Path(args.model_dir).exists():
-        model_info = preflight.validate_model_dir(args.model_dir, model_entry)
+    model_dir = args.full_model_dir or args.model_dir
+    if require_model_dir or Path(model_dir).exists():
+        model_info = preflight.validate_model_dir(model_dir, model_entry)
     adapter_dir = None
     adapter_info = None
-    if require_adapter or args.adapter_dir:
+    if args.full_model_dir:
+        return manifest, model_key, model_entry, model_info, adapter_dir, adapter_info
+    if require_adapter:
         adapter_dir = preflight.find_adapter_candidate(manifest, args.adapter_dir)
         adapter_info = preflight.validate_adapter_dir(adapter_dir, model_entry, args.model_dir)
+    elif args.adapter_dir:
+        adapter_dir = Path(args.adapter_dir)
+        if adapter_dir.exists():
+            adapter_info = preflight.validate_adapter_dir(adapter_dir, model_entry, args.model_dir)
+        elif not allow_missing_adapter:
+            raise FileNotFoundError(f"Adapter directory not found: {adapter_dir}")
     return manifest, model_key, model_entry, model_info, adapter_dir, adapter_info
 
 
@@ -113,13 +135,18 @@ def write_malformed_rows(path, rows):
 
 
 def build_generation_config(args, adapter_dir, model_key, status, processed_rows=0, total_rows=0, malformed_count=0, malformed_percentage=0.0):
+    leakage_override = bool(args.allow_known_public_split_leakage or flag_enabled("ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE"))
     return {
         "status": status,
         "timestamp": datetime.now(timezone.utc).isoformat(),
+        "git_commit": git_output(["git", "rev-parse", "HEAD"]),
+        "git_branch": git_output(["git", "branch", "--show-current"]),
         "seed": args.seed,
         "manifest": args.manifest,
         "model_key": model_key,
+        "model_id": getattr(args, "model_id", None),
         "model_dir": args.model_dir,
+        "full_model_dir": args.full_model_dir,
         "adapter_dir": str(adapter_dir) if adapter_dir is not None else None,
         "dataset_path": args.gold_csv,
         "out_csv": args.out_csv,
@@ -138,6 +165,8 @@ def build_generation_config(args, adapter_dir, model_key, status, processed_rows
         },
         "dtype": "bfloat16",
         "quantization": None if args.no_quant else "nf4_4bit",
+        "leakage_override": leakage_override,
+        "challenge_style_evaluation": leakage_override,
         "malformed_policy": {
             "max_malformed_count": args.max_malformed_count,
             "max_malformed_rate": args.max_malformed_rate,
@@ -154,18 +183,101 @@ def write_generation_config(path, config):
     return config_path
 
 
+def apply_manifest_defaults(args):
+    import verify_environment
+
+    manifest = verify_environment.load_manifest(args.manifest)
+    model_key = args.model_key or manifest.get("model_key") or manifest["runtime"]["inference_model_key"]
+    model_entry = manifest["models"][model_key]
+    artifacts = manifest.get("artifacts", {})
+    generation = manifest["generation"]
+    args.model_key = model_key
+    if args.model_dir is None:
+        args.model_dir = manifest.get("model_dir") or model_entry["local_dir"]
+    if args.adapter_dir is None and args.full_model_dir is None:
+        args.adapter_dir = manifest.get("adapter_dir") or manifest["lora"].get("adapter_dir")
+    if args.max_new_tokens is None:
+        args.max_new_tokens = int(generation["max_new_tokens"])
+    if args.temperature is None:
+        args.temperature = float(generation["temperature"])
+    if args.top_p is None:
+        args.top_p = float(generation["top_p"])
+    if args.max_malformed_count is None:
+        args.max_malformed_count = int(generation.get("max_malformed_count", 0))
+    if args.max_malformed_rate is None:
+        args.max_malformed_rate = float(generation.get("max_malformed_rate", 0.0))
+    if args.config_json is None:
+        args.config_json = artifacts.get("prediction_config_json", "results/prediction_config.json")
+    if args.malformed_csv is None:
+        args.malformed_csv = artifacts.get("malformed_predictions_csv", "results/paper_evidence/malformed_predictions.csv")
+    if args.latency_out_dir is None:
+        args.latency_out_dir = artifacts.get("evidence_dir", "results/paper_evidence")
+    args.model_id = model_entry["hf_id"]
+    return manifest
+
+
+def validate_manifest_contract(manifest, manifest_path):
+    if manifest.get("labels") != LABELS:
+        raise ValueError(f"{manifest_path} labels must be exactly {LABELS}, found {manifest.get('labels')}")
+    generation = manifest.get("generation", {})
+    for key in ["do_sample", "temperature", "top_p", "max_new_tokens"]:
+        if key not in generation:
+            raise ValueError(f"{manifest_path} generation.{key} is required")
+    if generation.get("do_sample") is not False:
+        raise ValueError(f"{manifest_path} generation.do_sample must be false for deterministic prediction")
+    return True
+
+
+def ensure_parent_dir(path, label):
+    parent = Path(path).parent
+    parent.mkdir(parents=True, exist_ok=True)
+    if not parent.exists() or not parent.is_dir():
+        raise RuntimeError(f"{label} parent directory is not writable: {parent}")
+    return parent
+
+
 def validate_dry_run(args):
     gold_path = Path(args.gold_csv)
     if not gold_path.exists():
         raise FileNotFoundError(f"Gold CSV not found: {gold_path}")
     from src.data.vihallu import read_csv_robust, validate_gold_df
 
+    manifest = apply_manifest_defaults(args)
+    validate_manifest_contract(manifest, args.manifest)
     validate_generation_settings(args)
     df = read_csv_robust(gold_path)
     validate_gold_df(df, gold_path, allow_duplicate_ids=True)
-    _, model_key, _, _, adapter_dir, _ = resolve_contract(args, require_model_dir=args.require_model_dir, require_adapter=args.require_adapter)
-    adapter_status = str(adapter_dir) if adapter_dir is not None else "auto-detect on target"
-    print(f"DRY_RUN_OK gold_rows={len(df)} out_csv={args.out_csv} model_key={model_key} model_dir={args.model_dir} adapter={adapter_status}")
+    ensure_parent_dir(args.out_csv, "Prediction CSV")
+    ensure_parent_dir(args.config_json, "Prediction config")
+    ensure_parent_dir(args.malformed_csv, "Malformed prediction CSV")
+    ensure_parent_dir(Path(args.latency_out_dir) / "latency_summary.csv", "Latency summary")
+    if args.full_model_dir and args.adapter_dir:
+        raise ValueError("--full_model_dir and --adapter_dir are mutually exclusive")
+    summary = {
+        "status": "DRY_RUN_OK",
+        "manifest": args.manifest,
+        "gold_csv": str(gold_path),
+        "gold_rows": int(len(df)),
+        "out_csv": args.out_csv,
+        "config_json": args.config_json,
+        "malformed_csv": args.malformed_csv,
+        "latency_out_dir": args.latency_out_dir,
+        "model_key": args.model_key,
+        "model_id": args.model_id,
+        "model_dir": args.model_dir,
+        "adapter_dir": args.adapter_dir,
+        "full_model_dir": args.full_model_dir,
+        "adapter_validation": "skipped_in_dry_run",
+        "model_loading": "skipped_in_dry_run",
+        "generation": {
+            "do_sample": False,
+            "temperature": args.temperature,
+            "top_p": args.top_p,
+            "max_new_tokens": args.max_new_tokens,
+        },
+        "labels": LABELS,
+    }
+    print(json.dumps(summary, ensure_ascii=False, sort_keys=True))
 
 
 def log_runtime_config(config):
@@ -173,15 +285,18 @@ def log_runtime_config(config):
 
 
 def load_model_and_tokenizer(args, adapter_dir):
-    import torch
     from peft import PeftModel
     from src.models.loader import load_causal_lm
 
-    model, tokenizer = load_causal_lm(args.model_dir, quantized=not args.no_quant)
-    model = PeftModel.from_pretrained(model, str(adapter_dir))
+    model_dir = args.full_model_dir or args.model_dir
+    model, tokenizer = load_causal_lm(model_dir, quantized=not args.no_quant)
+    if args.full_model_dir is None:
+        model = PeftModel.from_pretrained(model, str(adapter_dir))
     model.eval()
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+    import torch
+
     return model, tokenizer, torch
 
 
@@ -261,7 +376,12 @@ def run_generation(args):
 
     validate_generation_settings(args)
     set_seed(args.seed)
-    _, model_key, _, _, adapter_dir, _ = resolve_contract(args, require_model_dir=True, require_adapter=True)
+    manifest, model_key, model_entry, _, adapter_dir, _ = resolve_contract(
+        args,
+        require_model_dir=True,
+        require_adapter=args.full_model_dir is None,
+    )
+    args.model_id = model_entry["hf_id"]
     malformed_path = ensure_malformed_file(args.malformed_csv)
     runtime_config = build_generation_config(args, adapter_dir, model_key, status="starting")
     write_generation_config(args.config_json, runtime_config)
@@ -308,6 +428,8 @@ def run_generation(args):
                 "prompt": row["prompt"],
                 "response": row["response"],
                 "raw_output": result["raw_output"],
+                "template_id": ",".join(map(str, TEMPLATE_IDS)),
+                "ensemble": manifest["generation"].get("ensemble", "weighted_vote"),
                 "is_malformed": result["malformed_reason"] is not None,
                 "malformed_reason": result["malformed_reason"],
             })
@@ -327,12 +449,12 @@ def run_generation(args):
         status="completed",
         processed_rows=len(out_df),
         total_rows=len(df),
-        malformed_count=0,
-        malformed_percentage=0.0,
+        malformed_count=len(malformed_rows),
+        malformed_percentage=(len(malformed_rows) / len(out_df)) if len(out_df) else 0.0,
     )
     config["device"] = "cuda" if torch.cuda.is_available() else "cpu"
     write_generation_config(args.config_json, config)
-    save_latency_summary([timer.summary()], out_csv.parent)
+    save_latency_summary([timer.summary()], args.latency_out_dir)
     print(f"Wrote {out_csv}")
     print(f"Wrote {args.config_json}")
     print(f"Wrote {malformed_path}")
@@ -342,25 +464,29 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--gold_csv", default="vihallu-test.csv")
     parser.add_argument("--out_csv", default="results/predictions.csv")
-    parser.add_argument("--config_json", default="results/prediction_config.json")
+    parser.add_argument("--config_json", default=None)
     parser.add_argument("--manifest", default="configs/experiment_manifest.yaml")
-    parser.add_argument("--model_key", default="vistral")
-    parser.add_argument("--model_dir", default="models/Vistral-7B-Chat")
+    parser.add_argument("--model_key", default=None)
+    parser.add_argument("--model_dir", default=None)
+    parser.add_argument("--full_model_dir", default=None)
     parser.add_argument("--adapter_dir", default=None)
-    parser.add_argument("--malformed_csv", default="results/paper_evidence/malformed_predictions.csv")
+    parser.add_argument("--malformed_csv", default=None)
+    parser.add_argument("--latency_out_dir", default=None)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--sample_frac", type=float, default=None)
-    parser.add_argument("--max_new_tokens", type=int, default=10)
-    parser.add_argument("--temperature", type=float, default=0.0)
-    parser.add_argument("--top_p", type=float, default=1.0)
-    parser.add_argument("--max_malformed_count", type=int, default=0)
-    parser.add_argument("--max_malformed_rate", type=float, default=0.0)
+    parser.add_argument("--max_new_tokens", type=int, default=None)
+    parser.add_argument("--temperature", type=float, default=None)
+    parser.add_argument("--top_p", type=float, default=None)
+    parser.add_argument("--max_malformed_count", type=int, default=None)
+    parser.add_argument("--max_malformed_rate", type=float, default=None)
     parser.add_argument("--no_quant", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--require-adapter", action="store_true")
     parser.add_argument("--require-model-dir", action="store_true")
+    parser.add_argument("--allow_known_public_split_leakage", action="store_true")
     args = parser.parse_args()
+    apply_manifest_defaults(args)
     if args.dry_run:
         validate_dry_run(args)
         return

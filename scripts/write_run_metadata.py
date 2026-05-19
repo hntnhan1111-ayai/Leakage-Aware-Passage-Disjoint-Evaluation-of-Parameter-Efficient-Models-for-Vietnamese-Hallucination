@@ -1,6 +1,7 @@
 import argparse
 from datetime import datetime, timezone
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -24,6 +25,10 @@ def load_json_if_exists(path):
     return json.loads(candidate.read_text(encoding="utf-8"))
 
 
+def flag_enabled(name):
+    return os.getenv(name, "").strip().lower() in {"1", "true", "yes", "on"}
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--manifest", default="configs/experiment_manifest.yaml")
@@ -33,6 +38,7 @@ def main():
     parser.add_argument("--config_json", default="results/prediction_config.json")
     parser.add_argument("--out", default="results/paper_evidence/run_metadata.json")
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--allow_known_public_split_leakage", action="store_true")
     args = parser.parse_args()
 
     import torch
@@ -40,6 +46,7 @@ def main():
     manifest = verify_environment.load_manifest(args.manifest)
     model_entry = manifest["models"][args.model_key]
     config = load_json_if_exists(args.config_json) or {}
+    leakage_override = bool(args.allow_known_public_split_leakage or flag_enabled("ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE") or config.get("leakage_override"))
     metadata = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "git_commit": git_output(["git", "rev-parse", "HEAD"]),
@@ -57,6 +64,9 @@ def main():
         "quantization": config.get("quantization", manifest["runtime"]["quantization"]),
         "manifest": args.manifest,
         "prediction_config_path": args.config_json,
+        "leakage_override": leakage_override,
+        "challenge_style_evaluation": leakage_override,
+        "leakage_report": manifest.get("artifacts", {}).get("leakage_report_md", "results/paper_evidence/leakage_report.md") if leakage_override else None,
     }
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)

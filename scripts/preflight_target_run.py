@@ -172,8 +172,8 @@ def validate_gold_csv(manifest, gold_csv):
     return gold_path, df, allow_duplicate_ids, split
 
 
-def validate_dataset_semantics():
-    from src.data.vihallu import LABELS, leakage_overlap_report, load_vihallu_split
+def validate_dataset_semantics(allow_known_public_split_leakage=False, leakage_report_path=None):
+    from src.data.vihallu import LABELS, load_vihallu_split, validate_or_report_public_split_leakage
 
     train_df = load_vihallu_split("train")
     test_df = load_vihallu_split("test")
@@ -182,13 +182,12 @@ def validate_dataset_semantics():
         raise RuntimeError("vihallu-private-test.csv unexpectedly contains a label column and must not be used for evidence evaluation.")
     if "predict_label" not in private_df.columns:
         raise RuntimeError("vihallu-private-test.csv is missing predict_label and its semantics are unclear.")
-    leakage = leakage_overlap_report(train_df, test_df)
-    if leakage["overlap_rows"] > 0:
-        raise RuntimeError(
-            "Detected train/test leakage in ViHallu public splits: "
-            f"overlap_rows={leakage['overlap_rows']} overlap_ids={leakage['overlap_ids']} sample_ids={leakage['sample_ids']}. "
-            "Benchmark execution should not continue until the evaluation split is corrected."
-        )
+    leakage = validate_or_report_public_split_leakage(
+        train_df,
+        test_df,
+        allow_known_public_split_leakage=allow_known_public_split_leakage,
+        report_path=leakage_report_path,
+    )
     return {
         "labels": LABELS,
         "train_rows": int(len(train_df)),
@@ -203,6 +202,8 @@ def validate_dataset_semantics():
 def validate_malformed_csv(path):
     from src.data.vihallu import read_csv_robust
 
+    if not path:
+        return {"path": None, "exists": False, "rows": 0}
     malformed_path = Path(path)
     if not malformed_path.exists():
         return {"path": str(malformed_path), "exists": False, "rows": 0}
@@ -300,6 +301,7 @@ def main():
     parser.add_argument("--require_cuda", action="store_true")
     parser.add_argument("--require_bf16", action="store_true")
     parser.add_argument("--precheck_only", action="store_true")
+    parser.add_argument("--allow_known_public_split_leakage", action="store_true")
     args = parser.parse_args()
 
     modules, versions, warnings = verify_environment.check_imports(require_bitsandbytes=args.require_bitsandbytes)
@@ -312,7 +314,11 @@ def main():
         raise RuntimeError("No active Python environment detected. Activate uv venv or conda before target execution.")
     cuda_summary = verify_environment.check_cuda(modules["torch"], require_cuda=args.require_cuda, require_bf16=args.require_bf16)
     model_key, model_entry = find_manifest_model(manifest, args.model_key, args.model_dir)
-    dataset_semantics = validate_dataset_semantics()
+    leakage_report_path = Path(args.out_dir) / "leakage_report.md"
+    dataset_semantics = validate_dataset_semantics(
+        allow_known_public_split_leakage=args.allow_known_public_split_leakage,
+        leakage_report_path=leakage_report_path,
+    )
     gold_path, gold_df, allow_duplicate_ids, gold_split = validate_gold_csv(manifest, args.gold_csv)
     output_info = validate_output_paths(args.out_dir, args.pred_out_csv, args.config_json, args.malformed_csv)
     model_info = None

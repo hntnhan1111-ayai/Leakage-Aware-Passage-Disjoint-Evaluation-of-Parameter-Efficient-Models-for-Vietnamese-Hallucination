@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 import pandas as pd
@@ -14,6 +15,8 @@ SPLIT_PATHS = {
     "private_test": ["vihallu-private-test.csv", "data/vihallu-private-test.csv", "materials/vihallu-private-test.csv"],
 }
 PUBLIC_EVAL_SPLITS = {"train", "test"}
+LEAKAGE_OVERRIDE_ENV = "ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE"
+LEAKAGE_LIMITATION_SENTENCE = "The public ViHallu split used in this challenge-style evaluation contains overlap with the released training split; therefore, we report it as a reproducible challenge-style evaluation rather than an independent holdout estimate."
 
 
 def first_existing(paths):
@@ -205,3 +208,54 @@ def leakage_overlap_report(train_df, test_df):
         "overlap_ids": int(merged["id"].astype(str).nunique()) if len(merged) else 0,
         "sample_ids": sorted(merged["id"].astype(str).unique()[:10]) if len(merged) else [],
     }
+
+
+def env_flag_enabled(name):
+    return os.getenv(name, "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def leakage_override_enabled(cli_enabled=False):
+    return bool(cli_enabled) or env_flag_enabled(LEAKAGE_OVERRIDE_ENV)
+
+
+def validate_or_report_public_split_leakage(train_df, test_df, allow_known_public_split_leakage=False, report_path=None):
+    leakage = leakage_overlap_report(train_df, test_df)
+    override = leakage_override_enabled(allow_known_public_split_leakage)
+    leakage["leakage_detected"] = leakage["overlap_rows"] > 0
+    leakage["leakage_override"] = bool(override and leakage["leakage_detected"])
+    leakage["challenge_style_evaluation"] = bool(override and leakage["leakage_detected"])
+    if leakage["leakage_detected"] and not override:
+        raise RuntimeError(
+            "Detected train/test leakage in ViHallu public splits: "
+            f"overlap_rows={leakage['overlap_rows']} overlap_ids={leakage['overlap_ids']} sample_ids={leakage['sample_ids']}. "
+            f"Set {LEAKAGE_OVERRIDE_ENV}=1 only when intentionally reporting challenge-style public split evaluation."
+        )
+    if leakage["leakage_override"] and report_path is not None:
+        write_leakage_report(report_path, leakage)
+    return leakage
+
+
+def write_leakage_report(path, leakage, train_path="vihallu-train.csv", test_path="vihallu-test.csv"):
+    out = Path(path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    lines = [
+        "# Public Split Leakage Report",
+        "",
+        f"* train_file: `{train_path}`",
+        f"* test_file: `{test_path}`",
+        f"* overlap_rows: {leakage['overlap_rows']}",
+        f"* overlap_ids: {leakage['overlap_ids']}",
+        f"* train_rows: {leakage['train_rows']}",
+        f"* test_rows: {leakage['test_rows']}",
+        f"* test_non_augmented_rows: {leakage['test_non_augmented_rows']}",
+        f"* sample_ids: {', '.join(map(str, leakage['sample_ids']))}",
+        "",
+        LEAKAGE_LIMITATION_SENTENCE,
+        "",
+        "leakage_override=true",
+        "challenge_style_evaluation=true",
+    ]
+    out.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    if not out.exists() or out.stat().st_size == 0:
+        raise RuntimeError(f"Missing or empty output: {out}")
+    return out
