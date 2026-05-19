@@ -223,6 +223,13 @@ Prepare source, docs, scripts, uv workflow, and target RTX4090 pipeline for GitH
   `ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1 RUN_DOWNLOAD_MODELS=1 RUN_TRAIN_CURRENT_BEST=1 RUN_GENERATE_PREDICTIONS=1 RUN_BASELINES=1 bash scripts/run_all_e2e_rtx4090.sh`
 * `docs/common_issues.md`, `docs/target_machine_runbook.md`, and `docs/benchmark_to_paper_workflow.md` document same-line Bash env vars, adapter expectations, missing prediction CSV symptoms, leakage override behavior, YAML `"no"` quoting, private-test restrictions, uv setup, and the final E2E command.
 
+## 2026-05-19 Vistral Alias Validation Fix
+
+* Added `uonlp/viet-mistral-sft-v1` as an accepted Vistral alias in the manifest, registry, download helper, and target preflight validation.
+* Preflight now records structured model/tokenizer/base-model reference matches with `canonical_model_id`, `actual_name_or_path`, and `matched_alias` when available.
+* `results/paper_evidence/run_metadata.json` now inherits the preflight reference validation details when a preflight summary file exists.
+* Documented the upstream checkpoint alias in `docs/common_issues.md`.
+
 ## 2026-05-19 Prediction Help/Dry-Run Fix
 
 * `scripts/generate_predictions_current_best.py` now keeps `--help` and `--dry-run` free of model loading, adapter loading, CUDA checks, and PEFT imports.

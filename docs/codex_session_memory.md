@@ -239,6 +239,35 @@ Prepare Hallu-Paper for ICIT 2026 submission with reproducible evidence.
 
 ### Readiness Conclusion
 
+## 2026-05-19 Vistral Alias Validation Fix
+
+### Bugs Found
+
+* Target preflight rejected `models/Vistral-7B-Chat/config.json` when `config._name_or_path` preserved the upstream checkpoint id `uonlp/viet-mistral-sft-v1` instead of the canonical repo id.
+
+### Fixes Applied
+
+* Added Vistral alias support to `configs/experiment_manifest.yaml`, `configs/model_registry.yaml`, and `src/models/download.py`.
+* Relaxed `scripts/preflight_target_run.py` to accept configured aliases for `config._name_or_path`, tokenizer `name_or_path`, and adapter `base_model_name_or_path` while still requiring model and tokenizer files.
+* Added structured reference-validation details to preflight output and `results/paper_evidence/run_metadata.json` when preflight summaries are available.
+* Documented the Vistral upstream checkpoint alias in `docs/common_issues.md`.
+
+### Commands Run
+
+* `python3 -m compileall src scripts`
+* `python3 scripts/preflight_target_run.py --help`
+* `python3 scripts/verify_environment.py --target-check`
+* `bash -n scripts/run_all_e2e_rtx4090.sh`
+* `bash -n scripts/run_target_rtx4090_full_pipeline.sh`
+
+### Validation Status
+
+* PASS: `python3 -m compileall src scripts`
+* PASS: `python3 scripts/preflight_target_run.py --help`
+* PASS: `bash -n scripts/run_all_e2e_rtx4090.sh`
+* PASS: `bash -n scripts/run_target_rtx4090_full_pipeline.sh`
+* FAIL locally as expected until target uv install: `python3 scripts/verify_environment.py --target-check`
+
 * The repository is now structurally ready to produce the paper artifact set, including `run_metadata.json`.
 * The repository is not research-ready for RTX4090 benchmark execution on the current public ViHallu train/test files because preflight now correctly blocks the detected leakage.
 

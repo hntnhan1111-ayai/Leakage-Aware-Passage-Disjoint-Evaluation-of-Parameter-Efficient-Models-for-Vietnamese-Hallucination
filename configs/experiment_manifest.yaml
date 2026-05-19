@@ -16,6 +16,8 @@ models:
   vistral:
     role: main_current_best_qlora_backbone
     hf_id: Viet-Mistral/Vistral-7B-Chat
+    aliases:
+      - uonlp/viet-mistral-sft-v1
     local_dir: models/Vistral-7B-Chat
     loader: AutoModelForCausalLM
     tokenizer: AutoTokenizer

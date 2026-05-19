@@ -36,6 +36,18 @@ The current-best inference path expects:
 
 Run the full E2E command with `RUN_TRAIN_CURRENT_BEST=1` so `scripts/train_current_best.py` trains and saves the adapter before inference.
 
+## Vistral Base Model Alias
+
+Symptom:
+
+```text
+models/Vistral-7B-Chat/config.json base model reference mismatch
+```
+
+Hugging Face configs can preserve the upstream checkpoint name in `config._name_or_path` or `tokenizer_config.json` even when the local directory is `models/Vistral-7B-Chat`.
+
+For Vistral, the canonical repo id stays `Viet-Mistral/Vistral-7B-Chat`, but the saved config may report `uonlp/viet-mistral-sft-v1` internally. The target preflight accepts either alias and still fails on missing files or unrelated architectures.
+
 ## Missing Prediction CSV
 
 Symptom:

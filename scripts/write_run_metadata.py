@@ -25,6 +25,20 @@ def load_json_if_exists(path):
     return json.loads(candidate.read_text(encoding="utf-8"))
 
 
+def load_preflight_summary(expected_manifest, expected_model_key, expected_model_dir):
+    for candidate in (Path("results/preflight_summary.json"), Path("results/preflight_summary_initial.json")):
+        summary = load_json_if_exists(candidate)
+        if summary is not None:
+            if summary.get("manifest") != expected_manifest:
+                continue
+            if summary.get("model_key") != expected_model_key:
+                continue
+            if summary.get("model_dir") != expected_model_dir:
+                continue
+            return summary, str(candidate)
+    return None, None
+
+
 def flag_enabled(name):
     return os.getenv(name, "").strip().lower() in {"1", "true", "yes", "on"}
 
@@ -46,6 +60,7 @@ def main():
     manifest = verify_environment.load_manifest(args.manifest)
     model_entry = manifest["models"][args.model_key]
     config = load_json_if_exists(args.config_json) or {}
+    preflight_summary, preflight_summary_path = load_preflight_summary(args.manifest, args.model_key, args.model_dir)
     leakage_override = bool(args.allow_known_public_split_leakage or flag_enabled("ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE") or config.get("leakage_override"))
     metadata = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -68,6 +83,15 @@ def main():
         "challenge_style_evaluation": leakage_override,
         "leakage_report": manifest.get("artifacts", {}).get("leakage_report_md", "results/paper_evidence/leakage_report.md") if leakage_override else None,
     }
+    if preflight_summary is not None:
+        metadata["preflight_summary_path"] = preflight_summary_path
+        model_files = preflight_summary.get("model_files") or {}
+        model_reference_validation = model_files.get("reference_validation")
+        if model_reference_validation:
+            metadata["model_reference_validation"] = model_reference_validation
+        adapter_reference_validation = (preflight_summary.get("adapter") or {}).get("reference_validation")
+        if adapter_reference_validation:
+            metadata["adapter_reference_validation"] = adapter_reference_validation
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")

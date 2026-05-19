@@ -5,14 +5,35 @@ from huggingface_hub import snapshot_download
 from src.utils.env import load_hf_token
 
 
-MODELS = {
-    "vistral": ("Viet-Mistral/Vistral-7B-Chat", "models/Vistral-7B-Chat"),
-    "qwen3_4b": ("Qwen/Qwen3-4B-Instruct-2507", "models/Qwen3-4B-Instruct-2507"),
-    "qwen35_4b": ("Qwen/Qwen3.5-4B", "models/Qwen3.5-4B"),
-    "gemma4_e2b": ("google/gemma-4-E2B-it", "models/gemma-4-E2B-it"),
-    "phobert": ("vinai/phobert-base-v2", "models/phobert-base-v2"),
-    "xlmr": ("FacebookAI/xlm-roberta-base", "models/xlm-roberta-base"),
+MODEL_SPECS = {
+    "vistral": {
+        "repo_id": "Viet-Mistral/Vistral-7B-Chat",
+        "local_dir": "models/Vistral-7B-Chat",
+        "aliases": ("Viet-Mistral/Vistral-7B-Chat", "uonlp/viet-mistral-sft-v1"),
+    },
+    "qwen3_4b": {
+        "repo_id": "Qwen/Qwen3-4B-Instruct-2507",
+        "local_dir": "models/Qwen3-4B-Instruct-2507",
+    },
+    "qwen35_4b": {
+        "repo_id": "Qwen/Qwen3.5-4B",
+        "local_dir": "models/Qwen3.5-4B",
+    },
+    "gemma4_e2b": {
+        "repo_id": "google/gemma-4-E2B-it",
+        "local_dir": "models/gemma-4-E2B-it",
+    },
+    "phobert": {
+        "repo_id": "vinai/phobert-base-v2",
+        "local_dir": "models/phobert-base-v2",
+    },
+    "xlmr": {
+        "repo_id": "FacebookAI/xlm-roberta-base",
+        "local_dir": "models/xlm-roberta-base",
+    },
 }
+
+MODELS = {name: (spec["repo_id"], spec["local_dir"]) for name, spec in MODEL_SPECS.items()}
 
 
 def model_ready(local_dir):
@@ -26,7 +47,9 @@ def model_ready(local_dir):
 def download_one(name, token=None):
     if name not in MODELS:
         raise KeyError(f"Unknown model key: {name}")
-    repo_id, local_dir = MODELS[name]
+    spec = MODEL_SPECS[name]
+    repo_id = spec["repo_id"]
+    local_dir = spec["local_dir"]
     if model_ready(local_dir):
         print(f"SKIP {name} {local_dir}")
         return Path(local_dir)

@@ -29,16 +29,34 @@ def ref_aliases(value):
     return {text, Path(text).name.lower()}
 
 
-def accepted_model_refs(model_entry, model_dir):
-    values = [model_entry["hf_id"], model_entry["local_dir"], model_dir]
-    aliases = set()
-    display = []
+def unique_refs(*values):
+    refs = []
     for value in values:
         if not value:
             continue
-        aliases.update(ref_aliases(value))
-        display.append(str(value))
-    return aliases, display
+        text = str(value).replace("\\", "/").strip().rstrip("/")
+        if text and text not in refs:
+            refs.append(text)
+    return refs
+
+
+def accepted_model_refs(model_entry, model_dir):
+    aliases = model_entry.get("aliases", [])
+    if isinstance(aliases, str):
+        aliases = [aliases]
+    return unique_refs(model_entry["hf_id"], *aliases, model_entry["local_dir"], model_dir)
+
+
+def match_reference(actual, allowed_refs):
+    actual_normalized = normalize_ref(actual)
+    for candidate in allowed_refs:
+        if actual_normalized == normalize_ref(candidate):
+            return candidate
+    actual_name = Path(actual_normalized).name.lower()
+    for candidate in allowed_refs:
+        if actual_name == Path(normalize_ref(candidate)).name.lower():
+            return candidate
+    return None
 
 
 def find_manifest_model(manifest, model_key, model_dir):
@@ -100,13 +118,17 @@ def find_adapter_candidate(manifest, explicit=None):
     raise FileNotFoundError(f"No adapter directory found. Checked search roots: {checked}")
 
 
-def validate_reference_match(actual, label, allowed_aliases, allowed_display):
+def validate_reference_match(actual, label, allowed_refs, canonical_model_id):
     if not actual:
         return None
-    actual_aliases = ref_aliases(actual)
-    if actual_aliases & allowed_aliases:
-        return str(actual)
-    raise RuntimeError(f"{label} mismatch: found {actual}. Expected one of: {allowed_display}")
+    matched_alias = match_reference(actual, allowed_refs)
+    if matched_alias:
+        return {
+            "canonical_model_id": canonical_model_id,
+            "actual_name_or_path": str(actual),
+            "matched_alias": matched_alias,
+        }
+    raise RuntimeError(f"{label} mismatch: found {actual}. Expected one of: {allowed_refs}")
 
 
 def validate_model_dir(model_dir, model_entry):
@@ -116,14 +138,18 @@ def validate_model_dir(model_dir, model_entry):
     tokenizer_asset = require_any(model_root, TOKENIZER_ASSET_FILES, "Tokenizer asset")
     config = load_json(model_root / MODEL_REQUIRED_FILES[0])
     tokenizer_config = load_json(model_root / TOKENIZER_REQUIRED_FILES[0])
-    allowed_aliases, allowed_display = accepted_model_refs(model_entry, model_dir)
-    validate_reference_match(config.get("_name_or_path") or config.get("name_or_path"), f"{model_root / MODEL_REQUIRED_FILES[0]} base model reference", allowed_aliases, allowed_display)
-    validate_reference_match(tokenizer_config.get("name_or_path"), f"{model_root / TOKENIZER_REQUIRED_FILES[0]} tokenizer reference", allowed_aliases, allowed_display)
+    allowed_refs = accepted_model_refs(model_entry, model_dir)
+    model_reference = validate_reference_match(config.get("_name_or_path") or config.get("name_or_path"), f"{model_root / MODEL_REQUIRED_FILES[0]} base model reference", allowed_refs, model_entry["hf_id"])
+    tokenizer_reference = validate_reference_match(tokenizer_config.get("name_or_path"), f"{model_root / TOKENIZER_REQUIRED_FILES[0]} tokenizer reference", allowed_refs, model_entry["hf_id"])
     return {
         "model_dir": str(model_root),
         "model_config": str(model_root / MODEL_REQUIRED_FILES[0]),
         "tokenizer_config": str(model_root / TOKENIZER_REQUIRED_FILES[0]),
         "tokenizer_asset": str(tokenizer_asset),
+        "reference_validation": {
+            "model_config": model_reference,
+            "tokenizer_config": tokenizer_reference,
+        },
     }
 
 
@@ -135,8 +161,8 @@ def validate_adapter_dir(adapter_dir, model_entry, model_dir):
     base_model = adapter_config.get("base_model_name_or_path")
     if not base_model:
         raise ValueError(f"{adapter_config_path} missing base_model_name_or_path")
-    allowed_aliases, allowed_display = accepted_model_refs(model_entry, model_dir)
-    validate_reference_match(base_model, f"{adapter_config_path} base_model_name_or_path", allowed_aliases, allowed_display)
+    allowed_refs = accepted_model_refs(model_entry, model_dir)
+    base_model_reference = validate_reference_match(base_model, f"{adapter_config_path} base_model_name_or_path", allowed_refs, model_entry["hf_id"])
     if "r" not in adapter_config:
         raise ValueError(f"{adapter_config_path} missing LoRA rank field r")
     return {
@@ -145,6 +171,9 @@ def validate_adapter_dir(adapter_dir, model_entry, model_dir):
         "adapter_weights": str(adapter_weights),
         "base_model_name_or_path": str(base_model),
         "lora_r": int(adapter_config["r"]),
+        "reference_validation": {
+            "base_model_name_or_path": base_model_reference,
+        },
     }
 
 

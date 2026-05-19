@@ -2,6 +2,8 @@ models:
   vistral:
     name: Vistral
     hf_id: Viet-Mistral/Vistral-7B-Chat
+    aliases:
+      - uonlp/viet-mistral-sft-v1
     url: https://huggingface.co/Viet-Mistral/Vistral-7B-Chat
     local_dir: models/Vistral-7B-Chat
     loader: AutoModelForCausalLM
