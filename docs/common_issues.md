@@ -178,6 +178,20 @@ bash scripts/run_qwen_gemma_peft_rtx4090.sh
 
 Do not use private-test labels in tables. Use neutral wording such as `ViHallu benchmark test split` for captions and section text.
 
+## Gemma4 PEFT Target Module Failure
+
+Symptom:
+
+```text
+ValueError: Target module Gemma4ClippableLinear(...) is not supported.
+```
+
+This is a Gemma 4 and PEFT/LoRA compatibility issue. For text-only ViHallu training, do not target image, audio, projector, multimodal, clip, or clippable modules.
+
+The PEFT baseline trainer uses `lora_target_scope: text_only` for Qwen/Gemma PEFT entries. It discovers explicit supported text-backbone module names under `q_proj`, `k_proj`, `v_proj`, `o_proj`, `gate_proj`, `up_proj`, and `down_proj`, and records the exact list in `training_config_resolved.json`.
+
+For Gemma4, the trainer also supports zero `token_type_ids` and `mm_token_type_ids` through `add_zero_mm_token_type_ids: true` to make the next text-only collator failure explicit instead of hidden.
+
 ## Prediction Help And Dry Run
 
 `scripts/generate_predictions_current_best.py --help` must be a pure argparse path. It should not check model files, adapter files, CUDA, `HF_TOKEN`, or import PEFT.

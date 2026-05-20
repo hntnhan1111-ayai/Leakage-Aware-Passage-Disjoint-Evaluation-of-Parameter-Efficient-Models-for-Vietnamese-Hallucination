@@ -265,3 +265,11 @@ Prepare source, docs, scripts, uv workflow, and target RTX4090 pipeline for GitH
 * Added `scripts/make_paper_figures.py` to generate PDF/PNG figures from real `results/model_comparison/` artifacts into `results/paper_figures/`.
 * Paper tables should separate supervised PEFT, supervised encoder fine-tune, and zero-shot label scoring. Use neutral wording such as `ViHallu benchmark test split`.
 * Local validation for this change remains syntax/diff only; Qwen/Gemma downloads, model loading, training, inference, DEBUG_LIMIT, and figure generation are target-only.
+
+## 2026-05-20 Gemma4 PEFT Target Module Fix
+
+* Target `DEBUG_LIMIT=16` showed `qwen35_4b_peft` completed but `gemma4_e2b_it_peft` failed at PEFT injection with unsupported `Gemma4ClippableLinear`.
+* `scripts/train_eval_llm_peft_baseline.py` now supports `lora_target_scope: text_only`, selecting only supported text-backbone linear modules and passing explicit full module names to PEFT.
+* Text-only selection excludes vision, audio, image, projector, multi-modal, multimodal, mm, clip, and clippable module names.
+* `gemma4_e2b_it_peft` now sets `add_zero_mm_token_type_ids: true` so the collator provides zero `token_type_ids` and `mm_token_type_ids` for Gemma4 text-only training.
+* Target validation after pull: `DEBUG_LIMIT=16 PEFT_EPOCHS=1 bash scripts/run_qwen_gemma_peft_rtx4090.sh`.

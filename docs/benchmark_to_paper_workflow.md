@@ -58,3 +58,5 @@ For model-comparison runs, the target `DEBUG_LIMIT=8` comparison must pass befor
 After debug passes, run the full model comparison without `FORCE_RERUN_MODEL=1` unless intentionally rerunning all models from scratch. The no-force path reuses compatible completed `results/model_comparison/<model_key>/` artifacts and can reuse the existing main current-best Vistral artifacts from `results/predictions.csv` and `results/paper_evidence/` for the Vistral comparison row.
 
 Qwen/Gemma zero-shot rows remain auxiliary baselines. For fair supervised comparison, run `qwen35_4b_peft` and `gemma4_e2b_it_peft` with `scripts/run_qwen_gemma_peft_rtx4090.sh`, then generate paper figures from real artifacts with `scripts/make_paper_figures.py`. Figure captions should use neutral wording such as `ViHallu benchmark test split`.
+
+If Gemma4 PEFT previously failed with `Gemma4ClippableLinear` during LoRA injection, pull the branch containing the text-only target-module fix and rerun only the Qwen/Gemma PEFT script. Qwen debug artifacts should be skipped when compatible; Gemma should retry with explicit text-backbone LoRA targets.

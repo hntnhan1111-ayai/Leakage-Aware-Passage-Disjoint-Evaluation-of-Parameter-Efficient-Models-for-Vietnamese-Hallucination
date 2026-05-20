@@ -146,6 +146,7 @@ baselines:
     adapter_dir: results/model_comparison/qwen35_4b_peft/adapter
     dtype: bfloat16
     quantization: nf4_4bit
+    lora_target_scope: text_only
     lora_r: 64
     lora_alpha: 128
     lora_dropout: 0.05
@@ -202,9 +203,11 @@ baselines:
     adapter_dir: results/model_comparison/gemma4_e2b_it_peft/adapter
     dtype: bfloat16
     quantization: nf4_4bit
+    lora_target_scope: text_only
     lora_r: 64
     lora_alpha: 128
     lora_dropout: 0.05
+    add_zero_mm_token_type_ids: true
     epochs: 2
     learning_rate: 0.0002
     per_device_train_batch_size: 1

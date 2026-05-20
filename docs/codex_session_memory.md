@@ -391,3 +391,22 @@ Prepare Hallu-Paper for ICIT 2026 submission with reproducible evidence.
 
 * Local validation must remain limited to syntax and diff checks.
 * No local Qwen/Gemma downloads, model loading, training, inference, or figure generation was performed.
+
+## 2026-05-20 Gemma4 PEFT Target Module Fix
+
+### Target Log Source
+
+* Target `DEBUG_LIMIT=16` PEFT run completed `qwen35_4b_peft`.
+* `gemma4_e2b_it_peft` failed during `get_peft_model(model, lora_config)` with unsupported `Gemma4ClippableLinear`.
+
+### Fixes
+
+* Updated `scripts/train_eval_llm_peft_baseline.py` so `lora_target_scope: text_only` discovers explicit full module names only from supported text-backbone linear modules.
+* Text-only discovery excludes module names containing vision, audio, image, projector, multi-modal, multimodal, mm, clip, or clippable.
+* Gemma4 PEFT config now uses `add_zero_mm_token_type_ids: true` so the collator supplies zero `token_type_ids` and `mm_token_type_ids`.
+* `training_config_resolved.json` and `status.json` continue to record exact `target_modules`.
+
+### Local Validation Scope
+
+* Local validation remains limited to syntax and diff checks.
+* Target validation should run `DEBUG_LIMIT=16 PEFT_EPOCHS=1 bash scripts/run_qwen_gemma_peft_rtx4090.sh` after pulling the branch.

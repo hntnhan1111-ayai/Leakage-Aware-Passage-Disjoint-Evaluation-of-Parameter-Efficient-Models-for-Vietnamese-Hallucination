@@ -203,7 +203,7 @@ class LabelCompletionDataset:
         return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": labels}
 
 
-def collate_batch(features, tokenizer, torch):
+def collate_batch(features, tokenizer, torch, entry=None):
     pad_id = tokenizer.pad_token_id
     max_len = max(len(item["input_ids"]) for item in features)
     batch = {"input_ids": [], "attention_mask": [], "labels": []}
@@ -212,7 +212,12 @@ def collate_batch(features, tokenizer, torch):
         batch["input_ids"].append(item["input_ids"] + [pad_id] * pad)
         batch["attention_mask"].append(item["attention_mask"] + [0] * pad)
         batch["labels"].append(item["labels"] + [-100] * pad)
-    return {key: torch.tensor(value, dtype=torch.long) for key, value in batch.items()}
+    tensors = {key: torch.tensor(value, dtype=torch.long) for key, value in batch.items()}
+    if entry and entry.get("add_zero_mm_token_type_ids"):
+        zeros = torch.zeros_like(tensors["input_ids"])
+        tensors["token_type_ids"] = zeros
+        tensors["mm_token_type_ids"] = zeros
+    return tensors
 
 
 def load_tokenizer(local_dir):
@@ -268,24 +273,47 @@ def load_base_model(entry, torch, quantized=True):
     raise RuntimeError("model_load_failed:" + " | ".join(errors))
 
 
-def discover_target_modules(model):
+def is_supported_lora_module(module, torch):
+    if isinstance(module, torch.nn.Linear):
+        return True
+    return module.__class__.__name__ in {"Linear4bit", "Linear8bitLt"}
+
+
+def is_excluded_lora_name(name):
+    lowered = name.lower()
+    blocked = ["vision", "audio", "image", "projector", "multi_modal", "multimodal", "mm", "clip", "clippable"]
+    return any(part in lowered for part in blocked)
+
+
+def discover_text_target_modules(model, torch):
+    candidates = {"q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"}
+    found = []
+    for name, module in model.named_modules():
+        if is_excluded_lora_name(name) or not is_supported_lora_module(module, torch):
+            continue
+        parts = name.split(".")
+        tail = parts[-1]
+        parent = parts[-2] if len(parts) > 1 else ""
+        if tail in candidates or parent in candidates:
+            found.append(name)
+    result = sorted(set(found))
+    if not result:
+        raise RuntimeError("no_supported_text_lora_targets_found")
+    return result
+
+
+def discover_target_modules(model, entry, torch):
+    if entry.get("lora_target_scope") == "text_only":
+        return discover_text_target_modules(model, torch)
     candidates = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj", "dense", "fc1", "fc2"]
     found = []
     for name, module in model.named_modules():
         tail = name.split(".")[-1]
-        if tail in candidates and "linear" in module.__class__.__name__.lower():
+        if tail in candidates and is_supported_lora_module(module, torch):
             found.append(tail)
     result = sorted(set(found))
-    if result:
-        return result
-    fallback = []
-    for name, module in model.named_modules():
-        tail = name.split(".")[-1]
-        if "linear" in module.__class__.__name__.lower():
-            fallback.append(tail)
-    result = sorted(set(fallback))
     if not result:
-        raise RuntimeError("No LoRA target modules discovered")
+        raise RuntimeError("no_supported_lora_targets_found")
     return result
 
 
@@ -325,7 +353,7 @@ def train_model(entry, args, train_rows):
     if hasattr(model, "gradient_checkpointing_enable"):
         model.gradient_checkpointing_enable()
     model = prepare_model_for_kbit_training(model)
-    target_modules = discover_target_modules(model)
+    target_modules = discover_target_modules(model, entry, torch)
     r = int(entry.get("lora_r", 64))
     lora_config = LoraConfig(
         r=r,
@@ -343,7 +371,7 @@ def train_model(entry, args, train_rows):
         "model": model,
         "args": training_args(out / "trainer", args, entry, TrainingArguments),
         "train_dataset": dataset,
-        "data_collator": lambda features: collate_batch(features, tokenizer, torch),
+        "data_collator": lambda features: collate_batch(features, tokenizer, torch, entry),
     }
     from inspect import signature
 
@@ -364,7 +392,36 @@ def train_model(entry, args, train_rows):
     return trainer.model, tokenizer, target_modules, train_seconds
 
 
-def score_labels(model, tokenizer, prompt, torch, max_prompt_tokens):
+def score_labels_with_extra_inputs(model, tokenizer, prompt, torch, max_prompt_tokens):
+    device = next(model.parameters()).device
+    results = {}
+    with torch.inference_mode():
+        for label in LABELS:
+            label_ids = tokenizer(" " + label, return_tensors="pt", add_special_tokens=False).input_ids.to(device)
+            max_length = max(1, int(max_prompt_tokens) - int(label_ids.shape[1]))
+            prompt_ids = tokenizer(prompt, return_tensors="pt", add_special_tokens=True, truncation=True, max_length=max_length).input_ids.to(device)
+            input_ids = torch.cat([prompt_ids, label_ids], dim=1)
+            attention_mask = torch.ones_like(input_ids)
+            zeros = torch.zeros_like(input_ids)
+            outputs = model(input_ids=input_ids, attention_mask=attention_mask, token_type_ids=zeros, mm_token_type_ids=zeros)
+            logits = outputs.logits[:, :-1, :]
+            targets = input_ids[:, 1:]
+            start = prompt_ids.shape[1] - 1
+            end = start + label_ids.shape[1]
+            label_logits = logits[:, start:end, :]
+            label_targets = targets[:, start:end]
+            loss = torch.nn.functional.cross_entropy(
+                label_logits.reshape(-1, label_logits.shape[-1]),
+                label_targets.reshape(-1),
+                reduction="mean",
+            )
+            results[label] = float(loss.detach().cpu())
+    return min(results, key=results.get), results
+
+
+def score_labels(model, tokenizer, prompt, torch, max_prompt_tokens, entry):
+    if entry.get("add_zero_mm_token_type_ids"):
+        return score_labels_with_extra_inputs(model, tokenizer, prompt, torch, max_prompt_tokens)
     from src.models.label_scoring import score_labels_causal_lm
 
     device = next(model.parameters()).device
@@ -372,10 +429,14 @@ def score_labels(model, tokenizer, prompt, torch, max_prompt_tokens):
     return label, scores
 
 
-def generate_label(model, tokenizer, row, args, torch):
+def generate_label(model, tokenizer, row, args, torch, entry):
     prompt = build_prompt(row)
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=int(args.max_prompt_tokens))
     inputs = {key: value.to(next(model.parameters()).device) for key, value in inputs.items()}
+    if entry.get("add_zero_mm_token_type_ids"):
+        zeros = torch.zeros_like(inputs["input_ids"])
+        inputs["token_type_ids"] = zeros
+        inputs["mm_token_type_ids"] = zeros
     with torch.inference_mode():
         output = model.generate(
             **inputs,
@@ -389,7 +450,7 @@ def generate_label(model, tokenizer, row, args, torch):
     label, reason = extract_label(text)
     fallback_scores = None
     if label is None:
-        label, fallback_scores = score_labels(model, tokenizer, prompt, torch, int(args.max_prompt_tokens))
+        label, fallback_scores = score_labels(model, tokenizer, prompt, torch, int(args.max_prompt_tokens), entry)
         reason = None
     return label, text, reason, fallback_scores
 
@@ -411,7 +472,7 @@ def evaluate_model(entry, args, model, tokenizer, gold_rows):
     started = time.perf_counter()
     model.eval()
     for row_index, row in enumerate(gold_rows):
-        label, raw_output, malformed_reason, scores = generate_label(model, tokenizer, row, args, torch)
+        label, raw_output, malformed_reason, scores = generate_label(model, tokenizer, row, args, torch, entry)
         if malformed_reason:
             malformed.append({"row_index": row_index, "id": row.get("id"), "label": row.get("label"), "predict_label": "", "malformed_reason": malformed_reason, "raw_output": raw_output})
         rows.append({
