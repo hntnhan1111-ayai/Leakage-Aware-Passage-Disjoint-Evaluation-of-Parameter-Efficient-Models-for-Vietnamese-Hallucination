@@ -346,3 +346,26 @@ Prepare Hallu-Paper for ICIT 2026 submission with reproducible evidence.
 
 * Local validation for this pass is limited to syntax, import, and diff checks.
 * No local model downloads, model loading, training, inference, DEBUG_LIMIT run, or target runner execution was performed.
+
+## 2026-05-20 Model Comparison Skip/Reuse Fix
+
+### Target Log Source
+
+* Target full comparison was started with `FORCE_RERUN_MODEL=1`, so completed-artifact cache was intentionally bypassed.
+* Vistral also lacked a robust no-force reuse path from the already completed main current-best artifacts under `results/predictions.csv` and `results/paper_evidence/`.
+* The target log showed Vistral inference restarted from row 0 with `processed_rows=0`, `resumed_from_existing_predictions=false`, and progress such as `86/14000`.
+
+### Fixes
+
+* Added a main-loop completed-artifact check in `scripts/run_baselines_e2e.py` before any model-specific load, training, or inference path.
+* Completed artifacts are compatible only when status, row count, expected rows, requested limit, seed, dataset path, model id, method type, malformed count, prediction row count, and metric artifacts match.
+* Added full-run-only Vistral reuse from `results/predictions.csv`, `results/prediction_config.json`, and `results/paper_evidence/` into `results/model_comparison/vistral/`.
+* Added `REUSED_MAIN_CURRENT_BEST vistral`, `MODEL_ALREADY_COMPLETED <model_key>`, `STALE_ARTIFACT_ROWS_MISMATCH`, and `FORCE_RERUN_MODEL_ACTIVE` runtime messages.
+* Added `requested_limit`, `expected_rows`, and `force_rerun` fields to per-model `status.json`.
+* Added `REBUILD_MODEL_COMPARISON_SUMMARY=1` / `--rebuild-summary-only` to rebuild global summary from compatible artifacts without model loading.
+* Documented that normal full comparison should omit `FORCE_RERUN_MODEL=1`.
+
+### Local Validation Scope
+
+* This pass must be validated locally only with syntax, import, and diff checks.
+* Target runtime validation remains on the RTX4090 machine only.

@@ -112,6 +112,49 @@ A model directory is not considered present just because `config.json` exists. T
 
 Download failures for optional comparison models do not stop the whole E2E command unless `STRICT_BASELINES=1` is set.
 
+## Model Comparison Reruns Vistral
+
+Symptom:
+
+```text
+processed_rows=0
+resumed_from_existing_predictions=false
+```
+
+or Vistral progress starts again from `0/14000` during a full model-comparison run.
+
+Do not use `FORCE_RERUN_MODEL=1` for a normal full comparison when completed artifacts already exist. That flag intentionally bypasses completed-artifact checks and reruns models.
+
+Normal full comparison should be run without force:
+
+```bash
+ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1 RUN_DOWNLOAD_MODELS=0 RUN_TRAIN_CURRENT_BEST=0 RUN_GENERATE_PREDICTIONS=0 RUN_BASELINES=1 FULL_MODEL_COMPARISON=1 bash scripts/run_all_e2e_rtx4090.sh
+```
+
+The comparison runner first checks `results/model_comparison/<model_key>/status.json`, `predictions.csv`, and metric artifacts. Compatible completed artifacts remain `status=completed` in the global summary and are not loaded again.
+
+For Vistral full runs only, if model-comparison artifacts are missing or stale but the main current-best artifacts are compatible, the runner copies them from:
+
+```text
+results/predictions.csv
+results/prediction_config.json
+results/paper_evidence/
+```
+
+into:
+
+```text
+results/model_comparison/vistral/
+```
+
+and prints:
+
+```text
+REUSED_MAIN_CURRENT_BEST vistral
+```
+
+Debug artifacts with `DEBUG_LIMIT=8` are not compatible with full `rows=14000` runs.
+
 ## Prediction Help And Dry Run
 
 `scripts/generate_predictions_current_best.py --help` must be a pure argparse path. It should not check model files, adapter files, CUDA, `HF_TOKEN`, or import PEFT.

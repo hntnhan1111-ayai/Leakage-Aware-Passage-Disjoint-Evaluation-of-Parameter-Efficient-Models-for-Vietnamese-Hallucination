@@ -7,6 +7,7 @@ import json
 import math
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import time
@@ -295,27 +296,77 @@ def write_status(out, row, extra=None):
     write_json(out / "status.json", payload)
 
 
-def existing_resume_row(args, entry, expected_rows):
-    out = model_out_dir(args, entry)
-    status_path = out / "status.json"
-    if args.force_rerun_model or not status_path.exists():
+def int_or_none(value):
+    if value in [None, ""]:
         return None
-    status = read_json(status_path)
-    checks = {
-        "status": status.get("status") == "completed",
-        "rows": int(status.get("rows", -1)) == int(expected_rows),
-        "malformed_count": int(status.get("malformed_count", -1)) == 0,
-        "model_id": status.get("model_id") == entry["model_id"],
-        "seed": int(status.get("seed", -1)) == int(args.seed),
-        "dataset_path": str(status.get("dataset_path")) == str(args.gold_csv),
-        "git_commit": status.get("git_commit") == git_output(["git", "rev-parse", "HEAD"]),
+    try:
+        return int(float(value))
+    except Exception:
+        return None
+
+
+def same_dataset_path(a, b):
+    if a in [None, ""] or b in [None, ""]:
+        return False
+    left = Path(str(a)).as_posix()
+    right = Path(str(b)).as_posix()
+    return left == right or left.endswith("/" + right) or right.endswith("/" + left)
+
+
+def artifact_paths(out):
+    return {
+        "status": out / "status.json",
+        "predictions": out / "predictions.csv",
+        "summary": out / "summary_metrics.json",
+        "report": out / "classification_report.json",
+        "report_csv": out / "classification_report.csv",
+        "confusion": out / "confusion_matrix.csv",
+        "malformed": out / "malformed_predictions.csv",
     }
-    if all(checks.values()):
-        return {key: status.get(key, "") for key in SUMMARY_COLUMNS}
-    if not args.allow_stale_resume:
-        failed = [key for key, ok in checks.items() if not ok]
-        raise SkipModel("stale_resume_metadata:" + ",".join(failed))
-    return None
+
+
+def compatible_completed_artifact(args, entry, expected_rows):
+    out = model_out_dir(args, entry)
+    paths = artifact_paths(out)
+    if args.force_rerun_model or not paths["status"].exists():
+        return None
+    required = ["predictions", "summary", "report", "report_csv", "confusion", "malformed"]
+    missing = [name for name in required if not paths[name].exists() or paths[name].stat().st_size == 0]
+    if missing:
+        print(f"STALE_ARTIFACT_MISSING {entry['model_key']} {','.join(missing)}")
+        return None
+    status = read_json(paths["status"])
+    pred_rows = count_csv_rows(paths["predictions"])
+    status_rows = int_or_none(status.get("rows"))
+    expected_status_rows = int_or_none(status.get("expected_rows"))
+    requested_limit = int_or_none(status.get("requested_limit"))
+    current_limit = int_or_none(args.debug_limit)
+    if pred_rows != int(expected_rows) or (status_rows is not None and status_rows != int(expected_rows)):
+        print(f"STALE_ARTIFACT_ROWS_MISMATCH {entry['model_key']} expected={expected_rows} status_rows={status.get('rows')} prediction_rows={pred_rows}")
+        return None
+    if expected_status_rows is not None and expected_status_rows != int(expected_rows):
+        print(f"STALE_ARTIFACT_ROWS_MISMATCH {entry['model_key']} expected={expected_rows} artifact_expected_rows={expected_status_rows}")
+        return None
+    if requested_limit != current_limit:
+        print(f"STALE_ARTIFACT_LIMIT_MISMATCH {entry['model_key']} expected_limit={current_limit} artifact_limit={requested_limit}")
+        return None
+    checks = [
+        status.get("status") == "completed",
+        status.get("model_id") == entry["model_id"],
+        status.get("method_type") == entry["method_type"],
+        int_or_none(status.get("seed")) == int(args.seed),
+        same_dataset_path(status.get("dataset_path"), args.gold_csv),
+        int_or_none(status.get("malformed_count")) == 0,
+    ]
+    if not all(checks):
+        print(f"STALE_ARTIFACT_METADATA_MISMATCH {entry['model_key']}")
+        return None
+    row = completed_summary(entry, args, out, extra_status={"artifact_source": status.get("artifact_source", "model_comparison_completed")})
+    return row
+
+
+def existing_resume_row(args, entry, expected_rows):
+    return compatible_completed_artifact(args, entry, expected_rows)
 
 
 def run_build_evidence(args, out, pred_path, malformed_path, latency_seconds, allow_partial):
@@ -372,7 +423,7 @@ def latency_fields(out, rows, fallback_seconds=0.0):
     }
 
 
-def completed_summary(entry, args, out, runtime_seconds=0.0):
+def completed_summary(entry, args, out, runtime_seconds=0.0, extra_status=None):
     summary = read_json(out / "summary_metrics.json")
     report = read_json(out / "classification_report.json")
     pred_rows = count_csv_rows(out / "predictions.csv")
@@ -397,7 +448,15 @@ def completed_summary(entry, args, out, runtime_seconds=0.0):
             raise ValueError(f"{entry['model_key']} produced invalid metric {key}: {value}")
     if int(row["malformed_count"]) != 0:
         raise ValueError(f"{entry['model_key']} produced malformed_count={row['malformed_count']}")
-    write_status(out, row, {"timestamp": datetime.now(timezone.utc).isoformat()})
+    status_extra = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "requested_limit": args.debug_limit,
+        "expected_rows": int(pred_rows),
+        "force_rerun": bool(args.force_rerun_model),
+    }
+    if extra_status:
+        status_extra.update(extra_status)
+    write_status(out, row, status_extra)
     return row
 
 
@@ -418,6 +477,88 @@ def copy_or_subset_predictions(source, target, limit=None):
     target.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(target, index=False)
     return target
+
+
+def validate_prediction_file(path, expected_rows):
+    import pandas as pd
+
+    df = pd.read_csv(path)
+    if len(df) != int(expected_rows):
+        raise SkipModel(f"source_prediction_row_count_mismatch:expected={expected_rows}:found={len(df)}")
+    if "predict_label" not in df.columns:
+        raise SkipModel("source_prediction_missing_predict_label")
+    if df["predict_label"].isna().any():
+        raise SkipModel("source_prediction_nan_predict_label")
+    bad = sorted(set(df["predict_label"].astype(str)) - set(LABELS))
+    if bad:
+        raise SkipModel("source_prediction_invalid_labels:" + ",".join(bad))
+    return True
+
+
+def compatible_main_vistral_config(path, entry, args):
+    if not Path(path).exists():
+        raise SkipModel("main_current_best_missing_prediction_config")
+    config = read_json(path)
+    model_key = config.get("model_key")
+    model_id = config.get("model_id") or config.get("canonical_model_id")
+    if model_key and model_key != entry["model_key"]:
+        raise SkipModel(f"main_current_best_model_key_mismatch:{model_key}")
+    accepted = [entry["model_id"]] + list(entry.get("accepted_aliases", []))
+    if model_id and not match_reference(model_id, accepted):
+        raise SkipModel(f"main_current_best_model_id_mismatch:{model_id}")
+    if not model_key and not model_id:
+        raise SkipModel("main_current_best_missing_model_metadata")
+    dataset_path = config.get("dataset_path")
+    if dataset_path and not same_dataset_path(dataset_path, args.gold_csv):
+        raise SkipModel(f"main_current_best_dataset_mismatch:{dataset_path}")
+    malformed_count = int_or_none(config.get("malformed_count"))
+    if malformed_count is not None and malformed_count != 0:
+        raise SkipModel(f"main_current_best_malformed_count:{malformed_count}")
+    return config
+
+
+def copy_main_current_best_artifacts(out):
+    sources = {
+        "predictions.csv": Path("results/predictions.csv"),
+        "prediction_config.json": Path("results/prediction_config.json"),
+        "summary_metrics.json": Path("results/paper_evidence/summary_metrics.json"),
+        "classification_report.json": Path("results/paper_evidence/classification_report.json"),
+        "classification_report.csv": Path("results/paper_evidence/classification_report.csv"),
+        "confusion_matrix.csv": Path("results/paper_evidence/confusion_matrix.csv"),
+        "malformed_predictions.csv": Path("results/paper_evidence/malformed_predictions.csv"),
+        "latency_summary.json": Path("results/paper_evidence/latency_summary.json"),
+        "latency_summary.csv": Path("results/paper_evidence/latency_summary.csv"),
+        "confusion_matrix.png": Path("results/paper_evidence/confusion_matrix.png"),
+    }
+    missing = [str(path) for path in sources.values() if not path.exists() or path.stat().st_size == 0]
+    if missing:
+        raise SkipModel("main_current_best_missing_artifacts:" + ",".join(missing))
+    out.mkdir(parents=True, exist_ok=True)
+    for name, source in sources.items():
+        shutil.copy2(source, out / name)
+
+
+def reuse_main_current_best(args, entry, expected_rows):
+    if entry["model_key"] != "vistral" or args.force_rerun_model or args.debug_limit is not None:
+        return None
+    out = model_out_dir(args, entry)
+    try:
+        validate_prediction_file("results/predictions.csv", expected_rows)
+        compatible_main_vistral_config("results/prediction_config.json", entry, args)
+        malformed_rows = count_csv_rows("results/paper_evidence/malformed_predictions.csv")
+        if malformed_rows != 0:
+            raise SkipModel(f"main_current_best_malformed_rows:{malformed_rows}")
+        copy_main_current_best_artifacts(out)
+        row = completed_summary(entry, args, out, extra_status={
+            "artifact_source": "main_current_best_reused",
+            "source_predictions": "results/predictions.csv",
+            "source_evidence_dir": "results/paper_evidence",
+        })
+        print("REUSED_MAIN_CURRENT_BEST vistral")
+        return row
+    except SkipModel as exc:
+        print(f"MAIN_CURRENT_BEST_REUSE_UNAVAILABLE vistral {exc}")
+        return None
 
 
 def write_prediction_config(out, entry, args, extra):
@@ -451,31 +592,8 @@ def run_vistral(entry, config, args, gold):
     if resumed is not None:
         print(f"MODEL_SKIPPED {entry['model_key']} resume_completed")
         return resumed
-    main_pred = Path("results/predictions.csv")
-    main_config = Path("results/prediction_config.json")
     pred_path = out / "predictions.csv"
     malformed_path = out / "malformed_predictions.csv"
-    if main_pred.exists() and not args.force_rerun_model:
-        if not main_config.exists() and not args.allow_stale_resume:
-            raise SkipModel("stale_main_prediction_metadata:missing_prediction_config")
-        if main_config.exists() and not args.allow_stale_resume:
-            cfg = read_json(main_config)
-            checks = {
-                "model_id": cfg.get("model_id") == entry["model_id"],
-                "seed": int(cfg.get("seed", -1)) == int(args.seed),
-                "dataset_path": str(cfg.get("dataset_path")) == str(args.gold_csv),
-                "malformed_count": int(cfg.get("malformed_count", -1)) == 0,
-            }
-            if not all(checks.values()):
-                failed = [key for key, ok in checks.items() if not ok]
-                raise SkipModel("stale_main_prediction_metadata:" + ",".join(failed))
-        if args.debug_limit is None and count_csv_rows(main_pred) != expected_rows:
-            raise SkipModel(f"main_prediction_row_count_mismatch:expected={expected_rows}:found={count_csv_rows(main_pred)}")
-        copy_or_subset_predictions(main_pred, pred_path, args.debug_limit)
-        write_empty_malformed(malformed_path)
-        write_prediction_config(out, entry, args, {"reused_from": str(main_pred), "resumed_from_existing_predictions": True, "skipped_rows": len(gold)})
-        run_build_evidence(args, out, pred_path, malformed_path, 0.0, args.debug_limit is not None)
-        return completed_summary(entry, args, out)
     ready, reason = local_model_ready(entry)
     if not ready:
         raise SkipModel(reason)
@@ -509,6 +627,11 @@ def run_vistral(entry, config, args, gold):
     ]
     if args.debug_limit is not None:
         cmd += ["--limit", str(args.debug_limit)]
+    elif pred_path.exists() and not args.force_rerun_model:
+        current_rows = count_csv_rows(pred_path)
+        if 0 < current_rows < expected_rows:
+            print(f"PARTIAL_ARTIFACT_RESUME {entry['model_key']} rows={current_rows} expected={expected_rows}")
+            cmd.append("--resume")
     if args.allow_known_public_split_leakage or flag_enabled("ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE"):
         cmd.append("--allow_known_public_split_leakage")
     subprocess.run(cmd, check=True)
@@ -866,6 +989,7 @@ def main():
     parser.add_argument("--force-rerun-model", action="store_true")
     parser.add_argument("--allow-stale-resume", action="store_true")
     parser.add_argument("--download-missing", action="store_true")
+    parser.add_argument("--rebuild-summary-only", action="store_true")
     args = parser.parse_args()
     config = load_yaml(args.config)
     validate_config(config)
@@ -876,6 +1000,7 @@ def main():
     args.only_model_key = args.only_model_key or os.getenv("ONLY_MODEL_KEY")
     args.force_rerun_model = bool(args.force_rerun_model or flag_enabled("FORCE_RERUN_MODEL"))
     args.download_missing = bool(args.download_missing or flag_enabled("RUN_DOWNLOAD_MODELS"))
+    args.rebuild_summary_only = bool(args.rebuild_summary_only or flag_enabled("REBUILD_MODEL_COMPARISON_SUMMARY"))
     enabled = [name for name, item in config["baselines"].items() if item.get("enabled") and (not args.only_model_key or name == args.only_model_key)]
     if args.dry_run:
         print(f"DRY_RUN_OK enabled_models={enabled} out_root={args.out_root}")
@@ -896,12 +1021,30 @@ def main():
     )
     gold = gold_full.head(args.debug_limit).copy().reset_index(drop=True) if args.debug_limit is not None else gold_full.copy()
     strict = bool(args.strict or flag_enabled("STRICT_BASELINES"))
-    maybe_download_models(config, args)
+    if args.force_rerun_model:
+        print("FORCE_RERUN_MODEL_ACTIVE")
+    if not args.rebuild_summary_only:
+        maybe_download_models(config, args)
     rows = []
     for name in enabled:
         entry = dict(config["baselines"][name])
         out = model_out_dir(args, entry)
         try:
+            expected_rows = len(gold)
+            row = compatible_completed_artifact(args, entry, expected_rows)
+            if row is not None:
+                rows.append(row)
+                print(f"MODEL_ALREADY_COMPLETED {name}")
+                continue
+            row = reuse_main_current_best(args, entry, expected_rows)
+            if row is not None:
+                rows.append(row)
+                print(f"MODEL_COMPLETED {name}")
+                continue
+            if args.rebuild_summary_only:
+                rows.append(summary_blank(entry, args, "skipped", "no_compatible_completed_artifact"))
+                print(f"MODEL_SKIPPED {name} no_compatible_completed_artifact")
+                continue
             print(f"RUN_MODEL {name}")
             row = run_model(entry, config, args, gold, train)
             rows.append(row)

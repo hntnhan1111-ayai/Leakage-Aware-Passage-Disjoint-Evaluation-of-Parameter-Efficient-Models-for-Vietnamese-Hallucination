@@ -246,3 +246,12 @@ Prepare source, docs, scripts, uv workflow, and target RTX4090 pipeline for GitH
 * `scripts/run_baselines_e2e.py` now consumes the `ok` contract and keeps precise skip reasons such as `missing_local_model`, `incomplete_local_model`, and `tokenizer_load_failed`.
 * The XLM-R `Trainer(tokenizer=...)` incompatibility remains fixed through signature-based `processing_class` handling, and PhoBERT validation accepts `tokenizer.json` or `vocab.txt` plus `bpe.codes` rather than requiring `tokenizer_config.json`.
 * No local model downloads, model loading, training, inference, DEBUG_LIMIT comparison, or target runner execution should be used to validate this local patch.
+
+## 2026-05-20 Model Comparison Skip/Reuse Fix
+
+* Target Vistral reran from row 0 in full comparison because `FORCE_RERUN_MODEL=1` bypasses cache and because model comparison did not robustly reuse the existing main current-best 14k artifacts.
+* `scripts/run_baselines_e2e.py` now checks compatible completed per-model artifacts before any model loading, training, or inference path.
+* Full Vistral comparison without force can reuse `results/predictions.csv`, `results/prediction_config.json`, and `results/paper_evidence/` into `results/model_comparison/vistral/`, then writes `status.json` with `artifact_source=main_current_best_reused`.
+* `status.json` now records `requested_limit`, `expected_rows`, and `force_rerun` so `DEBUG_LIMIT=8` artifacts cannot satisfy a full 14,000-row run.
+* `FORCE_RERUN_MODEL=1` now prints `FORCE_RERUN_MODEL_ACTIVE` and intentionally reruns models; normal full comparison should omit it.
+* `REBUILD_MODEL_COMPARISON_SUMMARY=1` can rebuild the global comparison summary from compatible artifacts without loading models.
