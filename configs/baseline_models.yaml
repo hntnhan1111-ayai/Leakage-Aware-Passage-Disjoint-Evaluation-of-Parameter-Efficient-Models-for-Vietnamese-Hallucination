@@ -69,6 +69,14 @@ baselines:
       - models/phobert-base-v2
     required_files:
       - config.json
+    required_weight_files:
+      - pytorch_model.bin
+      - model.safetensors
+      - model.safetensors.index.json
+    tokenizer_assets:
+      - tokenizer.json
+      - vocab.txt
+      - bpe.codes
       - tokenizer_config.json
     output_dir: results/model_comparison/phobert
     notes: supervised encoder baseline trained from ViHallu train split

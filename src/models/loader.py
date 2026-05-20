@@ -10,6 +10,7 @@ PROCESSOR_ASSET_FILES = ["processor_config.json", "preprocessor_config.json", "t
 MODEL_REQUIRED_FILES = ["config.json"]
 ADAPTER_REQUIRED_FILES = ["adapter_config.json"]
 ADAPTER_WEIGHT_FILES = ["adapter_model.safetensors", "adapter_model.bin"]
+MODEL_WEIGHT_FILES = ["pytorch_model.bin", "model.safetensors", "model.safetensors.index.json", "pytorch_model.bin.index.json"]
 
 
 def assert_model_dir(path):
@@ -55,7 +56,8 @@ def validate_text_model_files(path, require_tokenizer_config=True):
     if require_tokenizer_config:
         require_file(p, "tokenizer_config.json", "Tokenizer config")
     asset = require_any(p, PROCESSOR_ASSET_FILES, "Tokenizer or processor asset")
-    return {"model_dir": str(p), "asset": str(asset)}
+    weight = require_any(p, MODEL_WEIGHT_FILES, "Model weights")
+    return {"model_dir": str(p), "asset": str(asset), "model_weight": str(weight)}
 
 
 def validate_adapter_files(path):
@@ -76,14 +78,25 @@ def nf4_config():
     )
 
 
+def load_pretrained_with_dtype_fallback(model_class, path, kwargs):
+    try:
+        return model_class.from_pretrained(path, **kwargs)
+    except TypeError as exc:
+        if "dtype" not in str(exc):
+            raise
+        fallback = dict(kwargs)
+        fallback["torch_dtype"] = fallback.pop("dtype")
+        return model_class.from_pretrained(path, **fallback)
+
+
 def load_causal_lm(local_dir, quantized=True, adapter_dir=None, adapter_required=False):
     info = validate_model_files(local_dir)
     path = info["model_dir"]
     tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
-    kwargs = {"device_map": "auto", "torch_dtype": torch.bfloat16, "trust_remote_code": True}
+    kwargs = {"device_map": "auto", "dtype": torch.bfloat16, "trust_remote_code": True}
     if quantized:
         kwargs["quantization_config"] = nf4_config()
-    model = AutoModelForCausalLM.from_pretrained(path, **kwargs)
+    model = load_pretrained_with_dtype_fallback(AutoModelForCausalLM, path, kwargs)
     if adapter_dir is not None:
         validate_adapter_files(adapter_dir)
         from peft import PeftModel
@@ -100,14 +113,17 @@ def load_causal_lm(local_dir, quantized=True, adapter_dir=None, adapter_required
 def load_image_text_model_text_only(local_dir):
     path = str(assert_model_dir(local_dir))
     processor = AutoProcessor.from_pretrained(path, trust_remote_code=True)
-    model = AutoModelForImageTextToText.from_pretrained(path, device_map="auto", torch_dtype=torch.bfloat16, trust_remote_code=True)
+    model = load_pretrained_with_dtype_fallback(AutoModelForImageTextToText, path, {"device_map": "auto", "dtype": torch.bfloat16, "trust_remote_code": True})
     model.eval()
     return model, processor
 
 
 def load_encoder_classifier(local_dir, num_labels=3):
     path = str(assert_model_dir(local_dir))
-    tokenizer = AutoTokenizer.from_pretrained(path)
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(path)
+    except Exception:
+        tokenizer = AutoTokenizer.from_pretrained(path, use_fast=False)
     model = AutoModelForSequenceClassification.from_pretrained(path, num_labels=num_labels)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model.to(device)
@@ -125,26 +141,26 @@ def tokenizer_from_processor_or_tokenizer(processor_or_tokenizer):
 def load_text_label_scoring_model(local_dir, expected_loader=None, dtype=torch.bfloat16, quantized=False):
     info = validate_text_model_files(local_dir, require_tokenizer_config=False)
     path = info["model_dir"]
-    kwargs = {"device_map": "auto", "torch_dtype": dtype, "trust_remote_code": True}
+    kwargs = {"device_map": "auto", "dtype": dtype, "trust_remote_code": True}
     if quantized:
         kwargs["quantization_config"] = nf4_config()
     if expected_loader == "AutoModelForImageTextToText":
         processor = AutoProcessor.from_pretrained(path, trust_remote_code=True)
-        model = AutoModelForImageTextToText.from_pretrained(path, **kwargs)
+        model = load_pretrained_with_dtype_fallback(AutoModelForImageTextToText, path, kwargs)
         tokenizer = tokenizer_from_processor_or_tokenizer(processor)
     elif expected_loader == "AutoModelForCausalLM":
         tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
-        model = AutoModelForCausalLM.from_pretrained(path, **kwargs)
+        model = load_pretrained_with_dtype_fallback(AutoModelForCausalLM, path, kwargs)
     else:
         config = AutoConfig.from_pretrained(path, trust_remote_code=True)
         architectures = [str(item) for item in getattr(config, "architectures", []) or []]
         if any("ImageTextToText" in item or "ConditionalGeneration" in item for item in architectures):
             processor = AutoProcessor.from_pretrained(path, trust_remote_code=True)
-            model = AutoModelForImageTextToText.from_pretrained(path, **kwargs)
+            model = load_pretrained_with_dtype_fallback(AutoModelForImageTextToText, path, kwargs)
             tokenizer = tokenizer_from_processor_or_tokenizer(processor)
         else:
             tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
-            model = AutoModelForCausalLM.from_pretrained(path, **kwargs)
+            model = load_pretrained_with_dtype_fallback(AutoModelForCausalLM, path, kwargs)
     if getattr(tokenizer, "pad_token", None) is None and getattr(tokenizer, "eos_token", None) is not None:
         tokenizer.pad_token = tokenizer.eos_token
     model.eval()

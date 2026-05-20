@@ -14,142 +14,33 @@ private_test_csv: vihallu-private-test.csv
 
 models:
   vistral:
-    model_key: vistral
-    enabled: true
     role: main_current_best_qlora_backbone
     hf_id: Viet-Mistral/Vistral-7B-Chat
-    canonical_model_id: Viet-Mistral/Vistral-7B-Chat
     aliases:
       - uonlp/viet-mistral-sft-v1
-    accepted_aliases:
-      - Viet-Mistral/Vistral-7B-Chat
-      - models/Vistral-7B-Chat
-      - uonlp/viet-mistral-sft-v1
     local_dir: models/Vistral-7B-Chat
-    model_type: causal_lm
-    model_family: causal_lm
-    method_type: fine_tuned_peft_current_best
-    expected_loader: AutoModelForCausalLM
-    required_files:
-      - config.json
-      - tokenizer_config.json
     loader: AutoModelForCausalLM
     tokenizer: AutoTokenizer
-    inference_mode: strict_generation_with_retry_and_label_scoring
-    train_mode: qlora_sft_adapter_pretrained
     quantization: nf4_4bit
-    notes: current-best PEFT adapter model
   qwen3_4b:
-    model_key: qwen3_4b
-    enabled: false
     role: optional_prompt_only_baseline
     hf_id: Qwen/Qwen3-4B-Instruct-2507
-    canonical_model_id: Qwen/Qwen3-4B-Instruct-2507
-    accepted_aliases:
-      - Qwen/Qwen3-4B-Instruct-2507
-      - models/Qwen3-4B-Instruct-2507
     local_dir: models/Qwen3-4B-Instruct-2507
-    model_type: causal_lm
-    model_family: causal_lm
-    method_type: zero_shot_label_scoring
-    expected_loader: AutoModelForCausalLM
-    required_files:
-      - config.json
-      - tokenizer_config.json
     loader: AutoModelForCausalLM
     tokenizer: AutoTokenizer
-    inference_mode: normalized_label_nll
-    train_mode: none
     quantization: nf4_4bit
-    notes: legacy optional Qwen3 prompt-only comparison
-  qwen35_4b:
-    model_key: qwen35_4b
-    enabled: true
-    role: llm_label_scoring_baseline
-    hf_id: Qwen/Qwen3.5-4B
-    canonical_model_id: Qwen/Qwen3.5-4B
-    accepted_aliases:
-      - Qwen/Qwen3.5-4B
-      - models/Qwen3.5-4B
-    local_dir: models/Qwen3.5-4B
-    model_type: future_text_only_multimodal_baseline
-    model_family: vlm_text_only
-    method_type: zero_shot_label_scoring
-    expected_loader: AutoModelForImageTextToText
-    required_files:
-      - config.json
-    loader: AutoModelForImageTextToText
-    processor: AutoProcessor
-    inference_mode: normalized_label_nll
-    train_mode: none
-    notes: Qwen3.5 4B text-only label scoring comparison
-  gemma4_e2b_it:
-    model_key: gemma4_e2b_it
-    enabled: true
-    role: llm_label_scoring_baseline
-    hf_id: google/gemma-4-E2B-it
-    canonical_model_id: google/gemma-4-E2B-it
-    accepted_aliases:
-      - google/gemma-4-E2B-it
-      - google/gemma-4-E2B
-      - models/gemma-4-E2B-it
-    local_dir: models/gemma-4-E2B-it
-    model_type: future_text_only_multimodal_baseline
-    model_family: vlm_text_only
-    method_type: zero_shot_label_scoring
-    expected_loader: AutoModelForImageTextToText
-    required_files:
-      - config.json
-    loader: AutoModelForImageTextToText
-    processor: AutoProcessor
-    inference_mode: normalized_label_nll
-    train_mode: none
-    notes: instruction-tuned Gemma 4 text-only label scoring comparison
   phobert:
-    model_key: phobert
-    enabled: true
     role: encoder_baseline
     hf_id: vinai/phobert-base-v2
-    canonical_model_id: vinai/phobert-base-v2
-    accepted_aliases:
-      - vinai/phobert-base-v2
-      - models/phobert-base-v2
     local_dir: models/phobert-base-v2
-    model_type: encoder_classifier
-    model_family: encoder
-    method_type: supervised_encoder_finetune
-    expected_loader: AutoModelForSequenceClassification
-    required_files:
-      - config.json
-      - tokenizer_config.json
     loader: AutoModelForSequenceClassification
     tokenizer: AutoTokenizer
-    inference_mode: sequence_classification
-    train_mode: train_on_vihallu_train
-    notes: supervised encoder baseline
   xlmr:
-    model_key: xlmr
-    enabled: true
     role: encoder_baseline
     hf_id: FacebookAI/xlm-roberta-base
-    canonical_model_id: FacebookAI/xlm-roberta-base
-    accepted_aliases:
-      - FacebookAI/xlm-roberta-base
-      - xlm-roberta-base
-      - models/xlm-roberta-base
     local_dir: models/xlm-roberta-base
-    model_type: encoder_classifier
-    model_family: encoder
-    method_type: supervised_encoder_finetune
-    expected_loader: AutoModelForSequenceClassification
-    required_files:
-      - config.json
-      - tokenizer_config.json
     loader: AutoModelForSequenceClassification
     tokenizer: AutoTokenizer
-    inference_mode: sequence_classification
-    train_mode: train_on_vihallu_train
-    notes: supervised encoder baseline
 
 datasets:
   train:
@@ -275,8 +166,7 @@ artifacts:
   malformed_predictions_csv: results/paper_evidence/malformed_predictions.csv
   run_metadata_json: results/paper_evidence/run_metadata.json
   leakage_report_md: results/paper_evidence/leakage_report.md
-  baseline_root: results/model_comparison
-  model_comparison_root: results/model_comparison
+  baseline_root: results/baselines
 
 leakage:
   default_policy: fail

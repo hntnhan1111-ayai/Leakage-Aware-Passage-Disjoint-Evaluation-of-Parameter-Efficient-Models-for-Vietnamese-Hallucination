@@ -85,7 +85,16 @@ python3 scripts/preflight_target_run.py \
 
 if [ "${RUN_DOWNLOAD_MODELS:-0}" = "1" ]; then
   echo "RUN_DOWNLOAD_MODELS"
-  python3 scripts/download_models.py --config "$BASELINE_CONFIG" --report-json "$MODEL_COMPARISON_ROOT/download_report.json"
+  DOWNLOAD_ARGS=(--config "$BASELINE_CONFIG" --report-json "$MODEL_COMPARISON_ROOT/download_report.json")
+  if [ "${STRICT_BASELINES:-0}" = "1" ]; then
+    DOWNLOAD_ARGS+=(--strict)
+  fi
+  python3 scripts/download_models.py "${DOWNLOAD_ARGS[@]}" || {
+    if [ "${STRICT_BASELINES:-0}" = "1" ]; then
+      exit 1
+    fi
+    echo "One or more optional model downloads failed. Model comparison will record skipped or failed rows."
+  }
 else
   echo "SKIP_DOWNLOAD_MODELS"
 fi

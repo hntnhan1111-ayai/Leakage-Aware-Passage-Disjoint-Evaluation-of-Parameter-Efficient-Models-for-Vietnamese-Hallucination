@@ -2,11 +2,11 @@ import argparse
 import csv
 from datetime import datetime, timezone
 import gc
+from inspect import signature
 import json
 import math
 import os
 from pathlib import Path
-import shutil
 import subprocess
 import sys
 import time
@@ -145,16 +145,14 @@ def validate_alias(entry):
 
 
 def local_model_ready(entry):
-    root = Path(entry["local_dir"])
-    if not root.exists():
+    from src.models.download import validate_local_model_entry
+
+    result = validate_local_model_entry(entry, load_tokenizer=(entry.get("type") == "encoder_classifier"))
+    if result["ready"]:
+        return True, None
+    if result["status"] == "missing_local_model":
         return False, "missing_local_model"
-    missing = [name for name in entry.get("required_files", ["config.json"]) if not (root / name).exists()]
-    if missing:
-        return False, "missing_required_files:" + ",".join(missing)
-    assets = ["tokenizer.json", "tokenizer.model", "sentencepiece.bpe.model", "vocab.txt", "vocab.json", "tokenizer_config.json", "processor_config.json", "preprocessor_config.json"]
-    if not any((root / name).exists() for name in assets):
-        return False, "missing_tokenizer_or_processor_assets"
-    return True, None
+    return False, "incomplete_local_model:" + str(result["reason"])
 
 
 def adapter_ready(entry):
@@ -188,6 +186,15 @@ def validate_config(config):
 
 def build_text(row):
     return f"{row.get('context', '')}\n\n{row.get('prompt', '')}\n\n{row.get('response', '')}"
+
+
+def load_encoder_tokenizer(auto_tokenizer, entry):
+    try:
+        return auto_tokenizer.from_pretrained(entry["local_dir"])
+    except Exception:
+        if entry.get("model_key") == "phobert":
+            return auto_tokenizer.from_pretrained(entry["local_dir"], use_fast=False)
+        raise
 
 
 def build_label_prompt(row):
@@ -537,7 +544,7 @@ def run_encoder(entry, config, args, gold, train):
     test_df["text"] = test_df.apply(build_text, axis=1)
     dataset = Dataset.from_pandas(train_df[["text", "labels"]].reset_index(drop=True))
     test_dataset = Dataset.from_pandas(test_df[["text"]].reset_index(drop=True))
-    tokenizer = AutoTokenizer.from_pretrained(entry["local_dir"])
+    tokenizer = load_encoder_tokenizer(AutoTokenizer, entry)
     max_length = int(config["encoder_defaults"]["max_length"])
 
     def tokenize(batch):
@@ -566,13 +573,16 @@ def run_encoder(entry, config, args, gold, train):
         seed=int(args.seed),
         bf16=bool(torch.cuda.is_available()),
     )
-    trainer = Trainer(
-        model=model,
-        args=train_args,
-        train_dataset=tokenized,
-        tokenizer=tokenizer,
-        data_collator=DataCollatorWithPadding(tokenizer=tokenizer),
-    )
+    trainer_kwargs = {
+        "model": model,
+        "args": train_args,
+        "train_dataset": tokenized,
+        "data_collator": DataCollatorWithPadding(tokenizer=tokenizer),
+    }
+    trainer_params = signature(Trainer.__init__).parameters
+    if "processing_class" in trainer_params:
+        trainer_kwargs["processing_class"] = tokenizer
+    trainer = Trainer(**trainer_kwargs)
     start = time.perf_counter()
     trainer.train()
     if torch.cuda.is_available():

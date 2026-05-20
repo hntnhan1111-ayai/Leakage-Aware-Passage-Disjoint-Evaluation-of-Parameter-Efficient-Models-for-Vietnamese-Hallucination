@@ -45,6 +45,7 @@ def main():
     parser.add_argument("--report-json", default="results/model_comparison/download_report.json")
     parser.add_argument("--only-model-key", default=None)
     parser.add_argument("--include-disabled", action="store_true")
+    parser.add_argument("--strict", action="store_true")
     args = parser.parse_args()
 
     from src.models.download import download_entry
@@ -72,7 +73,9 @@ def main():
     write_json(args.report_json, report)
     failed = [item for item in results if item["status"] == "failed"]
     if failed:
-        raise RuntimeError(f"One or more model downloads failed. See {args.report_json}")
+        print(f"DOWNLOAD_FAILURES {len(failed)} see {args.report_json}")
+        if args.strict:
+            raise RuntimeError(f"One or more model downloads failed. See {args.report_json}")
 
 
 if __name__ == "__main__":
