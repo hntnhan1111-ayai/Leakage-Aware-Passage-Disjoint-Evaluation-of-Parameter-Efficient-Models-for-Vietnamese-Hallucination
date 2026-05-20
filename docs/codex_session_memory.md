@@ -325,3 +325,24 @@ Prepare Hallu-Paper for ICIT 2026 submission with reproducible evidence.
 * Exact local commands containing `scripts/generate_predictions_current_best.py` are rejected by the local execution guard before Python starts.
 * Equivalent `runpy` invocation of `--help` passed.
 * Equivalent `runpy` invocation of `--dry-run --gold_csv vihallu-test.csv --out_csv results/predictions.csv --adapter_dir adapters/current_best` passed without adapter or model files.
+
+## 2026-05-20 Model Comparison Target Blocker Fix
+
+### Target Log Source
+
+* Target commit before this fix: `fb0bdc5`.
+* Target `DEBUG_LIMIT=8` failed every configured model with `ImportError: cannot import name 'validate_local_model_entry' from 'src.models.download'`.
+* Earlier target blockers also included `Trainer.__init__() got an unexpected keyword argument 'tokenizer'` for XLM-R and PhoBERT being skipped for missing `tokenizer_config.json` despite valid PhoBERT files.
+
+### Fixes
+
+* Added `validate_local_model_entry(entry, load_tokenizer=False)` to `src/models/download.py` with stable keys `ok`, `status`, `reason`, `local_dir`, `missing`, and `files`.
+* Added `download_entry` and stricter file-contract validation to `src/models/download.py` so Qwen/Gemma metadata-only directories are `incomplete_local_model` instead of `present`.
+* Updated `scripts/run_baselines_e2e.py` to consume the `ok` validator contract and preserve precise skip reasons.
+* Confirmed `scripts/run_baselines_e2e.py` does not pass `tokenizer=` to `Trainer`; it uses `processing_class` only when the installed signature supports it.
+* Documented the missing validator export, Trainer API compatibility, PhoBERT assets, and incomplete Qwen/Gemma snapshots in `docs/common_issues.md`.
+
+### Local Validation Scope
+
+* Local validation for this pass is limited to syntax, import, and diff checks.
+* No local model downloads, model loading, training, inference, DEBUG_LIMIT run, or target runner execution was performed.

@@ -53,4 +53,6 @@ The benchmark-to-paper workflow is valid only when:
 * the evidence validation report passes, and
 * the required outputs are non-empty.
 
+For model-comparison runs, the target `DEBUG_LIMIT=8` comparison must pass before the full 14,000-row comparison. Code blockers such as missing validator exports or incompatible `Trainer` constructor arguments must be fixed in source and pushed before rerunning the target benchmark.
+
 For model-comparison runs, the target `DEBUG_LIMIT=8` comparison must pass before the full 14,000-row comparison. Code-bug failures such as `Trainer.__init__()` signature errors must be fixed before a full run. Missing or incomplete optional model files must remain visible as skipped rows with precise `skip_reason` values instead of disappearing from the comparison table.

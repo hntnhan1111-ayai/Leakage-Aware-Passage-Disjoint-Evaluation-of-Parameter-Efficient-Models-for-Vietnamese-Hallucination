@@ -237,3 +237,12 @@ Prepare source, docs, scripts, uv workflow, and target RTX4090 pipeline for GitH
 * Dry-run validates manifest labels, gold CSV schema, output directory creation, and generation argument consistency, then prints compact JSON.
 * Real inference still requires a valid PEFT adapter directory unless `--full_model_dir` is explicitly used.
 * The local command guard still rejects exact commands containing `scripts/generate_predictions_current_best.py`; equivalent `runpy` validation passed for help and dry-run.
+
+## 2026-05-20 Model Comparison Target Blocker Fix
+
+* Target `DEBUG_LIMIT=8` at commit `fb0bdc5` failed every model because `scripts/run_baselines_e2e.py` imported `validate_local_model_entry` from `src.models.download`, but the function was missing.
+* `src/models/download.py` now exports `validate_local_model_entry(entry, load_tokenizer=False)` with stable keys `ok`, `status`, `reason`, `local_dir`, `missing`, and `files`.
+* The validator checks file contracts only and does not load large model weights. It requires `config.json`, tokenizer or processor assets, and real weights or complete indexed shards before reporting `present`.
+* `scripts/run_baselines_e2e.py` now consumes the `ok` contract and keeps precise skip reasons such as `missing_local_model`, `incomplete_local_model`, and `tokenizer_load_failed`.
+* The XLM-R `Trainer(tokenizer=...)` incompatibility remains fixed through signature-based `processing_class` handling, and PhoBERT validation accepts `tokenizer.json` or `vocab.txt` plus `bpe.codes` rather than requiring `tokenizer_config.json`.
+* No local model downloads, model loading, training, inference, DEBUG_LIMIT comparison, or target runner execution should be used to validate this local patch.

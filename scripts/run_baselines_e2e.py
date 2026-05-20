@@ -148,10 +148,14 @@ def local_model_ready(entry):
     from src.models.download import validate_local_model_entry
 
     result = validate_local_model_entry(entry, load_tokenizer=(entry.get("type") == "encoder_classifier"))
-    if result["ready"]:
+    if result["ok"]:
         return True, None
     if result["status"] == "missing_local_model":
         return False, "missing_local_model"
+    if result["status"] == "tokenizer_load_failed":
+        return False, "tokenizer_load_failed:" + str(result["reason"])
+    if result["status"] == "unsupported_config":
+        return False, "unsupported_config:" + str(result["reason"])
     return False, "incomplete_local_model:" + str(result["reason"])
 
 

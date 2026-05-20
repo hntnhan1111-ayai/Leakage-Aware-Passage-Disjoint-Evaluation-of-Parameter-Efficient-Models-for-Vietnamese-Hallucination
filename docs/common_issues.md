@@ -58,6 +58,60 @@ Missing or empty prediction CSV: results/predictions.csv
 
 Run with `RUN_GENERATE_PREDICTIONS=1`. The one-command runner writes `results/predictions.csv` after loading `models/Vistral-7B-Chat` and the PEFT adapter from `adapters/current_best`.
 
+## Missing Model Validator Export
+
+Symptom:
+
+```text
+ImportError: cannot import name 'validate_local_model_entry' from 'src.models.download'
+```
+
+The full model-comparison runner imports `validate_local_model_entry` from `src.models.download`. That function must exist and return a stable dictionary with `ok`, `status`, `reason`, `local_dir`, `missing`, and `files`. It is a file-contract validator only; it must not load large model weights.
+
+## Transformers Trainer Tokenizer Argument
+
+Symptom:
+
+```text
+TypeError: Trainer.__init__() got an unexpected keyword argument 'tokenizer'
+```
+
+Transformers 5.x does not accept `tokenizer=` in the `Trainer` constructor. The model-comparison runner keeps `DataCollatorWithPadding(tokenizer=tokenizer)`, uses `processing_class=tokenizer` only when the installed `Trainer` signature supports it, and otherwise omits the tokenizer object from `Trainer`.
+
+## PhoBERT Tokenizer Assets
+
+Symptom:
+
+```text
+phobert skipped with missing_required_files:tokenizer_config.json
+```
+
+`models/phobert-base-v2` can be valid without `tokenizer_config.json` when it has usable tokenizer assets. The target validator accepts:
+
+* `config.json`,
+* one real model weight file such as `pytorch_model.bin`, `model.safetensors`, or a complete safetensors index with shards,
+* `tokenizer.json`, or `vocab.txt` plus `bpe.codes`.
+
+PhoBERT tokenizer loading retries with `use_fast=False` in the target runtime path.
+
+## Incomplete Qwen Or Gemma Downloads
+
+Symptom:
+
+```text
+DOWNLOADED qwen35_4b models/Qwen3.5-4B
+```
+
+with a very small downloaded byte count, or a later skip reason containing:
+
+```text
+incomplete_local_model
+```
+
+A model directory is not considered present just because `config.json` exists. The downloader and comparison runner require tokenizer or processor assets plus real model weights or complete indexed shard files. With `RUN_DOWNLOAD_MODELS=0`, incomplete Qwen/Gemma directories are kept as skipped rows. With `RUN_DOWNLOAD_MODELS=1`, the target downloader attempts repair and records the final status in `results/model_comparison/download_report.json`.
+
+Download failures for optional comparison models do not stop the whole E2E command unless `STRICT_BASELINES=1` is set.
+
 ## Prediction Help And Dry Run
 
 `scripts/generate_predictions_current_best.py --help` must be a pure argparse path. It should not check model files, adapter files, CUDA, `HF_TOKEN`, or import PEFT.
