@@ -8,24 +8,46 @@ MODEL_LABELS = {
     "vistral": "Vistral PEFT",
     "phobert": "PhoBERT FT",
     "xlmr": "XLM-R FT",
-    "qwen35_4b": "Qwen3.5 Zero-shot",
     "qwen35_4b_peft": "Qwen3.5 PEFT",
-    "gemma4_e2b_it": "Gemma Zero-shot",
     "gemma4_e2b_it_peft": "Gemma PEFT",
+    "qwen35_4b": "Qwen3.5 Zero-shot",
+    "gemma4_e2b_it": "Gemma Zero-shot",
 }
 
 
-def load_summary(path):
+def load_config(path):
+    import yaml
+
+    p = Path(path)
+    if not p.exists():
+        return {}
+    data = yaml.safe_load(p.read_text(encoding="utf-8"))
+    return data if isinstance(data, dict) else {}
+
+
+def paper_model_keys(config, include_auxiliary):
+    baselines = config.get("baselines", {}) if isinstance(config, dict) else {}
+    keys = []
+    for name, entry in baselines.items():
+        if include_auxiliary or (not entry.get("auxiliary_only") and entry.get("paper_include", True) is not False):
+            keys.append(name)
+    return keys
+
+
+def load_summary(path, config, include_auxiliary):
     import pandas as pd
 
     df = pd.read_csv(path)
     df = df[df["status"].astype(str) == "completed"].copy()
+    keys = paper_model_keys(config, include_auxiliary)
+    if keys:
+        df = df[df["model_key"].astype(str).isin(keys)].copy()
     for col in ["accuracy", "macro_f1"]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
     df = df.dropna(subset=["accuracy", "macro_f1"])
     if len(df) == 0:
         raise RuntimeError(f"No completed rows with metrics in {path}")
-    order = ["vistral", "phobert", "xlmr", "qwen35_4b", "qwen35_4b_peft", "gemma4_e2b_it", "gemma4_e2b_it_peft"]
+    order = ["vistral", "phobert", "xlmr", "qwen35_4b_peft", "gemma4_e2b_it_peft", "qwen35_4b", "gemma4_e2b_it"]
     df["order"] = df["model_key"].map({key: index for index, key in enumerate(order)}).fillna(999)
     return df.sort_values(["order", "model_key"]).drop(columns=["order"])
 
@@ -151,9 +173,12 @@ def fig_vistral_confusion_matrix(summary, out_dir):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--summary", default="results/model_comparison/model_comparison_summary.csv")
+    parser.add_argument("--config", default="configs/baseline_models.yaml")
     parser.add_argument("--out-dir", default="results/paper_figures")
+    parser.add_argument("--include-auxiliary", action="store_true")
     args = parser.parse_args()
-    summary = load_summary(args.summary)
+    config = load_config(args.config)
+    summary = load_summary(args.summary, config, args.include_auxiliary)
     fig_main_results_bar(summary, args.out_dir)
     fig_per_class_f1_heatmap(summary, args.out_dir)
     fig_vistral_confusion_matrix(summary, args.out_dir)

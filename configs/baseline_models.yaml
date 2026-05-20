@@ -105,6 +105,8 @@ baselines:
   qwen35_4b:
     model_key: qwen35_4b
     enabled: true
+    auxiliary_only: true
+    paper_include: false
     model_id: Qwen/Qwen3.5-4B
     hf_id: Qwen/Qwen3.5-4B
     canonical_model_id: Qwen/Qwen3.5-4B
@@ -123,7 +125,7 @@ baselines:
     output_dir: results/model_comparison/qwen35_4b
     dtype: bfloat16
     quantization: bf16_then_4bit_on_oom
-    notes: zero-shot text-only label scoring baseline
+    notes: auxiliary zero-shot text-only label scoring baseline
   qwen35_4b_peft:
     model_key: qwen35_4b_peft
     enabled: true
@@ -160,6 +162,8 @@ baselines:
   gemma4_e2b_it:
     model_key: gemma4_e2b_it
     enabled: true
+    auxiliary_only: true
+    paper_include: false
     model_id: google/gemma-4-E2B-it
     hf_id: google/gemma-4-E2B-it
     canonical_model_id: google/gemma-4-E2B-it
@@ -179,7 +183,7 @@ baselines:
     output_dir: results/model_comparison/gemma4_e2b_it
     dtype: bfloat16
     quantization: bf16_then_4bit_on_oom
-    notes: instruction-tuned Gemma 4 text-only label scoring baseline
+    notes: auxiliary instruction-tuned Gemma 4 text-only label scoring baseline
   gemma4_e2b_it_peft:
     model_key: gemma4_e2b_it_peft
     enabled: true

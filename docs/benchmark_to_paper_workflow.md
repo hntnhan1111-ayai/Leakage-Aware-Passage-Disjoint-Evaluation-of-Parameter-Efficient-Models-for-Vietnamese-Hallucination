@@ -29,7 +29,8 @@ ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1 RUN_DOWNLOAD_MODELS=1 RUN_TRAIN_CURRENT_BEST=
 * `results/paper_evidence/run_metadata.json` depends on the target runtime environment, Git state, manifest, and prediction config.
 * `results/paper_evidence/leakage_report.md` is required when `ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1`.
 * `results/baselines/*` depends on enabled baseline settings in `configs/baseline_models.yaml`.
-* `results/model_comparison/model_comparison_summary.csv` is the canonical fair comparison table for current-best, encoder baselines, and enabled zero-shot label-scoring LLM/VLM baselines.
+* `results/model_comparison/model_comparison_summary.csv` is the canonical paper-main comparison table for current-best, supervised encoder baselines, and supervised PEFT Qwen/Gemma rows.
+* `results/model_comparison/model_comparison_summary_all.csv` is the optional all-results table and may include auxiliary/debug rows.
 
 ## Paper Section Inputs
 
@@ -57,6 +58,8 @@ For model-comparison runs, the target `DEBUG_LIMIT=8` comparison must pass befor
 
 After debug passes, run the full model comparison without `FORCE_RERUN_MODEL=1` unless intentionally rerunning all models from scratch. The no-force path reuses compatible completed `results/model_comparison/<model_key>/` artifacts and can reuse the existing main current-best Vistral artifacts from `results/predictions.csv` and `results/paper_evidence/` for the Vistral comparison row.
 
-Qwen/Gemma zero-shot rows remain auxiliary baselines. For fair supervised comparison, run `qwen35_4b_peft` and `gemma4_e2b_it_peft` with `scripts/run_qwen_gemma_peft_rtx4090.sh`, then generate paper figures from real artifacts with `scripts/make_paper_figures.py`. Figure captions should use neutral wording such as `ViHallu benchmark test split`.
+Qwen/Gemma zero-shot rows remain auxiliary baselines and are excluded from the default paper summary and figures. For fair supervised comparison, run `qwen35_4b_peft` and `gemma4_e2b_it_peft` with `scripts/run_qwen_gemma_peft_rtx4090.sh`, then audit artifacts with `scripts/audit_model_comparison_artifacts.py` and generate paper figures from real artifacts with `scripts/make_paper_figures.py`. Figure captions should use neutral wording such as `ViHallu benchmark test split`.
 
 If Gemma4 PEFT previously failed with `Gemma4ClippableLinear` during LoRA injection, pull the branch containing the text-only target-module fix and rerun only the Qwen/Gemma PEFT script. Qwen debug artifacts should be skipped when compatible; Gemma should retry with explicit text-backbone LoRA targets.
+
+`DEBUG_LIMIT` PEFT runs must not overwrite the full paper summary. The PEFT runner prints `SKIP_GLOBAL_SUMMARY_REBUILD_FOR_DEBUG_LIMIT` and skips global summary rebuild while debugging.

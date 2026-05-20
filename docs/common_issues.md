@@ -157,7 +157,7 @@ Debug artifacts with `DEBUG_LIMIT=8` are not compatible with full `rows=14000` r
 
 ## Qwen And Gemma Fair Comparison
 
-The existing `qwen35_4b` and `gemma4_e2b_it` rows are zero-shot label-scoring baselines. Keep them as auxiliary baselines and do not rename them.
+The existing `qwen35_4b` and `gemma4_e2b_it` rows are zero-shot label-scoring baselines. They are marked `auxiliary_only: true` and `paper_include: false`. Keep them as optional debug artifacts and do not rename them.
 
 The supervised PEFT rows use separate model keys:
 
@@ -177,6 +177,20 @@ bash scripts/run_qwen_gemma_peft_rtx4090.sh
 ```
 
 Do not use private-test labels in tables. Use neutral wording such as `ViHallu benchmark test split` for captions and section text.
+
+Before paper figure generation, audit artifacts:
+
+```bash
+python3 scripts/audit_model_comparison_artifacts.py --root results/model_comparison --expected-rows 14000 --paper-main-only
+```
+
+Run all-artifact audit without `--paper-main-only` when investigating auxiliary rows. The known incomplete zero-shot Qwen artifact should be reported as `artifact_integrity_error` rather than repaired by inference.
+
+`DEBUG_LIMIT` PEFT runs intentionally skip global summary rebuild and print:
+
+```text
+SKIP_GLOBAL_SUMMARY_REBUILD_FOR_DEBUG_LIMIT
+```
 
 ## Gemma4 PEFT Target Module Failure
 

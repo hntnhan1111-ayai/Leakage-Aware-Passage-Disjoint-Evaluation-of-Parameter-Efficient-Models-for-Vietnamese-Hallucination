@@ -273,3 +273,14 @@ Prepare source, docs, scripts, uv workflow, and target RTX4090 pipeline for GitH
 * Text-only selection excludes vision, audio, image, projector, multi-modal, multimodal, mm, clip, and clippable module names.
 * `gemma4_e2b_it_peft` now sets `add_zero_mm_token_type_ids: true` so the collator provides zero `token_type_ids` and `mm_token_type_ids` for Gemma4 text-only training.
 * Target validation after pull: `DEBUG_LIMIT=16 PEFT_EPOCHS=1 bash scripts/run_qwen_gemma_peft_rtx4090.sh`.
+
+## 2026-05-20 PEFT Artifact Integrity And Paper-Main Summary Fix
+
+* Known target issue: `qwen35_4b` zero-shot had 11,249 prediction rows but `status.json` claimed 14,000 completed rows.
+* Zero-shot Qwen/Gemma are now auxiliary-only in config and excluded from the default paper-main summary and figures.
+* `scripts/run_baselines_e2e.py` writes paper-main `model_comparison_summary.csv` and all-results `model_comparison_summary_all.csv`.
+* Completed artifacts are reused only after row count, requested limit, label, malformed-count, metadata, and required-file checks pass.
+* `scripts/train_eval_llm_peft_baseline.py` writes PEFT predictions and malformed rows through `.tmp` files and atomically replaces final CSVs after validation.
+* PEFT runs write `status=running` before training/evaluation and `status=failed` on exceptions; `status=completed` is written only after required artifact checks pass.
+* `DEBUG_LIMIT` PEFT runs print `SKIP_GLOBAL_SUMMARY_REBUILD_FOR_DEBUG_LIMIT` and do not overwrite the full paper summary.
+* Added `scripts/audit_model_comparison_artifacts.py` for full and paper-main artifact integrity audits.

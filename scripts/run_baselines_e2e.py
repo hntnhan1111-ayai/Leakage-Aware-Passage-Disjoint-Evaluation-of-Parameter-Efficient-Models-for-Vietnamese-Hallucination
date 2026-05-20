@@ -61,6 +61,8 @@ SUMMARY_COLUMNS = [
     "artifact_dir",
     "status",
     "skip_reason",
+    "paper_include",
+    "auxiliary_only",
 ]
 MALFORMED_COLUMNS = ["row_index", "id", "label", "predict_label", "malformed_reason", "raw_output"]
 
@@ -90,6 +92,14 @@ def git_output(args):
 
 def flag_enabled(name):
     return os.getenv(name, "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def paper_include_entry(entry):
+    return not bool(entry.get("auxiliary_only")) and entry.get("paper_include", True) is not False
+
+
+def truthy_value(value):
+    return str(value).strip().lower() in {"1", "true", "yes", "on"}
 
 
 def write_json(path, data):
@@ -281,6 +291,8 @@ def summary_blank(entry, args, status, skip_reason="", rows=""):
         "artifact_dir": str(model_out_dir(args, entry)),
         "status": status,
         "skip_reason": skip_reason,
+        "paper_include": bool(paper_include_entry(entry)),
+        "auxiliary_only": bool(entry.get("auxiliary_only")),
     }
 
 
@@ -321,8 +333,31 @@ def artifact_paths(out):
         "report": out / "classification_report.json",
         "report_csv": out / "classification_report.csv",
         "confusion": out / "confusion_matrix.csv",
+        "confusion_png": out / "confusion_matrix.png",
         "malformed": out / "malformed_predictions.csv",
+        "latency_json": out / "latency_summary.json",
+        "latency_csv": out / "latency_summary.csv",
+        "prediction_config": out / "prediction_config.json",
     }
+
+
+def completed_integrity_error(args, entry, reason, rows=""):
+    print(f"ARTIFACT_INTEGRITY_ERROR {entry['model_key']} {reason}")
+    return summary_blank(entry, args, "skipped", "artifact_integrity_error:" + reason, rows)
+
+
+def prediction_label_integrity(path):
+    import pandas as pd
+
+    df = pd.read_csv(path)
+    if "predict_label" not in df.columns:
+        return len(df), "missing_predict_label"
+    if df["predict_label"].isna().any():
+        return len(df), "nan_predict_label"
+    bad = sorted(set(df["predict_label"].astype(str)) - set(LABELS))
+    if bad:
+        return len(df), "invalid_predict_label:" + ",".join(bad)
+    return len(df), ""
 
 
 def compatible_completed_artifact(args, entry, expected_rows):
@@ -330,28 +365,27 @@ def compatible_completed_artifact(args, entry, expected_rows):
     paths = artifact_paths(out)
     if args.force_rerun_model or not paths["status"].exists():
         return None
-    required = ["predictions", "summary", "report", "report_csv", "confusion", "malformed"]
+    status = read_json(paths["status"])
+    if status.get("status") != "completed":
+        return None
+    required = ["predictions", "summary", "report", "report_csv", "confusion", "confusion_png", "malformed", "latency_json", "latency_csv", "prediction_config"]
     missing = [name for name in required if not paths[name].exists() or paths[name].stat().st_size == 0]
     if missing:
-        print(f"STALE_ARTIFACT_MISSING {entry['model_key']} {','.join(missing)}")
-        return None
-    status = read_json(paths["status"])
-    pred_rows = count_csv_rows(paths["predictions"])
+        return completed_integrity_error(args, entry, "missing_required_files:" + ",".join(missing))
+    pred_rows, label_error = prediction_label_integrity(paths["predictions"])
+    if label_error:
+        return completed_integrity_error(args, entry, label_error, pred_rows)
     status_rows = int_or_none(status.get("rows"))
     expected_status_rows = int_or_none(status.get("expected_rows"))
     requested_limit = int_or_none(status.get("requested_limit"))
     current_limit = int_or_none(args.debug_limit)
     if pred_rows != int(expected_rows) or (status_rows is not None and status_rows != int(expected_rows)):
-        print(f"STALE_ARTIFACT_ROWS_MISMATCH {entry['model_key']} expected={expected_rows} status_rows={status.get('rows')} prediction_rows={pred_rows}")
-        return None
+        return completed_integrity_error(args, entry, f"row_count_mismatch:expected={expected_rows}:status_rows={status.get('rows')}:prediction_rows={pred_rows}", pred_rows)
     if expected_status_rows is not None and expected_status_rows != int(expected_rows):
-        print(f"STALE_ARTIFACT_ROWS_MISMATCH {entry['model_key']} expected={expected_rows} artifact_expected_rows={expected_status_rows}")
-        return None
+        return completed_integrity_error(args, entry, f"expected_rows_mismatch:expected={expected_rows}:artifact_expected_rows={expected_status_rows}", pred_rows)
     if requested_limit != current_limit:
-        print(f"STALE_ARTIFACT_LIMIT_MISMATCH {entry['model_key']} expected_limit={current_limit} artifact_limit={requested_limit}")
-        return None
+        return completed_integrity_error(args, entry, f"requested_limit_mismatch:expected={current_limit}:artifact={requested_limit}", pred_rows)
     checks = [
-        status.get("status") == "completed",
         status.get("model_id") == entry["model_id"],
         status.get("method_type") == entry["method_type"],
         int_or_none(status.get("seed")) == int(args.seed),
@@ -359,8 +393,7 @@ def compatible_completed_artifact(args, entry, expected_rows):
         int_or_none(status.get("malformed_count")) == 0,
     ]
     if not all(checks):
-        print(f"STALE_ARTIFACT_METADATA_MISMATCH {entry['model_key']}")
-        return None
+        return completed_integrity_error(args, entry, "metadata_mismatch", pred_rows)
     row = completed_summary(entry, args, out, extra_status={"artifact_source": status.get("artifact_source", "model_comparison_completed")})
     return row
 
@@ -426,7 +459,9 @@ def latency_fields(out, rows, fallback_seconds=0.0):
 def completed_summary(entry, args, out, runtime_seconds=0.0, extra_status=None):
     summary = read_json(out / "summary_metrics.json")
     report = read_json(out / "classification_report.json")
-    pred_rows = count_csv_rows(out / "predictions.csv")
+    pred_rows, label_error = prediction_label_integrity(out / "predictions.csv")
+    if label_error:
+        raise ValueError(f"{entry['model_key']} prediction integrity error: {label_error}")
     malformed_path = out / "malformed_predictions.csv"
     malformed_count = max(0, count_csv_rows(malformed_path)) if malformed_path.exists() else 0
     row = summary_blank(entry, args, "completed", "", pred_rows)
@@ -963,11 +998,15 @@ def write_summary_tables(rows, out_root):
     if len(completed):
         completed["macro_f1_sort"] = completed["macro_f1"].astype(float)
         completed = completed.sort_values("macro_f1_sort", ascending=False).drop(columns=["macro_f1_sort"])
-    ordered = pd.concat([completed, skipped], ignore_index=True)
+    ordered_all = pd.concat([completed, skipped], ignore_index=True)
+    ordered_all.to_csv(out / "model_comparison_summary_all.csv", index=False)
+    paper = ordered_all[ordered_all["paper_include"].map(truthy_value)].copy()
+    ordered = paper.reset_index(drop=True)
     summary_csv = out / "model_comparison_summary.csv"
     ordered.to_csv(summary_csv, index=False)
-    if len(skipped):
-        skipped.to_csv(out / "skipped_models.csv", index=False)
+    paper_skipped = ordered[ordered["status"] != "completed"].copy()
+    if len(paper_skipped):
+        paper_skipped.to_csv(out / "skipped_models.csv", index=False)
     else:
         pd.DataFrame(columns=SUMMARY_COLUMNS).to_csv(out / "skipped_models.csv", index=False)
     lines = ["# Model Comparison Summary", ""]
@@ -975,11 +1014,21 @@ def write_summary_tables(rows, out_root):
     lines.extend(markdown_table(ordered[visible]))
     lines.append("")
     (out / "model_comparison_summary.md").write_text("\n".join(lines), encoding="utf-8")
+    all_lines = ["# Model Comparison Summary All", ""]
+    all_lines.extend(markdown_table(ordered_all[visible]))
+    all_lines.append("")
+    (out / "model_comparison_summary_all.md").write_text("\n".join(all_lines), encoding="utf-8")
     write_json(out / "model_comparison_status.json", {
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "completed": int((ordered["status"] == "completed").sum()),
         "non_completed": int((ordered["status"] != "completed").sum()),
         "rows": ordered.to_dict("records"),
+    })
+    write_json(out / "model_comparison_status_all.json", {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "completed": int((ordered_all["status"] == "completed").sum()),
+        "non_completed": int((ordered_all["status"] != "completed").sum()),
+        "rows": ordered_all.to_dict("records"),
     })
     return ordered
 
@@ -1003,6 +1052,8 @@ def maybe_download_models(config, args):
     for name, entry in config["baselines"].items():
         if not entry.get("enabled"):
             continue
+        if not args.include_auxiliary and not paper_include_entry(entry):
+            continue
         if args.only_model_key and name != args.only_model_key:
             continue
         results.append(download_entry(name, entry, token=token))
@@ -1025,6 +1076,7 @@ def main():
     parser.add_argument("--allow-stale-resume", action="store_true")
     parser.add_argument("--download-missing", action="store_true")
     parser.add_argument("--rebuild-summary-only", action="store_true")
+    parser.add_argument("--include-auxiliary", action="store_true")
     args = parser.parse_args()
     config = load_yaml(args.config)
     validate_config(config)
@@ -1036,7 +1088,13 @@ def main():
     args.force_rerun_model = bool(args.force_rerun_model or flag_enabled("FORCE_RERUN_MODEL"))
     args.download_missing = bool(args.download_missing or flag_enabled("RUN_DOWNLOAD_MODELS"))
     args.rebuild_summary_only = bool(args.rebuild_summary_only or flag_enabled("REBUILD_MODEL_COMPARISON_SUMMARY"))
-    enabled = [name for name, item in config["baselines"].items() if item.get("enabled") and (not args.only_model_key or name == args.only_model_key)]
+    args.include_auxiliary = bool(args.include_auxiliary or flag_enabled("INCLUDE_AUXILIARY_MODELS"))
+    enabled = [
+        name for name, item in config["baselines"].items()
+        if item.get("enabled")
+        and (args.include_auxiliary or paper_include_entry(item) or (args.only_model_key and name == args.only_model_key))
+        and (not args.only_model_key or name == args.only_model_key)
+    ]
     if args.dry_run:
         print(f"DRY_RUN_OK enabled_models={enabled} out_root={args.out_root}")
         return
@@ -1069,7 +1127,10 @@ def main():
             row = compatible_completed_artifact(args, entry, expected_rows)
             if row is not None:
                 rows.append(row)
-                print(f"MODEL_ALREADY_COMPLETED {name}")
+                if row.get("status") == "completed":
+                    print(f"MODEL_ALREADY_COMPLETED {name}")
+                else:
+                    print(f"MODEL_SKIPPED {name} {row.get('skip_reason')}")
                 continue
             row = reuse_main_current_best(args, entry, expected_rows)
             if row is not None:

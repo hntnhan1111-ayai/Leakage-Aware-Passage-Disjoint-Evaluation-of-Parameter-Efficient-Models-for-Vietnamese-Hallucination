@@ -42,6 +42,11 @@ fi
 python3 scripts/train_eval_llm_peft_baseline.py --model-key qwen35_4b_peft "${COMMON_ARGS[@]}"
 python3 scripts/train_eval_llm_peft_baseline.py --model-key gemma4_e2b_it_peft "${COMMON_ARGS[@]}"
 
+if [ -n "${DEBUG_LIMIT:-}" ]; then
+  echo "SKIP_GLOBAL_SUMMARY_REBUILD_FOR_DEBUG_LIMIT"
+  exit 0
+fi
+
 REBUILD_ARGS=(
   --config "$CONFIG"
   --gold_csv "$GOLD_CSV"
@@ -51,9 +56,5 @@ REBUILD_ARGS=(
   --rebuild-summary-only
   --allow_known_public_split_leakage
 )
-
-if [ -n "${DEBUG_LIMIT:-}" ]; then
-  REBUILD_ARGS+=(--debug-limit "$DEBUG_LIMIT")
-fi
 
 python3 scripts/run_baselines_e2e.py "${REBUILD_ARGS[@]}"

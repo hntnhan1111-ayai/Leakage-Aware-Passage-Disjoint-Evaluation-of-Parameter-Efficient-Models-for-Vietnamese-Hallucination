@@ -410,3 +410,21 @@ Prepare Hallu-Paper for ICIT 2026 submission with reproducible evidence.
 
 * Local validation remains limited to syntax and diff checks.
 * Target validation should run `DEBUG_LIMIT=16 PEFT_EPOCHS=1 bash scripts/run_qwen_gemma_peft_rtx4090.sh` after pulling the branch.
+
+## 2026-05-20 PEFT Artifact Integrity And Paper-Main Summary Fix
+
+### Target Log Source
+
+* Target artifacts showed `qwen35_4b` zero-shot had `predictions.csv` with 11,249 rows while `status.json` claimed 14,000 completed rows.
+* Zero-shot Qwen/Gemma should remain auxiliary/debug only and not appear in main paper tables or figures.
+
+### Fixes
+
+* Marked `qwen35_4b` and `gemma4_e2b_it` as `auxiliary_only: true` and `paper_include: false`.
+* Default model comparison now skips auxiliary rows unless `--include-auxiliary` or `INCLUDE_AUXILIARY_MODELS=1` is used.
+* `model_comparison_summary.csv` is paper-main only; `model_comparison_summary_all.csv` stores all rows passed to the summary writer.
+* Added strict completed-artifact checks for row counts, requested limit, malformed count, labels, metadata, and required files before reuse.
+* Updated PEFT evaluation to write `predictions.csv.tmp` and `malformed_predictions.csv.tmp`, then atomically replace final files only after validation.
+* PEFT status now becomes `running` before train/eval and `failed` on exceptions; `completed` is written only after required artifacts and row counts pass.
+* `DEBUG_LIMIT` PEFT runs skip global summary rebuild and print `SKIP_GLOBAL_SUMMARY_REBUILD_FOR_DEBUG_LIMIT`.
+* Added `scripts/audit_model_comparison_artifacts.py` for paper-main and all-artifact integrity checks.

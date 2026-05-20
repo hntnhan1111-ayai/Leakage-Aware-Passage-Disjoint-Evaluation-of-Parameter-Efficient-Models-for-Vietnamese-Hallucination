@@ -85,6 +85,25 @@ def write_json(path, data):
     return p
 
 
+def write_status(out, entry, args, status, reason="", expected_rows=None):
+    payload = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "model_key": entry["model_key"],
+        "model_id": entry["model_id"],
+        "method_type": entry["method_type"],
+        "local_dir": entry["local_dir"],
+        "seed": int(args.seed),
+        "dataset_path": args.gold_csv,
+        "requested_limit": args.debug_limit,
+        "expected_rows": expected_rows,
+        "status": status,
+        "skip_reason": reason,
+        "force_rerun": bool(args.force_rerun_model),
+    }
+    write_json(Path(out) / "status.json", payload)
+    return payload
+
+
 def count_csv_rows(path):
     import pandas as pd
 
@@ -92,6 +111,22 @@ def count_csv_rows(path):
     if not p.exists():
         return 0
     return int(len(pd.read_csv(p)))
+
+
+def validate_prediction_csv(path, expected_rows):
+    import pandas as pd
+
+    df = pd.read_csv(path)
+    if len(df) != int(expected_rows):
+        raise RuntimeError(f"prediction_row_count_mismatch:expected={expected_rows}:found={len(df)}")
+    if "predict_label" not in df.columns:
+        raise RuntimeError("prediction_missing_predict_label")
+    if df["predict_label"].isna().any():
+        raise RuntimeError("prediction_nan_predict_label")
+    bad = sorted(set(df["predict_label"].astype(str)) - set(LABELS))
+    if bad:
+        raise RuntimeError("invalid_prediction_labels:" + ",".join(bad))
+    return df
 
 
 def int_or_none(value):
@@ -122,7 +157,10 @@ def completed_status_row(entry, args, out, expected_rows):
     if any(not p.exists() or p.stat().st_size == 0 for p in required):
         return None
     status = json.loads(status_path.read_text(encoding="utf-8"))
-    pred_rows = count_csv_rows(pred_path)
+    try:
+        pred_rows = len(validate_prediction_csv(pred_path, expected_rows))
+    except Exception:
+        return None
     if pred_rows != expected_rows:
         return None
     checks = [
@@ -464,6 +502,8 @@ def evaluate_model(entry, args, model, tokenizer, gold_rows):
     out = Path(args.out_root) / entry["model_key"]
     pred_path = out / "predictions.csv"
     malformed_path = out / "malformed_predictions.csv"
+    pred_tmp = out / "predictions.csv.tmp"
+    malformed_tmp = out / "malformed_predictions.csv.tmp"
     rows = []
     malformed = []
     if torch.cuda.is_available():
@@ -490,13 +530,19 @@ def evaluate_model(entry, args, model, tokenizer, gold_rows):
         torch.cuda.synchronize()
     total_seconds = time.perf_counter() - started
     pred_df = pd.DataFrame(rows)
-    pred_df.to_csv(pred_path, index=False)
-    pd.DataFrame(malformed, columns=["row_index", "id", "label", "predict_label", "malformed_reason", "raw_output"]).to_csv(malformed_path, index=False)
+    malformed_df = pd.DataFrame(malformed, columns=["row_index", "id", "label", "predict_label", "malformed_reason", "raw_output"])
     bad = sorted(set(pred_df["predict_label"].dropna().astype(str)) - set(LABELS))
     if bad:
         raise RuntimeError("invalid_prediction_labels:" + ",".join(bad))
     if len(malformed):
         raise RuntimeError(f"malformed_predictions:{len(malformed)}")
+    if len(pred_df) != len(gold_rows):
+        raise RuntimeError(f"prediction_row_count_mismatch:expected={len(gold_rows)}:found={len(pred_df)}")
+    pred_df.to_csv(pred_tmp, index=False)
+    malformed_df.to_csv(malformed_tmp, index=False)
+    validate_prediction_csv(pred_tmp, len(gold_rows))
+    pred_tmp.replace(pred_path)
+    malformed_tmp.replace(malformed_path)
     compute_and_save(pred_df["label"], pred_df["predict_label"], out)
     memory_reserved = int(torch.cuda.max_memory_reserved()) if torch.cuda.is_available() else None
     save_latency_summary([{
@@ -511,11 +557,31 @@ def evaluate_model(entry, args, model, tokenizer, gold_rows):
     return total_seconds, memory_reserved
 
 
-def status_from_outputs(entry, args, out, train_rows, target_modules, train_seconds, eval_seconds, memory_reserved):
+def status_from_outputs(entry, args, out, train_rows, expected_rows, target_modules, train_seconds, eval_seconds, memory_reserved):
     summary = json.loads((out / "summary_metrics.json").read_text(encoding="utf-8"))
     report = json.loads((out / "classification_report.json").read_text(encoding="utf-8"))
-    rows = count_csv_rows(out / "predictions.csv")
+    rows = len(validate_prediction_csv(out / "predictions.csv", expected_rows))
     malformed_count = count_csv_rows(out / "malformed_predictions.csv")
+    required = [
+        out / "summary_metrics.json",
+        out / "classification_report.json",
+        out / "classification_report.csv",
+        out / "confusion_matrix.csv",
+        out / "confusion_matrix.png",
+        out / "latency_summary.json",
+        out / "latency_summary.csv",
+        out / "predictions.csv",
+        out / "malformed_predictions.csv",
+        out / "training_config_resolved.json",
+        out / "train_runtime.json",
+    ]
+    missing = [str(path) for path in required if not path.exists() or path.stat().st_size == 0]
+    if missing:
+        raise RuntimeError("missing_required_outputs:" + ",".join(missing))
+    if int(rows) != int(expected_rows):
+        raise RuntimeError(f"prediction_row_count_mismatch:expected={expected_rows}:found={rows}")
+    if int(malformed_count) != 0:
+        raise RuntimeError(f"malformed_predictions:{malformed_count}")
     total_runtime = float(train_seconds + eval_seconds)
     row = {
         "model_key": entry["model_key"],
@@ -562,7 +628,7 @@ def status_from_outputs(entry, args, out, train_rows, target_modules, train_seco
     payload.update({
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "requested_limit": args.debug_limit,
-        "expected_rows": int(rows),
+        "expected_rows": int(expected_rows),
         "force_rerun": bool(args.force_rerun_model),
         "train_rows": int(train_rows),
         "target_modules": target_modules,
@@ -621,38 +687,43 @@ def main():
     if not ready["ok"]:
         raise RuntimeError(f"{entry['model_key']} local model not ready: {ready['status']}:{ready['reason']}")
     out.mkdir(parents=True, exist_ok=True)
-    started = datetime.now(timezone.utc).isoformat()
-    train_rows = train_df.to_dict("records")
-    gold_rows = gold_df.to_dict("records")
-    model, tokenizer, target_modules, train_seconds = train_model(entry, args, train_rows)
-    eval_seconds, memory_reserved = evaluate_model(entry, args, model, tokenizer, gold_rows)
-    row = status_from_outputs(entry, args, out, len(train_rows), target_modules, train_seconds, eval_seconds, memory_reserved)
-    write_json(out / "training_config_resolved.json", {
-        "timestamp": started,
-        "model_key": entry["model_key"],
-        "model_id": entry["model_id"],
-        "method_type": entry["method_type"],
-        "seed": args.seed,
-        "epochs": args.epochs,
-        "learning_rate": float(args.learning_rate or entry.get("learning_rate", 0.0002)),
-        "lora_r": int(entry.get("lora_r", 64)),
-        "lora_alpha": int(entry.get("lora_alpha", 2 * int(entry.get("lora_r", 64)))),
-        "lora_dropout": float(entry.get("lora_dropout", 0.05)),
-        "target_modules": target_modules,
-        "train_rows": len(train_rows),
-        "eval_rows": expected_rows,
-        "adapter_dir": str(out / "adapter"),
-    })
-    write_json(out / "train_runtime.json", {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "model_key": entry["model_key"],
-        "train_seconds": float(train_seconds),
-        "eval_seconds": float(eval_seconds),
-        "train_rows": len(train_rows),
-        "eval_rows": expected_rows,
-        "seed": args.seed,
-    })
-    print(json.dumps({"model_key": entry["model_key"], "status": row["status"], "rows": row["rows"], "macro_f1": row["macro_f1"]}, ensure_ascii=False, sort_keys=True))
+    write_status(out, entry, args, "running", expected_rows=expected_rows)
+    try:
+        started = datetime.now(timezone.utc).isoformat()
+        train_rows = train_df.to_dict("records")
+        gold_rows = gold_df.to_dict("records")
+        model, tokenizer, target_modules, train_seconds = train_model(entry, args, train_rows)
+        eval_seconds, memory_reserved = evaluate_model(entry, args, model, tokenizer, gold_rows)
+        write_json(out / "training_config_resolved.json", {
+            "timestamp": started,
+            "model_key": entry["model_key"],
+            "model_id": entry["model_id"],
+            "method_type": entry["method_type"],
+            "seed": args.seed,
+            "epochs": args.epochs,
+            "learning_rate": float(args.learning_rate or entry.get("learning_rate", 0.0002)),
+            "lora_r": int(entry.get("lora_r", 64)),
+            "lora_alpha": int(entry.get("lora_alpha", 2 * int(entry.get("lora_r", 64)))),
+            "lora_dropout": float(entry.get("lora_dropout", 0.05)),
+            "target_modules": target_modules,
+            "train_rows": len(train_rows),
+            "eval_rows": expected_rows,
+            "adapter_dir": str(out / "adapter"),
+        })
+        write_json(out / "train_runtime.json", {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "model_key": entry["model_key"],
+            "train_seconds": float(train_seconds),
+            "eval_seconds": float(eval_seconds),
+            "train_rows": len(train_rows),
+            "eval_rows": expected_rows,
+            "seed": args.seed,
+        })
+        row = status_from_outputs(entry, args, out, len(train_rows), expected_rows, target_modules, train_seconds, eval_seconds, memory_reserved)
+        print(json.dumps({"model_key": entry["model_key"], "status": row["status"], "rows": row["rows"], "macro_f1": row["macro_f1"]}, ensure_ascii=False, sort_keys=True))
+    except BaseException as exc:
+        write_status(out, entry, args, "failed", f"{type(exc).__name__}: {exc}", expected_rows=expected_rows)
+        raise
 
 
 if __name__ == "__main__":
