@@ -8,13 +8,63 @@ LABELS = ["no", "intrinsic", "extrinsic"]
 
 
 def load_yaml(path):
-    import yaml
-
     p = Path(path)
     if not p.exists():
         return {}
-    data = yaml.safe_load(p.read_text(encoding="utf-8"))
-    return data if isinstance(data, dict) else {}
+    try:
+        import yaml
+
+        data = yaml.safe_load(p.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except ModuleNotFoundError:
+        return load_baseline_config_without_yaml(p)
+
+
+def parse_scalar(value):
+    text = value.strip()
+    if text in ["true", "True"]:
+        return True
+    if text in ["false", "False"]:
+        return False
+    if text in ["null", "None", "~"]:
+        return None
+    if len(text) >= 2 and text[0] in ["'", '"'] and text[-1] == text[0]:
+        return text[1:-1]
+    try:
+        return int(text)
+    except ValueError:
+        pass
+    try:
+        return float(text)
+    except ValueError:
+        return text
+
+
+def load_baseline_config_without_yaml(path):
+    data = {"baselines": {}}
+    in_baselines = False
+    current = None
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        if not raw.strip() or raw.lstrip().startswith("#"):
+            continue
+        indent = len(raw) - len(raw.lstrip(" "))
+        stripped = raw.strip()
+        if indent == 0:
+            in_baselines = stripped == "baselines:"
+            current = None
+            continue
+        if not in_baselines:
+            continue
+        if indent == 2 and stripped.endswith(":"):
+            key = stripped[:-1]
+            data["baselines"][key] = {}
+            current = data["baselines"][key]
+            continue
+        if indent == 4 and current is not None and ":" in stripped:
+            key, value = stripped.split(":", 1)
+            value = value.strip()
+            current[key.strip()] = parse_scalar(value) if value else None
+    return data
 
 
 def read_json(path):
@@ -54,22 +104,32 @@ def status_dirs(root):
 
 
 def label_distribution(path):
-    import pandas as pd
-
     p = Path(path)
     if not p.exists():
         return 0, {}, "missing_predictions"
-    df = pd.read_csv(p)
-    if "predict_label" not in df.columns:
-        return len(df), {}, "missing_predict_label"
-    if df["predict_label"].isna().any():
-        return len(df), {}, "nan_predict_label"
-    labels = df["predict_label"].astype(str)
-    bad = sorted(set(labels) - set(LABELS))
-    counts = {label: int((labels == label).sum()) for label in LABELS}
+    import csv
+
+    with p.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        if "predict_label" not in (reader.fieldnames or []):
+            rows = list(reader)
+            return len(rows), {}, "missing_predict_label"
+        counts = {label: 0 for label in LABELS}
+        bad_values = set()
+        rows = 0
+        for row in reader:
+            rows += 1
+            value = str(row.get("predict_label", ""))
+            if value == "":
+                return rows, counts, "nan_predict_label"
+            if value in counts:
+                counts[value] += 1
+            else:
+                bad_values.add(value)
+    bad = sorted(bad_values)
     if bad:
-        return len(df), counts, "invalid_labels:" + ",".join(bad)
-    return len(df), counts, ""
+        return rows, counts, "invalid_labels:" + ",".join(bad)
+    return rows, counts, ""
 
 
 def inspect_model(root, model_key, entry, expected_rows):
