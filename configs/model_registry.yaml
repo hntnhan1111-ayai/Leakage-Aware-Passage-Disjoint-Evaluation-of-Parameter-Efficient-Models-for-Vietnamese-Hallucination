@@ -27,6 +27,14 @@ models:
     loader: AutoModelForImageTextToText
     processor: AutoProcessor
     mode: future_text_only_multimodal_baseline
+  qwen35_4b_peft:
+    name: Qwen3.5-4B PEFT
+    hf_id: Qwen/Qwen3.5-4B
+    url: https://huggingface.co/Qwen/Qwen3.5-4B
+    local_dir: models/Qwen3.5-4B
+    loader: AutoModelForImageTextToText
+    processor: AutoProcessor
+    mode: supervised_peft_finetune
   gemma4_e2b:
     name: Gemma-4-E2B-it
     hf_id: google/gemma-4-E2B-it
@@ -35,6 +43,14 @@ models:
     loader: AutoModelForImageTextToText
     processor: AutoProcessor
     mode: future_text_only_multimodal_baseline
+  gemma4_e2b_it_peft:
+    name: Gemma-4-E2B-it PEFT
+    hf_id: google/gemma-4-E2B-it
+    url: https://huggingface.co/google/gemma-4-E2B-it
+    local_dir: models/gemma-4-E2B-it
+    loader: AutoModelForImageTextToText
+    processor: AutoProcessor
+    mode: supervised_peft_finetune
   phobert:
     name: PhoBERT-base-v2
     hf_id: vinai/phobert-base-v2

@@ -29,6 +29,20 @@ models:
     loader: AutoModelForCausalLM
     tokenizer: AutoTokenizer
     quantization: nf4_4bit
+  qwen35_4b_peft:
+    role: supervised_peft_baseline
+    hf_id: Qwen/Qwen3.5-4B
+    local_dir: models/Qwen3.5-4B
+    loader: AutoModelForImageTextToText
+    processor: AutoProcessor
+    quantization: nf4_4bit
+  gemma4_e2b_it_peft:
+    role: supervised_peft_baseline
+    hf_id: google/gemma-4-E2B-it
+    local_dir: models/gemma-4-E2B-it
+    loader: AutoModelForImageTextToText
+    processor: AutoProcessor
+    quantization: nf4_4bit
   phobert:
     role: encoder_baseline
     hf_id: vinai/phobert-base-v2

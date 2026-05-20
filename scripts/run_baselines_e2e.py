@@ -883,6 +883,39 @@ def run_label_scoring(entry, config, args, gold):
     return completed_summary(entry, args, out, total_seconds)
 
 
+def run_supervised_peft(entry, config, args, gold, train):
+    out = model_out_dir(args, entry)
+    out.mkdir(parents=True, exist_ok=True)
+    resumed = existing_resume_row(args, entry, len(gold))
+    if resumed is not None:
+        print(f"MODEL_SKIPPED {entry['model_key']} resume_completed")
+        return resumed
+    cmd = [
+        sys.executable,
+        "scripts/train_eval_llm_peft_baseline.py",
+        "--model-key",
+        entry["model_key"],
+        "--config",
+        args.config,
+        "--train-csv",
+        args.train_csv,
+        "--gold-csv",
+        args.gold_csv,
+        "--out-root",
+        args.out_root,
+        "--seed",
+        str(args.seed),
+        "--epochs",
+        str(entry.get("epochs", 2)),
+    ]
+    if args.debug_limit is not None:
+        cmd += ["--debug-limit", str(args.debug_limit)]
+    if args.force_rerun_model:
+        cmd.append("--force-rerun-model")
+    subprocess.run(cmd, check=True)
+    return completed_summary(entry, args, out)
+
+
 def run_model(entry, config, args, gold, train):
     model_type = entry["type"]
     if model_type == "current_best_peft":
@@ -891,6 +924,8 @@ def run_model(entry, config, args, gold, train):
         return run_encoder(entry, config, args, gold, train)
     if model_type == "label_scoring_lm":
         return run_label_scoring(entry, config, args, gold)
+    if model_type == "supervised_peft_finetune":
+        return run_supervised_peft(entry, config, args, gold, train)
     raise SkipModel(f"unsupported_model_type:{model_type}")
 
 

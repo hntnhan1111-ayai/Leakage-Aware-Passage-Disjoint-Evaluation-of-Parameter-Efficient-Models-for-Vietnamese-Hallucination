@@ -255,3 +255,13 @@ Prepare source, docs, scripts, uv workflow, and target RTX4090 pipeline for GitH
 * `status.json` now records `requested_limit`, `expected_rows`, and `force_rerun` so `DEBUG_LIMIT=8` artifacts cannot satisfy a full 14,000-row run.
 * `FORCE_RERUN_MODEL=1` now prints `FORCE_RERUN_MODEL_ACTIVE` and intentionally reruns models; normal full comparison should omit it.
 * `REBUILD_MODEL_COMPARISON_SUMMARY=1` can rebuild the global comparison summary from compatible artifacts without loading models.
+
+## 2026-05-20 Qwen/Gemma Supervised PEFT Baselines
+
+* Existing zero-shot keys `qwen35_4b` and `gemma4_e2b_it` remain unchanged as auxiliary baselines.
+* Added supervised PEFT keys `qwen35_4b_peft` and `gemma4_e2b_it_peft` for target-only QLoRA training on `vihallu-train.csv` and evaluation on `vihallu-test.csv`.
+* Added `scripts/train_eval_llm_peft_baseline.py` for one-model PEFT train/eval artifacts under `results/model_comparison/<model_key>/`.
+* Added `scripts/run_qwen_gemma_peft_rtx4090.sh` to run only the two new PEFT rows on the RTX4090 target without rerunning Vistral, PhoBERT, XLM-R, or zero-shot rows.
+* Added `scripts/make_paper_figures.py` to generate PDF/PNG figures from real `results/model_comparison/` artifacts into `results/paper_figures/`.
+* Paper tables should separate supervised PEFT, supervised encoder fine-tune, and zero-shot label scoring. Use neutral wording such as `ViHallu benchmark test split`.
+* Local validation for this change remains syntax/diff only; Qwen/Gemma downloads, model loading, training, inference, DEBUG_LIMIT, and figure generation are target-only.

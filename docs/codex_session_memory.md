@@ -369,3 +369,25 @@ Prepare Hallu-Paper for ICIT 2026 submission with reproducible evidence.
 
 * This pass must be validated locally only with syntax, import, and diff checks.
 * Target runtime validation remains on the RTX4090 machine only.
+
+## 2026-05-20 Qwen/Gemma Supervised PEFT Baselines
+
+### Fixes
+
+* Preserved existing zero-shot keys `qwen35_4b` and `gemma4_e2b_it`.
+* Added supervised PEFT keys `qwen35_4b_peft` and `gemma4_e2b_it_peft` in `configs/baseline_models.yaml`.
+* Added `scripts/train_eval_llm_peft_baseline.py` for target-only QLoRA/PEFT training and evaluation on ViHallu train/test.
+* Added `scripts/run_qwen_gemma_peft_rtx4090.sh` to run only the two new PEFT baselines on the RTX4090 target.
+* Added `scripts/make_paper_figures.py` for real-artifact PDF/PNG figures under `results/paper_figures/`.
+* Wired `scripts/run_baselines_e2e.py` to invoke the supervised PEFT script for entries with `type: supervised_peft_finetune`.
+
+### Paper Positioning
+
+* Main paper comparisons should separate supervised PEFT, supervised encoder fine-tune, and zero-shot label scoring.
+* Zero-shot Qwen/Gemma rows remain auxiliary until the PEFT rows complete on target.
+* Generated figure titles use neutral wording: `ViHallu benchmark test split`.
+
+### Local Validation Scope
+
+* Local validation must remain limited to syntax and diff checks.
+* No local Qwen/Gemma downloads, model loading, training, inference, or figure generation was performed.

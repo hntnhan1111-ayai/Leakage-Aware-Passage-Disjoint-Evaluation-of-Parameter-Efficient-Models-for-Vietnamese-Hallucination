@@ -124,6 +124,38 @@ baselines:
     dtype: bfloat16
     quantization: bf16_then_4bit_on_oom
     notes: zero-shot text-only label scoring baseline
+  qwen35_4b_peft:
+    model_key: qwen35_4b_peft
+    enabled: true
+    model_id: Qwen/Qwen3.5-4B
+    hf_id: Qwen/Qwen3.5-4B
+    canonical_model_id: Qwen/Qwen3.5-4B
+    local_dir: models/Qwen3.5-4B
+    model_family: vlm_text_only
+    method_type: supervised_peft_finetune
+    type: supervised_peft_finetune
+    inference_mode: supervised_label_completion
+    train_mode: qlora_peft_train_on_vihallu_train
+    expected_loader: AutoModelForImageTextToText
+    accepted_aliases:
+      - Qwen/Qwen3.5-4B
+      - models/Qwen3.5-4B
+    required_files:
+      - config.json
+    output_dir: results/model_comparison/qwen35_4b_peft
+    adapter_dir: results/model_comparison/qwen35_4b_peft/adapter
+    dtype: bfloat16
+    quantization: nf4_4bit
+    lora_r: 64
+    lora_alpha: 128
+    lora_dropout: 0.05
+    epochs: 2
+    learning_rate: 0.0002
+    per_device_train_batch_size: 1
+    gradient_accumulation_steps: 16
+    max_seq_length: 1024
+    max_new_tokens: 3
+    notes: supervised PEFT/QLoRA text-labeling baseline trained on ViHallu train
   gemma4_e2b_it:
     model_key: gemma4_e2b_it
     enabled: true
@@ -147,6 +179,39 @@ baselines:
     dtype: bfloat16
     quantization: bf16_then_4bit_on_oom
     notes: instruction-tuned Gemma 4 text-only label scoring baseline
+  gemma4_e2b_it_peft:
+    model_key: gemma4_e2b_it_peft
+    enabled: true
+    model_id: google/gemma-4-E2B-it
+    hf_id: google/gemma-4-E2B-it
+    canonical_model_id: google/gemma-4-E2B-it
+    local_dir: models/gemma-4-E2B-it
+    model_family: vlm_text_only
+    method_type: supervised_peft_finetune
+    type: supervised_peft_finetune
+    inference_mode: supervised_label_completion
+    train_mode: qlora_peft_train_on_vihallu_train
+    expected_loader: AutoModelForImageTextToText
+    accepted_aliases:
+      - google/gemma-4-E2B-it
+      - google/gemma-4-E2B
+      - models/gemma-4-E2B-it
+    required_files:
+      - config.json
+    output_dir: results/model_comparison/gemma4_e2b_it_peft
+    adapter_dir: results/model_comparison/gemma4_e2b_it_peft/adapter
+    dtype: bfloat16
+    quantization: nf4_4bit
+    lora_r: 64
+    lora_alpha: 128
+    lora_dropout: 0.05
+    epochs: 2
+    learning_rate: 0.0002
+    per_device_train_batch_size: 1
+    gradient_accumulation_steps: 16
+    max_seq_length: 1024
+    max_new_tokens: 3
+    notes: supervised PEFT/QLoRA text-labeling baseline trained on ViHallu train
   qwen3_4b_prompt:
     model_key: qwen3_4b_prompt
     enabled: false

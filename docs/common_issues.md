@@ -155,6 +155,29 @@ REUSED_MAIN_CURRENT_BEST vistral
 
 Debug artifacts with `DEBUG_LIMIT=8` are not compatible with full `rows=14000` runs.
 
+## Qwen And Gemma Fair Comparison
+
+The existing `qwen35_4b` and `gemma4_e2b_it` rows are zero-shot label-scoring baselines. Keep them as auxiliary baselines and do not rename them.
+
+The supervised PEFT rows use separate model keys:
+
+* `qwen35_4b_peft`
+* `gemma4_e2b_it_peft`
+
+Run only those two PEFT rows on the RTX4090 target with:
+
+```bash
+DEBUG_LIMIT=16 bash scripts/run_qwen_gemma_peft_rtx4090.sh
+```
+
+Then run the full PEFT pass without `DEBUG_LIMIT` after the debug pass succeeds:
+
+```bash
+bash scripts/run_qwen_gemma_peft_rtx4090.sh
+```
+
+Do not use private-test labels in tables. Use neutral wording such as `ViHallu benchmark test split` for captions and section text.
+
 ## Prediction Help And Dry Run
 
 `scripts/generate_predictions_current_best.py --help` must be a pure argparse path. It should not check model files, adapter files, CUDA, `HF_TOKEN`, or import PEFT.
