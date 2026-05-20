@@ -31,13 +31,15 @@ def int_or_none(value):
 
 
 def paper_include(entry):
-    return not bool(entry.get("auxiliary_only")) and entry.get("paper_include", True) is not False
+    return bool(entry.get("enabled")) and not bool(entry.get("auxiliary_only")) and entry.get("paper_include", True) is not False
 
 
-def config_entries(config, paper_main_only):
+def config_entries(config, paper_main_only, include_disabled):
     baselines = config.get("baselines", {}) if isinstance(config, dict) else {}
     items = {}
     for key, entry in baselines.items():
+        if not include_disabled and not entry.get("enabled"):
+            continue
         if paper_main_only and not paper_include(entry):
             continue
         items[key] = dict(entry)
@@ -153,9 +155,10 @@ def main():
     parser.add_argument("--config", default="configs/baseline_models.yaml")
     parser.add_argument("--expected-rows", type=int, default=14000)
     parser.add_argument("--paper-main-only", action="store_true")
+    parser.add_argument("--include-disabled", action="store_true")
     args = parser.parse_args()
     config = load_yaml(args.config)
-    entries = config_entries(config, args.paper_main_only)
+    entries = config_entries(config, args.paper_main_only, args.include_disabled)
     dirs = status_dirs(args.root)
     keys = sorted(set(entries) | set(dirs))
     rows = []

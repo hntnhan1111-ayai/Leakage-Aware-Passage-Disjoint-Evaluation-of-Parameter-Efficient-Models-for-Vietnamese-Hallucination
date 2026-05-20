@@ -60,6 +60,8 @@ After debug passes, run the full model comparison without `FORCE_RERUN_MODEL=1` 
 
 Qwen/Gemma zero-shot rows remain auxiliary baselines and are excluded from the default paper summary and figures. For fair supervised comparison, run `qwen35_4b_peft` and `gemma4_e2b_it_peft` with `scripts/run_qwen_gemma_peft_rtx4090.sh`, then audit artifacts with `scripts/audit_model_comparison_artifacts.py` and generate paper figures from real artifacts with `scripts/make_paper_figures.py`. Figure captions should use neutral wording such as `ViHallu benchmark test split`.
 
+The paper-main set is exactly `vistral`, `phobert`, `xlmr`, `qwen35_4b_peft`, and `gemma4_e2b_it_peft`. Disabled legacy prompt baselines such as `qwen3_4b_prompt` are auxiliary/debug only.
+
 If Gemma4 PEFT previously failed with `Gemma4ClippableLinear` during LoRA injection, pull the branch containing the text-only target-module fix and rerun only the Qwen/Gemma PEFT script. Qwen debug artifacts should be skipped when compatible; Gemma should retry with explicit text-backbone LoRA targets.
 
 `DEBUG_LIMIT` PEFT runs must not overwrite the full paper summary. The PEFT runner prints `SKIP_GLOBAL_SUMMARY_REBUILD_FOR_DEBUG_LIMIT` and skips global summary rebuild while debugging.

@@ -95,7 +95,7 @@ def flag_enabled(name):
 
 
 def paper_include_entry(entry):
-    return not bool(entry.get("auxiliary_only")) and entry.get("paper_include", True) is not False
+    return bool(entry.get("enabled")) and not bool(entry.get("auxiliary_only")) and entry.get("paper_include", True) is not False
 
 
 def truthy_value(value):

@@ -284,3 +284,11 @@ Prepare source, docs, scripts, uv workflow, and target RTX4090 pipeline for GitH
 * PEFT runs write `status=running` before training/evaluation and `status=failed` on exceptions; `status=completed` is written only after required artifact checks pass.
 * `DEBUG_LIMIT` PEFT runs print `SKIP_GLOBAL_SUMMARY_REBUILD_FOR_DEBUG_LIMIT` and do not overwrite the full paper summary.
 * Added `scripts/audit_model_comparison_artifacts.py` for full and paper-main artifact integrity audits.
+
+## 2026-05-20 Legacy Prompt Baseline Paper-Main Exclusion
+
+* Disabled legacy `qwen3_4b_prompt` must not appear in paper-main audit, summary, or figures.
+* `qwen3_4b_prompt` is now `auxiliary_only: true` and `paper_include: false`.
+* Paper-main predicates in audit, summary, and figure scripts require `enabled: true`, not auxiliary, and `paper_include` not false.
+* Non-paper audit ignores missing disabled config entries unless `--include-disabled` is used.
+* Paper-main set is exactly `vistral`, `phobert`, `xlmr`, `qwen35_4b_peft`, and `gemma4_e2b_it_peft`.

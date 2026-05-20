@@ -222,6 +222,8 @@ baselines:
   qwen3_4b_prompt:
     model_key: qwen3_4b_prompt
     enabled: false
+    auxiliary_only: true
+    paper_include: false
     model_id: Qwen/Qwen3-4B-Instruct-2507
     hf_id: Qwen/Qwen3-4B-Instruct-2507
     canonical_model_id: Qwen/Qwen3-4B-Instruct-2507
@@ -239,4 +241,4 @@ baselines:
       - config.json
       - tokenizer_config.json
     output_dir: results/model_comparison/qwen3_4b_prompt
-    notes: legacy optional modern prompt-only baseline
+    notes: auxiliary legacy optional modern prompt-only baseline

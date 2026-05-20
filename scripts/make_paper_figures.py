@@ -29,6 +29,8 @@ def paper_model_keys(config, include_auxiliary):
     baselines = config.get("baselines", {}) if isinstance(config, dict) else {}
     keys = []
     for name, entry in baselines.items():
+        if not entry.get("enabled"):
+            continue
         if include_auxiliary or (not entry.get("auxiliary_only") and entry.get("paper_include", True) is not False):
             keys.append(name)
     return keys

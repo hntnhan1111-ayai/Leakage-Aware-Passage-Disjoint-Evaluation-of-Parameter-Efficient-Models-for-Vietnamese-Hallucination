@@ -428,3 +428,11 @@ Prepare Hallu-Paper for ICIT 2026 submission with reproducible evidence.
 * PEFT status now becomes `running` before train/eval and `failed` on exceptions; `completed` is written only after required artifacts and row counts pass.
 * `DEBUG_LIMIT` PEFT runs skip global summary rebuild and print `SKIP_GLOBAL_SUMMARY_REBUILD_FOR_DEBUG_LIMIT`.
 * Added `scripts/audit_model_comparison_artifacts.py` for paper-main and all-artifact integrity checks.
+
+## 2026-05-20 Legacy Prompt Baseline Paper-Main Exclusion
+
+* Target paper-main audit still included disabled legacy `qwen3_4b_prompt` as `missing_status`.
+* Marked `qwen3_4b_prompt` as `auxiliary_only: true` and `paper_include: false`.
+* Updated audit, summary, and figure paper-main predicates to require `enabled: true`, not auxiliary, and `paper_include` not false.
+* Audit non-paper mode excludes disabled config entries unless `--include-disabled` is explicitly passed.
+* Paper-main set is exactly `vistral`, `phobert`, `xlmr`, `qwen35_4b_peft`, and `gemma4_e2b_it_peft`.

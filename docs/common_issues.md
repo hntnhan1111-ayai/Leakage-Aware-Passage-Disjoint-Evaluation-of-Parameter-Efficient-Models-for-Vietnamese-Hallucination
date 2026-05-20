@@ -159,6 +159,16 @@ Debug artifacts with `DEBUG_LIMIT=8` are not compatible with full `rows=14000` r
 
 The existing `qwen35_4b` and `gemma4_e2b_it` rows are zero-shot label-scoring baselines. They are marked `auxiliary_only: true` and `paper_include: false`. Keep them as optional debug artifacts and do not rename them.
 
+The legacy `qwen3_4b_prompt` row is disabled and auxiliary-only. It must not appear in paper-main audit, paper-main summary, or paper figures.
+
+The paper-main model set is exactly:
+
+* `vistral`
+* `phobert`
+* `xlmr`
+* `qwen35_4b_peft`
+* `gemma4_e2b_it_peft`
+
 The supervised PEFT rows use separate model keys:
 
 * `qwen35_4b_peft`
