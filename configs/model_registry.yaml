@@ -1,5 +1,7 @@
 models:
   vistral:
+    model_key: vistral
+    enabled: true
     name: Vistral
     hf_id: Viet-Mistral/Vistral-7B-Chat
     canonical_model_id: Viet-Mistral/Vistral-7B-Chat
@@ -12,6 +14,8 @@ models:
     url: https://huggingface.co/Viet-Mistral/Vistral-7B-Chat
     local_dir: models/Vistral-7B-Chat
     model_type: causal_lm
+    model_family: causal_lm
+    method_type: fine_tuned_peft_current_best
     expected_loader: AutoModelForCausalLM
     required_files:
       - config.json
@@ -19,8 +23,13 @@ models:
     loader: AutoModelForCausalLM
     tokenizer: AutoTokenizer
     mode: main_jamp_backbone_qlora_or_adapter_inference
+    inference_mode: strict_generation_with_retry_and_label_scoring
+    train_mode: qlora_sft_adapter_pretrained
     quantization: nf4_4bit
+    notes: current-best PEFT adapter model
   qwen3_4b:
+    model_key: qwen3_4b
+    enabled: false
     name: Qwen3-4B-Instruct-2507
     hf_id: Qwen/Qwen3-4B-Instruct-2507
     canonical_model_id: Qwen/Qwen3-4B-Instruct-2507
@@ -30,6 +39,8 @@ models:
     url: https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507
     local_dir: models/Qwen3-4B-Instruct-2507
     model_type: causal_lm
+    model_family: causal_lm
+    method_type: zero_shot_label_scoring
     expected_loader: AutoModelForCausalLM
     required_files:
       - config.json
@@ -37,8 +48,13 @@ models:
     loader: AutoModelForCausalLM
     tokenizer: AutoTokenizer
     mode: optional_prompt_only_baseline
+    inference_mode: normalized_label_nll
+    train_mode: none
     quantization: nf4_4bit
+    notes: legacy optional Qwen3 prompt-only comparison
   qwen35_4b:
+    model_key: qwen35_4b
+    enabled: true
     name: Qwen3.5-4B
     hf_id: Qwen/Qwen3.5-4B
     canonical_model_id: Qwen/Qwen3.5-4B
@@ -48,13 +64,20 @@ models:
     url: https://huggingface.co/Qwen/Qwen3.5-4B
     local_dir: models/Qwen3.5-4B
     model_type: future_text_only_multimodal_baseline
+    model_family: vlm_text_only
+    method_type: zero_shot_label_scoring
     expected_loader: AutoModelForImageTextToText
     required_files:
       - config.json
     loader: AutoModelForImageTextToText
     processor: AutoProcessor
     mode: future_text_only_multimodal_baseline
-  gemma4_e2b:
+    inference_mode: normalized_label_nll
+    train_mode: none
+    notes: Qwen3.5 4B text-only label scoring comparison
+  gemma4_e2b_it:
+    model_key: gemma4_e2b_it
+    enabled: true
     name: Gemma-4-E2B-it
     hf_id: google/gemma-4-E2B-it
     canonical_model_id: google/gemma-4-E2B-it
@@ -64,13 +87,20 @@ models:
     url: https://huggingface.co/google/gemma-4-E2B-it
     local_dir: models/gemma-4-E2B-it
     model_type: future_text_only_multimodal_baseline
+    model_family: vlm_text_only
+    method_type: zero_shot_label_scoring
     expected_loader: AutoModelForImageTextToText
     required_files:
       - config.json
     loader: AutoModelForImageTextToText
     processor: AutoProcessor
     mode: future_text_only_multimodal_baseline
+    inference_mode: normalized_label_nll
+    train_mode: none
+    notes: instruction-tuned Gemma 4 text-only label scoring comparison
   phobert:
+    model_key: phobert
+    enabled: true
     name: PhoBERT-base-v2
     hf_id: vinai/phobert-base-v2
     canonical_model_id: vinai/phobert-base-v2
@@ -80,6 +110,8 @@ models:
     url: https://huggingface.co/vinai/phobert-base-v2
     local_dir: models/phobert-base-v2
     model_type: encoder_classifier
+    model_family: encoder
+    method_type: supervised_encoder_finetune
     expected_loader: AutoModelForSequenceClassification
     required_files:
       - config.json
@@ -87,7 +119,12 @@ models:
     loader: AutoModelForSequenceClassification
     tokenizer: AutoTokenizer
     mode: encoder_baseline
+    inference_mode: sequence_classification
+    train_mode: train_on_vihallu_train
+    notes: supervised encoder baseline
   xlmr:
+    model_key: xlmr
+    enabled: true
     name: XLM-RoBERTa-base
     hf_id: FacebookAI/xlm-roberta-base
     canonical_model_id: FacebookAI/xlm-roberta-base
@@ -98,6 +135,8 @@ models:
     url: https://huggingface.co/FacebookAI/xlm-roberta-base
     local_dir: models/xlm-roberta-base
     model_type: encoder_classifier
+    model_family: encoder
+    method_type: supervised_encoder_finetune
     expected_loader: AutoModelForSequenceClassification
     required_files:
       - config.json
@@ -105,3 +144,6 @@ models:
     loader: AutoModelForSequenceClassification
     tokenizer: AutoTokenizer
     mode: encoder_baseline
+    inference_mode: sequence_classification
+    train_mode: train_on_vihallu_train
+    notes: supervised encoder baseline

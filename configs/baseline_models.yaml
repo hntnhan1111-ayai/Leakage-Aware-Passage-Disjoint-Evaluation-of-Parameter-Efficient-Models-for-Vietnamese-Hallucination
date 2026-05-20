@@ -2,10 +2,18 @@ seed: 42
 strict_default: false
 train_csv: vihallu-train.csv
 test_csv: vihallu-test.csv
+output_root: results/model_comparison
 labels:
   - "no"
   - intrinsic
   - extrinsic
+
+comparison_defaults:
+  split: public_test
+  max_prompt_tokens: 1024
+  dtype: bfloat16
+  leakage_override_env: ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE
+  challenge_style_evaluation: true
 
 encoder_defaults:
   num_train_epochs: 2
@@ -20,63 +28,135 @@ encoder_defaults:
   report_to: none
 
 baselines:
-  phobert:
+  vistral:
+    model_key: vistral
     enabled: true
-    type: encoder_classifier
-    hf_id: vinai/phobert-base-v2
-    canonical_model_id: vinai/phobert-base-v2
+    model_id: Viet-Mistral/Vistral-7B-Chat
+    hf_id: Viet-Mistral/Vistral-7B-Chat
+    canonical_model_id: Viet-Mistral/Vistral-7B-Chat
+    local_dir: models/Vistral-7B-Chat
+    adapter_dir: adapters/current_best
+    model_family: causal_lm
+    method_type: fine_tuned_peft_current_best
+    type: current_best_peft
+    inference_mode: strict_generation_with_retry_and_label_scoring
+    train_mode: qlora_sft_adapter_pretrained
+    expected_loader: AutoModelForCausalLM
     accepted_aliases:
-      - vinai/phobert-base-v2
-      - models/phobert-base-v2
-    local_dir: models/phobert-base-v2
-    model_type: encoder_classifier
-    expected_loader: AutoModelForSequenceClassification
+      - Viet-Mistral/Vistral-7B-Chat
+      - uonlp/viet-mistral-sft-v1
+      - models/Vistral-7B-Chat
     required_files:
       - config.json
       - tokenizer_config.json
-    output_dir: results/baselines/phobert
-  xlmr:
+    output_dir: results/model_comparison/vistral
+    notes: current-best PEFT adapter comparison using existing or regenerated predictions
+  phobert:
+    model_key: phobert
     enabled: true
+    model_id: vinai/phobert-base-v2
+    hf_id: vinai/phobert-base-v2
+    canonical_model_id: vinai/phobert-base-v2
+    local_dir: models/phobert-base-v2
+    model_family: encoder
+    method_type: supervised_encoder_finetune
     type: encoder_classifier
+    inference_mode: sequence_classification
+    train_mode: train_on_vihallu_train
+    expected_loader: AutoModelForSequenceClassification
+    accepted_aliases:
+      - vinai/phobert-base-v2
+      - models/phobert-base-v2
+    required_files:
+      - config.json
+      - tokenizer_config.json
+    output_dir: results/model_comparison/phobert
+    notes: supervised encoder baseline trained from ViHallu train split
+  xlmr:
+    model_key: xlmr
+    enabled: true
+    model_id: FacebookAI/xlm-roberta-base
     hf_id: FacebookAI/xlm-roberta-base
     canonical_model_id: FacebookAI/xlm-roberta-base
+    local_dir: models/xlm-roberta-base
+    model_family: encoder
+    method_type: supervised_encoder_finetune
+    type: encoder_classifier
+    inference_mode: sequence_classification
+    train_mode: train_on_vihallu_train
+    expected_loader: AutoModelForSequenceClassification
     accepted_aliases:
       - FacebookAI/xlm-roberta-base
       - xlm-roberta-base
       - models/xlm-roberta-base
-    local_dir: models/xlm-roberta-base
-    model_type: encoder_classifier
-    expected_loader: AutoModelForSequenceClassification
     required_files:
       - config.json
       - tokenizer_config.json
-    output_dir: results/baselines/xlmr
+    output_dir: results/model_comparison/xlmr
+    notes: supervised encoder baseline trained from ViHallu train split
+  qwen35_4b:
+    model_key: qwen35_4b
+    enabled: true
+    model_id: Qwen/Qwen3.5-4B
+    hf_id: Qwen/Qwen3.5-4B
+    canonical_model_id: Qwen/Qwen3.5-4B
+    local_dir: models/Qwen3.5-4B
+    model_family: vlm_text_only
+    method_type: zero_shot_label_scoring
+    type: label_scoring_lm
+    inference_mode: normalized_label_nll
+    train_mode: none
+    expected_loader: AutoModelForImageTextToText
+    accepted_aliases:
+      - Qwen/Qwen3.5-4B
+      - models/Qwen3.5-4B
+    required_files:
+      - config.json
+    output_dir: results/model_comparison/qwen35_4b
+    dtype: bfloat16
+    quantization: bf16_then_4bit_on_oom
+    notes: zero-shot text-only label scoring baseline
+  gemma4_e2b_it:
+    model_key: gemma4_e2b_it
+    enabled: true
+    model_id: google/gemma-4-E2B-it
+    hf_id: google/gemma-4-E2B-it
+    canonical_model_id: google/gemma-4-E2B-it
+    local_dir: models/gemma-4-E2B-it
+    model_family: vlm_text_only
+    method_type: zero_shot_label_scoring
+    type: label_scoring_lm
+    inference_mode: normalized_label_nll
+    train_mode: none
+    expected_loader: AutoModelForImageTextToText
+    accepted_aliases:
+      - google/gemma-4-E2B-it
+      - google/gemma-4-E2B
+      - models/gemma-4-E2B-it
+    required_files:
+      - config.json
+    output_dir: results/model_comparison/gemma4_e2b_it
+    dtype: bfloat16
+    quantization: bf16_then_4bit_on_oom
+    notes: instruction-tuned Gemma 4 text-only label scoring baseline
   qwen3_4b_prompt:
+    model_key: qwen3_4b_prompt
     enabled: false
-    type: prompt_only_causal_lm
+    model_id: Qwen/Qwen3-4B-Instruct-2507
     hf_id: Qwen/Qwen3-4B-Instruct-2507
     canonical_model_id: Qwen/Qwen3-4B-Instruct-2507
+    local_dir: models/Qwen3-4B-Instruct-2507
+    model_family: causal_lm
+    method_type: zero_shot_label_scoring
+    type: label_scoring_lm
+    inference_mode: normalized_label_nll
+    train_mode: none
+    expected_loader: AutoModelForCausalLM
     accepted_aliases:
       - Qwen/Qwen3-4B-Instruct-2507
       - models/Qwen3-4B-Instruct-2507
-    local_dir: models/Qwen3-4B-Instruct-2507
-    model_type: causal_lm
-    expected_loader: AutoModelForCausalLM
     required_files:
       - config.json
       - tokenizer_config.json
-    output_dir: results/baselines/qwen3_4b_prompt
-  gemma4_e2b_prompt:
-    enabled: false
-    type: future_prompt_only
-    hf_id: google/gemma-4-E2B-it
-    canonical_model_id: google/gemma-4-E2B-it
-    accepted_aliases:
-      - google/gemma-4-E2B-it
-      - models/gemma-4-E2B-it
-    local_dir: models/gemma-4-E2B-it
-    model_type: future_prompt_only
-    expected_loader: AutoModelForImageTextToText
-    required_files:
-      - config.json
-    output_dir: results/baselines/gemma4_e2b_prompt
+    output_dir: results/model_comparison/qwen3_4b_prompt
+    notes: legacy optional modern prompt-only baseline

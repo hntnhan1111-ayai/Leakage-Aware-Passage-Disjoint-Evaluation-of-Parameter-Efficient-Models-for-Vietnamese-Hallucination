@@ -29,6 +29,7 @@ ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1 RUN_DOWNLOAD_MODELS=1 RUN_TRAIN_CURRENT_BEST=
 * `results/paper_evidence/run_metadata.json` depends on the target runtime environment, Git state, manifest, and prediction config.
 * `results/paper_evidence/leakage_report.md` is required when `ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1`.
 * `results/baselines/*` depends on enabled baseline settings in `configs/baseline_models.yaml`.
+* `results/model_comparison/model_comparison_summary.csv` is the canonical fair comparison table for current-best, encoder baselines, and enabled zero-shot label-scoring LLM/VLM baselines.
 
 ## Paper Section Inputs
 

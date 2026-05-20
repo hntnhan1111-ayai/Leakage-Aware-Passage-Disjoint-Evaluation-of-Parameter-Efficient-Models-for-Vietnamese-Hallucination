@@ -248,3 +248,13 @@ Prepare source, docs, scripts, uv workflow, and target RTX4090 pipeline for GitH
 * `scripts/preflight_target_run.py`, `configs/experiment_manifest.yaml`, `configs/model_registry.yaml`, and `configs/baseline_models.yaml` now carry canonical model IDs and accepted aliases, including Vistral alias `uonlp/viet-mistral-sft-v1`.
 * `scripts/run_all_e2e_rtx4090.sh` now has explicit skip/run banners and fails with a train command if `RUN_TRAIN_CURRENT_BEST=0` but the adapter files are missing.
 * Local validation passed for compileall, bash syntax checks, generator help/dry-run via runpy, train help/dry-run, evidence help, preflight help, and baseline help/dry-run. The user-form preflight command with `--model-key`, `--model-dir`, and `--adapter-dir` parses correctly but stops on missing local target ML dependencies. Local `verify_environment.py` still fails because this machine lacks torch, datasets, accelerate, peft, trl, scikit-learn, and matplotlib.
+
+## 2026-05-20 Full Model Comparison E2E Update
+
+* The previous RTX4090 runner was main-method E2E plus optional baselines, not a full fair model-comparison pipeline.
+* `scripts/run_baselines_e2e.py` is now the full model-comparison stage. It writes per-model artifacts and global summaries under `results/model_comparison/`.
+* `configs/baseline_models.yaml` now includes enabled comparison entries for Vistral current-best, PhoBERT, XLM-R, Qwen/Qwen3.5-4B, and google/gemma-4-E2B-it, each with method type, family, loader, aliases, required files, inference mode, train mode, and notes.
+* Vistral can reuse valid `results/predictions.csv`; missing or stale outputs are not silently mixed. Encoder baselines train on `vihallu-train.csv`. Qwen/Gemma use deterministic label scoring rather than free-form generation.
+* Missing local models are retained in `model_comparison_summary.csv` with `status=skipped` and `skip_reason=missing_local_model`.
+* `scripts/run_all_e2e_rtx4090.sh` now supports comparison-only runs with `RUN_GENERATE_PREDICTIONS=0 RUN_BASELINES=1 FULL_MODEL_COMPARISON=1` without requiring main prediction artifacts.
+* Local debug validation produced a correctly shaped model-comparison summary with all five enabled models skipped because no local `models/` or `adapters/current_best` artifacts are present in this checkout.

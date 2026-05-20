@@ -136,3 +136,23 @@ Run this on the RTX4090 machine after the branch is pulled and the uv environmen
 ```bash
 ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1 RUN_DOWNLOAD_MODELS=1 RUN_TRAIN_CURRENT_BEST=1 RUN_GENERATE_PREDICTIONS=1 RUN_BASELINES=1 bash scripts/run_all_e2e_rtx4090.sh
 ```
+
+## Full Model Comparison
+
+`RUN_BASELINES=1` now runs the configured model-comparison stage and writes outputs under `results/model_comparison/`.
+
+Use comparison-only mode when the current-best Vistral artifacts already exist:
+
+```bash
+ALLOW_KNOWN_PUBLIC_SPLIT_LEAKAGE=1 RUN_DOWNLOAD_MODELS=0 RUN_TRAIN_CURRENT_BEST=0 RUN_GENERATE_PREDICTIONS=0 RUN_BASELINES=1 FULL_MODEL_COMPARISON=1 bash scripts/run_all_e2e_rtx4090.sh
+```
+
+If a configured model is unavailable and downloads are disabled, the comparison summary keeps the model row with `status=skipped` and `skip_reason=missing_local_model`.
+
+Use `ONLY_MODEL_KEY=<model_key>` for a single model and `FORCE_RERUN_MODEL=1` to ignore completed model-level resume metadata.
+
+The comparison table is:
+
+```text
+results/model_comparison/model_comparison_summary.csv
+```

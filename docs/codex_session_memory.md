@@ -366,3 +366,32 @@ Prepare Hallu-Paper for ICIT 2026 submission with reproducible evidence.
 
 * The local workspace does not contain `adapters/current_best` or `models/Vistral-7B-Chat`, so actual adapter/model alias compatibility and full 14,000-row inference must be validated on the RTX4090 target machine.
 * `git add` and `git commit -- <explicit paths>` were attempted after validation, but this session's tool policy blocked git write operations with `approval required by policy, but AskForApproval is set to Never`; no commit or push was created.
+
+## 2026-05-20 Full Model Comparison E2E Update
+
+### Audit
+
+* `scripts/run_all_e2e_rtx4090.sh` previously supported a main Vistral E2E and optional baseline stage, but it still required main-method artifacts even when `RUN_GENERATE_PREDICTIONS=0`.
+* `scripts/run_baselines_e2e.py` previously trained enabled encoder baselines and had a Qwen3 prompt hook, but it did not write a global fair model-comparison summary or explicit skipped rows for missing configured models.
+
+### Fixes
+
+* Reworked `scripts/run_baselines_e2e.py` into the full model-comparison stage while preserving the existing CLI name.
+* Added configured comparison rows for Vistral current-best, PhoBERT, XLM-R, Qwen/Qwen3.5-4B, and google/gemma-4-E2B-it.
+* Added `src/models/label_scoring.py` for deterministic normalized label NLL over `no`, `intrinsic`, and `extrinsic`.
+* Added model-level resume, row-level LLM prediction resume, explicit skipped/failed status rows, and global summary artifacts under `results/model_comparison/`.
+* Updated `scripts/run_all_e2e_rtx4090.sh` so comparison-only runs no longer require main prediction artifacts and `RUN_BASELINES=1` prints `RUN_MODEL_COMPARISON`.
+* Updated `scripts/download_models.py` and `src/models/download.py` to download enabled comparison models from `configs/baseline_models.yaml` and write `results/model_comparison/download_report.json`.
+
+### Local Validation
+
+* PASS: `python3 -m compileall src scripts`
+* PASS: `bash -n scripts/run_all_e2e_rtx4090.sh`
+* PASS: equivalent `runpy` invocation of `scripts/download_models.py --help`
+* PASS: `python3 scripts/run_baselines_e2e.py --help`
+* PASS: `python3 scripts/preflight_target_run.py --help`
+* PASS: `python3 scripts/run_baselines_e2e.py --dry-run --config configs/baseline_models.yaml`
+* PASS: `python3 scripts/run_baselines_e2e.py --config configs/baseline_models.yaml --gold_csv vihallu-test.csv --train_csv vihallu-train.csv --out_root results/model_comparison --seed 42 --debug-limit 8 --allow_known_public_split_leakage`
+* PASS: model comparison summary format validation.
+* FAIL locally as expected: full `run_all_e2e_rtx4090.sh` comparison command stops in WSL `verify_environment.py` because the local WSL Python lacks target packages including torch, transformers, datasets, accelerate, peft, trl, pandas, sklearn, matplotlib, numpy, tqdm, huggingface_hub, dotenv, and bitsandbytes.
+* BLOCKED: `git add -- <explicit source/config/doc paths>` was rejected by the session tool policy with `approval required by policy, but AskForApproval is set to Never`; no commit or push was created from this workspace.
