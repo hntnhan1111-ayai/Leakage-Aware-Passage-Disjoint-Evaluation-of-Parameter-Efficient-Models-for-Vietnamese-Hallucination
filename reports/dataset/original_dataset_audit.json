@@ -1,0 +1,63 @@
+{
+  "quarantined_duplicate_test": {
+    "class_counts": {
+      "extrinsic": 4614,
+      "intrinsic": 4896,
+      "no": 4490
+    },
+    "class_proportions": {
+      "extrinsic": 0.32957142857142857,
+      "intrinsic": 0.3497142857142857,
+      "no": 0.32071428571428573
+    },
+    "duplicate_id_rows": 14000,
+    "exact_duplicate_triplet_rows": 14000,
+    "path": "data/raw/vihallu-test-duplicated-quarantine.csv",
+    "rows": 14000,
+    "sha256": "af0546aa12d316280eb9ac0f3fed8571f6ba2ec9780abcfcd72d60ed81a0067a",
+    "unique_contexts": 3865,
+    "unique_ids": 7000,
+    "unique_prompts": 7000,
+    "unique_responses": 7000,
+    "unique_triplets": 7000
+  },
+  "train": {
+    "class_counts": {
+      "extrinsic": 2307,
+      "intrinsic": 2448,
+      "no": 2245
+    },
+    "class_proportions": {
+      "extrinsic": 0.32957142857142857,
+      "intrinsic": 0.3497142857142857,
+      "no": 0.32071428571428573
+    },
+    "duplicate_id_rows": 0,
+    "exact_duplicate_triplet_rows": 0,
+    "path": "data/raw/vihallu-train.csv",
+    "rows": 7000,
+    "sha256": "52a9d8605688f77d5e2d4504c81765e8183f83e1d0ceab8957aeab67381c9bce",
+    "unique_contexts": 3865,
+    "unique_ids": 7000,
+    "unique_prompts": 7000,
+    "unique_responses": 7000,
+    "unique_triplets": 7000
+  },
+  "unlabeled_private": {
+    "has_gold_labels": false,
+    "overlap_with_labeled_source": {
+      "context_hash": 1292,
+      "id": 0,
+      "prompt_hash": 0,
+      "response_hash": 0,
+      "triplet_hash": 0
+    },
+    "path": "data/raw/vihallu-private-test-unlabeled.csv",
+    "rows": 2000,
+    "rows_with_labeled_source_context": 1506,
+    "sha256": "89e0364d89e6987342fca3b721dc1e4530a24d979e8818c75f30302cc9d42211",
+    "unique_contexts": 1668,
+    "unique_ids": 2000,
+    "unique_triplets": 2000
+  }
+}

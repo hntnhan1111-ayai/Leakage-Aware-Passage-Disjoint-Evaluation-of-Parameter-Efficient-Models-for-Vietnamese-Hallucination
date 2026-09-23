@@ -1,0 +1,33 @@
+{
+  "aug_id_counts": {
+    "0": 7000,
+    "1": 7000
+  },
+  "has_augmentation_columns": true,
+  "id_frequency_distribution": {
+    "2": 7000
+  },
+  "identical_to_train_by_field": {
+    "context_hash": 14000,
+    "label": 14000,
+    "prompt_hash": 14000,
+    "response_hash": 14000,
+    "triplet_hash": 14000
+  },
+  "invalid_as_independent_test": true,
+  "is_augmented_counts": {
+    "False": 7000,
+    "True": 7000
+  },
+  "rows": 14000,
+  "rows_with_train_id": 14000,
+  "train_test_overlap": {
+    "context_hash": 3865,
+    "id": 7000,
+    "prompt_hash": 7000,
+    "response_hash": 7000,
+    "triplet_hash": 7000
+  },
+  "unique_ids": 7000,
+  "unique_triplets": 7000
+}

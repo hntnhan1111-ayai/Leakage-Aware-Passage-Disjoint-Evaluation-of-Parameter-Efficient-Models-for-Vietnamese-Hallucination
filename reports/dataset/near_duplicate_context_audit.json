@@ -1,0 +1,1091 @@
+{
+  "dev__test": {
+    "left_unique_contexts": 589,
+    "max_similarity": 0.5255637764930725,
+    "mean_nearest_similarity": 0.23555819690227509,
+    "right_unique_contexts": 583,
+    "threshold_counts": {
+      "0.9": 0,
+      "0.95": 0,
+      "0.98": 0
+    },
+    "top_pairs": [
+      {
+        "left_context_excerpt": "Tháng 11 năm 1372, Trần Nghệ Tông xuống chiếu nhường ngôi cho em là Trần Kính, tức là Trần Duệ Tông, còn bản thân lên làm Thái thượng hoàng. Trần Duệ Tông là con của Đôn Từ thái phi, cũng là cô của Lê Quý Ly. Trần Duệ Tông lấy Lê Quý Ly làm Tham mưu quân sự. Năm 1376, vua Chiêm là Chế Bồng Nga lại mang quân xâm lấn. Duệ Tông sai Đỗ Tử Bình đi đánh. Chế Bồng Nga sợ hãi, xin dâng 10 mâm vàng tạ tội. Tử Bình giấu vàng đi, lại tâu về triều rằng vua Chiêm kiêu ngạo không thần phục. Duệ Tông quyết địn",
+        "left_group_id": "6448d3b8b38a127b4aa07753f8de24abcdb794778dfabc1515b8c368e8703807",
+        "right_context_excerpt": "Năm 1370, các hoàng tử con vua Minh Tông lật đổ Dương Nhật Lễ (xem phần \"Thời kỳ suy tàn\" bên dưới) lập Trần Nghệ Tông. Mẹ Nhật Lễ chạy sang Chiêm Thành xui vua Chiêm đánh Đại Việt. Lúc đó thế lực nhà Trần suy yếu, Chiêm Thành có ý khởi binh đánh đòi lại hai châu đã mất. Đến đời vua Trần Duệ Tông, vua Chiêm Thành là Chế Bồng Nga quấy rối biên giới, vua Duệ Tông sai Đỗ Tử Bình đem quân trấn giữ Hóa Châu. Bồng Nga đem 10 mâm vàng dâng lên. Tử Bình ỉm đi, cướp làm của mình, nối dối là Bồng Nga ngạo",
+        "right_group_id": "44389bb87f17e000371b9b10352785d3420812356c787b992ed080314a189aa2",
+        "similarity": 0.5255637764930725
+      },
+      {
+        "left_context_excerpt": "Pyrit thông thường cũng được dùng trong nghề kim hoàn mỹ nghệ để làm các chuỗi hạt hay vòng đeo tay. Mặc dù là tương tự về thành phần, nhưng marcasit lại không thể sử dụng trong lĩnh vực này do nó có xu hướng bị vỡ vụn ra thành dạng bột. Bổ sung cho sự lộn xộn và nhầm lẫn giữa marcasit và pyrit là việc sử dụng từ Marcasit như là tên gọi thương phẩm cho đồ kim hoàn mỹ nghệ từ pyrit. Thuật ngữ này được áp dụng cho các viên đá nhỏ được đánh bóng và tạo mặt, được dát vào bạc thật (hay bạc sterling, ",
+        "left_group_id": "e4a991619df5e1c18a1673734edb22f2737a4c93ce40b4594c5d07b9090647a4",
+        "right_context_excerpt": "Pyrit thông thường hay bị nhầm lẫn với khoáng vật marcasit, mà tên gọi của nó có nguồn gốc từ tiếng Ả Rập để chỉ pyrit, do các đặc trưng tương tự của chúng. Marcasit là dạng đa hình của pyrit, nghĩa là nó có cùng một công thức như pyrit nhưng khác về cấu trúc và vì thế khác biệt về hình dáng tinh thể và tính đối xứng. Tuy nhiên, trạng thái ôxi hóa hình thức là giống như trong pyrit do các nguyên tử lưu huỳnh xuất hiện trong các cặp tương tự như persulfua. Marcasit/pyrit có lẽ là cặp đa hình phổ ",
+        "right_group_id": "5d94ca7e383f89bdd7bbf26eb8b8ddec73af7797c53d0a9db7078191c80e27c1",
+        "similarity": 0.5057497620582581
+      },
+      {
+        "left_context_excerpt": "Đầu thế kỉ 20, Puerto Rico nằm dưới sự cai trị của quân đội Mỹ và thống đốc Puerto Rico đều là người được Tổng thống Mỹ chỉ định. Năm 1900, Đạo luật Foraker cho phép Puerto Rico có một số quyền lập chính phủ dân sự gồm có hạ viện do dân bầu. Đến năm 1917, Đạo luật Jones-Shafroth trao quyền công dân Mỹ cho người Puerto Rico cũng như cho phép lập ra thượng viện do dân bầu để Puerto Rico có đầy đủ một quốc hội lưỡng viện của riêng mình. Với quyền công dân Mỹ, nhiều thanh niên Puerto Rico đã tham gi",
+        "left_group_id": "a058c59fad07cc8f2f876839fd7f101182173b67347659fd707942171cc36a75",
+        "right_context_excerpt": "Puerto Rico là một lãnh thổ chưa hợp nhất của Hoa Kỳ theo thể chế cộng hòa. Tất cả các quyền lực hiện tại của Puerto Rico là do Quốc hội Hoa Kỳ ủy quyền. Puerto Rico thiếu sự bảo vệ toàn phần từ Hiến pháp Hoa Kỳ vì không phải là một tiểu bang của Hoa Kỳ. Người đứng đầu nhà nước của Puerto Rico là tổng thống Mỹ. Chính quyền Puerto Rico theo chế độ cộng hòa, được tổ chức theo hệ thống tam quyền phân lập gồm ba nhánh: lập pháp, hành pháp và tư pháp. Nhánh hành pháp được đứng đầu bởi thống đốc Puert",
+        "right_group_id": "4dba14008023355be45d6eee65be7cc82322bd0e45b56d91e15879cef866f49c",
+        "similarity": 0.47272491455078125
+      },
+      {
+        "left_context_excerpt": "Việc lây truyền virus từ mẹ sang con có thể xảy ra trong tử cung (trong thời kỳ mang thai), trong quá trình chuyển dạ (sinh con), hoặc thông qua việc cho con bú. Trong trường hợp không điều trị, tỷ lệ lây truyền giữa mẹ và con lên đến khoảng 25%. Tuy nhiên, với sự kết hợp điều trị bằng thuốc kháng virus và mổ lấy thai thì nguy cơ này có thể được giảm xuống thấp khoảng 1%. Sau khi sinh thì có thể ngăn ngừa lây truyền bằng cách tránh hoàn toàn nuôi con bằng sữa mẹ, tuy nhiên, điều này liên quan đá",
+        "left_group_id": "720873218688e49366bda7523adea5914dba6ad07160283a708723a2558e981b",
+        "right_context_excerpt": "HIV lây truyền chủ yếu qua quan hệ tình dục không an toàn (bao gồm cả quan hệ tình dục qua đường hậu môn và thậm chí bằng miệng), qua việc truyền máu từ nguồn đã bị nhiễm bệnh, qua dùng chung kim tiêm, và từ mẹ sang con: trong khi mang thai, khi sinh (lây truyền chu sinh), hoặc khi cho con bú. Một số chất dịch của cơ thể như nước bọt và nước mắt không lây truyền HIV. Phòng chống lây nhiễm HIV, chủ yếu thông qua các chương trình trao đổi kim tiêm và tình dục an toàn, là một chiến dịch quan trọng ",
+        "right_group_id": "a7068fab769e93705979a5a51f14037cb247075909decc7d7e531ef78c7a6828",
+        "similarity": 0.44946783781051636
+      },
+      {
+        "left_context_excerpt": "Lý do tại sao triều đình Arsaces đã chọn năm 247 trước Công nguyên là năm đầu tiên của thời đại Arsaces là không chắc chắn. A.D.H. Bivar kết luận rằng đây là năm vương quốc Seleukos đánh mất quyền kiểm soát Parthia của về tay Andragoras, vị phó vương được bổ nhiệm đã nổi dậy chống lại họ. Do đó, Arsaces I đã \"tính thời gian thuộc triều đại của mình\" từ thời điểm này khi sự kiểm soát của Seleukos với Parthia đã chấm dứt. Tuy nhiên, Vesta Sarkhosh Curtis khẳng định rằng điều này chỉ đơn giản là nă",
+        "left_group_id": "65aab928ea73cb29421f7d98da7f0b54033154f2991fde37d7336108e4a42a03",
+        "right_context_excerpt": "Hiện nay vẫn chưa rõ ràng rằng ai là người đã trực tiếp kế vị Arsaces I sau đó, Bivar và Katouzian khẳng định rằng đó là em trai của ông Tiridates I của Parthia, ông ta sau đó đã tiếp tục được kế vị bởi con trai của mình là Arsaces II của Parthia vào năm 211 trước Công nguyên. Tuy nhiên, Curtis và Brosius cho rằng Arsaces II là người đã trực tiếp kế vị Arsaces I, cùng với đó Curtis tuyên bố rằng sự kế vị đã diễn ra vào năm 211 trước Công nguyên và Brosius cho là trong năm 217 trước Công nguyên. ",
+        "right_group_id": "989ce99c2cce997797c12223fb440b480a5d8dae68fe73a40fd2972c5db7981e",
+        "similarity": 0.44090521335601807
+      },
+      {
+        "left_context_excerpt": "Các đám mây trên Sao Kim cũng phóng tia sét nhiều như trên Trái Đất. Sự tồn tại của sét đã gây tranh cãi khi lần đầu tiên tàu Venera của Liên Xô phát hiện ra những chớp sáng này. Năm 2006–07 tàu Venus Express chụp được rõ ràng sóng electron điện từ, dấu hiệu cho thấy có tia sét. Hình ảnh xuất hiện rời rạc của chúng cho thấy những tia sét này đi kèm với hoạt động của thời tiết. Tốc độ tia sét bằng ít nhất một nửa của nó trên Trái Đất. Năm 2007, tàu Venus Express phát hiện ra hai xoáy khí quyển kh",
+        "left_group_id": "09178f4596d97a34751150d00337118d5ff12c9080449a43eeda4f2c211f8d9b",
+        "right_context_excerpt": "Tàu Venus Express được thiết kế và chế tạo bởi ESA, phóng lên ngày 9 tháng 11 năm 2005 bằng tên lửa Soyuz-Fregat của Nga thông qua công ty sở hữu chung của Nga và ESA là \"Starsem\", nó đã đi vào quỹ đạo cực quanh Sao Kim ngày 11 tháng 4 năm 2006. Nhiệm vụ của con tàu là nghiên cứu chi tiết khí quyển cũng như các đám mây, bao gồm lập ra bản đồ môi trường plasma bao quanh và các đặc điểm bề mặt hành tinh, đặc biệt là nhiệt độ. Một trong những khám phá của Venus Express hai xoáy khí quyển khổng lồ t",
+        "right_group_id": "8fae4dfc925710f97e2ebd54313fac111f836b87aa318dfcb8c30e3312e1bf39",
+        "similarity": 0.43565261363983154
+      },
+      {
+        "left_context_excerpt": "Chủ tịch nước, theo hiến pháp là người đứng đầu Nhà nước, nguyên thủ quốc gia của nước Cộng hòa xã hội Chủ nghĩa Việt Nam được Quốc hội bầu do Chủ tịch Quốc hội giới thiệu từ đề cử của Ban Chấp hành Trung ương. Chủ tịch nước có 6 quyền hạn theo Hiến pháp 2013, trong đó quan trọng nhất là: Công bố hiến pháp, luật, pháp lệnh; Tổng Tư lệnh các lực lượng vũ trang nhân dân và giữ chức Chủ tịch Hội đồng Quốc phòng và An ninh Quốc gia; Đề nghị Quốc hội bầu, miễn nhiệm Phó Chủ tịch nước, Thủ tướng, Chán",
+        "left_group_id": "a7124d95188660caba6d921762d5ee3f2d58b0bea2df0b0819a1d0bdc1fe7b21",
+        "right_context_excerpt": "Quốc hội, theo hiến pháp là cơ quan đại biểu cao nhất của nhân dân, cơ quan quyền lực Nhà nước cao nhất của nước Cộng hòa xã hội chủ nghĩa Việt Nam. Quốc hội là cơ quan duy nhất có quyền lập hiến và lập pháp. Nhiệm vụ của Quốc hội là giám sát, quyết định những chính sách cơ bản về đối nội và đối ngoại, các nhiệm vụ kinh tế, xã hội, quốc phòng, an ninh, những nguyên tắc chủ yếu của bộ máy Nhà nước, về quan hệ xã hội và hoạt động của công dân. Trên 90% đại biểu quốc hội là Đảng viên Đảng Cộng sản ",
+        "right_group_id": "9e53c6332650adcd642fcf8569b96ab5970d70b33d0afa41893e704f76c23ff1",
+        "similarity": 0.4324193000793457
+      },
+      {
+        "left_context_excerpt": "Cuối năm 1943, thời điểm rõ ràng cho thấy rằng Đồng minh cuối cùng sẽ đánh bại hoặc ít nhất kìm chế được Đức Quốc xã. Mỗi ngày càng cho thấy những quyết định chính trị cấp cao càng trở nên quan trọng đối với diễn biến của cuộc chiến và tương lai của châu Âu thời hậu chiến. Roosevelt họp mặt với Churchill và lãnh tụ Trung Quốc Quốc dân đảng Tưởng Giới Thạch tại Hội nghị Cairo vào tháng 11 năm 1943, và rồi sau đó đến Tehran để bàn thảo với Churchill và Stalin. Trong lúc Churchill xem Stalin là một",
+        "left_group_id": "8a41cc6d9a9dc5c00551d9db39b7ee4ccb3f50889819d054bc259ba8cc89a449",
+        "right_context_excerpt": "Ngày 28 tháng 11 năm 1943, tại Hội nghị Tehran Tổng thống Mỹ Franklin D. Roosevelt đã nêu ý kiến đặt Đông Dương dưới sự quản thác quốc tế với Iosif Vissarionovich Stalin, Winston Churchill và Tưởng Giới Thạch. Tổng thống Mỹ Franklin D. Roosevelt bày tỏ một cách minh bạch rằng ông chỉ mong muốn chấm dứt chủ nghĩa thực dân ở Đông Dương ngay cả khi cần trả giá bằng bất hòa với Anh và làm gián đoạn mối quan hệ với Pháp. Iosif Vissarionovich Stalin và Tưởng Giới Thạch ủng hộ Tổng thống Mỹ Franklin D.",
+        "right_group_id": "11550758a471f121916511a3ce5efa0f6440c63a1caaaed3fa7deaa6b8c84830",
+        "similarity": 0.4303067922592163
+      },
+      {
+        "left_context_excerpt": "Chương trình của Mặt trận: \"Từ khi thực dân Pháp xâm lược nước ta, dân tộc Việt Nam ta đã chiến đấu không ngừng cho độc lập và tự do của Tổ quốc. Năm 1945, đồng bào cả nước đã đứng lên đánh đổ Nhật - Pháp giành chính quyền và đã anh dũng kháng chiến 9 năm, đánh bại xâm lược Pháp và can thiệp Mỹ, đưa cuộc kháng chiến oanh liệt của dân tộc ta đến thắng lợi vẻ vang.Tại hội nghị Giơ ne vơ tháng 7-1954, đế quốc Pháp buộc phải cam kết rút quân khỏi Việt Nam và các nước tham dự hội nghị đều trịnh trọng",
+        "left_group_id": "49f66fe10a6f77a7087bfb4b10bfc9e7eb65a4d659c65b3a7e5ef262b4e3b8d8",
+        "right_context_excerpt": "Đây là tổ chức kế thừa Mặt trận Tổ quốc Việt Nam (Mặt trận của cả nước từ Bắc đến Nam) ở miền Nam (được công nhận bởi các tài liệu sau năm 1975) nhằm chống lại Hoa Kỳ và Việt Nam Cộng hòa ở miền Nam Việt Nam, ra đời trong phong trào Đồng khởi của người dân ở miền Nam Chủ trương của Mặt trận là: \"Đoàn kết toàn dân, kiên quyết đấu tranh chống đế quốc Mỹ xâm lược và gây chiến, đánh đổ tập đoàn thống trị Ngô Đình Diệm, tay sai đế quốc Mỹ; thành lập một chính quyền liên minh dân tộc dân chủ rộng rãi ",
+        "right_group_id": "f19089e6fb65ffe2ee3ee466861e8b5d95e90721b0aa496453ecdd047e700909",
+        "similarity": 0.42780548334121704
+      },
+      {
+        "left_context_excerpt": "Từ giữa thế kỷ XIV, sau Cái chết Đen, các khu định cư Norman tại Ireland lâm vào một giai đoạn suy thoái. Những người cai trị Norman và tầng lớp tinh hoa Ireland Gael liên hôn và các khu vực do người Norman cai trị bị Gael hoá. Tại một số nơi, xuất hiện văn hoá lai tạp Ireland-Norman. Nhằm phản ứng, Nghị viện Ireland thông qua Quy chế Kilkenny vào năm 1367, đây là một bộ luật nhằm ngăn chặn đồng hoá người Norman vào xã hội Ireland bằng cách yêu cầu các thần dân Anh tại Ireland nói tiếng Anh, tuâ",
+        "left_group_id": "0203630bb93fbd5ab8945c14842e765f6063d907a1b33151949f2e5ca9946525",
+        "right_context_excerpt": "Trong thế kỷ tiếp theo, luật phong kiến Norman dần thay thế Luật Brehon Gael, đến cuối thế kỷ XIII người Norman tại Ireland lập ra một hệ thống phong kiến trên phần lớn đảo. Các khu định cư của người Norman có đặc điểm là lập ra lãnh địa nam tước, thái ấp, đô thị và hạt giống của hệ thống hạt hiện đại. Một phiên bản của Magna Carta (Đại hiến chương Ireland), thay thế Dublin cho London và Giáo hội Ireland cho Giáo hội Anh, được phát hành vào năm 1216 và Nghị viện Ireland được thành lập vào năm 12",
+        "right_group_id": "08da5f750266eb4ec30802f1c9b9fe0c28444723c0be02a75e947b8d1be569a9",
+        "similarity": 0.42548036575317383
+      },
+      {
+        "left_context_excerpt": "Sự phát triển của các thành phố dẫn tới cái được gọi là văn minh: đầu tiên Văn minh Sumerian ở hạ Lưỡng Hà (3500 TCN), tiếp theo là văn minh Ai Cập dọc sông Nin (3300 TCN) và nền văn minh Harappan ở lưu vực sông Ấn (3300 TCN). Đã có bằng chứng về những thành phố phức tạp với những mức độ xã hội cao và nền kinh tế phát triển. Tuy nhiên, những nền văn minh này khá khác biệt so với nhau bởi vì chúng hầu như có nguồn gốc độc lập. Chính ở thời gian này chữ viết và thương mại ở tầm rộng bắt đầu xuất h",
+        "left_group_id": "668a0111fb92902b875320a42527dadf7ecb61c629102e49dbeee1c1b64787fd",
+        "right_context_excerpt": "Sự phát triển của các thành phố đồng nghĩa với sự đi lên của nền văn minh. Nền văn minh xuất hiện sớm nhất là ở vùng Lưỡng Hà(3500 năm TCN). Tiếp sau là nền văn minh Ai Cập cổ đại dọc dòng sông Nin (3000 năm TCN) và văn minh lưu vực sông Ấn ở thung lũng sông Ấn (hiện tại là Ấn Độ và Pakistan; 2500 năm TCN). Các xã hội này phát triển dựa trên một số đặc điểm thống nhất, gồm một chính quyền trung ương, một nền kinh tế và cấu trúc xã hội phức tạp, hệ thống ngôn ngữ và chữ viết phức tạp, nền văn hóa",
+        "right_group_id": "18a7def9adcb73e02da8d907f619c340d4ce1f62f47d3df1462a933f091240f3",
+        "similarity": 0.4222865104675293
+      },
+      {
+        "left_context_excerpt": "Richard và lực lượng của ông hỗ trợ trong cuộc xâm chiến thành Acre, mặc dù lúc này ông lâm bệnh nặng. Một mặt, khi đang bị bệnh Scobat, Richard được kể rằng đã dùng nỏ hạ gục lính gác trên tường thành trong khi đang được khiêng trên cáng. Cuối cùng Conrad xứ Montferrat đàm phán về việc đầu hàng của người Hồi giáo với Saladin và giương cờ hiệu của các vị vua trong thành phố. Richard tranh cãi với Leopold V của Áo về việc phế truất Isaac Komnenos (có họ hàng với người mẹ gốc Byzantine của Leopold",
+        "left_group_id": "948182384621267f7f611541b65fe3379f462021cdf5a87fe3c50486e047d91c",
+        "right_context_excerpt": "Trên đường đến lãnh địa của anh vợ mình, Heinrich xứ Sachsen, Richard bị bắt vài ngày trước Giáng sinh năm 1192 gần Viên bởi Leopold V, Công tước của Áo. Leopold sau đó buộc tội Richard trong vụ ám sát em họ ông Conrad xứ Montferrat. Hơn nữa cá nhân Richard cũng đã xúc phạm Leopold bằng việc ném cờ hiệu của ông khỏi bờ tường thành Acre. Richard và những người tùy tùng đã cải trang thành thường dân đi hành hương, nhưng ông bị nhận dạng do đeo một chiếc nhẫn đáng giá, cũng có thể là do ông đã khăn",
+        "right_group_id": "2bfb744de04f6ea7d6d0d737be07b61eccb44325fb8c59683b6651f7ca347854",
+        "similarity": 0.42189109325408936
+      },
+      {
+        "left_context_excerpt": "Tổ chức này được thành lập dưới sự hậu thuẫn và được hỗ trợ tài chính, thiết bị và nhân sự bởi nhiều bộ phận dân cư tại miền Nam Việt Nam cũng như của chính phủ và quân đội của Việt Nam Dân chủ Cộng hòa. Trước khi Chính phủ Cách mạng lâm thời Cộng hòa Miền Nam Việt Nam thành lập, Mặt trận Dân tộc Giải phóng miền Nam Việt Nam tồn tại như một chính thể và Ủy ban Trung ương hoạt động như là một chính phủ lâm thời, đại diện cho các vùng thuộc quyền kiểm soát, quản lý các vùng do Mặt trận quản lý. Ba",
+        "left_group_id": "fdb1d08f3100a39ffb76092dfd9dbc327001a866f84397e847a3654e124d58ab",
+        "right_context_excerpt": "Sau Đồng khởi, thì một vùng do Đảng Lao động và cách mạng kiểm soát ở Miền Nam hình thành, đồng thời miền Bắc bắt đầu viện trợ cho phong trào kháng chiến tại miền Nam một lượng lớn vũ khí, quân trang, quân dụng và cử nhiều cán bộ, binh sĩ vào Nam chiến đấu. Trong khi Mỹ và Việt Nam Cộng hòa đã đưa ra những chứng cớ mà họ cho là Miền Bắc vi phạm Hiệp định, do đó chủ trương của Đảng Lao động là thành lập một Mặt trận lấy danh nghĩa giải phóng Miền Nam để kiểm soát các vùng đất này, và tách đảng bộ",
+        "right_group_id": "a049ee681133fb3126d3d04e5d08eb86855e409c57dcaf821c625166f1c97c1a",
+        "similarity": 0.4203515648841858
+      },
+      {
+        "left_context_excerpt": "Dựa vào câu chuyện truyền khẩu này cùng với khái niệm về quyền sử dụng đất trước tiên để tuyên bố chủ quyền, như thường thấy trong văn hóa người Marshall làm lý lẽ trong dàn xếp các vụ tranh chấp đất đai, một nhóm nhỏ người có nguồn gốc Marshall ly khai, tự gọi họ là Vương quốc EnenKio và tuyên bố chủ quyền đối với Đảo Wake. Chính quyền Quần đảo Marshall và Hoa Kỳ, cả hai cũng đang tranh chấp chủ quyền trên đảo, mạnh mẽ bác bỏ lời tuyên bố chủ quyền này. Không có bằng chứng cho rằng có khu định ",
+        "left_group_id": "674c27b40eb156c7cc5037dc045ea595f68f073abc0820a4dce997b030a6f1c6",
+        "right_context_excerpt": "Một vài câu chuyện truyền khẩu hiếm hoi của người Marshall bản xứ đã ám chỉ rằng trước khi người châu Âu tới thám hiểm vùng này thì các cư dân Marshall gần đó đã đến nơi ngày nay là Đảo Wake mà họ gọi là Enen-kio sau khi một loại hoa bụi màu cam nhỏ được tìm thấy trên đảo. Theo tôn giáo Marshall cổ, những bùa phép xâm quanh trên người các tù trưởng gọi là Iroijlaplap được xâm bằng xương người còn tươi vì thế đòi hỏi phải có người chịu hy sinh. Một người có thế cứu lấy mình mà không phải hy sinh ",
+        "right_group_id": "98b68faaa4dd714f67b50f1ee06130221d68f279f2b759bf3065276117a6383c",
+        "similarity": 0.420082151889801
+      },
+      {
+        "left_context_excerpt": "Vào các ngày 20, 22 và 24 tháng 6 năm 1867, Pháp vi phạm hòa ước 1862, chiếm 3 tỉnh miền Tây là Vĩnh Long, An Giang và Hà Tiên. Lúc này, thực dân Pháp cũng xóa bỏ tên gọi tỉnh An Giang cùng hệ thống hành chính phủ huyện cũ thời nhà Nguyễn ở khu vực này, đồng thời cũng đặt ra các hạt Thanh tra. Ngày 16 tháng 08 năm 1867, Pháp lập hạt Thanh tra Sa Đéc, là một trong 24 hạt thanh tra trên toàn cõi Nam Kỳ. Lúc bấy giờ, hạt Thanh tra Sa Đéc được thành lập trên địa bàn phủ Tân Thành thuộc tỉnh An Giang",
+        "left_group_id": "94562d587174cf045736aaf3a27badf45208e914a54d0b4bf0035b853e68e12c",
+        "right_context_excerpt": "Sau khi chiếm hết được ba tỉnh miền Đông Nam Kỳ vào năm 1862, thực dân Pháp dần xóa bỏ tên gọi tỉnh Định Tường cùng hệ thống hành chính phủ huyện cũ thời nhà Nguyễn, đồng thời đặt ra các hạt Thanh tra. Lúc bấy giờ, hạt Thanh tra Kiến Tường được thành lập trên địa bàn huyện Kiến Phong thuộc phủ Kiến Tường, tỉnh Định Tường cũ. Trụ sở hạt Thanh tra Kiến Tường đặt tại Cao Lãnh. Lúc đầu, hạt Thanh tra tạm gọi tên theo tên các phủ huyện cũ, sau mới đổi tên gọi theo địa điểm đóng trụ sở. Về sau, trụ sở",
+        "right_group_id": "f303a2c6535bcc08fdbd008be067dbb1c47e988838b58d71476f751c8a1bca0f",
+        "similarity": 0.4198148250579834
+      },
+      {
+        "left_context_excerpt": "Kể từ khi độc lập, Malaysia trở thành một trong những nước có hồ sơ kinh tế tốt nhất tại châu Á, GDP tăng trưởng trung bình 6,5% trong gần 50 năm. Về truyền thống, yếu tố thúc đẩy kinh tế Malaysia là các nguồn tài nguyên thiên nhiên, song quốc gia cũng phát triển các lĩnh vực khoa học, du lịch, thương mại hay du lịch y tế. Ngày nay, Malaysia có một nền kinh tế thị trường công nghiệp mới, có GDP danh nghĩa xếp thứ ba tại Đông Nam Á và xếp thứ 29 trên thế giới. Malaysia là một thành viên sáng lập ",
+        "left_group_id": "047619c6e41da5e8e6eaeab56f46810cc8dc8368f54c47d56354eb21061ab153",
+        "right_context_excerpt": "Chính phủ thúc đẩy sự gia tăng du lịch đến Malaysia trong một nỗ lực nhằm đa dạng hóa kinh tế và giảm sự phụ thuộc vào hàng xuất khẩu. Kết quả là du lịch trở thành nguồn thu ngoại tệ lớn thứ ba của Malaysia, song nó đang bị đe dọa do những tác động tiêu cực từ ngành công nghiệp đang phát triển, với một lượng lớn khí thải và nước thải cùng với nạn phá rừng. Từ năm 2013-2014, Malaysia được xếp là một trong những nơi tốt nhất để nghỉ hưu trên thế giới, đứng vị trí thứ 3 theo Chỉ số hưu trí toàn cầu",
+        "right_group_id": "fd293c98d565f18b3a3b19eb6806b4ba5e2bb53daec0f5a8027780d2dcdbc7fd",
+        "similarity": 0.41690486669540405
+      },
+      {
+        "left_context_excerpt": "Tầm quan trọng của sản xuất hàng sắt đối với kinh tế Birmingham được công nhận ngay từ năm 1538, và phát triển nhanh chóng theo tiến bộ thế kỷ. Cũng quan trọng ngang bằng là việc thị trấn vươn lên thành một trung tâm của các thương gia hàng sắt, họ tổ chức tài chính, cung cấp nguyên liệu thô và giao dịch cùng với tiếp thị sản phẩm công nghiệp. Đến những năm 1600, Birmingham trở thành trung tâm thương mại của một mạng lưới lò rèn và lò luyện trải dài từ Nam Wales đến Cheshire và thương gia của đị",
+        "left_group_id": "73a045ae07ed5476518cef2a178ae3bdda23cdb51ebcbb6d27a54901c73d21e6",
+        "right_context_excerpt": "Birmingham là một phố chợ cỡ trung bình vào thời kỳ trung cổ, sau đó trở nên nổi bật ở tầm quốc tế trong thế kỷ 18 khi là trọng tâm trong Khai sáng Midlands rồi cách mạng công nghiệp. Trong cách mạng công nghiệp, Birmingham đi tiên phong trong các tiến bộ toàn cầu về phát triển khoa học, kỹ thuật, và kinh tế, sản sinh hàng loạt sáng kiến giúp đặt một phần nền tảng cho xã hội công nghiệp hiện đại. Đến năm 1791, Birmingham được ca ngợi là \"thị trấn sản xuất đầu tiên trên thế giới\". Thành phố có hồ",
+        "right_group_id": "c8fa729f4747c61ca17f4bd7b8c1002e413d08947e66e95aa63a8aba7b6d99f4",
+        "similarity": 0.4105738401412964
+      },
+      {
+        "left_context_excerpt": "Al-26 nguồn gốc vũ trụ đầu tiên được sử dụng để nghiên cứu Mặt Trăng và các thiên thạch. Các thành phần của thiên thạch, sau khi thoát khỏi nguồn gốc của chúng, trong khi chu du trong không gian bị tấn công bởi các tia vũ trụ, sinh ra các nguyên tử Al-26. Sau khi rơi xuống Trái Đất, tấm chắn khí quyển đã bảo vệ cho các phần tử này không sinh ra thêm Al-26, và sự phân rã của nó có thể sử dụng để xác định tuổi trên Trái Đất của các thiên thạch này. Các nghiên cứu về thiên thạch cho thấy Al-26 là t",
+        "left_group_id": "439aacf5dab0bcc7167333f72c8f4ff1ca80ce0197ccb24f9a1190aaf8ad5589",
+        "right_context_excerpt": "Nhôm có chín đồng vị, số Z của chúng từ 23 đến 30. Chỉ có Al-27 (đồng vị ổn định) và Al-26 (đồng vị phóng xạ, t1/2 = 7,2 × 105 năm) tìm thấy trong tự nhiên, tuy nhiên Al-27 có sự phổ biến trong tự nhiên là 100%. Al-26 được sản xuất từ agon trong khí quyển do va chạm sinh ra bởi các tia vũ trụ proton. Các đồng vị của nhôm có ứng dụng thực tế trong việc tính tuổi của trầm tích dưới biển, các vết mangan, nước đóng băng, thạch anh trong đá lộ thiên, và các thiên thạch. Tỷ lệ của Al-26 trên beryli-10",
+        "right_group_id": "d679a168bd39b805b3bf34779a1286180883a3965d00f385c66d1cbad63222ca",
+        "similarity": 0.40901875495910645
+      },
+      {
+        "left_context_excerpt": "Mùa hè năm 1947, lực lượng chủ lực của quân đội Việt Nam Dân chủ Cộng hòa có khoảng 60.000 người, chưa kể tự vệ và du kích địa phương. Vũ khí thiếu, chủ yếu là do tự tạo và lấy được của Pháp. Yếu về hỏa lực nhưng cơ động và có hỗ trợ lớn của nhân dân, các tiểu đoàn Việt Nam ngày càng có khả năng tránh các trận càn của Pháp và tấn công đối phương lại những nơi mình lựa chọn. Quân chủ lực chính quy của Việt Nam tổ chức như quân đội phương Tây, nhưng thừa kế nhiều kinh nghiệm chiến tranh cổ truyền ",
+        "left_group_id": "0ef6e88ed42e70d15172a26ad56f36eef5dca866cfbf80be17b442314d41c1b8",
+        "right_context_excerpt": "Sau chiến dịch Léa, xung đột lặng xuống. Thiếu phương tiện để tiếp tục các chiến dịch tấn công, quân Pháp chỉ giới hạn trong các hoạt động vừa phải ở đồng bằng. Nhưng cũng tại đồng bằng, lực lượng vũ trang Việt Nam Dân chủ Cộng hòa được phân tán thành các đại đội độc lập, tiểu đoàn tập trung, tổ chức thêm các đội du kích hoạt động bán công khai, sống tại nhà, vừa làm ruộng vừa chiến đấu, thực hiện các hoạt động quấy rối quân Pháp. Các cán bộ của chính quyền và mặt trận Việt Minh vẫn đi lại tuyển",
+        "right_group_id": "222d52002db1ff7e308916a85444abde4cec88c1aa394bdf47b9ed52c2455bb9",
+        "similarity": 0.40864646434783936
+      },
+      {
+        "left_context_excerpt": "Ngoài ra thì sự phân chia đất nước khiến cho nhiều gia đình phân ly, những người có tinh thần dân tộc cũng bất bình. Do vậy, những người cách mạng ở miền Nam đã ủng hộ cho giải pháp khởi nghĩa giành chính quyền. Sau khi Hội nghị Trung ương 15 của Đảng Lao động tháng 1 năm 1959 tán thành khởi nghĩa ở miền Nam, phong trào cách mạng có biến chuyển. Việt Nam Dân chủ Cộng hòa không muốn can thiệp trực tiếp vào tình hình miền Nam, trong khi vấn đề cấp bách là cần có một lực lượng có chính sách độc lập",
+        "left_group_id": "e602973930445d17ed197c31d4553649a336d23bf133d51b3039b3fcf8a89c25",
+        "right_context_excerpt": "Sau Đồng khởi, thì một vùng do Đảng Lao động và cách mạng kiểm soát ở Miền Nam hình thành, đồng thời miền Bắc bắt đầu viện trợ cho phong trào kháng chiến tại miền Nam một lượng lớn vũ khí, quân trang, quân dụng và cử nhiều cán bộ, binh sĩ vào Nam chiến đấu. Trong khi Mỹ và Việt Nam Cộng hòa đã đưa ra những chứng cớ mà họ cho là Miền Bắc vi phạm Hiệp định, do đó chủ trương của Đảng Lao động là thành lập một Mặt trận lấy danh nghĩa giải phóng Miền Nam để kiểm soát các vùng đất này, và tách đảng bộ",
+        "right_group_id": "a049ee681133fb3126d3d04e5d08eb86855e409c57dcaf821c625166f1c97c1a",
+        "similarity": 0.40611815452575684
+      },
+      {
+        "left_context_excerpt": "Trường trở thành một trong những đại học lớn nhất Hoa Kỳ, năm 1917 nhận 9.300 sinh viên. Từ khi thành lập, NYU sở hữu khuôn viên tại Quảng trường Washington. Trường sau đó đã mua thêm một khuôn viên nữa ở University Heights, The Bronx bởi khuôn viên cũ đã quá đông đúc. NYU cũng có ý định phát triển theo Thành phố New York lên phố trên. Đại học New York chuyển đến The Bronx vào năm 1894, người có công đầu trong việc này là Hiệu trưởng Henry Mitchell MacCracken. Khuôn viên tại University Heights r",
+        "left_group_id": "9afe11845d10ffb5144afe0396c932447006dc02465e87a1d35e6b98dcdc9e20",
+        "right_context_excerpt": "Vào cuối thập 1960 và đầu thập niêm 1970, khủng hoảng tài chính đã kìm chân chính quyền thành phố New York và khó khăn lan rộng tới các trường đại học của thành phố, trong đó có NYU. Nhận thấy nguy cơ phá sản đang tới gần, Chủ tịch NYU James McNaughton Hester đã đàm phán việc bán lại khuôn viên tại University Heights cho Đại học Thành phố New York và thương vụ hoàn tất vào năm 1973. Năm 1973, Trường Kỹ thuật và Khoa học của Đại học New York hợp nhất với Viện Bách khoa Brooklyn, Viện này sau đó l",
+        "right_group_id": "060d019297b88a917497fdf2e99b9b4a39943b47f8893d0ada7324dee27ef7b1",
+        "similarity": 0.4009871482849121
+      },
+      {
+        "left_context_excerpt": "Trong thời gian đầu, chính quyền Việt Nam Dân chủ Cộng hòa công nhận Chính phủ Cách mạng lâm thời Cộng hòa miền Nam Việt Nam, và không công nhận chính phủ Việt Nam Cộng hòa. Các cuộc đấu tranh ở Miền Nam giai đoạn này Việt Nam Dân chủ Cộng hòa cơ bản không kiểm soát được hoàn toàn, mà do các đảng bộ miền Nam tự chỉ đạo, có khi vượt ngoài chỉ đạo của Trung ương. Sau Hội nghị Trung ương 15 và sau này ra đời Mặt trận, Việt Nam Dân chủ Cộng hòa không công nhận Việt Nam Cộng hòa và công khai ủng hộ c",
+        "left_group_id": "1f3497da84f44756cc12f7352a38dcb1db81df94046498736173e494f407a079",
+        "right_context_excerpt": "Trên thực tế cơ cấu tổ chức của phía cách mạng phức tạp và biến chuyển hơn các tin tức từ phía đối phương khai thác được. Tựu trung, để tạo cho lực lượng cách mạng ở miền Nam một vị thế chính trị độc lập với vị thế của Việt Nam Dân chủ Cộng hòa, nâng cao vị thế của họ trên bình diện quốc tế, có lợi cho cách mạng, nhất là trong thu hút lực lượng, tranh thủ ủng hộ quốc tế, và trên bàn đàm phán, tránh mang tiếng Miền Bắc \"xâm lược\"... nên cơ cấu tổ chức của lực lượng cách mạng ở miền Nam độc lập vớ",
+        "right_group_id": "fe902d4cc3cee10caeaf3317ec0ffb9ecf11b05ffe7747e4d05c376911143eeb",
+        "similarity": 0.39756500720977783
+      },
+      {
+        "left_context_excerpt": "Động vật lưỡng cư (và cả động vật có xương sống) nhỏ nhất trên thế giới là loài Paedophryne amauensis trong họ microhylidae ở New Guinea được phát hiện năm 2012. Nó có chiều dài trung bình 7,7 mm (0,30 in) và nó thuộc chi có đến 4 trong số 10 loài ếch nhỏ nhát thế giới. Loài động vật lưỡng cư lớn nhất còn sinh tồn là Andrias davidianus, với chiều dài 1,8 m (5 ft 11 in) nhưng loài này lại nhỏ hơn nhiều so với loài đã tuyệt chủng trong chi Prionosuchus với chiều dài lên đến 9 m (30 ft). Loài tuyệt",
+        "left_group_id": "edc2384bbc7fcb89c2038b80f96fc75dbbe8149513b1c81d092f07af6cd6641c",
+        "right_context_excerpt": "Bộ Anura (từ tiếng Hy Lạp Cổ đại a(n)- nghĩa là \"thiếu\" và oura nghĩa là \"đuôi\") gồm có ếch, nhái và cóc. Chúng thường có chân sau rất dài, chân trước ngắn hơn, ngón chân có màng không móng, không có đuôi, mắt lớn và da có các tuyến nhầy. Các thành viên trong bộ có da trơn được gọi là ếch, trong khi các thành viên có da sần được biết tới như cóc. Quy tắc này không được dùng trong phân loại và cũng có nhiều ngoại lệ. Thành viên trong họ Bufonidae được gọi là \"cóc thực sự\". Kích thước của bộ không",
+        "right_group_id": "6d74060b59a6f0f52b5ed115ce71fd7c0d2ec7786c393e755dec76d776e759a3",
+        "similarity": 0.39732277393341064
+      },
+      {
+        "left_context_excerpt": "Một tập chỉ thị có thể có độ dài chỉ thị thống nhất hay biến động. Cách các bit được sắp xếp thay đổi rất lớn giữa các kiến trúc khác nhau hay các loại chỉ thị khác nhau. Hầu hết các chỉ thị có một hay nhiều vùng mã vận hành để phân biệt các chỉ thị cơ sở (như tính toán hay nhảy) và các chỉ thị thực (như cộng hay so sánh), và các vùng khác biểu diễn loại toán hạng, phương thức biểu diễn địa chỉ, các chỉ số địa chỉ hay các giá trị thực (các toán hạng hằng được chứa trong chỉ thị như vậy được gọi ",
+        "left_group_id": "09744038f743259cf9045822158487cae991d80e38ba3ae63106d0c9e9ccc582",
+        "right_context_excerpt": "Không phải tất cả các máy tính hay chỉ thị đơn lẻ đều có toán hạng hiện (rõ ràng). Một máy tính thanh chứa có sự kết hợp giữa toán hạng trái và kết quả tính toán lưu trong một thanh chứa ẩn đối với hầu hết các chỉ thị đại số. Một số kiến trúc khác (như 8086 hay x86) có phiên bản sử dụng thanh chứa của các chỉ thị thông dụng, và thanh chứa được xem như là một trong những thanh ghi tổng quát nhất của chỉ thị dài. Trong khi đó, một máy tính ngăn xếp lại lưu hầu hết các toán hạng trong một ngăn xếp ",
+        "right_group_id": "545fbb816e819297dcb1c45a10295df7e92a6468ac343930fb210fd4e41fbca7",
+        "similarity": 0.39522862434387207
+      },
+      {
+        "left_context_excerpt": "Cả trong suốt và sau các nhiệm kỳ của ông, những người chỉ trích Roosevelt đã đặt ra nhiều câu hỏi không chỉ gồm các chính sách và lập trường của ông mà còn có sự củng cố quyền lực của ông vì thời gian dài làm tổng thống, sự phục vụ của ông qua hai cuộc khủng hoảng lớn, và sự ủng hộ lớn lao của công chúng dành cho ông. Việc mở rộng nhanh chóng các chương trình của chính phủ xảy ra trong nhiệm kỳ của Roosevelt đã tái định nghĩa vai trò của chính phủ tại Hoa Kỳ, và chủ trương của Roosevelt về các ",
+        "left_group_id": "cad14c2cf84832b89445255bcf114fcdde83e8f58d4cdb50fe83284e76537fc6",
+        "right_context_excerpt": "Tối cao Pháp viện Hoa Kỳ là rào cản chính đối với những chương trình của Roosevelt trong suốt nhiệm kỳ hai vì nó lật ngược nhiều chương trình của ông. Đặc biệt là vào năm 1935, tối cao pháp viện đồng thanh phán quyết rằng Đạo luật Phục hồi Quốc gia (NRA) là một sự ủy thác quyền lực một cách vi hiến của ngành lập pháp trao cho tổng thống. Roosevelt làm sửng sốt Quốc hội vào đầu năm 1937 khi đề nghị một luật mới cho phép ông bổ nhiệm 5 thẩm phán tối cao pháp viện mới Kế hoạch \"lấp đầy tòa án\" này ",
+        "right_group_id": "297d8865b4bbd8c1566813ab8f492556bf4fa835c70eecfaf98b1ef393497ff7",
+        "similarity": 0.39336538314819336
+      },
+      {
+        "left_context_excerpt": "Sáng kiến chính về chính sách ngoại giao trong nhiệm kỳ đầu tiên của Roosevelt là \"Chính sách lân bang tốt\". Đây là một sự tái định lượng chính sách của Hoa Kỳ đối với châu Mỹ La Tinh. Kể từ khi Học thuyết Monroe ra đời vào năm 1823, khu vực này đã từng được xem như là một vùng ảnh hưởng của Hoa Kỳ. Các lực lượng Mỹ rút khỏi Haiti. Các hiệp ước mới được ký kết với Cuba và Panama đã kết thúc tình trạng của họ là quốc gia được Hoa Kỳ bảo hộ. Tháng 12 năm 1933, Roosevelt ký văn kiện Hội nghị Montev",
+        "left_group_id": "e1bbec476ce69807355448c2d4648dcb57e4756119da8e87da959d4be1b1b4a9",
+        "right_context_excerpt": "Vào năm 1823, Hoa Kỳ, trong quá trình mở rộng bờ cõi về phía tây bên bờ Thái Bình Dương, đã đưa ra Học thuyết Monroe trong đó đưa ra lời cảnh báo đối với những người theo chủ nghĩa bành trước ở châu Âu đừng can dự vào công việc nội bộ của châu Mỹ. Nguyên thủy, tài liệu này nhắm đến việc mở rộng chủ nghĩa thực dân tại châu Mỹ Latin và vùng Caribê, cho rằng điều đó là đàn áp và không thể chịu đựng. Đến cuối thế kỷ 19, một số cá nhân như Theodore Roosevelt đã diễn dịch Học thuyết Monroe theo cách c",
+        "right_group_id": "6a3b63588c0ab05685d58da93c4afcfa3a8360053951f33ed7374055da563712",
+        "similarity": 0.39185845851898193
+      },
+      {
+        "left_context_excerpt": "Từ ngày 6 đến 8 tháng 6 năm 1969, Mặt trận Dân tộc Giải phóng miền Nam là nòng cốt, cùng với Liên minh các Lực lượng Dân tộc, Dân chủ và Hòa bình Việt Nam do Trịnh Đình Thảo làm chủ tịch, đã lập ra Chính phủ Cách mạng Lâm thời Cộng hòa miền Nam Việt Nam để đối chọi với chính phủ Việt Nam Cộng Hòa. Chính phủ cách mạng lâm thời do kiến trúc sư Huỳnh Tấn Phát làm chủ tịch, và Hội đồng cố vấn Chính phủ do luật sư Nguyễn Hữu Thọ làm chủ tịch. Hội đồng làm việc với Chính phủ theo cơ chế hiệp thương, s",
+        "left_group_id": "21020ac733950a151bc8284cc557d1f88f852f3c4b3674ab05f068e9c3d6026c",
+        "right_context_excerpt": "Sau Đồng khởi, thì một vùng do Đảng Lao động và cách mạng kiểm soát ở Miền Nam hình thành, đồng thời miền Bắc bắt đầu viện trợ cho phong trào kháng chiến tại miền Nam một lượng lớn vũ khí, quân trang, quân dụng và cử nhiều cán bộ, binh sĩ vào Nam chiến đấu. Trong khi Mỹ và Việt Nam Cộng hòa đã đưa ra những chứng cớ mà họ cho là Miền Bắc vi phạm Hiệp định, do đó chủ trương của Đảng Lao động là thành lập một Mặt trận lấy danh nghĩa giải phóng Miền Nam để kiểm soát các vùng đất này, và tách đảng bộ",
+        "right_group_id": "a049ee681133fb3126d3d04e5d08eb86855e409c57dcaf821c625166f1c97c1a",
+        "similarity": 0.3902699947357178
+      },
+      {
+        "left_context_excerpt": "Chiến tranh thế giới thứ nhất gây tổn thất nhân mạng khủng khiếp cho Birmingham, có trên 150.000 nam giới của thành phố phục vụ trong lực lượng vũ trang, tức hơn một nửa cư dân nam trong đó 13.000 người thiệt mạng và 35.000 người bị thương. Việc khởi đầu chiến tranh cơ giới hoá cũng làm gia tăng tầm quan trọng chiến lược của Birmingham với tư cách một trung tâm sản xuất công nghiệp, Tổng tư lệnh Anh Quốc là John French miêu tả cuộc chiến khi nó bắt đầu là \"một trận chiến giữa Krupps và Birmingha",
+        "left_group_id": "5474f793de5feeedc40ad0cb11545cb82f3dc9765b74a2e5df6603bba5a3fb68",
+        "right_context_excerpt": "Birmingham là một phố chợ cỡ trung bình vào thời kỳ trung cổ, sau đó trở nên nổi bật ở tầm quốc tế trong thế kỷ 18 khi là trọng tâm trong Khai sáng Midlands rồi cách mạng công nghiệp. Trong cách mạng công nghiệp, Birmingham đi tiên phong trong các tiến bộ toàn cầu về phát triển khoa học, kỹ thuật, và kinh tế, sản sinh hàng loạt sáng kiến giúp đặt một phần nền tảng cho xã hội công nghiệp hiện đại. Đến năm 1791, Birmingham được ca ngợi là \"thị trấn sản xuất đầu tiên trên thế giới\". Thành phố có hồ",
+        "right_group_id": "c8fa729f4747c61ca17f4bd7b8c1002e413d08947e66e95aa63a8aba7b6d99f4",
+        "similarity": 0.38853538036346436
+      },
+      {
+        "left_context_excerpt": "Trong suốt thế kỷ 20, các thuộc địa hải ngoại của những nước thua cuộc trong Chiến tranh thế giới thứ nhất được các nước chiến thắng chia nhau với danh nghĩa lãnh thổ ủy quyền. Nhưng khi Chiến tranh thế giới thứ hai bắt đầu, ngày 14/8/1941 Tổng thống Mỹ Franklin D. Roosevelt và Thủ tướng Anh Winston S. Churchill cùng nhau ra Tuyên bố chung Hiến chương Đại Tây Dương. Điều 3 của Hiến chương này nói rằng Anh và Mỹ tôn trọng quyền của tất cả mọi dân tộc được chọn hình thức chính quyền lãnh đạo họ, A",
+        "left_group_id": "83eb2f33de7740b693679c89cffbc7cedffff6fbe62e4d78b2773a84551ea4d4",
+        "right_context_excerpt": "Ngày 28 tháng 11 năm 1943, tại Hội nghị Tehran Tổng thống Mỹ Franklin D. Roosevelt đã nêu ý kiến đặt Đông Dương dưới sự quản thác quốc tế với Iosif Vissarionovich Stalin, Winston Churchill và Tưởng Giới Thạch. Tổng thống Mỹ Franklin D. Roosevelt bày tỏ một cách minh bạch rằng ông chỉ mong muốn chấm dứt chủ nghĩa thực dân ở Đông Dương ngay cả khi cần trả giá bằng bất hòa với Anh và làm gián đoạn mối quan hệ với Pháp. Iosif Vissarionovich Stalin và Tưởng Giới Thạch ủng hộ Tổng thống Mỹ Franklin D.",
+        "right_group_id": "11550758a471f121916511a3ce5efa0f6440c63a1caaaed3fa7deaa6b8c84830",
+        "similarity": 0.3867265582084656
+      },
+      {
+        "left_context_excerpt": "Ngày 6 tháng 4 năm 1920, Schrödinger cưới Annemarie (Anny) Bertel. Schrödinger bị chứng lao phổi và phải chữa trị vài lần trong thập niên 1920 tại một nhà điều dưỡng ở Arosa. Cũng chính tại đây, ông đã thiết lập lên phương trình sóng nổi tiếng trong cơ học lượng tử. Như đã nêu ở trên, Schrödinger có đời sống cá nhân không bình thường. Khi nhập cư vào Ireland năm 1938, ông được nhận thị thực cho mình, vợ ông và một người phụ nữ khác, cô Hilde March. March là vợ của một đồng nghiệp người Áo và Sch",
+        "left_group_id": "f21aa1d4849bdc142b83334692ff85b2d1d048f13e0f447e37a941a594acbb5b",
+        "right_context_excerpt": "Erwin Rudolf Josef Alexander Schrödinger ( /ˈʃroʊdɪŋər/; tiếng Đức: [ˈɛʁviːn ˈʃʁøːdɪŋɐ]; 12 tháng 8 năm 1887 – 4 tháng 1 năm 1961), là nhà vật lý người Áo với những đóng góp nền tảng cho lý thuyết cơ học lượng tử, đặc biệt là cơ học sóng: ông nêu ra phương trình sóng mô tả trạng thái của hệ lượng tử (phương trình Schrödinger phụ thuộc thời gian và dừng) và đã chứng minh hai hình thức cơ học sóng và cơ học ma trận của Werner Heisenberg về bản chất là giống nhau. Schrödinger cũng tự đề xuất ra các",
+        "right_group_id": "a86dc43f482ae1a66d6c2be22fe05e9a0bbdc1d6396fc841be57f8005f78cef6",
+        "similarity": 0.3814852237701416
+      },
+      {
+        "left_context_excerpt": "Năm 1690, nhà cầm quyền Tây Ban Nha lo ngại rằng Pháp tạo ra mối đe dọa cạnh tranh, do vậy họ quyết định thành lập một số đoàn truyền giáo ở Đông Texas. Sau khi người da đỏ kháng cự, những nhà truyền giáo người Tây Ban Nha trở về México. Khi người Pháp bắt đầu định cư tại Louisiana, chủ yếu ở phần phía nam của tiểu bang này, chính quyền Tây Ban Nha vào năm 1716 phản ứng bằng cách hình thành một loạt các đoàn truyền giáo mới ở Đông Texas. Hai năm sau đó, họ thành lập San Antonio, khu định cư dân ",
+        "left_group_id": "1b00b78ba3690289de8568af0af8eca8d60d7f2c0c52b2cdb0f3cff5224da8b5",
+        "right_context_excerpt": "Khi Hoa Kỳ mua Louisiana từ Pháp vào năm 1803, nhà cầm quyền Hoa Kỳ khẳng định rằng thỏa thuận cũng bao gồm cả Texas. Biên giới giữa Tân Tây Ban Nha và Hoa Kỳ cuối cùng được xác định tại sông Sabine vào năm 1819, tại nơi mà nay là biên giới giữa Texas và Louisiana. Hăm hở với vùng đất mới, nhiều người định cư Hoa Kỳ từ chối công nhận thỏa thuận. Một số nhóm kẻ cướp phát triển thành các đội quân để xâm chiếm khu vực phía tây sông Sabine. Năm 1821, Chiến tranh giành độc lập México kết thúc, lãnh t",
+        "right_group_id": "e3bafb570ab1b71124e0f41088e1007f9612185f32cb2d5e095134ab40ca3f3f",
+        "similarity": 0.3812919855117798
+      },
+      {
+        "left_context_excerpt": "Hội đồng nhân dân tỉnh, với các đại biểu được bầu cử trực tiếp nhiệm kỳ 5 năm, có quyền quyết định các kế hoạch phát triển dài hạn về kinh tế, văn hóa, giáo dục... của tỉnh. Đứng đầu Hội đồng Nhân dân gồm một Chủ tịch, một Phó chủ tịch và một Uỷ viên thường trực. Hội đồng Nhân dân chịu sự giám sát và hướng dẫn hoạt động của Ủy ban Thường vụ Quốc hội, chịu sự hướng dẫn và kiểm tra của Chính phủ trong việc thực hiện các văn bản của cơ quan nhà nước cấp trên theo quy định của Uỷ ban Thường vụ Quốc ",
+        "left_group_id": "7b670a3162abd0b0e6cd89f00218c9a7b90505b4c8f462420b65ba9f379fd2b8",
+        "right_context_excerpt": "Quốc hội, theo hiến pháp là cơ quan đại biểu cao nhất của nhân dân, cơ quan quyền lực Nhà nước cao nhất của nước Cộng hòa xã hội chủ nghĩa Việt Nam. Quốc hội là cơ quan duy nhất có quyền lập hiến và lập pháp. Nhiệm vụ của Quốc hội là giám sát, quyết định những chính sách cơ bản về đối nội và đối ngoại, các nhiệm vụ kinh tế, xã hội, quốc phòng, an ninh, những nguyên tắc chủ yếu của bộ máy Nhà nước, về quan hệ xã hội và hoạt động của công dân. Trên 90% đại biểu quốc hội là Đảng viên Đảng Cộng sản ",
+        "right_group_id": "9e53c6332650adcd642fcf8569b96ab5970d70b33d0afa41893e704f76c23ff1",
+        "similarity": 0.37964528799057007
+      },
+      {
+        "left_context_excerpt": "Hội đồng thành phố tiến hành một chính sách đa dạng kinh tế hướng đến ngành dịch vụ, bán lẻ và du lịch nhằm giảm phụ thuộc vào sản xuất. Một số sáng kiến được tiến hành nhằm tăng sức thu hút của thành phố đối với các du khách. Trong thập niên 1970, Trung tâm Triển lãm Quốc gia (NEC) được xây dựng, nó cách trung tâm thành phố 16 km, thuộc địa giới Solihull lân cận song phần lớn thuộc sở hữu của Hội đồng Birmingham. Trung tâm Hội nghị Quốc tế (ICC) được khánh thành tại trung tâm Birmingham vào đầu",
+        "left_group_id": "10f3e8c541bfd76deaaa965abc8a5e724161bc0bc765570a3bf71098f5fec636",
+        "right_context_excerpt": "Birmingham từng nổi bật trong vai trò là một trung tâm sản xuất và kỹ thuật, song kinh tế thành phố hiện nay do khu vực dịch vụ chi phối, đến năm 2012 khu vực này chiếm 88% số công việc của thành phố. Birmingham là trung tâm lớn nhất tại Anh Quốc về công việc trong hành chính công, giáo dục và y tế; và sau Leeds là trung tâm lớn thứ nhì ngoài Luân Đôn về công việc trong các khu vực tài chính và kinh doanh khác. Birmingham được xếp hạng là một thành phố thế giới cấp beta-, đứng sau Luân Đôn và Ma",
+        "right_group_id": "c9e2f921936efa36bce1fbd91d4f9b7bdb9f9808a38eda7c505800a945c1a3d4",
+        "similarity": 0.378778338432312
+      },
+      {
+        "left_context_excerpt": "Khánh Hòa là một tỉnh ở vùng duyên hải cực Nam Trung Bộ, nằm trong khu vực khí hậu nhiệt đới xavan. Song khí hậu Khánh Hòa có những nét biến dạng độc đáo với các đặc điểm riêng biệt. So với các tỉnh, thành phía Bắc từ Đèo Cả trở ra và phía Nam từ Ghềnh Đá Bạc trở vào, khí hậu ở Khánh Hòa tương đối ôn hòa hơn do mang tính chất của khí hậu đại dương. Thường chỉ có 2 mùa rõ rệt là mùa mưa và mùa nắng. Mùa mưa ngắn, từ khoảng giữa tháng 9 đến giữa tháng 12 dương lịch, tập trung vào 2 tháng 10 và thá",
+        "left_group_id": "caf07424336d4d0d96c0db44f61648426bbdb5f03f73c13e91df9a83a9eff0b7",
+        "right_context_excerpt": "Địa hình Đồng tháp tương đối bằng phẳng với độ cao phổ biến 1–2 mét so với mặt biển. Địa hình được chia thành 2 vùng lớn là vùng phía bắc sông Tiền và vùng phía nam sông Tiền. Đồng Tháp nằm trong vùng khí hậu nhiệt đới, đồng nhất trên địa giới toàn tỉnh, khí hậu ở đây được chia làm 2 mùa rõ rệt là mùa mưa và mùa khô. Trong đó, mùa mưa thường bắt đầu từ tháng 5 đến tháng 11, mùa khô bắt đầu từ tháng 12 đến tháng 4 năm sau. Độ ẩm trung bình năm là 82,5%, số giờ nắng trung bình 6,8 giờ/ngày. Lượng ",
+        "right_group_id": "7ec7d9aa51d83445600f4678d1a604a709761819bb872882be9f8c621060cfdd",
+        "similarity": 0.37864160537719727
+      },
+      {
+        "left_context_excerpt": "Theo Hiệp định Paris 1783, Anh Quốc công nhận tình trạng độc lập của Hoa Kỳ và nhượng lại các lãnh thổ ở phía nam của Ngũ Đại Hồ cho Hoa Kỳ. New Brunswick tách khỏi Nova Scotia trong một chiến dịch tái tổ chức các khu định cư trung thành tại The Maritime. Nhằm hòa giải những người nói tiếng Anh trung thành tại Quebec, Đạo luật Hiến pháp 1791 chia tỉnh này thành Hạ Canada (sau là Québec) Pháp ngữ và Thượng Canada (sau là Ontario) Anh ngữ, trao cho mỗi nơi quyền có riêng hội đồng lập pháp được bầu",
+        "left_group_id": "3981cc417f01abed186b9abc60cd64b549302277015e1cfdfda5cd4bf678f36b",
+        "right_context_excerpt": "Trong thế kỷ XVII và đầu thế kỷ XVIII, \"Canada\" nói đến phần lãnh thổ nằm dọc theo sông Saint-Laurent thuộc Tân Pháp. Nhằm trừng phạt việc Mười ba thuộc địa kháng cự, Anh Quốc mở rộng trên quy mô rất lớn lãnh thổ Canada theo Đạo luật Quebec 1774, bao gồm cả lãnh thổ chưa được định cư tại khu vực Ngũ Đại hồ kéo xuống sông Ohio. Một phần lãnh thổ đơn phương thêm vào này được chuyển giao cho Hoa Kỳ vào năm 1783, song Canada thuộc Anh vẫn giữ lại toàn bộ vùng đất phía bắc của Ngũ Đại Hồ (tạo thành p",
+        "right_group_id": "0b2b54157b422180b514bb07a2f5df39e7bbb9fd5b432fe625827dee5d767020",
+        "similarity": 0.37352675199508667
+      },
+      {
+        "left_context_excerpt": "Trong suốt những năm 1954-1975, Việt Nam Dân chủ Cộng hòa không hề thừa nhận Việt Nam Cộng hòa là một chính thể hợp pháp ở miền Nam Việt Nam mà luôn coi là thực thể kế thừa các nghĩa vụ của Liên hiệp Pháp tại Việt Nam sau năm 1954, trong đó có nghĩa vụ tổ chức Tổng tuyển cử để thành lập chính phủ hòa hợp dân tộc tại Việt Nam. Sau khi Hội nghị Paris được tổ chức, Việt Nam Dân chủ Cộng hòa tiếp tục không công nhận Việt Nam Cộng hòa mà coi Chính phủ Cách mạng lâm thời Cộng hòa miền Nam Việt Nam là ",
+        "left_group_id": "29d61726215ff2c9f90af16552cd08de9b2eaa0c77c9bcd747d807fa182e7ac9",
+        "right_context_excerpt": "Theo nhận định của Mỹ, trước năm 1959, Việt Nam Dân chủ Cộng hòa bị giằng xé giữa chính sách thân Liên Xô \"cùng tồn tại hòa bình\", và chính sách thân Trung Quốc cổ vũ cho cho bạo lực cách mạng vô sản cho dù Trung Quốc không thích viện trợ nhiều cho Việt Nam. Tuy nhiên, về chiến lược và hành động trên thực tế, Việt Nam hoàn toàn độc lập với Liên Xô và Trung Quốc. Chủ trương của Việt Nam Dân chủ Cộng hòa là đấu tranh bằng sức mình là chính, kết hợp kêu gọi sự ủng hộ của các nước Xã hội chủ nghĩa, ",
+        "right_group_id": "fb1dc43b40196508e36b0684dbcaca8a780294dda85aee0bfcbf1e813b46625a",
+        "similarity": 0.372098445892334
+      },
+      {
+        "left_context_excerpt": "Việt Nam Dân chủ Cộng hòa là một chính thể lãnh đạo thực tế miền Bắc Việt Nam từ 1954, nhưng tuyên bố chủ quyền hợp pháp đối với toàn thể lãnh thổ Việt Nam. Điều này được ghi nhận trong Lời nói đầu và Điều 1 Hiến pháp năm 1959. Đồng thời, Hiệp định Gevene (1954) và Hiệp định Paris (1973) đều quy định giới tuyến quân sự tạm thời tại vỹ tuyến 17 không được coi là biên giới quốc gia, do đó chủ quyền của Việt Nam Dân chủ Cộng hòa không bị giới hạn ở vỹ tuyến 17. Bên cạnh đó, việc Việt Nam Dân chủ Cộ",
+        "left_group_id": "72897cb3dc801a5461e3fa340c712d930d57f8d4380a332d420b9c8b9e93fec4",
+        "right_context_excerpt": "Trong Chiến tranh thế giới thứ hai, Đế quốc Nhật Bản đảo chính Pháp và chiếm toàn thể Đông Dương. Với sự chuẩn bị từ trước đó trong nhiều năm và với sự ủng hộ của người dân, ngay sau khi hay tin Đế quốc Nhật đầu hàng quân Đồng Minh, Hồ Chí Minh đã lãnh đạo Việt Minh giành lại chính quyền từ tay Nhật. Ngày 2 tháng 9 năm 1945, Hồ Chí Minh đọc Tuyên ngôn Độc lập và thành lập nước Việt Nam Dân chủ Cộng hòa, nhà nước tự chủ đầu tiên của người Việt thời hiện đại. Tới tháng 1 năm 1946, Chính phủ lâm th",
+        "right_group_id": "c2a7abe80a9ba55e8a5bfc62e284ab2656de18ebc46658159d3dbac8d1d8459c",
+        "similarity": 0.3689463138580322
+      },
+      {
+        "left_context_excerpt": "Bồ Đào Nha đi tiên phong trong phong trào châu Âu khám phá thế giới và Thời đại Khám phá. Henrique Nhà hàng hải, con trai của Quốc vương João I, trở thành người tài trợ và bảo trợ chính cho nỗ lực này. Năm 1415, Bồ Đào Nha giành được thuộc địa hải ngoại đầu tiên khi họ chinh phục Ceuta, một trung tâm mậu dịch Hồi giáo thịnh vượng tại Bắc Phi. Tiếp đến là khám phá các quần đảo trên Đại Tây Dương: Madeira và Açores, dẫn tới các phong trào thuộc địa hoá đầu tiên. Trong suốt thế kỷ XV, các nhà thám ",
+        "left_group_id": "d760415735f979d87c1c178873d9d713fd4f86b6da36dcf84a905858f6a33d8c",
+        "right_context_excerpt": "Sau thời kỳ Reconquista của Bồ Đào Nha khi Vương quốc Bồ Đào Nha đấu tranh chống lại sự thống trị của Hồi giáo tại Iberia, vào thế kỷ 12 và 13, người Bồ bắt đầu mở rộng lãnh thổ ra hải ngoại. Chủ nghĩa thực dân châu Âu bắt đầu vào năm 1415, với việc Bồ Đào Nha chiếm được cảng Ceuta của người Hồi giáo tại Bắc Phi. Trong các thập niên tiếp theo Bồ Đào Nha đã phát triển các địa điểm thông thương, cảng biển và pháo đài dọc theo bờ biển châu Phi. Chủ nghĩa thực dân ngày càng mở rộng với các cuộc thám",
+        "right_group_id": "3afa7b451c34df8ac1f87f5cd999c8759c7bb9e6cf42176e2889f8df98ea3a15",
+        "similarity": 0.36663752794265747
+      },
+      {
+        "left_context_excerpt": "Đến cuối thập niên 1960, bất bình của phái dân tộc chủ nghĩa bộc lộ công khai trong các cuộc kháng nghị dân quyền đại chúng, song thường phải đương đầu với các cuộc phản kháng nghị của phái trung thành. Phản ứng của chính phủ được cho là một chiều và mạnh tay theo hướng ủng hộ phái Liên hiệp. Pháp luật và trật tự bị phá vỡ khi náo loạn và bạo lực giữa các cộng đồng tăng lên. Chính phủ Bắc Ireland yêu cầu Lục quân Anh viện trợ cảnh sát. Năm 1969, Quân đội Cộng hoà Ireland Lâm thời bán quân sự xuấ",
+        "left_group_id": "d72f991b4059f4baffcc3210435e9dc2b60627d433e37f91b67336671f605b3e",
+        "right_context_excerpt": "Dù Bắc Ireland phần lớn tránh được xung đột trong nội chiến Ireland, song vào các thập niên sau khi phân chia đã xảy ra xung đột lẻ tẻ giữa các cộng đồng. Những người dân tộc chủ nghĩa chủ yếu là tín đồ Công giáo La Mã, họ muốn thống nhất đảo Ireland thành một nước cộng hoà, trong khi những người liên hiệp chủ nghĩa chủ yếu theo Tin Lành và muốn Bắc Ireland duy trì là bộ phận của Anh. Các cộng đồng Tin Lành và Công giáo La Mã tại Bắc Ireland phần lớn bỏ phiếu theo làn ranh giáo phái, đồng nghĩa ",
+        "right_group_id": "adc37637d2e45c7ec65d555077a7cc075f24cd24c18df10be46ef758f6d21b05",
+        "similarity": 0.36465466022491455
+      },
+      {
+        "left_context_excerpt": "Nội dung của hiệp nghị sau đó được tán thành thông qua trưng cầu dân ý tại cả hai bộ phận của đảo Ireland. Hiệp nghị khôi phục tự trị cho Bắc Ireland trên cơ sở chia sẻ quyền lực trong hành pháp giữa các đảng lớn trong Nghị hội Bắc Ireland. Cơ quan hành pháp cùng nằm dưới quyền của một bộ trưởng thứ nhất và thứ trưởng thứ nhất đến từ các đảng liên hiệp và dân tộc. Bạo lực giảm mạnh sau khi đình chiến vào năm 1994 và đến năm 2005 Quân đội Cộng hoà Ireland Lâm thời tuyên bố kết thúc chiến dịch vũ ",
+        "left_group_id": "d871ddc5355c0bcf79bc693451e85e2a6a55eb6c3d37dcbf8431330cc0b01b79",
+        "right_context_excerpt": "Dù Bắc Ireland phần lớn tránh được xung đột trong nội chiến Ireland, song vào các thập niên sau khi phân chia đã xảy ra xung đột lẻ tẻ giữa các cộng đồng. Những người dân tộc chủ nghĩa chủ yếu là tín đồ Công giáo La Mã, họ muốn thống nhất đảo Ireland thành một nước cộng hoà, trong khi những người liên hiệp chủ nghĩa chủ yếu theo Tin Lành và muốn Bắc Ireland duy trì là bộ phận của Anh. Các cộng đồng Tin Lành và Công giáo La Mã tại Bắc Ireland phần lớn bỏ phiếu theo làn ranh giáo phái, đồng nghĩa ",
+        "right_group_id": "adc37637d2e45c7ec65d555077a7cc075f24cd24c18df10be46ef758f6d21b05",
+        "similarity": 0.364482045173645
+      },
+      {
+        "left_context_excerpt": "Trước năm 1945, Đảng Cộng sản Việt Nam và các đảng phái Quốc gia khác tuy có ý thức hệ khác nhau nhưng vẫn có chung nền tảng giáo dục, thường xuyên có sự hợp tác và đôi khi có cùng quan hệ huyết thống hoặc hôn nhân. Trong giai đoạn 1924 - 1927, ở miền Nam Trung Quốc, các nhóm người Việt chống thực dân Pháp đa dạng tương tác với nhau, với cả người Trung Quốc, Triều Tiên và các dân tộc khác. Từ năm 1941 đến 1944 ở miền nam Trung Quốc, Đảng Cộng sản Đông Dương, Việt Nam Quốc Dân Đảng (Việt Quốc) và",
+        "left_group_id": "996839ae8a45825a4dcc70feac64567f64edf058f85d606a856a5ca7aadaae3f",
+        "right_context_excerpt": "Ngay sau đó, Dương Bạch Mai bắt giam những người Trotskyist tại Sài Gòn. Binh lính Anh tìm thấy họ đêm 22/9/1945 và giao nộp cho người Pháp. Sau khi được thả, những người Trotskyist tổ chức tấn công quân Anh, Pháp theo lời kêu gọi Nam Bộ kháng chiến của Ủy ban Kháng chiến Nam Bộ do Trần Văn Giàu đứng đầu. Trong một đợt tổng rút quân của lực lượng kháng chiến Nam Bộ giữa tháng 10/1945, Đảng cộng sản Đông Dương đã truy lùng, bắt giữ hoặc xử bắn khoảng 20 lãnh đạo quan trọng của phe Trotskyist. Ngu",
+        "right_group_id": "8de5549c178a38db541bf10e1ba0f11f0fd69a3dab0b31c2e2156c82108ef5a3",
+        "similarity": 0.36324286460876465
+      },
+      {
+        "left_context_excerpt": "Antiochus VII Sidetes (cai trị:138-129 TCN), em trai của Demetrios, lên ngôi vua Seleukos và kết hôn với Cleopatra Thea. Sau khi đánh bại Diodotus Tryphon, Antiochos khởi xướng một chiến dịch vào năm 130 trước Công nguyên để chiếm lại Lưỡng Hà, bây giờ nằm dưới sự cai trị của Phraates II của Parthia (cai trị: 138-128 TCN). tướng Indates của Parthia đã bị đánh bại dọc theo sông Đại Zab, theo sau là một cuộc nổi dậy địa phương nơi mà tổng đốc người Parthia của Babylon đã bị giết chết. Antiochos ch",
+        "left_group_id": "9b5fa57d13f35b25f494102d774f575cbc2fabb85d7013671e72958ce4091bf8",
+        "right_context_excerpt": "Một số người Saka đã sẵn sàng tham gia vào quân đội của Phraates chống lại Antiochos. Tuy nhiên, họ đã đến quá trễ để tham gia vào cuộc chiến. Khi Phraates từ chối trả tiền lương của họ, người Saka sau đó nổi loạn, và khi mà ông ta cố gắng dập tắt cuộc nổi loạn với sự trợ giúp của các cựu binh Seleukos, nhưng họ cũng đào ngũ khỏi Phraates và gia nhập với người Saka. Phraates II tiến quân đến chống lại liên quân này, nhưng ông lại tử trận sau đó. Sử gia La Mã, Justin ghi lại rằng vị vua kế vị ông",
+        "right_group_id": "1a8fcf97a9f8c543bd14ce38e83ff8970e90f575ad7c4f288e06375089a14e90",
+        "similarity": 0.362453818321228
+      },
+      {
+        "left_context_excerpt": "Trong quá trình phát triển, chủ nghĩa Marx đã đương đầu với nhiều đợt công kích từ những tư tưởng khác. Nhà học giả về Marx người Mỹ Hal Draper từng lưu ý, \"có ít nhà tư tưởng trong lịch sử hiện đại có tư tưởng bị hiểu nhầm tai hại như vậy, bởi những người Marxist và cả những người chống Marxist.\" Di sản tư tưởng của Marx đã bị tranh cãi dữ dội giữa nhiều khuynh hướng và mỗi bên đều coi mình là người giải thích chính xác nhất về Marx, gồm cả (nhưng không hạn chế bởi) Chủ nghĩa Lenin, Chủ nghĩa T",
+        "left_group_id": "6ac9433e37ba7580a79564217531c56835f45f43b063ac2edc778511f2eae960",
+        "right_context_excerpt": "Trường phái Frankfurt chia rẽ với những người theo chủ nghĩa Marx thời kỳ đầu, gồm cả Lenin và những người Bolshevik ở nhiều khía cạnh quan trọng. Đầu tiên, thời ấy viết về sự gia tăng uy thế của chủ nghĩa Stalin, họ đã đưa ra những nghi ngờ về ý tưởng truyền thống Marxist về ý thức giai cấp của tầng lớp vô sản. Thứ hai, không giống những người Marxist thời kỳ đầu, đặc biệt là Lenin, họ phản đối thuyết định mệnh kinh tế. Dù Trường phái Frankfurt trở nên rất có ảnh hưởng, cả những người theo chủ ",
+        "right_group_id": "6af7ab295153a1ad24c7f0264f917ef2978c6e3e9d9a737b9ef83e322244eaed",
+        "similarity": 0.3597918748855591
+      },
+      {
+        "left_context_excerpt": "Tổng thống đầu tiên của Liên bang Nga, sau khi Liên Xô tan rã, Boris Yeltsin, đổi ngày kỷ niệm Cách mạng tháng 10 thành ngày của Đồng lòng và Hòa giải. Năm 2006, Putin đã đi xa hơn bằng cách thay đổi ngày nghỉ đến ngày 4 tháng 11 và đổi tên nó là ngày Thống nhất. Nhưng đến ngày 11 tháng 4 năm 2009, sau 3 năm gián đoạn, Tổng thống Nga Dmitry Medvedev đã ký đạo luật Liên bang khôi phục ngày lễ kỷ niệm Cách mạng Tháng Mười Nga từ đầu năm 2010. Văn kiện này đã được Đuma Quốc gia (Hạ viện) và Hội đồn",
+        "left_group_id": "2f516dbc810b1494edf1c6a9c7e1c7282478ff88df1999feabb807114f1726c2",
+        "right_context_excerpt": "Do giới hạn nhiệm kỳ Tổng thống Nga (không quá 2 nhiệm kỳ liên tục), Putin không thể kéo dài thời gian lãnh đạo sang nhiệm kỳ thứ 3. Sau sự thành công của người kế nhiệm ưa thích của ông, Dmitry Medvedev, trong cuộc Bầu cử tổng thống Nga, 2008, ông được Medvedev đề cử vào chiếc ghế Thủ tướng Nga và chính thức nhậm chức vào ngày 8 tháng 5 năm 2008. Năm 2012, ông tiếp tục tranh cử Tổng thống, và đắc cử nhiệm kỳ thứ 3. Năm 2018, Putin giành được 76% phiếu bầu tổng thống vào kỳ bầu cử tháng 3 năm 20",
+        "right_group_id": "e012b64a4eb047ad5bef696aebf5fa3cc78ac1c4de7335008bd16b6179767340",
+        "similarity": 0.35868579149246216
+      },
+      {
+        "left_context_excerpt": "Malaysia là một nền kinh tế thị trường định hướng nhà nước tương đối mở và công nghiệp hóa mới. Nhà nước đóng một vai trò quan trọng trong hướng dẫn hoạt động kinh tế thông qua các dự án kinh tế vĩ mô, song vai trò này đang giảm xuống. Malaysia sở hữu một trong những hồ sơ kinh tế tốt nhất tại châu Á, GDP tăng trưởng trung bình 6,5% mỗi năm trong giai đoạn từ 1957 đến 2005. Năm 2016, GDP của Malaysia là khoảng 302 tỷ đô la Mỹ, là nền kinh tế lớn thứ tư trong ASEAN, lớn thứ 14 châu Á và lớn thứ 3",
+        "left_group_id": "3fb9cb4e5418897290cea8356618a8a0950db4e5c8dd7a7b4c22171d47e876dd",
+        "right_context_excerpt": "Chính phủ thúc đẩy sự gia tăng du lịch đến Malaysia trong một nỗ lực nhằm đa dạng hóa kinh tế và giảm sự phụ thuộc vào hàng xuất khẩu. Kết quả là du lịch trở thành nguồn thu ngoại tệ lớn thứ ba của Malaysia, song nó đang bị đe dọa do những tác động tiêu cực từ ngành công nghiệp đang phát triển, với một lượng lớn khí thải và nước thải cùng với nạn phá rừng. Từ năm 2013-2014, Malaysia được xếp là một trong những nơi tốt nhất để nghỉ hưu trên thế giới, đứng vị trí thứ 3 theo Chỉ số hưu trí toàn cầu",
+        "right_group_id": "fd293c98d565f18b3a3b19eb6806b4ba5e2bb53daec0f5a8027780d2dcdbc7fd",
+        "similarity": 0.35866057872772217
+      },
+      {
+        "left_context_excerpt": "Các cuộc đấu tranh tôn giáo trong thế kỷ XVII để lại phân chia tông phái sâu sắc tại Ireland. Lòng trung thành tôn giáo theo pháp luật giờ đây sẽ quyết định nhận thức về lòng trung thành với quốc vương và nghị viện của Ireland. Sau khi thông qua Đạo luật Test năm 1672, và cùng với chiến thắng của lực lượng William-Mary trước phái Jacob, người Công giáo La Mã và người Tin Lành bất đồng không phù hợp đều bị ngăn cấm làm nghị viên Ireland. Theo luật hình sự mới xuất hiện, người Công giáo La Mã và n",
+        "left_group_id": "07ac7eab577d288c1d4daa742adacea044abe10fac31dc856bdd46aa9a0eace5",
+        "right_context_excerpt": "Dù Bắc Ireland phần lớn tránh được xung đột trong nội chiến Ireland, song vào các thập niên sau khi phân chia đã xảy ra xung đột lẻ tẻ giữa các cộng đồng. Những người dân tộc chủ nghĩa chủ yếu là tín đồ Công giáo La Mã, họ muốn thống nhất đảo Ireland thành một nước cộng hoà, trong khi những người liên hiệp chủ nghĩa chủ yếu theo Tin Lành và muốn Bắc Ireland duy trì là bộ phận của Anh. Các cộng đồng Tin Lành và Công giáo La Mã tại Bắc Ireland phần lớn bỏ phiếu theo làn ranh giáo phái, đồng nghĩa ",
+        "right_group_id": "adc37637d2e45c7ec65d555077a7cc075f24cd24c18df10be46ef758f6d21b05",
+        "similarity": 0.35723066329956055
+      },
+      {
+        "left_context_excerpt": "Hiến chương Pháp ngữ 1977 xác định tiếng Pháp là ngôn ngữ chính thức của Québec. Mặc dù hơn 85% số người Canada nói tiếng Pháp sống tại Québec, song cũng có dân số Pháp ngữ đáng kể tại Ontario, Alberta, và nam bộ Manitoba; Ontario là tỉnh có nhiều dân số Pháp ngữ nhất bên ngoài Québec. New Brunswick là tỉnh chính thức song ngữ duy nhất, có cộng đồng thiểu số Acadia nói tiếng Pháp chiếm 33% dân số. Cũng có các nhóm người Acadia tại tây nam bộ Nova Scotia, trên đảo Cape Breton, và qua trung bộ và ",
+        "left_group_id": "ddfdc0945634663451e42fbb9c2b0744e7033d02b63406e86ba34f0b9568586a",
+        "right_context_excerpt": "Các tỉnh khác không có ngôn ngữ chính thức như vậy, song tiếng Pháp được sử dụng như một ngôn ngữ trong giảng dạy, trong tòa án, và cho các dịch vụ chính quyền khác, cùng với tiếng Anh. Manitoba, Ontario, và Québec cho phép nói cả tiếng Anh và tiếng Pháp tại các cơ quan lập pháp cấp tỉnh, và các đạo luật được ban hành bằng cả hai ngôn ngữ. Tại Ontario, tiếng Pháp có một số địa vị pháp lý, song không hoàn toàn là ngôn ngữ đồng chính thức. Có 11 nhóm ngôn ngữ Thổ dân, bao gồm hơn 65 phương ngôn ri",
+        "right_group_id": "4b9a689261ce295b8b5350e4abba13e376764a12f9cdd34197b0672b551700f2",
+        "similarity": 0.35672587156295776
+      },
+      {
+        "left_context_excerpt": "Theo nhận định của Mỹ dựa vào các tin tình báo, giới lãnh đạo cộng sản tại miền Bắc đứng đằng sau hỗ trợ sự hình thành Mặt trận và các cuộc nổi dậy ở miền Nam. Họ hỗ trợ Mặt trận đề ra chiến lược quân sự lẫn chính trị cho các nhà lãnh đạo Mặt trận tại miền Nam. Tuy nhiên, phía Mỹ và Việt Nam Cộng hoà vẫn không nắm rõ sự tác động của Miền Bắc đến mức nào giai đoạn trước năm 1959 do Việt Minh chủ trương đấu tranh chính trị và công khai ủng hộ đường lối đấu tranh chính trị kết hợp đấu tranh vũ tran",
+        "left_group_id": "c9f754bd60c9987e0932a7dc081f5682b5a868b7b30e8a78c8009ac81e48a093",
+        "right_context_excerpt": "Theo nhận định của Mỹ, trước năm 1959, Việt Nam Dân chủ Cộng hòa bị giằng xé giữa chính sách thân Liên Xô \"cùng tồn tại hòa bình\", và chính sách thân Trung Quốc cổ vũ cho cho bạo lực cách mạng vô sản cho dù Trung Quốc không thích viện trợ nhiều cho Việt Nam. Tuy nhiên, về chiến lược và hành động trên thực tế, Việt Nam hoàn toàn độc lập với Liên Xô và Trung Quốc. Chủ trương của Việt Nam Dân chủ Cộng hòa là đấu tranh bằng sức mình là chính, kết hợp kêu gọi sự ủng hộ của các nước Xã hội chủ nghĩa, ",
+        "right_group_id": "fb1dc43b40196508e36b0684dbcaca8a780294dda85aee0bfcbf1e813b46625a",
+        "similarity": 0.35472118854522705
+      },
+      {
+        "left_context_excerpt": "Pyrit hay pyrit sắt, là khoáng vật disulfua sắt với công thức hóa học FeS2. Ánh kim và sắc vàng đồng từ nhạt tới thông thường của khoáng vật này đã tạo nên tên hiệu riêng của nó là vàng của kẻ ngốc do nó trông tương tự như vàng. Pyrit là phổ biến nhất trong các khoáng vật sulfua. Tên gọi pyrit bắt nguồn từ tiếng Hy Lạp πυρίτης (puritēs) nghĩa là \"của lửa\" hay \"trong lửa\", từ πύρ (pur) nghĩa là \"lửa\". Tên gọi này có lẽ là do các tia lửa được tạo ra khi pyrit va đập vào thép hay đá lửa. Tính chất ",
+        "left_group_id": "a7519107cf02d83e9eae87744f606e4db2d8e916bfc84c7df5ae59c1397a40ec",
+        "right_context_excerpt": "Pyrit thông thường hay bị nhầm lẫn với khoáng vật marcasit, mà tên gọi của nó có nguồn gốc từ tiếng Ả Rập để chỉ pyrit, do các đặc trưng tương tự của chúng. Marcasit là dạng đa hình của pyrit, nghĩa là nó có cùng một công thức như pyrit nhưng khác về cấu trúc và vì thế khác biệt về hình dáng tinh thể và tính đối xứng. Tuy nhiên, trạng thái ôxi hóa hình thức là giống như trong pyrit do các nguyên tử lưu huỳnh xuất hiện trong các cặp tương tự như persulfua. Marcasit/pyrit có lẽ là cặp đa hình phổ ",
+        "right_group_id": "5d94ca7e383f89bdd7bbf26eb8b8ddec73af7797c53d0a9db7078191c80e27c1",
+        "similarity": 0.35291600227355957
+      },
+      {
+        "left_context_excerpt": "Hiến pháp năm 1960 quy định một hệ thống chính phủ tổng thống với các nhánh hành pháp, lập pháp và tư pháp riêng biệt, cũng như một hệ thống kiểm tra và cân bằng phức tạp, gồm một tỷ lệ chia sẻ quyền lực đã được tính trước để bảo vệ các quyền lợi của người Síp Thổ Nhĩ Kỳ. Nhánh hành pháp, do một Tổng thống Síp Hy Lạp và một Phó tổng thống Síp Thổ Nhĩ Kỳ đứng đầu. Hai người này được các cộng đồng của mình bầu lên với nhiệm kỳ năm năm và mỗi người đều có quyền phủ quyết với một số kiểu quyết định ",
+        "left_group_id": "97ada9c0ae08b4b5906a49e06a3186aebbd6a5151358c32a4923b47219aca7b3",
+        "right_context_excerpt": "Bởi sự phân chia của nền Cộng hoà diễn ra trên thực tế, chứ không phải về mặt pháp lý, miền bắc và miền nam đã đi theo những con đường khác nhau. Cộng hoà Síp là một chế độ dân chủ lập hiến đã đạt tới mức độ giàu có cao, với nền kinh tế bùng nổ và cơ sở hạ tầng tốt. Nó là một thành viên của Liên hiệp quốc, Liên minh châu Âu và nhiều tổ chức quốc tế khác và được các tổ chức này công nhận như chính phủ hợp pháp duy nhất của toàn bộ hòn đảo. Vùng không thuộc quyền quản lý của Cộng hoà Síp, Bắc Síp,",
+        "right_group_id": "0fe7bd524c96e4150892a121844c86c0701f53f8261df8252019ab52f59a0074",
+        "similarity": 0.35257649421691895
+      }
+    ]
+  },
+  "train__dev": {
+    "left_unique_contexts": 2693,
+    "max_similarity": 0.6161136031150818,
+    "mean_nearest_similarity": 0.2371758222579956,
+    "right_unique_contexts": 589,
+    "threshold_counts": {
+      "0.9": 0,
+      "0.95": 0,
+      "0.98": 0
+    },
+    "top_pairs": [
+      {
+        "left_context_excerpt": "Theo báo cáo năm 2011, tỉ lệ nhiễm HIV trong nhóm đồng tính nam ở Đồng Nai cao gấp 20 lần so với đối tượng ma túy và mại dâm. Nguyên nhân dẫn đến tỉ lệ lây nhiễm HIV/AIDS cao do một đồng tính nam thường có nhiều bạn tình, họ thường giới thiệu bạn tình cho nhau và cùng quan hệ, nên chỉ cần 1 người nhiễm HIV thì sẽ nhanh chóng lây lan sang các đối tượng khác. Họ ít khi sử dụng các biện pháp phòng tránh khi quan hệ tình dục, cũng có một vài đồng tính nam nhận thức được nguy cơ bị lây nhiễm HIV cao,",
+        "left_group_id": "98113823abaf139d60a6b842004e2f7829a17103ad006584c893ed84e51d8eb8",
+        "right_context_excerpt": "Theo báo cáo tiến độ phòng, chống HIV/AIDS năm 2012, tỉ lệ nhiễm HIV trong những người nam quan hệ tình dục với nam ở Thành phố Hồ Chí Minh là 16%, tỷ lệ chỉ đứng sau nhóm tiêm chích ma túy. Tại đây, cứ 5 nam quan hệ đồng giới thì có một người nhiễm ít nhất một trong các nhiễm khuẩn giang mai, lậu sinh dục, lậu trực tràng, chlamydia sinh dục hoặc chlamydia trực tràng. Quan hệ đồng tính nam có nguy cơ bị nhiễm HIV cao gấp 20 lần gái mại dâm. Nguyên nhân dẫn đến tỉ lệ lây nhiễm HIV/AIDS cao do một",
+        "right_group_id": "a0733fc5b51dc97627a7d0e6c5a7af70ff33fe409f9faa3908b203100fe9f6d0",
+        "similarity": 0.6161136031150818
+      },
+      {
+        "left_context_excerpt": "Cộng hòa Nam Ossetia là sự pha trộn của những thị trấn và làng mạc nơi sinh sống của người Gruzia và người Ossetia. Thành phố thủ đô Tskhinvali với đa số dân là người Ossetia cùng các cộng đồng người Ossetia khác do chính phủ ly khai quản lý, trong khi các làng và thị trấn của người Gruzia do chính phủ Gruzia quản lý. Sự gẫn gũi và tương tác giữa hai cộng đồng đã khiến cuộc xung đột ở Nam Ossetia trở nên đặc biệt nguy hiểm, bởi bất kỳ nỗ lực nào nhằm thanh lọc sắc tộc đều có thể dẫn tới một cuộc",
+        "left_group_id": "3f469aa0d72142f31229b4926b17ab65fa089fa1aa45c8593323e00c306e9734",
+        "right_context_excerpt": "Xung đột vũ trang bùng phát hồi cuối năm 1991 trong đó nhiều làng mạc Nam Ossetia đã bị tấn công và đốt phá tương tự như nhiều ngôi nhà và trường học của người Gruzia tại Tskhinvali, thủ đô của Nam Ossetia. Hậu quả, xấp xỉ 1.000 người chết và khoảng 100.000 người Ossetia đã phải bỏ chạy khỏi lãnh thổ Gruzia, đa số qua biên giới vào Bắc Ossetia. Khoảng 23.000 người Gruzia khác cũng đã phải rời bỏ Nam Ossetia và định cư tại những khu vực khác ở Gruzia. Nhiều người dân Nam Ossetia đã tái định cư tạ",
+        "right_group_id": "5bbd08c1bbcee78975612f7782382f83880175cbd30c221f5007f1ad9035a5bd",
+        "similarity": 0.6123297214508057
+      },
+      {
+        "left_context_excerpt": "Đầu năm 1947, D'Argenlieu bị triệu hồi về nước do bị người Việt Nam và các đảng phái cánh tả Pháp căm ghét. Trước áp lực của các đảng phái cánh tả Pháp như Đảng Cộng sản Pháp và Đảng Xã hội Pháp, Thủ tướng Ramadier - một đại biểu xã hội chủ nghĩa, thông báo rằng chính phủ của ông ủng hộ nền độc lập và thống nhất cho Việt Nam: \"Độc lập trong Liên hiệp Pháp [và] liên minh của ba nước An Nam, nếu người dân An Nam mong muốn nó\" và Pháp sẵn sàng đàm phán hòa giải \"với những đại diện chân chính của Vi",
+        "left_group_id": "ed5ad18d6a32e0c4e14756e23c1af3f57775d9c431bfb21ee09f4e4b72b7584f",
+        "right_context_excerpt": "Nhà Xã hội chủ nghĩa Marius Moutet đã được gửi đến tìm hiểu về triển vọng chính trị, và trở về với kết luận rằng chỉ có một giải pháp quân sự đã được hứa hẹn. Như Đô đốc d'Argenlieu, Moutet tin rằng có thể sẽ không có cuộc đàm phán với Hồ Chí Minh. Ông đã viết về \"vỡ mộng tàn nhẫn của thỏa thuận mà không thể được đưa vào hiệu lực...\", và tuyên bố rằng: \"Chúng tôi không còn có thể nói về một thỏa thuận tự do giữa Pháp và Việt Nam... Trước bất kỳ cuộc đàm phán ngày hôm nay, cần thiết phải có một q",
+        "right_group_id": "22d0e98b991df3074c5f5c14a8689c8a1fe8f1cc7eec73db848760b198a4aec9",
+        "similarity": 0.6117175817489624
+      },
+      {
+        "left_context_excerpt": "Năm 1951, Hoa Kỳ leo thang gần sát đến chiến tranh nguyên tử tại Triều Tiên. Vì Cộng hòa Nhân dân Trung Hoa đã triển khai thêm các tập đoàn quân mới đến biên giới Trung-Triều nên các quả bom nguyên tử được lắp ráp sẵn sàng cho Chiến tranh Triều Tiên, \"chỉ còn thiếu có lõi nguyên tử thiết yếu\" tại Căn cứ Không quân Kadena, Okinawa. Tháng 10 năm 1951, Hoa Kỳ thực hiện Chiến dịch Hudson Harbor để thử khả năng của vũ khi hạt nhận. Các oanh tạc cơ B-29 của Không quân Hoa Kỳ thực hiện các vụ thực tập ",
+        "left_group_id": "41926de97c604245d111a8d04b4dd5a3cdff68ac3762ae924f3e1ca488fe2541",
+        "right_context_excerpt": "Tháng 10 năm 1951, các lực lượng Mỹ tiến hành Chiến dịch Cảng Hudson với ý định thiết lập khả năng sử dụng vũ khí nguyên tử. Một số phi cơ B-29 thực hiện các phi vụ tập ném bom giả từ Okinawa đến Bắc Triều Tiên mang theo các quả bom nguyên tử \"hình nộm\" hoặc các loại bom thông thường hạng nặng. Chiến dịch được điều hợp từ Căn cứ Không quân Yokota tại Nhật Bản. Cuộc tập trận này có ý định thử chức năng thực sự của tất cả các hoạt động sẽ cần dùng trong một tấn công bằng vũ khí nguyên tử, bao gồm ",
+        "right_group_id": "55d29f5143f980e12d79552360f27bfb38c9d4db6284777b780395acc89592dc",
+        "similarity": 0.5974886417388916
+      },
+      {
+        "left_context_excerpt": "Hội đồng Nhân dân thành phố bầu nên Ủy ban Nhân dân thành phố, cơ quan trực tiếp chịu trách nhiệm quản lý về mọi hoạt động chính trị, an ninh, kinh tế và văn hóa trên địa bàn thành phố. Đứng đầu Ủy ban Nhân dân gồm một Chủ tịch và các Phó chủ tịch. Các sở, ngành của Ủy ban Nhân dân sẽ quản lý về các lĩnh vực cụ thể, như y tế, giáo dục, đầu tư, tư pháp, tài chính. Tương tự, cấp quận, huyện cũng có Hội đồng Nhân dân và Ủy ban Nhân dân chịu sự chỉ đạo chung của cấp thành phố. Ngoài ra, Ủy ban Nhân ",
+        "left_group_id": "a6034271866f8033ca73ffcd93bcdac354f578b6fe1a1e3e8b1871a5640832a9",
+        "right_context_excerpt": "Hội đồng Nhân dân thành phố, với các đại biểu được bầu cử trực tiếp nhiệm kỳ 5 năm, có quyền quyết định các kế hoạch phát triển dài hạn về kinh tế, văn hóa, giáo dục,... của thành phố. Đứng đầu HĐND gồm một Chủ tịch, một Phó chủ tịch và một Ủy viên thường trực. HĐND chịu sự giám sát và hướng dẫn hoạt động của Ủy ban Thường vụ Quốc hội, chịu sự hướng dẫn và kiểm tra của Chính phủ trong việc thực hiện các văn bản của cơ quan nhà nước cấp trên theo quy định của Ủy ban Thường vụ Quốc hội. Hội đồng n",
+        "right_group_id": "e8c131d762bdc86094fabf1bcf154d50376c021fc82dd42c92a9720f6e061b3e",
+        "similarity": 0.553817868232727
+      },
+      {
+        "left_context_excerpt": "Theo điều tra dân số năm 2010, dân số Malaysia là 28.334.135, là quốc gia đông dân thứ 42 trên thế giới. Dân số Malaysia bao gồm nhiều dân tộc. Năm 2010, các công dân Malaysia chiếm 91,8% dân số,trong đó bumiputera là 67,4%,. Theo định nghĩa trong hiến pháp, người Mã Lai là những tín đồ Hồi giáo thực hiện các phong tục và văn hóa Mã Lai. Họ đóng vai trò chi phối về mặt chính trị. Thân thế Bumiputera cũng được trao cho các dân tộc bản địa, trong đó có người Thái, người Khmer, người Chăm và dân tộ",
+        "left_group_id": "9d7506bed0d0adadb72e67ea48b16b272aff18f34b97106ce894288ce3da6a4b",
+        "right_context_excerpt": "Sắc tộc có ảnh hưởng lớn trong chính trị Malaysia, nhiều chính đảng dựa trên nền tảng dân tộc. Các hành động quả quyết như Chính sách Kinh tế mới và thay thế nó là Chính sách Phát triển Quốc gia, được thực hiện nhằm thúc đẩy địa vị của bumiputera, bao gồm người Mã Lai và các bộ lạc bản địa, trước những người phi bumiputera như người Malaysia gốc Hoa và người Malaysia gốc Ấn. Các chính sách này quy định ưu đãi cho bumiputera trong việc làm, giáo dục, học bổng, kinh doanh, tiếp cận nhà giá rẻ hơn ",
+        "right_group_id": "c3436d64a7706a274f9a7a5033a2900121fa404d8bee1877cb19890d333aee13",
+        "similarity": 0.5502646565437317
+      },
+      {
+        "left_context_excerpt": "Trong bầu cử tổng thống năm 2009, ứng cử viên của Đảng Dân chủ là Tsakhiagiin Elbegdorj chiến thắng trước tổng thống đương nhiệm Nambaryn Enkhbayar của Đảng Nhân dân Cách mạng. Đảng Dân chủ giành chiến thắng trong bầu cử quốc hội vào năm 2012. Năm 2012, Đảng Nhân dân Mông Cổ (bỏ từ 'cách mạng' năm 2010) chịu thất bại lần đầu tiên lịch sử tại kỳ bầu cử địa phương. Trong kỳ bầu cử tổng thống năm 2013, ứng cử viên của Đảng Dân chủ là Tsakhiagiin Elbegdorj tái đắc cử. Đảng Nhân dân Mông Cổ giành thắ",
+        "left_group_id": "5a9f3cac4e8f951e607180710ab2a8de253f2542b3ec543401ee700a60e4f2f7",
+        "right_context_excerpt": "Trong bầu cử quốc hội năm 1996, Liên minh Dân chủ giành thắng lợi, dưới quyền đồng lãnh đạo của Tsakhiagiin Elbegdorj. Đảng Nhân dân Cách mạng Mông Cổ lần đầu để mất thế đa số. Ứng cử viên của Đảng Nhân dân Cách mạng là Natsagiin Bagabandi đắc cử làm tổng thống năm 1997, và tái đắc cử vào năm 2001. Trong các cuộc bầu cử quốc hội vào năm 2000, 2004, và 2008 Đảng Nhân dân Cách mạng Mông Cổ giành thắng lợi và lại trở thành đảng cầm quyền. Kết quả bầu cử năm 2004 buộc đảng này phải gia nhập một chín",
+        "right_group_id": "21febae1b56ab332bd6017b066b26b94ba523a2c10d96ffaa3f73d0699be2db6",
+        "similarity": 0.5332357287406921
+      },
+      {
+        "left_context_excerpt": "Vào năm 2014, quân đội Nga đã thực hiện một số cuộc xâm nhập trái phép vào lãnh thổ Ucraina. Sau cuộc biểu tình Euromaidan và sự sụp đổ của chính quyền Tổng thống Ucraina Viktor Yanukovych, lực lượng vũ trang đặc biệt của Nga đã nhanh chóng kiểm soát các vị trí chiến lược và cơ sở hạ tầng trong phạm vi lãnh thổ Ukraine của Crimea. Nga sau đó đã sát nhập Crimea sau cuộc trưng cầu dân ý, khi mà người dân Crimea bỏ phiếu sáp nhập vùng lãnh thổ này vào Liên bang Nga. Sau đó, các cuộc biểu tình của c",
+        "left_group_id": "16e3d5de3c266150611e3556ee14c73f2632856397429eab9a87627b7d3b6d69",
+        "right_context_excerpt": "Sau đó, các cuộc biểu tình của các nhóm thân Nga ở vùng Donbass của Ucraina đã leo thang thành một cuộc xung đột vũ trang giữa chính phủ Ucraina và lực lượng ly khai do Nga hậu thuẫn tại Donetsk và Lugansk. Vào tháng 4 năm 2014, những người ly khai Ukraina tự tuyên bố thành lập Cộng hòa Nhân dân Donetsk và Cộng hòa Nhân dân Lugansk đồng thời tổ chức trưng cầu dân ý vào ngày 11 tháng 5 năm 2014; những người ly khai đã tuyên bố gần 90% bỏ phiếu ủng hộ độc lập . Cuộc nội chiến giữa một bên là quân ",
+        "right_group_id": "b94b9ec1565c2e9c26d09606156bb53c3e290c0f7272c26f01565b75058c7cc1",
+        "similarity": 0.5321858525276184
+      },
+      {
+        "left_context_excerpt": "Đối phương thường cho rằng Mặt trận không có thực quyền, mà thực quyền thuộc Việt Nam Dân chủ Cộng hòa cũng không chuẩn xác. Vì các thiết chế nhà nước Việt Nam Dân chủ Cộng hòa như Quốc hội, Chủ tịch nước, Chính phủ Việt Nam Dân chủ Cộng hòa chỉ ra các văn bản chỉ đạo trên lãnh thổ miền Bắc, và các văn bản ủng hộ cho Miền Nam chứ không có các văn bản chỉ đạo. Các văn bản chỉ đạo thuộc thiết chế của Đảng, mà Đảng được phía cách mạng định nghĩa không chỉ thuộc Miền Bắc như sau này thừa nhận. Hệ th",
+        "left_group_id": "b7641d698ee8a509b83d51176fed3ca161b1a57a88fc0b67db7a99db5647397b",
+        "right_context_excerpt": "Trong thời gian đầu, chính quyền Việt Nam Dân chủ Cộng hòa công nhận Chính phủ Cách mạng lâm thời Cộng hòa miền Nam Việt Nam, và không công nhận chính phủ Việt Nam Cộng hòa. Các cuộc đấu tranh ở Miền Nam giai đoạn này Việt Nam Dân chủ Cộng hòa cơ bản không kiểm soát được hoàn toàn, mà do các đảng bộ miền Nam tự chỉ đạo, có khi vượt ngoài chỉ đạo của Trung ương. Sau Hội nghị Trung ương 15 và sau này ra đời Mặt trận, Việt Nam Dân chủ Cộng hòa không công nhận Việt Nam Cộng hòa và công khai ủng hộ c",
+        "right_group_id": "1f3497da84f44756cc12f7352a38dcb1db81df94046498736173e494f407a079",
+        "similarity": 0.5295659303665161
+      },
+      {
+        "left_context_excerpt": "Ba bộ hiện đại của động vật lưỡng cư là Anura (ếch và cóc), Caudata / Urodela (kỳ giông), và Gymnophiona / Apoda (bộ không chân). Số lượng các loài động vật lưỡng cư được biết đến là khoảng 7.000, trong đó gần 90% là các loài ếch nhái. Các động vật lưỡng cư nhỏ nhất (và có xương sống) trên thế giới là loài ếch ở New Guinea (Paedophryne amauensis) với chiều dài chỉ 7,7 mm (0,30 inch). Các động vật lưỡng cư còn tồn tại lớn nhất là kỳ giông khổng lồ Trung Quốc (Andrias davidianus), dài đến 1,8 m (5",
+        "left_group_id": "9a6e58dfecae404efecd2eea97611bd6e6aad9c86001adb799d68f77bd695ec3",
+        "right_context_excerpt": "Động vật lưỡng cư (và cả động vật có xương sống) nhỏ nhất trên thế giới là loài Paedophryne amauensis trong họ microhylidae ở New Guinea được phát hiện năm 2012. Nó có chiều dài trung bình 7,7 mm (0,30 in) và nó thuộc chi có đến 4 trong số 10 loài ếch nhỏ nhát thế giới. Loài động vật lưỡng cư lớn nhất còn sinh tồn là Andrias davidianus, với chiều dài 1,8 m (5 ft 11 in) nhưng loài này lại nhỏ hơn nhiều so với loài đã tuyệt chủng trong chi Prionosuchus với chiều dài lên đến 9 m (30 ft). Loài tuyệt",
+        "right_group_id": "edc2384bbc7fcb89c2038b80f96fc75dbbe8149513b1c81d092f07af6cd6641c",
+        "similarity": 0.5240563750267029
+      },
+      {
+        "left_context_excerpt": "Trong năm 1911, dựa trên những suy luận có từ năm 1907 về nhu cầu mở rộng thuyết tương đối đặc biệt, ông đã tìm ra hiện tượng dịch chuyển đỏ do hấp dẫn và tính toán độ lệch của tia sáng phát ra từ ngôi sao ở xa sẽ bị lệch bởi trường hấp dẫn của Mặt Trời. Tuy vậy giá trị tiên đoán chỉ bằng một nửa so với giá trị chính xác sau khi ông tìm ra được phương trình trung tâm cho thuyết tương đối tổng quát (1915). Tiên đoán này được xác nhận bởi đoàn thám hiểm người Anh dẫn đầu bởi Sir Arthur Eddington t",
+        "left_group_id": "2abba38173d3e163381c14340467768ddf206f8694ee709475740bec4a2cbcad",
+        "right_context_excerpt": "Đã có những ý kiến cho rằng việc kiểm tra lại các bức ảnh của đoàn thám hiểm Eddington cho thấy độ lớn sai số của thí nghiệm bằng với kết quả thu được từ hiệu ứng mà Eddington đã đo để chứng minh, và đoàn thám hiểm người Anh năm 1962 đã kết luận là phương pháp đã đo là không đủ tin cậy. Sự bẻ cong của tia sáng trong quá trình nhật thực đã được xác nhận bởi các quan sát chính xác hơn sau đó. Về sau, nhiều thí nghiệm sau này đã xác nhận các tiên đoán của thuyết tương đối rộng. Cùng với sự mới nổi ",
+        "right_group_id": "45db4db09641ef0534007bb095d963792a6aa0c183fb8e395fda68e15c28cb81",
+        "similarity": 0.5175681710243225
+      },
+      {
+        "left_context_excerpt": "Theo Nghị quyết Đại hội III của Đảng Lao động Việt Nam, được đăng tải trên báo Nhân dân khi đó \"nhiệm vụ trước mắt của cách mạng miền Nam là: đoàn kết toàn dân, kiên quyết đấu tranh chống đế quốc Mỹ xâm lược và gây chiến, đánh đổ tập đoàn thống trị độc tài Ngô Đình Diệm tay sai của đế quốc Mỹ, thành lập một chính quyền liên hợp dân tộc dân chủ ở miền Nam, thực hiện độc lập dân tộc, các quyền tự do dân chủ, cải thiện đời sống nhân dân, giữ vững hòa bình, thực hiện thống nhất nước nhà trên cơ sở đ",
+        "left_group_id": "ec402184d934e1007ea6a8a896599362437516b8362bdb8ff494c3593930455e",
+        "right_context_excerpt": "Chương trình của Mặt trận: \"Từ khi thực dân Pháp xâm lược nước ta, dân tộc Việt Nam ta đã chiến đấu không ngừng cho độc lập và tự do của Tổ quốc. Năm 1945, đồng bào cả nước đã đứng lên đánh đổ Nhật - Pháp giành chính quyền và đã anh dũng kháng chiến 9 năm, đánh bại xâm lược Pháp và can thiệp Mỹ, đưa cuộc kháng chiến oanh liệt của dân tộc ta đến thắng lợi vẻ vang.Tại hội nghị Giơ ne vơ tháng 7-1954, đế quốc Pháp buộc phải cam kết rút quân khỏi Việt Nam và các nước tham dự hội nghị đều trịnh trọng",
+        "right_group_id": "49f66fe10a6f77a7087bfb4b10bfc9e7eb65a4d659c65b3a7e5ef262b4e3b8d8",
+        "similarity": 0.516725480556488
+      },
+      {
+        "left_context_excerpt": "Malaysia có nguồn gốc từ các vương quốc Mã Lai hiện diện trong khu vực, và từ thế kỷ XVIII, các vương quốc này bắt đầu lệ thuộc vào Đế quốc Anh. Các lãnh thổ đầu tiên của Anh Quốc được gọi là Các khu định cư Eo biển. Các lãnh thổ tại Malaysia bán đảo được hợp nhất thành Liên hiệp Malaya vào năm 1946. Malaya được tái cấu trúc thành Liên bang Malaya vào năm 1948, và giành được độc lập vào ngày 31 tháng 8 năm 1957. Malaya hợp nhất với Bắc Borneo, Sarawak, và Singapore vào ngày 16 tháng 9 năm 1963, ",
+        "left_group_id": "b06f1baffed73424e644c299a9158ec0af67eeebc6c2ad499b54ed84e26c0913",
+        "right_context_excerpt": "Hậu chiến, người Anh tiến hành các nỗ lực nhằm hợp nhất việc cai quản Malaya trong một thuộc địa vương thất duy nhất gọi là Liên hiệp Malaya (Malayan Union), tuy nhiên điều này bị người Mã Lai phản đối mạnh, người Mã Lai phản đối việc địa vị của các quân chủ Mã Lai suy yếu và việc trao quyền công dân cho người gốc Hoa. Liên hiệp Malaya được thành lập vào năm 1946 và bao gồm toàn bộ các thuộc địa của Anh Quốc tại khu vực bán đảo Mã Lai, ngoại trừ Singapore, song chính thể này nhanh chóng bị giải ",
+        "right_group_id": "9b136d53fdef17ff8642aca5fc78202502b77b71cfddacef386b08747aafc85f",
+        "similarity": 0.5151342153549194
+      },
+      {
+        "left_context_excerpt": "Những người có ảnh hưởng đến việc công bố các công trình của Newton là Robert Hooke và Edmond Halley. Sau một cuộc tranh luận về chủ đề quỹ đạo của một hạt khi bay từ vũ trụ vào Trái Đất với Hooke, Newton đã bị cuốn hút vào việc sử dụng định luật vạn vật hấp dẫn và cơ học của ông trong tính toán quỹ đạo Johannes Kepler. Những kết quả này hấp dẫn Halley và ông đã thuyết phục được Newton xuất bản chúng. Từ tháng 8 năm 1684 đến mùa xuân năm 1688, Newton hoàn thành tác phẩm, mà sau này trở thành một",
+        "left_group_id": "1b41c9288ad4b51bb074a9cc40e761e2e32c2eab74f691b756eb110b30d95559",
+        "right_context_excerpt": "Luận thuyết của ông về Philosophiae Naturalis Principia Mathematica (Các Nguyên lý Toán học của Triết học Tự nhiên) xuất bản năm 1687, đã mô tả về vạn vật hấp dẫn và 3 định luật Newton, được coi là nền tảng của cơ học cổ điển, đã thống trị các quan niệm về vật lý, khoa học trong suốt 3 thế kỷ tiếp theo. ông cho rằng sự chuyển động của các vật thể trên mặt đất và các vật thể trong bầu trời bị chi phối bởi các định luật tự nhiên giống nhau; bằng cách chỉ ra sự thống nhất giữa Định luật Kepler về s",
+        "right_group_id": "a2ff50fd67e093912cf2e1e70340767b372c29db7cd1419f9ba9681da3b493c1",
+        "similarity": 0.501767635345459
+      },
+      {
+        "left_context_excerpt": "Malaysia là một thành viên sáng lập của Hiệp hội các quốc gia Đông Nam Á (ASEAN) Tổ chức Hợp tác Hồi giáo (OIC), và cũng tham gia vào nhiều tổ chức quốc tế như Liên Hiệp Quốc, Diễn đàn Hợp tác Kinh tế châu Á - Thái Bình Dương, và Phong trào không liên kết (NAM). Malaysia từng giữ chức chủ tịch ASEAN, OIC, và NAM. Do là một cựu thuộc địa của Anh Quốc, Malaysia cũng là một thành viên của Thịnh vượng chung các quốc gia. Kuala Lumpur là địa điểm diễn ra Hội nghị thượng đỉnh Đông Á vào năm 2005.",
+        "left_group_id": "e878257747e225ec1eb6a335e07176f36b969e4cec3b9d74a917fd84dfaabad5",
+        "right_context_excerpt": "Kể từ khi độc lập, Malaysia trở thành một trong những nước có hồ sơ kinh tế tốt nhất tại châu Á, GDP tăng trưởng trung bình 6,5% trong gần 50 năm. Về truyền thống, yếu tố thúc đẩy kinh tế Malaysia là các nguồn tài nguyên thiên nhiên, song quốc gia cũng phát triển các lĩnh vực khoa học, du lịch, thương mại hay du lịch y tế. Ngày nay, Malaysia có một nền kinh tế thị trường công nghiệp mới, có GDP danh nghĩa xếp thứ ba tại Đông Nam Á và xếp thứ 29 trên thế giới. Malaysia là một thành viên sáng lập ",
+        "right_group_id": "047619c6e41da5e8e6eaeab56f46810cc8dc8368f54c47d56354eb21061ab153",
+        "similarity": 0.49550700187683105
+      },
+      {
+        "left_context_excerpt": "Có thêm bốn phi vụ đổ bộ nữa diễn ra trong bốn năm tiếp theo, mà các tàu Venera 11 và Venera 12 phát hiện ra những cơn bão điện tích trong khí quyển; và Venera 13 và Venera 14, đổ bộ cách nhau bốn ngày 1 và 5 tháng 3 năm 1982, gửi về những bức ảnh màu đầu tiên về bề mặt hành tinh. Cả bốn phi vụ đều sử dụng dù bung để hãm tàu rơi trong khí quyển, nhưng sau đó thả chúng ra tại độ cao 50 km, nơi khí quyển có mật độ dày đặc hơn và cho phép các tàu chạm đất nhẹ nhàng dựa vào ma sát với không khí mà k",
+        "left_group_id": "2340f9b0ee6551862ef7706e38f60b53ec5dabeaf25fbda45952c0b45d47c207",
+        "right_context_excerpt": "Tàu Venera 3 của Liên Xô đổ bộ xuống Sao Kim ngày 1 tháng 3 năm 1966. Nó là thiết bị nhân tạo đầu tiên đi vào khí quyển và va chạm xuống bề mặt hành tinh khác, mặc dù hệ thống liên lạc của nó đã bị hỏng và người ta không nhận được một dữ liệu gì của nó gửi về. Ngày 18 tháng 10 năm 1967, Venera 4 đã đi vào khí quyển thành công và thực hiện một số thí nghiệm khoa học. Venera 4 cho thấy tại vị trí nó đi vào khí quyển nhiệt độ đo được cao hơn giá trị mà tàu Mariner 2 trước đo gửi về và Venera 4 đo đ",
+        "right_group_id": "0f420fa1416e973a52b5312c340e6cd5c3fb8db556e4ca17af220fb3e2ccf25d",
+        "similarity": 0.4896164536476135
+      },
+      {
+        "left_context_excerpt": "Theo Hiệp nghị Thứ sáu Tốt lành, hai chính phủ Anh và Ireland chấp thuận thành lập các thể chế toàn đảo và các lĩnh vực hợp tác. Hội đồng Bộ trưởng Bắc/Nam là một thể chế gồm bộ trưởng trong chính phủ của Ireland và cơ quan hành pháp của Bắc Ireland, nhằm đồng thuận về các chính sách toàn đảo. Hội nghị liên chính phủ Anh-Ireland cung cấp hợp tác giữa chính phủ Anh và Ireland trên toàn bộ các vấn đề cùng quan tâm, đặc biệt là Bắc Ireland. Trong bối cảnh Cộng hoà Ireland quan tâm đặc biệt về cai q",
+        "left_group_id": "2bf9d5b6244b1a30e484286b613e7fb641ec622aaea4db0c7e956dc60321866e",
+        "right_context_excerpt": "Bắc Ireland có cơ quan hành pháp và lập pháp địa phương, thi hành quyền lực được Anh phân quyền. Đứng đầu cơ quan hành pháp là bộ trưởng thứ nhất và thứ trưởng thứ nhất, còn các bộ trưởng được phân bổ theo tỷ lệ đại biểu của mỗi đảng trong nghị hội. Thủ đô Bắc Ireland là Belfast. Quyền lực chính trị tối hậu thuộc về Chính phủ Anh, Chính phủ Anh từng có các giai đoạn cai trị trực tiếp Bắc Ireland. Bắc Ireland được phân 18 ghế trong số 650 ghế của Hạ nghị viện Anh. Quốc vụ khanh về Bắc Ireland là ",
+        "right_group_id": "dc160bbb72d02216a72b7bda9f71145efea8c128bda7d6dd44f68f36a56913aa",
+        "similarity": 0.4894055724143982
+      },
+      {
+        "left_context_excerpt": "Về mặt pháp lý Mặt trận hoàn toàn độc lập với các tổ chức chính trị ở miền Bắc tuy nhiên cả Mặt trận và chính phủ Việt Nam Dân chủ Cộng hòa, sau này có thêm Chính phủ Cách mạng lâm thời Cộng hòa miền Nam Việt Nam đều không phủ nhận sự tương đồng về chính trị cũng như mục tiêu giải phóng dân tộc, thống nhất đất nước. Bên cạnh đó, những người Cộng sản ở miền Nam cũng thành lập Đảng Nhân dân cách mạng Việt Nam để hoạt động công khai và ngăn cản sự đàn áp của chính quyền Sài Gòn. Đảng này cũng là th",
+        "left_group_id": "599c8091082581c262051f3de95c5c1af84ab8b7d82f38c1cb70cec1cb9c1f49",
+        "right_context_excerpt": "Tổ chức này được thành lập dưới sự hậu thuẫn và được hỗ trợ tài chính, thiết bị và nhân sự bởi nhiều bộ phận dân cư tại miền Nam Việt Nam cũng như của chính phủ và quân đội của Việt Nam Dân chủ Cộng hòa. Trước khi Chính phủ Cách mạng lâm thời Cộng hòa Miền Nam Việt Nam thành lập, Mặt trận Dân tộc Giải phóng miền Nam Việt Nam tồn tại như một chính thể và Ủy ban Trung ương hoạt động như là một chính phủ lâm thời, đại diện cho các vùng thuộc quyền kiểm soát, quản lý các vùng do Mặt trận quản lý. Ba",
+        "right_group_id": "fdb1d08f3100a39ffb76092dfd9dbc327001a866f84397e847a3654e124d58ab",
+        "similarity": 0.4881361126899719
+      },
+      {
+        "left_context_excerpt": "Nam Ossetia ngày nay đã bị Nga sáp nhập năm 1801, cùng với Gruzia, và trở thành một phần của Đế quốc Nga. Sau cuộc Cách mạng tháng 10, Nam Ossetia trở thành một phần của nước Cộng hòa Dân chủ Gruzia Menshevik, trong khi miền bắc thành một phần của nước Cộng hòa Xô viết Terek. Vùng này đã trải qua một loạt các cuộc nổi dậy Ossetia với nhiều lần tuyên bố độc lập. Chính phủ Gruzia đã buộc tội người dân Ossetia hợp tác với những người Bolshevik. Theo các nguồn tin của Ossetia khoảng 5.000 người Osse",
+        "left_group_id": "abb9852d5629d768ae650998f59d47b87a1a257c3d5d2bf819c11c3978654bc7",
+        "right_context_excerpt": "Xung đột vũ trang bùng phát hồi cuối năm 1991 trong đó nhiều làng mạc Nam Ossetia đã bị tấn công và đốt phá tương tự như nhiều ngôi nhà và trường học của người Gruzia tại Tskhinvali, thủ đô của Nam Ossetia. Hậu quả, xấp xỉ 1.000 người chết và khoảng 100.000 người Ossetia đã phải bỏ chạy khỏi lãnh thổ Gruzia, đa số qua biên giới vào Bắc Ossetia. Khoảng 23.000 người Gruzia khác cũng đã phải rời bỏ Nam Ossetia và định cư tại những khu vực khác ở Gruzia. Nhiều người dân Nam Ossetia đã tái định cư tạ",
+        "right_group_id": "5bbd08c1bbcee78975612f7782382f83880175cbd30c221f5007f1ad9035a5bd",
+        "similarity": 0.486280620098114
+      },
+      {
+        "left_context_excerpt": "Tiếng Bồ Đào Nha là ngôn ngữ chính thức của Bồ Đào Nha, đây là một ngôn ngữ thuộc hệ Roman, có nguồn gốc từ khu vực nay là Galicia và miền bắc Bồ Đào Nha. Tiếng Galicia-Bồ Đào Nha là ngôn ngữ chung của người Galicia và Bồ Đào Nha cho đến khi Bồ Đào Nha lập quốc. Đặc biệt là tại miền bắc của Bồ Đào Nha, vẫn còn nhiều điểm tương đồng giữa văn hoá Galicia và văn hoá Bồ Đào Nha. Galicia là một quan sát viên tham vấn của Cộng đồng các quốc gia nói tiếng Bồ Đào Nha. Theo Ethnologue, tiếng Bồ Đào Nha v",
+        "left_group_id": "57058705fe01ed5ee236ba6295f64e0a717b8010927d2093df11395cb6400168",
+        "right_context_excerpt": "Năm 910, do tranh chấp kế vị, Vương quốc Asturias bị phân thành León, Galicia và Asturias, đến năm 924 thì thống nhất dưới quyền León. Trong thời gian đấu tranh tương tàn này, Bá quốc Bồ Đào Nha tạo thành phần phía nam của Vương quốc Galicia. Vương quốc Galicia tồn tại độc lập chỉ trong một giai đoạn ngắn, song thường là một bộ phận quan trọng của Vương quốc León. Trong suốt giai đoạn này, dân chúng Bá quốc Bồ Đào Nha với tư cách là người Galicia đã tự mình đấu tranh nhằm duy trì quyền tự trị củ",
+        "right_group_id": "55646301daf91a84e6103b2d596f93b9717f792a87fdc816decba73cd529373c",
+        "similarity": 0.4823703169822693
+      },
+      {
+        "left_context_excerpt": "Năm 1998, các bác sĩ của chính phủ Iraq đã báo cáo rằng việc liên quân sử dụng urani nghèo đã gây ra hàng loạt vụ khuyết tật ở trẻ sơ sinh và ung thư trong dân chúng Iraq, đặc biệt là bệnh bạch cầu. Các bác sĩ của chính phủ cho rằng họ không có đủ bằng chứng cho thấy có mối quan hệ giữa urani nghèo với những vụ khuyết tận trẻ sơ sinh bởi vì những biện pháp trừng phạt đã khiến họ không thể có được các thiết bị thử nghiệm cần thiết. Vì thế, một đội bác sĩ của Tổ chức sức khỏe thế giới đã tới Basra",
+        "left_group_id": "b4f173dfdb097b38698c029a74adec6175b779ed7e7d2fd38763a83a184c6bc9",
+        "right_context_excerpt": "Bộ Ngoại giao Hoa Kỳ cũng đã xuất bản một cuốn sách về urani nghèo. Nó tuyên bố: \"Tổ chức sức khỏe thế giới và các nghiên cứu khoa học khác đã cho thấy urani nghèo không gây ra những nguy cơ nghiêm trọng đối với sức khoẻ\" và \"urani nghèo không gây ra khuyết tật ở trẻ sơ sinh. Quân đội Iraq sử dụng các vũ khí hóa học và thần kinh trong thập kỷ 1980 và 1990 có thể là nguyên nhân gây ra cái gọi là khuyết tật ở trẻ em Iraq.\" Về những buộc tội gây ra ung thư, cuốn sách của Hoa Kỳ cho rằng \"theo những",
+        "right_group_id": "0ed5104cd17c2241bed3b4a3732fb771114dde66cae441bd271853f0e4482f3d",
+        "similarity": 0.4822690486907959
+      },
+      {
+        "left_context_excerpt": "Newton rất nhạy cảm với các phản bác đối với các lý thuyết của ông, thậm chí đến mức không xuất bản các công trình cho đến tận sau khi người hay phản bác ông nhất là Hooke mất. Quyển Philosophiae Naturalis Principia Mathematica phải chờ sự thuyết phục của Halley mới ra đời. Ông tỏ ra ngày càng lập dị vào cuối đời khi thực hiện các phản ứng hoá học và cùng lúc xác định ngày tháng cho các sự kiện trong Kinh Thánh. Sau khi Newton qua đời, người ta tìm thấy một lượng lớn thuỷ ngân trong cơ thể của ô",
+        "left_group_id": "df3ae1717132adb6c517cee0f204dd3f5fa53a63b3f7f6e2a829c32344adb4ec",
+        "right_context_excerpt": "Luận thuyết của ông về Philosophiae Naturalis Principia Mathematica (Các Nguyên lý Toán học của Triết học Tự nhiên) xuất bản năm 1687, đã mô tả về vạn vật hấp dẫn và 3 định luật Newton, được coi là nền tảng của cơ học cổ điển, đã thống trị các quan niệm về vật lý, khoa học trong suốt 3 thế kỷ tiếp theo. ông cho rằng sự chuyển động của các vật thể trên mặt đất và các vật thể trong bầu trời bị chi phối bởi các định luật tự nhiên giống nhau; bằng cách chỉ ra sự thống nhất giữa Định luật Kepler về s",
+        "right_group_id": "a2ff50fd67e093912cf2e1e70340767b372c29db7cd1419f9ba9681da3b493c1",
+        "similarity": 0.48085564374923706
+      },
+      {
+        "left_context_excerpt": "Động thực vật tại Nouvelle-Calédonie bắt nguồn từ các loài tổ tiên bị cô lập tại khu vực khi quần đảo tách khỏi Gondwana hàng chục triệu năm trước. Nouvelle-Calédonie có nhiều loài thực vật hạt trần nhiệt đới đặc hữu hơn so với bất kỳ khu vực tương tự nào trên Trái Đất. Trong số 44 loài thực vật hạt trần bản địa, có 43 loài đặc hữu, trong đó có loài thực vật hạt kín ký sinh duy nhất được phát hiện (Parasitaxus usta). Ngoài ra, trong số 35 loài Araucaria được phát hiện, có 13 loài đặc hữu của Nou",
+        "left_group_id": "dbe345168bb98f61c3ecd694c26eb35536b10df960b60cf68f55d476538ec54b",
+        "right_context_excerpt": "Loài dương xỉ lớn nhất thế giới là Cyathea intermedia cũng là loài đặc hữu của Nouvelle-Calédonie. Nó rất phổ biến trên đất có tính a xít, và mọc cao khoảng một mét mỗi năm tại duyên hải phía đông, thường là trên đất hoang hoặc trong rừng thưa. Ngoài ra còn có các loài dương xỉ mộc khác, đáng chú ý là Cyathea novae-caledoniae. Nouvelle-Calédonie cũng là một trong năm khu vực trên thế giới có các loài gỗ sồi phương nam (Nothofagus) bản địa. Nouvelle-Calédonie có kiểu rừng cây bụi riêng trên các v",
+        "right_group_id": "bf847a97aef96af61d455bcbaf25c8b461d03215fa396a94252ea92b3fe7cf78",
+        "similarity": 0.4738128185272217
+      },
+      {
+        "left_context_excerpt": "Phần lớn HIV lây qua đường quan hệ tình dục không được bảo vệ (quan hệ tình dục không an toàn). Ước tính tỷ lệ nhiễm HIV/AIDS trên thế giới qua đường tình dục chiếm khoảng 75% trong tổng số người bị nhiễm HIV/AIDS. Việc chủ quan đối với HIV đóng một vai trò quan trọng trong nguy cơ bị lây bệnh. Lây truyền qua đường tình dục có thể xảy ra khi chất tiết sinh dục của một bạn tình có chứa virus, tiếp xúc với niêm mạc sinh dục, miệng, hoặc trực tràng của người còn lại. Nguy cơ lây nhiễm qua một lần g",
+        "left_group_id": "18d063a6b5a4befdaea572493603c9d01a57fdcfbf72c3df709f20bb816d1bab",
+        "right_context_excerpt": "Theo báo cáo tiến độ phòng, chống HIV/AIDS năm 2012, tỉ lệ nhiễm HIV trong những người nam quan hệ tình dục với nam ở Thành phố Hồ Chí Minh là 16%, tỷ lệ chỉ đứng sau nhóm tiêm chích ma túy. Tại đây, cứ 5 nam quan hệ đồng giới thì có một người nhiễm ít nhất một trong các nhiễm khuẩn giang mai, lậu sinh dục, lậu trực tràng, chlamydia sinh dục hoặc chlamydia trực tràng. Quan hệ đồng tính nam có nguy cơ bị nhiễm HIV cao gấp 20 lần gái mại dâm. Nguyên nhân dẫn đến tỉ lệ lây nhiễm HIV/AIDS cao do một",
+        "right_group_id": "a0733fc5b51dc97627a7d0e6c5a7af70ff33fe409f9faa3908b203100fe9f6d0",
+        "similarity": 0.47357749938964844
+      },
+      {
+        "left_context_excerpt": "Trường Kinh doanh Harvard và nhiều trong số những cơ sở thể thao của viện đại học, bao gồm Sân vận động Harvard, nằm trong một khuôn viên rộng 358 mẫu Anh (145 ha) nằm ở khu Allston, đối diện với Cambridge bên kia sông. Cầu John W. Weeks là cầu đi bộ bắc qua sông Charles, kết nối hai khuôn viên. Trường Y khoa Harvard, Trường Nha khoa Harvard, và Trường Y tế Công cộng nằm ở một khuôn viên rộng 21 mẫu Anh (8,5 ha) ở Khu Học thuật và Y khoa Longwood, cách trung tâm Boston chừng 3,3 dặm (5,3 km) về ",
+        "left_group_id": "355d95a8a3ae843429845eb116dd3665f1195e6b1c6795a322a8f35b75147976",
+        "right_context_excerpt": "Khuôn viên chính của Harvard rộng 209 mẫu Anh (85 ha), trung tâm là Harvard Yard ở thành phố Cambridge, nằm cách khu trung tâm thành phố Boston chừng 3 dặm (4,8 km) về phía tây-tây bắc, và mở rộng ra khu Quảng trường Harvard ở chung quanh. Khu Harvard Yard có các tòa nhà hành chính và những thư viện chính của viện đại học, các khu học tập bao gồm Sever Hall và University Hall, Nhà thờ Memorial, và phần lớn các cư xá dành cho sinh viên năm nhất. Các sinh viên năm hai, ba, và tư sống trong 12 khu ",
+        "right_group_id": "9c8252a78716c7c5095239684f4c059e56a894dbce1b8a668033fb9848e1e580",
+        "similarity": 0.4712667465209961
+      },
+      {
+        "left_context_excerpt": "Năm 1751, Washington cùng đi Barbados với Lawrence, người mắc phải bệnh lao, với hy vọng rằng khí hậu sẽ có lợi cho sức khỏe của Lawrence. Washington mắc phải bệnh đậu mùa trong chuyến đi này khiến cho khuôn mặt của ông có ít nhiều vết thẹo nhưng đã giúp cho ông miễn nhiễm với căn bệnh độc này về sau. Sức khỏe của Lawrence không cải thiện: ông quay về Mount Vernon và mất ở đó năm 1752. Vị trí lãnh đạo địa phương quân Virginia của Lawrence chia thành bốn chức vụ sau khi ông mất. Washington được T",
+        "left_group_id": "75cb95e53ab216de04bf2b8431dc20ded50ef446e8860b2f52e1e85d14443b08",
+        "right_context_excerpt": "Cái chết của cha khiến cho ông mất cơ hội vượt Đại Tây Dương để nhận sự giáo dục tại Trường Appleby của Anh như những người anh trai của mình đã từng làm. Ông đi học tại Fredericksburg cho đến tuổi 15. Mong muốn gia nhập Hải quân Hoàng gia không thành hiện thực sau khi mẹ ông biết nó rất là khó khăn cho ông. Nhờ mối liên hệ của Lawrence với gia đình quyền lực ở Fairfax nên vào năm 17 tuổi, George trở thành thanh tra quận Culpeper vào năm 1749. Đây là 1 công việc trả lương hậu đã giúp cho ông mua",
+        "right_group_id": "7749040da25597750592eb8a35a2c237c2ec4b84e72fdcc7c3290244d0cc7489",
+        "similarity": 0.4687008857727051
+      },
+      {
+        "left_context_excerpt": "Nam Ossetia (tiếng Ossetia: Хуссар Ирыстон, Khussar Iryston; tiếng Gruzia: სამხრეთ ოსეთი, Samkhret Oseti; tiếng Nga: Южная Осетия, Yuzhnaya Osetiya) là một vùng ở Nam Kavkaz, nguyên là tỉnh tự trị Ossetia bên trong Cộng hòa Xã hội chủ nghĩa Xô viết Gruzia, một phần lãnh thổ này đã độc lập trên thực tế khỏi Gruzia kể từ khi lãnh thổ này tuyên bố độc lập thành Cộng hòa Nam Ossetia trong cuộc xung đột Gruzia-Ossetia đầu thập niên 1990. Chính phủ Gruzia phản ứng lại bằng cách bãi bỏ quyền tự trị của",
+        "left_group_id": "5cb89fe07a3f540ea1a7b86d14b464d9226d6654ed3c2925759c95fae52be9c4",
+        "right_context_excerpt": "Xung đột vũ trang bùng phát hồi cuối năm 1991 trong đó nhiều làng mạc Nam Ossetia đã bị tấn công và đốt phá tương tự như nhiều ngôi nhà và trường học của người Gruzia tại Tskhinvali, thủ đô của Nam Ossetia. Hậu quả, xấp xỉ 1.000 người chết và khoảng 100.000 người Ossetia đã phải bỏ chạy khỏi lãnh thổ Gruzia, đa số qua biên giới vào Bắc Ossetia. Khoảng 23.000 người Gruzia khác cũng đã phải rời bỏ Nam Ossetia và định cư tại những khu vực khác ở Gruzia. Nhiều người dân Nam Ossetia đã tái định cư tạ",
+        "right_group_id": "5bbd08c1bbcee78975612f7782382f83880175cbd30c221f5007f1ad9035a5bd",
+        "similarity": 0.4679669141769409
+      },
+      {
+        "left_context_excerpt": "Chương trình Venera tiếp tục với phi vụ Venera 8 khi nó gửi được dữ liệu từ thời điểm chạm đất trong khoảng 50 phút, sau khi đi vào khí quyển ngày 22 tháng 7 năm 1972. Venera 9, đi vào khí quyển ngày 22 tháng 10 năm 1975, và ba ngày sau 25 tháng 10 tàu Venera 10, gửi những hình ảnh đầu tiên về quang cảnh Sao Kim. Hai vị trí đổ bộ có địa hình khác nhau xung quanh hai tàu: Venera 9 rơi xuống một sườn dốc 20 độ với những tảng đá đường kính 30–40 cm nằm rải rác xung quanh; Venera 10 rơi trên phiến đ",
+        "left_group_id": "89ef11cc2ab9292025097bc4febd514752c4fa7a7c19bb88ae48c70a1d8381cd",
+        "right_context_excerpt": "Thu được kinh nghiệm từ tàu Venera 4, Liên Xô đã phóng hai tàu giống nhau Venera 5 và Venera 6 cách nhau năm ngày trong tháng 1 năm 1969; chúng đi vào khí quyển Kim Tinh các ngày 16 và 17 tháng 5 trong cùng năm. Lớp bảo vệ tàu và thiết bị khoa học đã được gia cường để tăng khả năng chịu áp suất lên tới 25 bar và hai tàu được trang bị dù nhỏ hơn cho phép chúng rơi nhanh hơn. Do ngày nay chúng ta ước tính khí quyển Sao Kim có áp suất bề mặt từ 75 đến 100 bar, cho nên hai tàu đã không còn hoạt động",
+        "right_group_id": "4d4e63a6df9a7e65705f640263c1432f05335945793750803a9bd81a9c41a45b",
+        "similarity": 0.46752452850341797
+      },
+      {
+        "left_context_excerpt": "Vương quốc Seleukos đã không thể phản kháng ngay lập tức vì tướng Diodotus Tryphon đã tiến hành một cuộc nổi loạn tại kinh đô Antioch vào năm 142 trước Công nguyên. Tuy nhiên, tới năm 140 trước Công nguyên, Demetrius II Nicator đã có thể tiến hành một cuộc kháng chiến chống lại người Parthia ở Lưỡng Hà. Mặc dù đạt được những thành công ban đầu, vương quốc Seleukos đã bị đánh bại và Demetrios bị người Parthia bắt làm tù binh và bị đưa đến Hyrcania. Ở đó Mithridates đã đối xử tử tế với tù nhân của",
+        "left_group_id": "d616ae749211f7fd16cf3726d9f096110c3841937e9791e8e3e9b14550dbf845",
+        "right_context_excerpt": "Antiochus VII Sidetes (cai trị:138-129 TCN), em trai của Demetrios, lên ngôi vua Seleukos và kết hôn với Cleopatra Thea. Sau khi đánh bại Diodotus Tryphon, Antiochos khởi xướng một chiến dịch vào năm 130 trước Công nguyên để chiếm lại Lưỡng Hà, bây giờ nằm dưới sự cai trị của Phraates II của Parthia (cai trị: 138-128 TCN). tướng Indates của Parthia đã bị đánh bại dọc theo sông Đại Zab, theo sau là một cuộc nổi dậy địa phương nơi mà tổng đốc người Parthia của Babylon đã bị giết chết. Antiochos ch",
+        "right_group_id": "9b5fa57d13f35b25f494102d774f575cbc2fabb85d7013671e72958ce4091bf8",
+        "similarity": 0.46441853046417236
+      },
+      {
+        "left_context_excerpt": "Thuật ngữ để chỉ thực vật hạt kín là \"Angiosperm\", có nguồn gốc từ tiếng Hy Lạp cổ đại αγγειον (chỗ chứa) và σπερμα (hạt), được Paul Hermann tạo thành dưới dạng thuật ngữ Angiospermae vào năm 1690, như là tên gọi của một trong các ngành chính trong giới thực vật của ông, nó bao gồm thực vật có hoa và tạo ra các hạt được bao phủ trong các bao vỏ (quả nang), ngược lại với Gymnospermae của ông, hay thực vật có hoa với các quả thuộc loại quả bế hay quả nứt - toàn bộ quả hay mỗi miếng riêng rẽ của nó",
+        "left_group_id": "4fe5afbbba98eb1adad78e3132a6d5af5c89deeacabc2a556ab059b107fdd92a",
+        "right_context_excerpt": "Sự phát hiện của Hofmeister năm 1851 về các thay đổi xảy ra trong túi phôi của thực vật có hoa, cũng như sự xác định của ông về các quan hệ chính xác của các thay đổi này với thực vật có mạch, đã cố định vị trí của Gymnosperm như là một lớp phân biệt với thực vật hai lá mầm, và thuật ngữ Angiosperm sau đó dần dần được chấp nhận như là tên gọi phù hợp cho toàn bộ thực vật có hoa hơn là Gymnosperm, và nó bao gồm trong đó các lớp thực vật hai lá mầm và thực vật một lá mầm. Đây chính là ý nghĩa mà t",
+        "right_group_id": "cf4279e34faf7682a78b389e706437c0ccfa963810c13ba9e79caa26db5d8d47",
+        "similarity": 0.46148228645324707
+      },
+      {
+        "left_context_excerpt": "Antiochos III sau đó đã phát động một chiến dịch lớn để chiếm lại Parthia và Bactria trong năm 210 hoặc 209 trước Công nguyên. Ông ta đã không thành công, nhưng đã thương lượng một giải pháp hòa bình với Arsaces II. Điều này về sau đã mang đến cho Antiochus danh hiệu basileos. Vương quốc Seleukos đã không thể tiếp tục ngăn cản sự trỗi dậy của Parthia sau khi Cộng hòa La Mã đánh bại họ trong trận Magnesia vào năm 190 trước Công nguyên. Phriapatius của Parthia (cai trị: khoảng năm 191-176 trước Cô",
+        "left_group_id": "0a1bc4a065631e2df237f7ba02b4b729982f284bf19a5633d594b60e86e90375",
+        "right_context_excerpt": "Antiochus VII Sidetes (cai trị:138-129 TCN), em trai của Demetrios, lên ngôi vua Seleukos và kết hôn với Cleopatra Thea. Sau khi đánh bại Diodotus Tryphon, Antiochos khởi xướng một chiến dịch vào năm 130 trước Công nguyên để chiếm lại Lưỡng Hà, bây giờ nằm dưới sự cai trị của Phraates II của Parthia (cai trị: 138-128 TCN). tướng Indates của Parthia đã bị đánh bại dọc theo sông Đại Zab, theo sau là một cuộc nổi dậy địa phương nơi mà tổng đốc người Parthia của Babylon đã bị giết chết. Antiochos ch",
+        "right_group_id": "9b5fa57d13f35b25f494102d774f575cbc2fabb85d7013671e72958ce4091bf8",
+        "similarity": 0.45993202924728394
+      },
+      {
+        "left_context_excerpt": "Ngay sau khi cấm Đại Việt Quốc dân Đảng hoạt động, Việt Nam Dân chủ Cộng hòa tố cáo những người Trotskyist (nhóm La Lutte và nhóm Liên minh Cộng sản Quốc tế) đã có hành vi phá hoại. Đảng cộng sản Đông Dương và những người Trotskyist từ lâu đã chỉ trích nhau là tay sai đế quốc. Tuy nhiên xung đột của hai nhóm này trước năm 1945 chỉ thể hiện bằng báo chí, diễn thuyết, truyền đơn. Sau năm 1945, hai nhóm bất đồng quan điểm về việc thực hiện cách mạng xã hội và cách đối phó với việc Đồng Minh đổ bộ v",
+        "left_group_id": "bd45abe96523c065bb8796150bb632a7404eeef6168cf44deec6703916c71fc3",
+        "right_context_excerpt": "Trước năm 1945, Đảng Cộng sản Việt Nam và các đảng phái Quốc gia khác tuy có ý thức hệ khác nhau nhưng vẫn có chung nền tảng giáo dục, thường xuyên có sự hợp tác và đôi khi có cùng quan hệ huyết thống hoặc hôn nhân. Trong giai đoạn 1924 - 1927, ở miền Nam Trung Quốc, các nhóm người Việt chống thực dân Pháp đa dạng tương tác với nhau, với cả người Trung Quốc, Triều Tiên và các dân tộc khác. Từ năm 1941 đến 1944 ở miền nam Trung Quốc, Đảng Cộng sản Đông Dương, Việt Nam Quốc Dân Đảng (Việt Quốc) và",
+        "right_group_id": "996839ae8a45825a4dcc70feac64567f64edf058f85d606a856a5ca7aadaae3f",
+        "similarity": 0.45703673362731934
+      },
+      {
+        "left_context_excerpt": "Trong thập niên đầu tiên, Nhà nước Tự do Ireland mới thành lập nằm dưới quyền cai quản của những người chiến thắng trong nội chiến. Đến khi Éamon de Valera lên nắm quyền, ông tận dụng Pháp lệnh Westminster và tình thế chính trị để xây dựng nền móng cho chủ quyền cao hơn. Việc tuyên thệ trung thành với quốc vương bị bãi bỏ vào năm 1937 khi hiến pháp mới được thông qua. Điều này hoàn tất một quá trình dần ly khai khỏi đế quốc Anh được chính phủ theo đuổi từ khi độc lập. Tuy nhiên, đến năm 1949, th",
+        "left_group_id": "7376091827e5d5ed4e9cfea73b0bf6a8d9de0861691eb309bebc3d44ad38c42f",
+        "right_context_excerpt": "Tháng 12 năm 1921, Hiệp định Anh-Ireland được ký kết giữa Chính phủ Anh và các đại biểu của nghị viện Ireland khoá II. Hiệp định trao cho Ireland độc lập hoàn toàn trong nội vụ và độc lập thực tế trong chính sách ngoại giao, song có một điều khoản lựa chọn không tham gia, cho phép Bắc Ireland duy trì là bộ phận của Vương quốc Liên hiệp. Ngoài ra, nó còn yêu cầu tuyên thệ trung thành với quốc vương. Bất đồng về các điều khoản này dẫn đến phân liệt trong phong trào dân tộc và sau đó là nội chiến g",
+        "right_group_id": "e53cc872c7380ec4e6d1c795807599822b7ad60fb0064d7eea97d77e80933945",
+        "similarity": 0.4561348557472229
+      },
+      {
+        "left_context_excerpt": "Từ năm 1952 đến này, chính trường Puerto Rico có sự phân chia giữa 3 đảng phái chính đại diện cho ba xu hướng chính trị khác nhau của đất nước này. Đảng Dân chủ Nhân dân Puerto Rico (PPD) muốn duy trì hiện trạng Puerto Rico với vai trò hiện nay là một lãnh thổ thịnh vượng chung thuộc Hoa Kỳ. Đảng thứ hai, Đảng Cấp tiến Mới Puerto Rico (PNP) muốn đưa Puerto Rico trở thành một tiểu bang của Hoa Kỳ còn trong khi đó, Đảng Độc lập Puerto Rico (PIP) lại muốn vùng đất này tách ra và trở thành một quốc ",
+        "left_group_id": "e8d6447e095701f62e765aba792dff9e780337980dd42b0f6f6ce7bd3b291c2c",
+        "right_context_excerpt": "Đầu thế kỉ 20, Puerto Rico nằm dưới sự cai trị của quân đội Mỹ và thống đốc Puerto Rico đều là người được Tổng thống Mỹ chỉ định. Năm 1900, Đạo luật Foraker cho phép Puerto Rico có một số quyền lập chính phủ dân sự gồm có hạ viện do dân bầu. Đến năm 1917, Đạo luật Jones-Shafroth trao quyền công dân Mỹ cho người Puerto Rico cũng như cho phép lập ra thượng viện do dân bầu để Puerto Rico có đầy đủ một quốc hội lưỡng viện của riêng mình. Với quyền công dân Mỹ, nhiều thanh niên Puerto Rico đã tham gi",
+        "right_group_id": "a058c59fad07cc8f2f876839fd7f101182173b67347659fd707942171cc36a75",
+        "similarity": 0.45307791233062744
+      },
+      {
+        "left_context_excerpt": "Tuy nhiên, Tổ chức sức khỏe thế giới đã có thể tiếp cận với những nguy cơ đối với sức khỏe của urani nghèo tại những địa điểm đã xảy ra chiến tranh nhờ một phái đoàn năm 2001 tới Kosovo. Một báo cáo năm 2001 của WHO về urani nghèo đã kết luận: \"bởi vì urani nghèo chỉ là phóng xạ yếu, cần phải hít vào những khối lượng rất lớn bụi (ở mức độ gam) để có thể tăng nguy cơ ung thư phổi ở mức độ có thể nhận thấy trong một nhóm nguy cơ. Những nguy cơ về ung thư phóng xạ khác gồm bệnh bạch cầu, được coi l",
+        "left_group_id": "b4fdcbc13540ac336b86365d82536a957c65e5ec83b846e447708e55e87b37e9",
+        "right_context_excerpt": "Bộ Ngoại giao Hoa Kỳ cũng đã xuất bản một cuốn sách về urani nghèo. Nó tuyên bố: \"Tổ chức sức khỏe thế giới và các nghiên cứu khoa học khác đã cho thấy urani nghèo không gây ra những nguy cơ nghiêm trọng đối với sức khoẻ\" và \"urani nghèo không gây ra khuyết tật ở trẻ sơ sinh. Quân đội Iraq sử dụng các vũ khí hóa học và thần kinh trong thập kỷ 1980 và 1990 có thể là nguyên nhân gây ra cái gọi là khuyết tật ở trẻ em Iraq.\" Về những buộc tội gây ra ung thư, cuốn sách của Hoa Kỳ cho rằng \"theo những",
+        "right_group_id": "0ed5104cd17c2241bed3b4a3732fb771114dde66cae441bd271853f0e4482f3d",
+        "similarity": 0.44988203048706055
+      },
+      {
+        "left_context_excerpt": "Sự kiện dẫn tới chiến tranh là việc Iraq xâm chiếm Kuwait ngày 2 tháng 8 năm 1990, sau khi Iraq cho rằng (nhưng không chứng minh được) Kuwait đã \"khoan nghiêng\" giếng dầu của họ vào biên giới Iraq. Hậu quả của cuộc xâm chiếm là Iraq ngay lập tức bị Liên Hiệp Quốc áp đặt trừng phạt kinh tế. Những hành động quân sự bắt đầu từ tháng 1 năm 1991, dẫn tới 1 thắng lợi hoàn toàn của các lực lượng đồng minh, buộc quân đội Iraq phải rút khỏi Kuwait với tổn thất nhân mạng ở mức tối thiểu cho lực lượng đồng",
+        "left_group_id": "d2fb29c1d946072a15e833b2412364f65948e55db5db78759a4adb8978cd2d05",
+        "right_context_excerpt": "Quyết định của phương Tây nhằm đẩy lùi cuộc xâm lược của Iraq thực chất có mục đích chính là để ngăn Iraq xâm lược Ả Rập Xê Út, một nước có tầm quan trọng hơn rất nhiều so với Kuwait, như việc Iraq đã làm với Kuwait. Thắng lợi nhanh chóng của quân đội Iraq trước Kuwait khiến quân đội Iraq đã tiến đến rất gần các giếng dầu ở Hama, là nguồn tài nguyên giá trị nhất của Ả Rập Xê Út. Việc Iraq kiểm soát được các giếng dầu đó cũng như những nguồn tài nguyên dầu lửa của Iraq và Kuwait sẽ làm cho họ nắm",
+        "right_group_id": "31eff24af2990b3d171e8b5392b419b99a139143b608f8c8a2d16e752314b164",
+        "similarity": 0.4480190873146057
+      },
+      {
+        "left_context_excerpt": "Trong suốt chiến tranh Việt Nam, Đảng Nhân dân Cách mạng Việt Nam luôn tuyên bố công khai rõ ràng rằng họ là là một đảng cộng sản ở miền Nam, là tiên phong lãnh đạo Quân giải phóng Miền Nam thông qua Bộ Tư lệnh các lực lượng vũ trang miền Nam Việt nam, thành viên chủ chốt của Mặt trận cùng chung mục đích với Đảng Lao động Việt Nam là thống nhất đất nước, mang lại hòa bình cho Việt Nam, bảo vệ độc lập và dân chủ trong cả nước. Theo tài liệu Mỹ có được lúc đó quan hệ với đảng Lao động trên tình hu",
+        "left_group_id": "c14fe6223a51c26c1ffb809094c642f389dd3e05ee30ea193797fe4f045e769a",
+        "right_context_excerpt": "Tổ chức này được thành lập dưới sự hậu thuẫn và được hỗ trợ tài chính, thiết bị và nhân sự bởi nhiều bộ phận dân cư tại miền Nam Việt Nam cũng như của chính phủ và quân đội của Việt Nam Dân chủ Cộng hòa. Trước khi Chính phủ Cách mạng lâm thời Cộng hòa Miền Nam Việt Nam thành lập, Mặt trận Dân tộc Giải phóng miền Nam Việt Nam tồn tại như một chính thể và Ủy ban Trung ương hoạt động như là một chính phủ lâm thời, đại diện cho các vùng thuộc quyền kiểm soát, quản lý các vùng do Mặt trận quản lý. Ba",
+        "right_group_id": "fdb1d08f3100a39ffb76092dfd9dbc327001a866f84397e847a3654e124d58ab",
+        "similarity": 0.4469825029373169
+      },
+      {
+        "left_context_excerpt": "Các nhà khảo cổ học đã tìm thấy những dấu vết của người đứng thẳng (Homo erectus) vào thời kỳ đồ đá cũ trên lãnh thổ Việt Nam cách đây khoảng 500.000 năm; các công cụ thô sơ bằng đá và các dấu răng của con người thời tiền sử được phát hiện tại các tỉnh phía Bắc gồm Lạng Sơn, Thanh Hóa, Yên Bái, Ninh Bình và Quảng Bình. Tại các vùng phía Bắc, con người sinh sống trong các hang động đá vôi và sống bằng các hoạt động săn thú, hái lượm. Trong khi đó, tại các vùng duyên hải miền Trung như Nghệ An, co",
+        "left_group_id": "879ffc6240682e79e28e559ef54acb657c076e80aeabf0d5e3b0e3762e9f91d3",
+        "right_context_excerpt": "Đã phát hiện được các dấu vết có niên đại sớm nhất về sự định cư của con người tại Bắc Kinh trong các hang động ở Long Cốt Sơn (龙骨山) gần Chu Khẩu Điếm thuộc huyện Phòng Sơn, nơi người vượn Bắc Kinh từng sinh sống. Các hóa thạch người đứng thẳng (Homo erectus) từ các hang động này có niên đại từ 230.000 đến 250.000 năm trước. Người hiện đại (homo sapiens) thời đại đồ đá cũ cũng đã sinh sống tại khu vực Bắc Kinh, từ khoảng 27.000 năm trước. Các nhà khảo cổ học đã phát hiện những điểm định cư thời ",
+        "right_group_id": "e08c73e9223693a5536f6c87cdffca570190b728f2e76603db2f5a2504382792",
+        "similarity": 0.4451035261154175
+      },
+      {
+        "left_context_excerpt": "Trong Chiến tranh Iran-Iraq ở thập niên 1980, Kuwait là đồng minh của Iraq, phần lớn là để được Iraq bảo vệ khỏi những người Shi'ite ở Iran. Sau cuộc chiến, Iraq nợ các nước Ả Rập nhiều khoản tiền lớn, trong đó có 14 tỷ dollar nợ Kuwait. Iraq hy vọng sẽ trả được những khoản nợ đó khi làm tăng giá dầu mỏ thông qua việc cắt giảm sản lượng khai thác của OPEC, nhưng thay vào đó, Kuwait lại tăng lượng khai thác của mình khiến giá dầu giảm sút, trong một nỗ lực nhằm kích thích có được một giải pháp gi",
+        "left_group_id": "1cc1cee2e0bedfcd8959827485eb202a9b320a0eb9d318852e164b6f2263a8a8",
+        "right_context_excerpt": "Quyết định của phương Tây nhằm đẩy lùi cuộc xâm lược của Iraq thực chất có mục đích chính là để ngăn Iraq xâm lược Ả Rập Xê Út, một nước có tầm quan trọng hơn rất nhiều so với Kuwait, như việc Iraq đã làm với Kuwait. Thắng lợi nhanh chóng của quân đội Iraq trước Kuwait khiến quân đội Iraq đã tiến đến rất gần các giếng dầu ở Hama, là nguồn tài nguyên giá trị nhất của Ả Rập Xê Út. Việc Iraq kiểm soát được các giếng dầu đó cũng như những nguồn tài nguyên dầu lửa của Iraq và Kuwait sẽ làm cho họ nắm",
+        "right_group_id": "31eff24af2990b3d171e8b5392b419b99a139143b608f8c8a2d16e752314b164",
+        "similarity": 0.4447975158691406
+      },
+      {
+        "left_context_excerpt": "Cuộc điều tra không đi đến kết quả và không có lời buộc tội nào. Jackson mô tả vụ việc thông qua một buổi tuyên bố đầy xúc động, khẳng định mình hoàn toàn vô tội. Vào tháng 1 năm 1994, Jackson dàn xếp với gia đình nhà Chandler bên ngoài phiên tòa với số tiền 22 triệu đô-la Mỹ. Bồi thẩm đoàn Quận Santa Barbara và bồi thẩm đoàn Quận Los Angeles giải thể ngày 2 tháng 5 năm 1994, mà không khởi tố Jackson; nhà Chandler ngừng hợp tác điều tra vào ngày 6 tháng 7 năm 1994. Tài liệu về cuộc dàn xếp ngoài",
+        "left_group_id": "30f04958d28165a788d5d3dcfb60ad6da4095b6ef9c04d5d21de760a2f3aa886",
+        "right_context_excerpt": "Vào tháng 8 năm 1993, cảnh sát lục soát tư gia của Jackson và, theo ghi nhận của tư liệu tòa án, tìm thấy sách và ảnh những bé trai trong tình trạng không mặc quần áo ở phòng ngủ của ông. Vì những quyển sách này được sở hữu một cách hợp pháp, bồi thẩm đoàn quyết định không truy tố Jackson. Vào tháng 12 năm 1993, cảnh sát khám nghiệm cơ thể Jackson dựa theo những đặc điểm mô tả của Jordan Chandler. Dù có nhiều khác biệt giữa báo cáo nội bộ ban đầu của công tố viên và các nhà điều tra, luật sư Quậ",
+        "right_group_id": "b9caccce4ebe8995418608371dba7a5ef7780209ede77cbedae08eaf2a52cbbe",
+        "similarity": 0.44360464811325073
+      },
+      {
+        "left_context_excerpt": "Thông qua OSS, Chủ tịch Hồ Chí Minh gửi 9 bức điện cho Chính phủ Mỹ, bao gồm cả bốn bức thư tay gửi trực tiếp cho Tổng thống Mỹ Harry S. Truman đề nghị Mỹ đặt quan hệ ngoại giao với Chính phủ Lâm thời, đồng thời Mỹ và Chính phủ Lâm thời sẽ có đại diện trong Ủy ban Liên tịch các nước Đồng Minh giải quyết các vấn đề liên quan đến Việt Nam. Việt Minh hy vọng tranh thủ được sự có mặt của Mỹ trong cuộc thương lượng giữa Trung Quốc và Pháp về Đông Dương vì hai nước này có thể làm nguy hại đến nền độc ",
+        "left_group_id": "9e40ae5edfc4b00dbdef6cc0ac34e3575ae91871bd594a10f4c419fca27e118e",
+        "right_context_excerpt": "Ngoài ra, Chủ tịch Hồ Chí Minh còn gửi thư cho nhiều nguyên thủ quốc gia trên thế giới kêu gọi công nhận nhà nước Việt Nam mới được thành lập cũng như tranh thủ sự ủng hộ nhưng không nhận được hồi âm (Tổng thống Hoa Kỳ Harry S. Truman, lãnh tụ Liên Xô Stalin, Tổng thống Pháp Léon Blum, bộ trưởng Thuộc địa Pháp Marius Moutet và Nghị viện Pháp,…). Từ giữa tháng 10/1945 đến tháng 3/1946, Hồ Chí Minh đã gửi nhiều điện tín cho Tổng thống, Bộ trưởng Ngoại giao, Chủ tịch Ủy ban Đối ngoại Thượng viện Mỹ",
+        "right_group_id": "f0f999b92472f1509ed27a212a75e716924fd06310b68f0a479a9e699dd0dcde",
+        "similarity": 0.44341880083084106
+      },
+      {
+        "left_context_excerpt": "Khi Iraq đã quyết định rằng họ sẽ không tiến về phía các giếng dầu phía đông của Ả Rập Xê Út, thì không có lý do gì để các lực lượng Iraq triển khai xa hơn nữa về phía nam Thành phố Kuwait với số lượng lớn. Quyết định triển khai một lực lượng khá đông đảo quân dọc theo biên giới Kuwait càng làm tăng khoảng cách tiếp tế của quân Iraq một cách không cần thiết. Thứ hai, khi đã quyết định triển khai quân dọc biên giới, việc mở rộng nó ra càng khiến nguy cơ bị tấn công ồ ạt vào sườn. Quả thực người I",
+        "left_group_id": "215f81a6595d4361879c093b0d9627e14645041b13797ba9448d4e776569eea8",
+        "right_context_excerpt": "Quyết định của phương Tây nhằm đẩy lùi cuộc xâm lược của Iraq thực chất có mục đích chính là để ngăn Iraq xâm lược Ả Rập Xê Út, một nước có tầm quan trọng hơn rất nhiều so với Kuwait, như việc Iraq đã làm với Kuwait. Thắng lợi nhanh chóng của quân đội Iraq trước Kuwait khiến quân đội Iraq đã tiến đến rất gần các giếng dầu ở Hama, là nguồn tài nguyên giá trị nhất của Ả Rập Xê Út. Việc Iraq kiểm soát được các giếng dầu đó cũng như những nguồn tài nguyên dầu lửa của Iraq và Kuwait sẽ làm cho họ nắm",
+        "right_group_id": "31eff24af2990b3d171e8b5392b419b99a139143b608f8c8a2d16e752314b164",
+        "similarity": 0.442335307598114
+      },
+      {
+        "left_context_excerpt": "Sự kiện thể thao lớn nhất được tổ chức tại Nouvelle-Calédonie là một vòng của giải vô địch đua xe châu Á Thái Bình Dương FIA (APRC). Đội tuyển bóng đá Nouvelle-Calédonie bắt đầu thi đấu vào năm 1950, và được nhận vào FIFA vào năm 2004. Trước khi gia nhập FIFA, Nouvelle-Calédonie có vị thế quan sát viên của Liên đoàn bóng đá châu Đại Dương. Họ từng nhiều lần chiến thắng tại Đại hội Thể thao Nam Thái Bình Dương, và từng xếp thứ ba tại Cúp bóng đá châu Đại Dương. Đua ngựa cũng rất phỏ biến tại Nouv",
+        "left_group_id": "d0c85cf540c3a8a037db96d3d34bf02de583d829a530d44a46168fd31362862a",
+        "right_context_excerpt": "Loài dương xỉ lớn nhất thế giới là Cyathea intermedia cũng là loài đặc hữu của Nouvelle-Calédonie. Nó rất phổ biến trên đất có tính a xít, và mọc cao khoảng một mét mỗi năm tại duyên hải phía đông, thường là trên đất hoang hoặc trong rừng thưa. Ngoài ra còn có các loài dương xỉ mộc khác, đáng chú ý là Cyathea novae-caledoniae. Nouvelle-Calédonie cũng là một trong năm khu vực trên thế giới có các loài gỗ sồi phương nam (Nothofagus) bản địa. Nouvelle-Calédonie có kiểu rừng cây bụi riêng trên các v",
+        "right_group_id": "bf847a97aef96af61d455bcbaf25c8b461d03215fa396a94252ea92b3fe7cf78",
+        "similarity": 0.4411306381225586
+      },
+      {
+        "left_context_excerpt": "Năm 1992, Gruzia bị buộc phải chấp nhận ngừng bắn để tránh sự leo thang xung đột với Nga. Chính phủ Gruzia và những người ly khai Nam Ossetia đã đạt được một thỏa thuận ngừng sử dụng vũ lực chống lẫn nhau, và Gruzia cam kết không sử dụng các biện pháp trừng phạt chống Nam Ossetia. Tuy nhiên, chính phủ Gruzia vẫn giữ quyền kiểm soát với những phần nhỏ bên trong Nam Ossetia, gồm cả thị trấn Akhalgori. Một lực lượng gìn giữ hòa bình gồm người Ossetia, người Nga và người Gruzia được thành lập. Ngày ",
+        "left_group_id": "ed3bed1e83eacdd8f0d00469ef4d21ded8e7969bf757f880fbe6ae457cbfcebf",
+        "right_context_excerpt": "Xung đột vũ trang bùng phát hồi cuối năm 1991 trong đó nhiều làng mạc Nam Ossetia đã bị tấn công và đốt phá tương tự như nhiều ngôi nhà và trường học của người Gruzia tại Tskhinvali, thủ đô của Nam Ossetia. Hậu quả, xấp xỉ 1.000 người chết và khoảng 100.000 người Ossetia đã phải bỏ chạy khỏi lãnh thổ Gruzia, đa số qua biên giới vào Bắc Ossetia. Khoảng 23.000 người Gruzia khác cũng đã phải rời bỏ Nam Ossetia và định cư tại những khu vực khác ở Gruzia. Nhiều người dân Nam Ossetia đã tái định cư tạ",
+        "right_group_id": "5bbd08c1bbcee78975612f7782382f83880175cbd30c221f5007f1ad9035a5bd",
+        "similarity": 0.4373157024383545
+      },
+      {
+        "left_context_excerpt": "Chính phủ Việt Nam đã bổ sung thông tin về giá trị địa chất địa mạo khu vực vườn quốc gia này. Tại kỳ họp toàn thể lần thứ 27 từ 30 tháng 6 đến 5 tháng 7 năm 2003, đại diện 160 quốc gia thuộc Tổ chức Giáo dục, Khoa học và Văn hóa Liên Hiệp Quốc (UNESCO) đã công nhận Vườn Quốc gia Phong Nha-Kẻ Bàng, cùng với 30 địa danh khác trên toàn thế giới, là di sản thiên nhiên thế giới. Vườn quốc gia Phong Nha-Kẻ Bàng được UNESCO công nhận là di sản thế giới vì đạt tiêu chuẩn viii \"là ví dụ nổi bật đại diện",
+        "left_group_id": "435b98f1d9e8dcdd9270eabdf28875d952a7ae727eb21382cd4841d9413260f5",
+        "right_context_excerpt": "Trong một bức thư của Tổ chức động thực vật gửi UNESCO ngày 15 tháng 12 năm 2000 ước tính cần 4,5 tấn thuốc nổ cho mỗi km đường. Do đó việc xem xét đánh giá để công nhận là di sản thế giới đối với vườn quốc gia này không tiến triển gì hơn. Tháng 5 năm 2002, Chính phủ Việt Nam cung cấp thêm thông tin cho UNESCO về việc nâng cấp Khu bảo tồn Phong Nha-Kẻ Bàng thành Vườn quốc gia Phong Nha-Kẻ Bàng với diện tích rộng hơn hai lần đề cử trước (85.754 ha) kèm theo kế hoạch bảo tồn (quyết định của Chính ",
+        "right_group_id": "842c11c584995e702d00506e689ea29f1a9ede204502400e4abf92979fc86d2a",
+        "similarity": 0.43724167346954346
+      },
+      {
+        "left_context_excerpt": "Lập trường Việt Nam Dân chủ Cộng hòa và phía Mặt trận thường giống nhau, trừ việc Mặt trận không hề đề cập đến các chính sách cải tạo xã hội chủ nghĩa ở miền Nam. Năm 1955 và năm 1960 Miền Bắc cho thành lập các khu tự trị, có ý nghĩa trong chính sách lôi kéo người dân tộc thiểu số miền Nam đứng về phía cách mạng (khi đó chính quyền Việt Nam Cộng hòa phủ nhận sự tự trị mà Pháp trao cho các dân tộc thiểu số). Phía Mặt trận và Chính phủ Cách mạng Lâm thời cũng cho thành lập các Ủy ban tự trị dân tộ",
+        "left_group_id": "2b5d47f2e304b297c6bd61586a9d241a14f0e128cf1021567923eb467e952f37",
+        "right_context_excerpt": "Trong thời gian đầu, chính quyền Việt Nam Dân chủ Cộng hòa công nhận Chính phủ Cách mạng lâm thời Cộng hòa miền Nam Việt Nam, và không công nhận chính phủ Việt Nam Cộng hòa. Các cuộc đấu tranh ở Miền Nam giai đoạn này Việt Nam Dân chủ Cộng hòa cơ bản không kiểm soát được hoàn toàn, mà do các đảng bộ miền Nam tự chỉ đạo, có khi vượt ngoài chỉ đạo của Trung ương. Sau Hội nghị Trung ương 15 và sau này ra đời Mặt trận, Việt Nam Dân chủ Cộng hòa không công nhận Việt Nam Cộng hòa và công khai ủng hộ c",
+        "right_group_id": "1f3497da84f44756cc12f7352a38dcb1db81df94046498736173e494f407a079",
+        "similarity": 0.4362099766731262
+      },
+      {
+        "left_context_excerpt": "Khi ông đang thăm Hoa Kỳ thì Adolf Hitler lên nắm quyền vào năm 1933, do vậy ông đã không trở lại nước Đức, nơi ông đang là giáo sư ở Viện Hàn lâm Khoa học Berlin. Ông định cư tại Hoa Kỳ và chính thức trở thành công dân Mỹ vào năm 1940. Vào lúc sắp diễn ra Chiến tranh thế giới lần hai, ông đã ký vào một lá thư cảnh báo Tổng thống Franklin D. Roosevelt rằng Đức Quốc xã có thể đang nghiên cứu phát triển \"một loại bom mới cực kỳ nguy hiểm\" và khuyến cáo nước Mỹ nên có những nghiên cứu tương tự. Thự",
+        "left_group_id": "5709d2f031658f88e5a36eeb492d2978ef084567936b453c6bb9b65ffb13ef46",
+        "right_context_excerpt": "Trong cuộc Cách mạng tháng 11 ở Đức, Einstein đã ký vào một kháng nghị làm tiền đề cho đại hội tự do và dân chủ toàn quốc, được công bố ở tờ tin tức Berliner Tageblatt vào ngày 16 tháng 11 năm 1918 và ông trở thành đảng viên của Đảng Dân chủ Đức. Sau Thế chiến thứ II, khi sự thù hằn giữa các nước đồng minh cũ trở nên căng thẳng, Einstein viết, \"Tôi không biết Chiến tranh Thế giới lần thứ III người ta sẽ dùng vũ khí gì, nhưng tôi có thể nói với bạn con người có thể sử dụng vũ khí gì ở Chiến tranh",
+        "right_group_id": "fce141ded41b1a330073d773e934377a6fe0bb8a2e02e417cb54fdae98bf7998",
+        "similarity": 0.43591296672821045
+      },
+      {
+        "left_context_excerpt": "Về mặt ngoại giao, 189 trên tổng số 193 quốc gia thành viên của Liên Hiệp Quốc (ngoại trừ Nga, Venezuela, Nicaragua, và Nauru) không công nhận Nam Ossetia mà vẫn tiếp tục xem lãnh thổ này là một bộ phận của Gruzia. Gruzia vẫn giữ quyền kiểm soát với các khu vực phía đông và phía nam của vùng này, nơi mà vào tháng 4 năm 2007, họ đã lập ra một Cơ quan hành chính lâm thời thực thể Nam Ossetia) đứng đầu bởi người Ossetia (các thành viên cũ của chính phủ ly khai) có thể đàm phán với các chính quyền t",
+        "left_group_id": "ecf20e1a8c12d133ce7f1c7b147595a101cc7eb91d155b1d26f1679c5041f077",
+        "right_context_excerpt": "Xung đột vũ trang bùng phát hồi cuối năm 1991 trong đó nhiều làng mạc Nam Ossetia đã bị tấn công và đốt phá tương tự như nhiều ngôi nhà và trường học của người Gruzia tại Tskhinvali, thủ đô của Nam Ossetia. Hậu quả, xấp xỉ 1.000 người chết và khoảng 100.000 người Ossetia đã phải bỏ chạy khỏi lãnh thổ Gruzia, đa số qua biên giới vào Bắc Ossetia. Khoảng 23.000 người Gruzia khác cũng đã phải rời bỏ Nam Ossetia và định cư tại những khu vực khác ở Gruzia. Nhiều người dân Nam Ossetia đã tái định cư tạ",
+        "right_group_id": "5bbd08c1bbcee78975612f7782382f83880175cbd30c221f5007f1ad9035a5bd",
+        "similarity": 0.43285155296325684
+      },
+      {
+        "left_context_excerpt": "Gioan Phaolô II bị chỉ trích là đã cố gắng tập trung quyền lực lại về cơ quan trung ương ở Vatican, trái ngược với một số chính sách phân quyền do Giáo hoàng Gioan XXIII chủ xướng và cản trở tiến trình dân chủ hóa giáo hội. Việc này một phần thể hiện trong sự thiên kiến của Gioan Phaolô II trong việc bổ nhiệm các Giám mục khi 232 Hồng y và hơn 3.300 Giám mục do Giáo hoàng bổ nhiệm phần nhiều có tư tưởng bảo thủ gần giống như ông; và phần lớn số Hồng y trong 114 người thuộc Mật nghị bầu cử nên Bi",
+        "left_group_id": "bd2587ede60d9948c36e12459b2d342e8ce40fd1b957426d32e425ed94a094d1",
+        "right_context_excerpt": "Trong khi những người cấp tiến chỉ trích sự bảo thủ của Giáo hoàng, những tín đồ Công giáo bảo thủ lại chỉ trích những biện pháp cấp tiến của Gioan Phaolô II. Một trong những chỉ trích của nhóm bảo thủ có nội dung yêu cầu Giáo hoàng phục hồi Thánh lễ Công đồng Trent và hủy bỏ các cải cách thực hiện sau Công đồng Vaticanô II tỉ như việc sử dụng các ngôn ngữ bản địa thay thế cho tiếng La Tinh trong các nghi lễ nhà thờ La Mã, phong trào Đại Kết, và các nguyên lý về tự do tôn giáo. Ông cũng bị phe b",
+        "right_group_id": "56e0c85714b6b2c3c59d56f15e18d668c0cd5df659b2529de0fe350d40c34d77",
+        "similarity": 0.43241381645202637
+      },
+      {
+        "left_context_excerpt": "Không có những dữ liệu địa chấn hoặc về mô men quán tính hành tinh, các nhà khoa học có ít thông tin trực tiếp liên quan đến cấu trúc bên trong và địa hóa học của Sao Kim. Sự gần giống về đường kính và khối lượng riêng giữa Sao Kim và Trái Đất gợi ra khả năng chúng có cấu trúc bên trong cũng tương tự nhau: gồm lõi hành tinh, lớp phủ, và lớp vỏ. Giống như Trái Đất, lõi Sao Kim ít nhất ở trạng thái lỏng một phần bởi vì hai hành tinh có quá trình lạnh/tiêu tán nhiệt bên trong với cùng một tốc độ. Đ",
+        "left_group_id": "f5545dfb44389069bf46cc7752205ee23fcadd6f33c7987f6f0fa2a408001a52",
+        "right_context_excerpt": "Các nhà khoa học đã ngạc nhiên khi Sao Kim không có từ trường mạnh (từ trường Sao Kim gần như bằng 0) khi nó có cùng kích cỡ với Trái Đất, và họ cũng đã nghĩ nó cũng có một lõi nóng chảy-yếu tố quan trọng trong lý thuyết dynamo. Lý thuyết dynamo có ba yếu tố chính: Đó là phải có một chất lỏng dẫn điện, quay, và chuyển động đối lưu. Lõi hành tinh có khả năng dẫn điện và trong khi hành tinh tự quay rất chậm, các mô phỏng trên máy tính cho thấy nó vẫn đủ để tạo ra sự quay cần thiết trong thuyết dyn",
+        "right_group_id": "6780b9c7588351f11d1e1355722a8ba3fb05400dde4ee3ffec22cf255e0fbb39",
+        "similarity": 0.43234503269195557
+      }
+    ]
+  },
+  "train__test": {
+    "left_unique_contexts": 2693,
+    "max_similarity": 0.8559771776199341,
+    "mean_nearest_similarity": 0.23251762986183167,
+    "right_unique_contexts": 583,
+    "threshold_counts": {
+      "0.9": 0,
+      "0.95": 0,
+      "0.98": 0
+    },
+    "top_pairs": [
+      {
+        "left_context_excerpt": "Ngày 20 tháng 9 năm 1975, Bộ Chính trị ra Nghị quyết số 245-NQ/TW về việc bỏ khu, hợp tỉnh trong toàn quốc \"nhằm xây dựng các tỉnh thành những đơn vị kinh tế, kế hoạch và đơn vị hành chính có khả năng giải quyết đến mức cao nhất những yêu cầu về đẩy mạnh sản xuất, tổ chức đời sống vật chất, văn hóa của nhân dân, về củng cố quốc phòng, bảo vệ trị an, và có khả năng đóng góp tốt nhất vào sự nghiệp chung của cả nước\". Theo Nghị quyết này, tỉnh Long Châu Tiền, tỉnh Sa Đéc và tỉnh Kiến Tường sẽ hợp n",
+        "left_group_id": "f4712e5ab7293995837b47dc5d0d7f9d46786a863a005492eb0eec5524da49ad",
+        "right_context_excerpt": "Ngày 20 tháng 9 năm 1975, Bộ Chính trị ra Nghị quyết số 245-NQ/TW về việc bỏ khu, hợp tỉnh trong toàn quốc \"nhằm xây dựng các tỉnh thành những đơn vị kinh tế, kế hoạch và đơn vị hành chính có khả năng giải quyết đến mức cao nhất những yêu cầu về đẩy mạnh sản xuất, tổ chức đời sống vật chất, văn hóa của nhân dân, về củng cố quốc phòng, bảo vệ trị an, và có khả năng đóng góp tốt nhất vào sự nghiệp chung của cả nước\". Theo Nghị quyết này, tỉnh Cà Mau, tỉnh Bạc Liêu và hai huyện Vĩnh Thuận, An Biên ",
+        "right_group_id": "60a6f081247755f776c7950cda0fea4a63e27f773bc95be82d50bcd16f1a80b2",
+        "similarity": 0.8559771776199341
+      },
+      {
+        "left_context_excerpt": "Ngày nay, khu vực dịch vụ chi phối kinh tế Birmingham. Thành phố là một trung tâm thương mại quốc tế lớn, được xếp hạng là thành phố thế giới cấp gamma+; và là một trung tâm quan trọng về giao thông, mua sắm, sự kiện và hội nghị. Kinh tế vùng đô thị của Birmingham lớn thứ nhì tại Anh Quốc, có GDP đạt 121,1 tỉ USD vào năm 2014, và là trung tâm giáo dục đại học lớn thứ nhì toàn quốc sau Luân Đôn. Các thể chế văn hoá chính của Birmingham, như Dàn nhạc giao hưởng Thành phố Birmingham, Thư viện Birmi",
+        "left_group_id": "9ff096b55bb28f27817cd1a9bfabf22743bed8db1ed5a3086cf49022218bff54",
+        "right_context_excerpt": "Birmingham từng nổi bật trong vai trò là một trung tâm sản xuất và kỹ thuật, song kinh tế thành phố hiện nay do khu vực dịch vụ chi phối, đến năm 2012 khu vực này chiếm 88% số công việc của thành phố. Birmingham là trung tâm lớn nhất tại Anh Quốc về công việc trong hành chính công, giáo dục và y tế; và sau Leeds là trung tâm lớn thứ nhì ngoài Luân Đôn về công việc trong các khu vực tài chính và kinh doanh khác. Birmingham được xếp hạng là một thành phố thế giới cấp beta-, đứng sau Luân Đôn và Ma",
+        "right_group_id": "c9e2f921936efa36bce1fbd91d4f9b7bdb9f9808a38eda7c505800a945c1a3d4",
+        "similarity": 0.5603562593460083
+      },
+      {
+        "left_context_excerpt": "Theo Nghị quyết Đại hội III của Đảng Lao động Việt Nam, được đăng tải trên báo Nhân dân khi đó \"nhiệm vụ trước mắt của cách mạng miền Nam là: đoàn kết toàn dân, kiên quyết đấu tranh chống đế quốc Mỹ xâm lược và gây chiến, đánh đổ tập đoàn thống trị độc tài Ngô Đình Diệm tay sai của đế quốc Mỹ, thành lập một chính quyền liên hợp dân tộc dân chủ ở miền Nam, thực hiện độc lập dân tộc, các quyền tự do dân chủ, cải thiện đời sống nhân dân, giữ vững hòa bình, thực hiện thống nhất nước nhà trên cơ sở đ",
+        "left_group_id": "ec402184d934e1007ea6a8a896599362437516b8362bdb8ff494c3593930455e",
+        "right_context_excerpt": "Đây là tổ chức kế thừa Mặt trận Tổ quốc Việt Nam (Mặt trận của cả nước từ Bắc đến Nam) ở miền Nam (được công nhận bởi các tài liệu sau năm 1975) nhằm chống lại Hoa Kỳ và Việt Nam Cộng hòa ở miền Nam Việt Nam, ra đời trong phong trào Đồng khởi của người dân ở miền Nam Chủ trương của Mặt trận là: \"Đoàn kết toàn dân, kiên quyết đấu tranh chống đế quốc Mỹ xâm lược và gây chiến, đánh đổ tập đoàn thống trị Ngô Đình Diệm, tay sai đế quốc Mỹ; thành lập một chính quyền liên minh dân tộc dân chủ rộng rãi ",
+        "right_group_id": "f19089e6fb65ffe2ee3ee466861e8b5d95e90721b0aa496453ecdd047e700909",
+        "similarity": 0.5568084120750427
+      },
+      {
+        "left_context_excerpt": "Trong thủy văn, lưu vực thoát nước là một đơn vị hợp lý để nghiên cứu sự di chuyển của nước trong chu trình thuỷ văn, bởi vì phần lớn lượng nước thải ra từ lưu vực của lưu vực bắt nguồn từ lượng mưa rơi xuống lưu vực. Một phần nước đi vào hệ thống nước ngầm bên dưới lưu vực thoát nước có thể chảy về phía lối thoát của một lưu vực thoát nước khác vì hướng dòng chảy nước ngầm không phải lúc nào cũng phù hợp với hệ thống thoát nước nằm trên. Đo lượng nước xả ra từ lưu vực có thể được thực hiện bằng",
+        "left_group_id": "96d62a5007b85fb3c259e6f05c4dd8bf3e6ef009e0f34613f4abe169ffabafcc",
+        "right_context_excerpt": "Lưu vực là phần diện tích bề mặt đất trong tự nhiên mà mọi lượng nước mưa khi rơi xuống sẽ tập trung lại và thoát vào một lối thoát thông thường, chẳng hạn như vào sông, vịnh hoặc các phần nước khác. Các lưu vực thoát nước bao gồm tất cả các nước bề mặt từ dòng chảy mưa, tuyết, và các dòng suối gần đó chạy theo hướng dốc về phía lối thoát chung, cũng như nước ngầm dưới bề mặt trái đất. Các lưu vực thoát nước kết nối với các lưu vực thoát nước khác ở độ cao thấp theo mô hình phân cấp, với các bể ",
+        "right_group_id": "f9324e6f7b4be0162c3f129c9bb273c8c5ea6cda8020105a6c1983423fe05544",
+        "similarity": 0.5251991748809814
+      },
+      {
+        "left_context_excerpt": "Malaysia (tiếng Mã Lai: Malaysia; tiếng Trung: 马来西亚; bảng chữ cái Jawi: مليسيا; phiên âm tiếng Việt: Ma-lai-xi-a, Hán Việt: Mã Lai Tây Á) là một quốc gia quân chủ lập hiến liên bang tại Đông Nam Á. Quốc gia bao gồm 13 bang và ba lãnh thổ liên bang với tổng diện tích đất là 329.847 kilômét vuông (127.350 sq mi). Malaysia bị tách làm hai phần qua biển Đông: Malaysia bán đảo và Borneo thuộc Malaysia. Malaysia có biên giới trên bộ với Thái Lan, Indonesia, và Brunei, trong khi có biên giới trên biển ",
+        "left_group_id": "0abcda37d8dd7cdce3f346fd2cd0ef9743d18331f25f50affae8fa2d71ad4a6b",
+        "right_context_excerpt": "Malaysia là quốc gia lớn thứ 67 trên thế giới về diện tích đất liền, với 329.847 km2 (127.355 sq mi). Tây Malaysia có biên giới trên bộ với Thái Lan, Đông Malaysia có biên giới trên bộ với Indonesia và Brunei. Malaysia kết nối với Singapore thông qua một đường đắp cao hẹp và một cầu. Malaysia có biên giới trên biển với Việt Nam và Philippines. Biên giới trên bộ được xác định phần lớn dựa trên các đặc điểm địa chất, chẳng hạn như sông Perlis, sông Golok và kênh Pagalayan, trong khi một số biên gi",
+        "right_group_id": "6a57898a87701e925247b6dbc416cf033a160718121e790d36dd3a6f56aa1219",
+        "similarity": 0.5154756307601929
+      },
+      {
+        "left_context_excerpt": "Phát triển công nghiệp quy mô lớn tại Birmingham bắt đầu sớm hơn so với các thị trấn sản xuất hàng dệt vải tại miền bắc nước Anh, và có các động lực khác biệt. Thay vì kinh tế bậc thang với đặc điểm là lực lượng lao động tay nghề yếu có lương thấp, sản xuất ra một lượng lớn hàng hoá duy nhất như bông hoặc len trong các đơn vị sản xuất quy mô lớn và cơ giới hoá, thì phát triển công nghiệp của Birmingham được gây dựng trên thích ứng và sáng tạo của một lực lượng lao động được trả lương cao có phân",
+        "left_group_id": "f28789029f0c687c21db634ea1b8cd9038f43dcbb419e3180ef548c71b694dca",
+        "right_context_excerpt": "Birmingham là một phố chợ cỡ trung bình vào thời kỳ trung cổ, sau đó trở nên nổi bật ở tầm quốc tế trong thế kỷ 18 khi là trọng tâm trong Khai sáng Midlands rồi cách mạng công nghiệp. Trong cách mạng công nghiệp, Birmingham đi tiên phong trong các tiến bộ toàn cầu về phát triển khoa học, kỹ thuật, và kinh tế, sản sinh hàng loạt sáng kiến giúp đặt một phần nền tảng cho xã hội công nghiệp hiện đại. Đến năm 1791, Birmingham được ca ngợi là \"thị trấn sản xuất đầu tiên trên thế giới\". Thành phố có hồ",
+        "right_group_id": "c8fa729f4747c61ca17f4bd7b8c1002e413d08947e66e95aa63a8aba7b6d99f4",
+        "similarity": 0.5070862174034119
+      },
+      {
+        "left_context_excerpt": "Trong năm 2016, Roma được xếp thứ 14 trong những thành phố có nhiều du khách viếng thăm nhất thế giới, riêng tại Liên minh châu Âu đứng thứ 3, đồng thời cũng là điểm du lịch thu hút du khách phổ biến nhất ở Ý . Thành phố Roma là một trong những \"thương hiệu\" thành phố thành công nhất tại châu Âu và trên toàn thế giới, cả về danh tiếng lẫn tài sản. Khu trung tâm mang tính lịch sử của Roma được UNESCO công nhận là Di sản Thế giới. Những di tích và bảo tàng như Bảo tàng Vatican và đấu trường La Mã ",
+        "left_group_id": "6a329d1a4ffdd83eb9ca4dbe8f758b04e45e8164d8d54303419d06fd7d3e33f8",
+        "right_context_excerpt": "Roma ngày nay là một trong những điểm đến du lịch quan trọng nhất của thế giới, điều này là sự rộng lớn đa dạng của kho tàng khảo cổ và nghệ thuật tại đây, cũng như do nét thu hút của những truyền thống độc nhất tại đây, do vẻ đẹp toàn cảnh và sự uy nghi tráng lệ của những căn biệt thự (công viên). Giá trị nhất ở Roma là số lượng bảo tàng lớn (Bảo tàng Capitolini, Bảo tàng Vatican, Nhà triển lãm Borghese, lưu trữ những gì liên quan đến cả nghệ thuật đương đại và hiện đại cùng rất nhiều những thứ",
+        "right_group_id": "8aa452eea625b86fef6ab4b961afdbb0a89cd0647bd4b500eac0099bbd6fac8d",
+        "similarity": 0.5032486319541931
+      },
+      {
+        "left_context_excerpt": "Sau khi triều Minh diệt vong, tại phương nam vẫn còn thế lực, sử xưng Nam Minh. Thế lực chủ yếu của Nam Minh có Tứ hệ vương: Phúc vương Chu Do Tung, Lỗ vương Chu Dĩ Hải, Đường vương Chu Duật Kiện và Chu Duật Việt (𨮁), Quế vương Chu Do Lang. Sau khi Nam Minh diệt vong, còn có chính quyền Minh Trịnh do Trịnh Thành Công kiến lập, và Quỳ Đông thập tam gia kháng Thanh. Năm 1644, sau khi Bắc Kinh bị Lý Tự Thành chiếm lĩnh, đại thần Nam Minh có ý ủng hộ hoàng tộc Bắc phạt. Trải qua nhiều lần thảo luận,",
+        "left_group_id": "0c46e7aec5ee6bc2134e8550158f3bcdc68d9dd2102ccc669b87c856481fa8ee",
+        "right_context_excerpt": "Sau khi Hoằng Quang Đế bị giết, Lỗ vương Chu Dĩ Hải tại Thiệu Hưng xưng là giám quốc, Đường vương Chu Duật Kiện được đám Trịnh Chi Long ủng hộ xưng đế tại Phúc Châu, tức Long Vũ Đế. Tuy nhiên, hai thế lực chủ yếu này của Nam Minh không thừa nhận địa vị của bên kia và đánh lẫn nhau. Long Vũ Đế liên tục đề nghị đưa quân Bắc phát, song không được Trịnh Chi Long ủng hộ nên cuối cùng không thành. Năm 1646, quân Thanh phân biệt chiếm lĩnh Chiết Giang và Phúc Kiến, Lỗ vương Chu Dĩ Hải đào vong trên biể",
+        "right_group_id": "62a984a5a08f0067b1520c3f7173ccdb3378a3224e4eb55086599a9145244bc3",
+        "similarity": 0.4869157075881958
+      },
+      {
+        "left_context_excerpt": "Hai quần đảo Madeira và Açores là hai vùng tự trị của Bồ Đào Nha. Madeira nằm trên mảng kiến tạo châu Phi, gồm đảo lớn Madeira, Porto Santo và quần đảo Selvagens nhỏ hơn. Açores nằm giữa nơi giao nhau của các mảng châu Phi, châu Âu và Bắc Mỹ, trên sống núi giữa Đại Tây Dương và gồm có chín đảo. Hai nhóm đảo đều có nguồn gốc núi lửa, hoạt động núi lửa và địa chấn lịch sử vẫn tồn tại cho đến ngày nay. Đỉnh cao nhất của Bồ Đào Nha là núi Pico trên đảo Pico thuộc Açores. Açores thỉnh thoảng phải chị",
+        "left_group_id": "4cd4795f56464c2b58dd8e13eb0bc5bf4e4317913c62e912641239d235451308",
+        "right_context_excerpt": "Hai quần đảo Açores và Madeira đều có khí hậu cận nhiệt đới, song tồn tại khác biệt giữa các đảo, khiến dự báo khí hậu rất khó khăn. Madeira và Açores có biến thiên nhiệt độ thấp, và nhiệt độ trung bình năm vượt 20°C dọc theo bờ biển. Một số đảo tại Açores có các tháng khô hạn hơn vào mùa hè. Quần đảo Selvagens là lãnh thổ cực nam của Bồ Đào Nha, được phân loại là thuộc khí hậu hoang mạc với lượng mưa trung bình năm khoảng 150 mm. Nhiệt độ mặt nước biển quanh các quần đảo dao động từ 17-18°C vào",
+        "right_group_id": "f87f505d40262e711a03a254f39d4cfbeba00490834f6b9e6d9caead7c8254c7",
+        "similarity": 0.48181676864624023
+      },
+      {
+        "left_context_excerpt": "Do khả năng chống ăn mòn tốt của zirconi nên nó thường được sử dụng như là tác nhân tạo hợp kim trong các vật liệu phải chịu tác động của môi trường có tính ăn mòn cao, chẳng hạn như các loại vòi, các dụng cụ phẫu thuật, kíp nổ, các chất thu khí và các sợi của ống chân không. Điôxít zirconi (ZrO2) được sử dụng trong các nồi nấu phòng thí nghiệm, lò luyện kim, cũng như là vật liệu chịu lửa. Zircon (ZrSiO4) được cắt thành đá quý để sử dụng trong ngành kim hoàn. Cacbonat zirconi ngậm nước (3ZrO2•CO",
+        "left_group_id": "e8d86c588204d6e5d2a276ddb7b19b143039e368c96409de925ae385f62fb2df",
+        "right_context_excerpt": "Là một kim loại chuyển tiếp, zirconi tạo thành nhiều hợp chất vô cơ, như điôxít zirconi (ZrO2). Hợp chất này còn gọi là zirconia, có khả năng chống đứt gãy hiếm có và khả năng chống ăn mòn cao, đặc biệt là khi ở dạng hình hộp. Các tính chất này làm cho zirconia là hữu ích khi làm lớp che phủ cản nhiệt, và nó cũng là vật liệu thay thế phổ biến cho kim cương. Tungstat zirconi là một loại vật chất bất thường ở chỗ nó co lại khi bị nung nóng thay vì giãn nở ra như ở các vật liệu khác. Các hợp chất v",
+        "right_group_id": "1b840560e86f6b39b4a46cdc1baffbb1e5101d362fddc2029cdcad1396037187",
+        "similarity": 0.4805344343185425
+      },
+      {
+        "left_context_excerpt": "Các chiến binh Ba Tư cắm trại trên một vùng đồng bằng rộng lớn nơi họ tận dụng được sức mạnh của Kị binh. Nhưng nhiều tuần trôi qua mà không thấy Alexandros, lúc đó đang hồi phục sức khỏe sau trận ốm, không động binh nên những bầy tôi xu nịnh vua Darius rằng quân Hy Lạp đã quá khiếp sợ không dám giao tranh. Vì thế Darius nên dẫn quân đến Issus để cắt đường rút chạy của Alexandros. Darius dẫn quân đến Issus đúng lúc Alexandros tiến quân vào Syria để đương đầu với ông ta, vì thế cả hai đạo quân đề",
+        "left_group_id": "f053062b66550fb5a3057a350475a4bb95d8edfac4e5cc4fd86c584b4993c889",
+        "right_context_excerpt": "Vua Darius vội vã rút quân ra khỏi Issus khi nhận thấy địa hình gồ ghề khiến kị binh trở nên vô dụng và quân đội của ông ta bị chia tách, còn quân Hy Lạp giành được lợi thế. Nhưng trước khi Darius thoát được cái bẫy của chính mình thì Alexandros đã đến nơi. Alexandros tự mình chỉ huy cánh phải nghiền nát cánh trái của quân Ba Tư. Trong trận này quân Ba tư mất tới 11 vạn người. Còn Darius tháo chạy khỏi trận đánh trong hoảng loạn bỏ lại vợ là Stateira I, hai con gái, mẹ già, và phần lớn của cải c",
+        "right_group_id": "d2048ef5d95975f610f5da8d27b7a09471e248aefae5ff2892ad33015f239a34",
+        "similarity": 0.46468639373779297
+      },
+      {
+        "left_context_excerpt": "Tại miền Bắc, các chính quyền địa phương được lệnh phát hiện, bắt giữ và bắt giam những người Trotskyist tuy Chính phủ Việt Nam Dân chủ Cộng hòa không ra văn bản nào cấm lực lượng này hoạt động. Đến năm 1946, những người Trotskyist tại miền Bắc không còn là mối lo ngại đối với chính quyền hoặc không còn người Trotskyist nào bị phát hiện. Trên báo chí, từ Trotskyist vẫn tiếp tục xuất hiện là để cảnh cáo những nhân viên nhà nước công khai phàn nàn đồng lương không đủ sống hay những người dám đấu t",
+        "left_group_id": "73570c7f39943c58bac60ef7f9775e907cf8bb81780026f6f2bc64a4f32da4fb",
+        "right_context_excerpt": "Ngay sau đó, Dương Bạch Mai bắt giam những người Trotskyist tại Sài Gòn. Binh lính Anh tìm thấy họ đêm 22/9/1945 và giao nộp cho người Pháp. Sau khi được thả, những người Trotskyist tổ chức tấn công quân Anh, Pháp theo lời kêu gọi Nam Bộ kháng chiến của Ủy ban Kháng chiến Nam Bộ do Trần Văn Giàu đứng đầu. Trong một đợt tổng rút quân của lực lượng kháng chiến Nam Bộ giữa tháng 10/1945, Đảng cộng sản Đông Dương đã truy lùng, bắt giữ hoặc xử bắn khoảng 20 lãnh đạo quan trọng của phe Trotskyist. Ngu",
+        "right_group_id": "8de5549c178a38db541bf10e1ba0f11f0fd69a3dab0b31c2e2156c82108ef5a3",
+        "similarity": 0.4621328115463257
+      },
+      {
+        "left_context_excerpt": "Trung Quốc Quốc dân Đảng sử dụng Việt Nam Quốc dân Đảng để phục vụ lợi ích của họ tại miền nam Trung Quốc và Đông Dương. Tướng quân Trương Phát Khuê tại Quảng Tây lập ra Việt Nam Cách mệnh Đồng minh Hội (Việt Cách) vào năm 1942. Quân đội Vân Nam của Trung Quốc Quốc dân Đảng chiếm đóng miền Bắc Việt Nam sau khi Nhật Bản đầu hàng vào năm 1945, Việt Nam Quốc dân Đảng với danh nghĩa bản thân phản đối đảng cộng sản của Hồ Chí Minh. Việt Nam Quốc dân Đảng chống đối chính phủ Ngô Đình Diệm thời kỳ Chiế",
+        "left_group_id": "a6d05baf12d5b45c582987293219aa56cab96684913d9d588b5e9cad6109b699",
+        "right_context_excerpt": "Trong suốt thời gian chiến tranh thế giới thứ II, nhờ có Việt Nam Cách mệnh Đồng minh Hội (Việt Cách) mà các đảng phái chống thực dân Pháp lưu vong tại miền Nam Trung Quốc nhận được sự công nhận và hỗ trợ của tướng Trương Phát Khuê, tư lệnh quân khu IV (Quảng Đông - Quảng Tây). Tuy nhiên, từ tháng 5/1945, Hồ Chí Minh lãnh đạo Việt Minh hoạt động tại các tỉnh biên giới Việt Nam - Trung Quốc mà không lấy danh nghĩa Việt Cách khiến tướng Tiêu Văn (cấp dưới của Trương Phát Khuê phụ trách vấn đề Đông",
+        "right_group_id": "01ee0d7a2bfd30d63673fde409ec750f8450e49687ce81da5517a91f62dc7613",
+        "similarity": 0.46145033836364746
+      },
+      {
+        "left_context_excerpt": "Theo nghĩa rộng, các chương trình giải trí mang tính giáo dục phải có chủ định lồng ghép các trò chơi máy tình và phần mềm giáo dục thành một sản phẩm (do đó có thể bao gồm nhiều chức năng quan trọng được thiết kế dựa trên các phần mềm dạy trẻ em). Trong phạm vi hẹp hơn được sử dụng ở đây, là các phần mềm giáo dục mà chúng mang tính giải trí nhưng phải hướng đến giáo dục và có phần quản lý của cơ quan giáo dục. Các phần mềm kỉểu này không được cấu trúc theo chương trình ở trường, thông thường kh",
+        "left_group_id": "376eadc44913c236799d2b3b827763ad0c7d6830d21ba86a2466886cb15abf89",
+        "right_context_excerpt": "Một phần lớn các chức năng có thể chạy với tốc độ 1000s được phát triển và phân phối từ giữa 1990 đến nay có mục đính chính là giáo dục tại nhà cho trẻ nhỏ. Sau đó các chức năng này bắt đầu gắn kết nội dung giáo dục với các môn học trong nhà trường (như là chương trình giáo dục quốc gia của Anh). Việc thiết kế các phần mềm giáo dục tại nhà đã bị ảnh hưởng mạnh mẽ bởi khái niệm trò chơi trên máy tính – nói cách khác, chúng được thiết kế để giải trí cũng như là để giáo dục. Tuy nhiên, ở mức độ nhấ",
+        "right_group_id": "3c2e88fdf7981b1f9d90894cf3378d41470938d304ed2c1cbb50cd54fde30758",
+        "similarity": 0.4580613970756531
+      },
+      {
+        "left_context_excerpt": "Đến thế kỷ 1, tầng lớp quý tộc Parthia đã nắm nhiều quyền lực và có ảnh hưởng lớn trong việc chọn người kế vị hay lật đổ các vị vua Arsaces Một số quý tộc có vai trò như cố vấn triều đình cho nhà vua, cũng như các giáo sĩ thần thánh. Trong số những đại gia tộc cao quý của Parthia được liệt kê vào lúc bắt đầu thời kỳ Sasania, chỉ có hai trong số đó được đề cập cụ thể trong các văn bản trước đó của Parthia: Gia tộc Suren và gia tộc Karen. Nhà sử học Plutarch lưu ý rằng các thành viên của gia tộc S",
+        "left_group_id": "bfc9a87d09f44c54e95ae45c389f19aedff0c8cc554fa2fed7d3d5f8ef59af46",
+        "right_context_excerpt": "Hiện nay vẫn chưa rõ ràng rằng ai là người đã trực tiếp kế vị Arsaces I sau đó, Bivar và Katouzian khẳng định rằng đó là em trai của ông Tiridates I của Parthia, ông ta sau đó đã tiếp tục được kế vị bởi con trai của mình là Arsaces II của Parthia vào năm 211 trước Công nguyên. Tuy nhiên, Curtis và Brosius cho rằng Arsaces II là người đã trực tiếp kế vị Arsaces I, cùng với đó Curtis tuyên bố rằng sự kế vị đã diễn ra vào năm 211 trước Công nguyên và Brosius cho là trong năm 217 trước Công nguyên. ",
+        "right_group_id": "989ce99c2cce997797c12223fb440b480a5d8dae68fe73a40fd2972c5db7981e",
+        "similarity": 0.4573185443878174
+      },
+      {
+        "left_context_excerpt": "Sự hình thành của nội nhũ bắt đầu từ nhân nội nhũ. Sự phân chia của nó luôn luôn bắt đầu trước sự phân chia của tế bào trứng, và vì thế có sự chuẩn bị đúng lúc cho sự nuôi dưỡng phôi non. Nếu túi phôi hẹp thì sự hình thành của nội nhũ tiến hành trong khoảng các đường phân chia tế bào, nhưng trong các túi phôi rộng thì nội nhũ được hình thành trước mọi thứ như là một lớp tế bào trần trụi xung quanh tường bao của túi, và chỉ dần dần thu được đặc trưng của đa tế bào, tạo ra mô điền đầy túi phôi. Ch",
+        "left_group_id": "0233daf14a71e4c7c0c16ae333cffb7095e2573f4198e3b5ea679e5cb0cf5c7d",
+        "right_context_excerpt": "Do sự phát triển của phôi và nội nhũ diễn ra trong túi phôi, thành của chúng phình to lên và thông thường chúng hấp thụ các chất của phôi tâm để đạt tới gần như giới hạn ngoài của nó, đồng thời kết hợp với nó và vỏ bọc để tạo ra vỏ hạt; hoặc là toàn bộ phôi tâm và thậm chí cả vỏ bọc cũng có thể bị hấp thụ. Ở một số thực vật thì phôi tâm không bị hấp thụ như vậy, nhưng tự nó trở thành nơi tích lũy thức ăn dự trữ tạo ra ngoại nhũ và nó có thể cùng tồn tại với nội nhũ, chẳng hạn như ở bộ hoa Súng, ",
+        "right_group_id": "a6556ad4528172726a8a4cb7237423837882dc4fd09245326257e8a2e067ee36",
+        "similarity": 0.45654958486557007
+      },
+      {
+        "left_context_excerpt": "Kết quả của sự thụ phấn là sự phát triển của noãn thành hạt. Bằng cách phân chia tế bào trứng đã thụ phấn, hiện được bao phủ trong màng tế bào, thì thực vật-phôi được sinh ra. Một lượng thay đổi của các \"bức thành\" phân chia theo chiều ngang biến đổi chúng thành mầm phôi - một dãy tế bào trong đó tế bào gần nhất với màng bao noãn sẽ gắn liền với đỉnh của túi phôi, và như thế nó cố định vị trí của phôi đang phát triển, trong khi tế bào cuối cùng được chứa trong khoang của nó. Ở thực vật hai lá mầ",
+        "left_group_id": "9fa78c44fc87cdb209eb034e75fc0ac2b0f39ae8755880fa9857e380d905e198",
+        "right_context_excerpt": "Do sự phát triển của phôi và nội nhũ diễn ra trong túi phôi, thành của chúng phình to lên và thông thường chúng hấp thụ các chất của phôi tâm để đạt tới gần như giới hạn ngoài của nó, đồng thời kết hợp với nó và vỏ bọc để tạo ra vỏ hạt; hoặc là toàn bộ phôi tâm và thậm chí cả vỏ bọc cũng có thể bị hấp thụ. Ở một số thực vật thì phôi tâm không bị hấp thụ như vậy, nhưng tự nó trở thành nơi tích lũy thức ăn dự trữ tạo ra ngoại nhũ và nó có thể cùng tồn tại với nội nhũ, chẳng hạn như ở bộ hoa Súng, ",
+        "right_group_id": "a6556ad4528172726a8a4cb7237423837882dc4fd09245326257e8a2e067ee36",
+        "similarity": 0.4542343020439148
+      },
+      {
+        "left_context_excerpt": "Sự gia tăng bức xạ tia cực tím từ mặt trời – hậu quả của lỗ thủng ozon Nam Cực, đã làm suy giảm hiệu suất của thực vật phù du tới 15% và làm tổn thương ADN của một số loài cá. Việc đánh bắt hải sản bất hợp pháp, không báo cáo và không bị kiểm soát, đặc biệt là loài Dissostichus eleginoides bị đánh bắt ước tính gấp năm đến sáu lần vượt mức quy định, rất có thể ảnh hưởng tới tính bền vững của các loài. Cách thức đánh bắt cá bằng dây dài (longline fishing) gây tỉ lệ tử vong cao cho các loài chim bi",
+        "left_group_id": "f3df12f445a7a50063115da1c4d701f23291629bd8dc497058136f71fba950cd",
+        "right_context_excerpt": "Chi Dissostichus có hai loài, Dissostichus mawsoni và Dissostichus eleginoides. Cả hai sống ở dưới đáy có độ sâu dao động từ 100–3.000 m (328–9.843 ft) và có thể sinh trưởng tới chiều dài 2 m (7 ft), cân nặng 100 kg (220 lb) cùng tuổi thọ 45 năm. Trong khi loài Dissostichus mawsoni sống gần lục địa Nam Cực thì loài Dissostichus eleginoides lại sống ở vùng nước cận Nam Cực tương đối ấm hơn. Để đối phó với nhiệt độ nước biển thấp quanh lục địa Nam Cực, loài Dissostichus mawsoni sở hữu protein chốn",
+        "right_group_id": "2c3d39ddaa7af9e22ab2765048ab8583842ce5138029cbc5a7cc9df35ab78ed5",
+        "similarity": 0.4528641700744629
+      },
+      {
+        "left_context_excerpt": "Sau sự thay đổi từ thể chế cộng hòa sang chế độ Nguyên thủ, Viện nguyên lão mất đi nhiều quyền lực cũng như uy tín của mình. Sau những cải cách của hoàng đế Diocletianus, Viện nguyên lão trở thành một thực thể không liên quan tới chính trị, và cũng không bao giờ lấy lại được quyền lực vốn có trước kia. Khi thủ đô của đế quốc chuyển khỏi Roma, chức năng của Viện giảm xuống chỉ còn như một bộ phận của chính quyền. Điều này càng trở nên rõ rệt hơn khi hoàng đế Constantius II thành lập một nghị viện",
+        "left_group_id": "ff9f67733eeb431a09a7eac1ff8a2defaf30668e8a7dd022dcb36874faf98321",
+        "right_context_excerpt": "Hoàng đế Diocletianus sau đó đã ổn định tình hình đế quốc và thiết lập hệ thống phân chia quyền lực giữa bốn vị đồng Hoàng đế (gọi là Tứ đầu chế). Sau thời ông tình hình đế quốc lại trở nên bất ổn, nhưng trật tự sau đó lại được Constantinus I - vị Hoàng đế đầu tiên theo Ki-tô giáo và là người thành lập tân đô của đế quốc ở phía Đông là Constantinopolis - lập lại. Trong các thập kỷ sau đế quốc thường được phân chia theo một trục Đông-Tây (Constantinopolis/Roma). Theodosius I là hoàng đế cuối cùng",
+        "right_group_id": "ec98be689aae774e8ae17698c0c66a6c6e265360c86312aeef5b6850c9b82f8f",
+        "similarity": 0.45242398977279663
+      },
+      {
+        "left_context_excerpt": "Ẩm thực của Malaysia phản ánh đặc điểm đa dân tộc của quốc gia. Nhiều nền văn hóa đến từ bên trong quốc gia và các khu vực xung quanh có ảnh hưởng lớn đến với ẩm thực Malaysia. Phần lớn ảnh hưởng đến từ văn hóa Mã Lai, Trung Hoa, Ấn Độ, Thái Lan, Java, và Sumatra, phần lớn là do quốc gia là một phần của con đường hương liệu cổ đại. Ẩm thực Malaysia rất tương đồng với ẩm thực Singapore và Brunei, và cũng mang các đặc điểm tương tự với ẩm thực Philippines. Các bang khác nhau có sự biến đổi về món ",
+        "left_group_id": "3f923bb40f5c66d988e1f9dbdaa1016daf8fcc7e03cdeb8ccc8f8b34951786ba",
+        "right_context_excerpt": "Malaysia là quốc gia lớn thứ 67 trên thế giới về diện tích đất liền, với 329.847 km2 (127.355 sq mi). Tây Malaysia có biên giới trên bộ với Thái Lan, Đông Malaysia có biên giới trên bộ với Indonesia và Brunei. Malaysia kết nối với Singapore thông qua một đường đắp cao hẹp và một cầu. Malaysia có biên giới trên biển với Việt Nam và Philippines. Biên giới trên bộ được xác định phần lớn dựa trên các đặc điểm địa chất, chẳng hạn như sông Perlis, sông Golok và kênh Pagalayan, trong khi một số biên gi",
+        "right_group_id": "6a57898a87701e925247b6dbc416cf033a160718121e790d36dd3a6f56aa1219",
+        "similarity": 0.4493635892868042
+      },
+      {
+        "left_context_excerpt": "Lịch sử của đất nước Puerto Rico bắt đầu với những cộng đồng da đỏ bản địa, trong đó người Taino có một nền văn hóa khá phát triển và chiếm ưu thế tại hòn đảo trong thời gian dài. Năm 1493, Christopher Columbus đặt chân đến Puerto Rico trong chuyến hành trình thứ hai đến Tân thế giới. Hòn đảo này nhanh chóng được sáp nhập thành một thuộc địa của Đế chế Tây Ban Nha và những người dân da đỏ Taino dần dần bị tiêu diệt và thay thế bởi người châu Âu da trắng và các nô lệ da đen đến từ châu Phi. Trong",
+        "left_group_id": "c677986d5e390305e4301488a83ad69135e59bb6aa616c10288dc3d20c8ede05",
+        "right_context_excerpt": "Người Tây Ban Nha nhanh chóng chiếm toàn bộ đảo Puerto Rico làm thuộc địa. Những người thổ dân Taino hoặc bị giết trong những trận chiếm đẫm máu mà ưu thế thuộc về người Tây Ban Nha hay những bệnh dịch chết người từ châu Âu mà họ chưa tiếp xúc bao giờ, hoặc bị người Tây Ban Nha bắt làm nô lệ. Dân số Taino sụt giảm nhanh chóng đã buộc người Tây Ban Nha phải buôn nô lệ da đen từ châu Phi sang làm việc. Puerto Rico do vị trí địa lý chiến lược của mình trở thành một pháo đài phòng thủ quan trọng cho",
+        "right_group_id": "39dc5266b3b3e9c401875c1491a7a5385378c4f88d25dd77dae7d078b89be826",
+        "similarity": 0.44707608222961426
+      },
+      {
+        "left_context_excerpt": "Trong thế kỷ 18, truyền thống độc lập về tư tưởng và cộng tác này thăng hoa thành hiện tượng văn hoá gọi là Khai sáng Midlands. Thị trấn phát triển thành một trung tâm nổi bật về hoạt động văn chương, âm nhạc, nghệ thuật và sân khấu; và các công dân hàng đầu của thị trấn – đặc biệt là các thành viên của Hội Mặt trăng Birmingham – trở thành những người tham gia có ảnh hưởng vào việc lan truyền các tư tưởng triết học và khoa học khắp giới tinh hoa tri thức châu Âu. Quan hệ mật thiết giữa các nhà t",
+        "left_group_id": "a6f3dcd8dec45f5d7ab3efbdd4039b92d24d4920b08585be9fa4e4b63c17fb72",
+        "right_context_excerpt": "Birmingham là một phố chợ cỡ trung bình vào thời kỳ trung cổ, sau đó trở nên nổi bật ở tầm quốc tế trong thế kỷ 18 khi là trọng tâm trong Khai sáng Midlands rồi cách mạng công nghiệp. Trong cách mạng công nghiệp, Birmingham đi tiên phong trong các tiến bộ toàn cầu về phát triển khoa học, kỹ thuật, và kinh tế, sản sinh hàng loạt sáng kiến giúp đặt một phần nền tảng cho xã hội công nghiệp hiện đại. Đến năm 1791, Birmingham được ca ngợi là \"thị trấn sản xuất đầu tiên trên thế giới\". Thành phố có hồ",
+        "right_group_id": "c8fa729f4747c61ca17f4bd7b8c1002e413d08947e66e95aa63a8aba7b6d99f4",
+        "similarity": 0.4462556838989258
+      },
+      {
+        "left_context_excerpt": "Thổ Nhĩ Kỳ là một nước cộng hòa dân chủ, thế tục, đơn nhất, và lập hiến với một di sản văn hóa đa dạng. Ngôn ngữ chính thức của quốc gia là tiếng Thổ Nhĩ Kỳ, đây là ngôn ngữ tự nhiên của xấp xỉ 85% cư dân. 70-80% dân số thuộc dân tộc Thổ Nhĩ Kỳ; phần còn lại gồm các dân tộc thiểu số như người Kurd. Đại đa số cư dân là tín đồ Hồi giáo. Thổ Nhĩ Kỳ là một thành viên của Liên Hiệp Quốc, NATO, OECD, OSCE, OIC và G-20. Sau khi trở thành một trong các thành viên đầu tiên của Ủy hội châu Âu vào năm 1949",
+        "left_group_id": "5cb7350cc331f7bcac4a74f6fd8a1f01d09a331100e07db338107bcce15152bd",
+        "right_context_excerpt": "Phù hợp với truyền thống định hướng phương Tây của mình, quan hệ với châu Âu luôn là một bộ phận trung tâm trong chính sách đối ngoại của Thổ Nhĩ Kỳ. Thổ Nhĩ Kỳ trở thành một trong các thành viên đầu tiên của Ủy hội châu Âu vào năm 1949, thỉnh cầu về quyền thành viên liên kết của EEC vào năm 1959 và trở thành một thành viên liên kết vào năm 1963. Sau nhiều thập niên đàm phán chính trị, Thổ Nhĩ Kỳ thỉnh cầu về quyền thành viên đầy đủ của EEC vào năm 1987, trở thành một thành viên liên kết của Liê",
+        "right_group_id": "249c05650cb708a180fe77cfceb60f45788cfa670b34e4db21afe4d3862d096e",
+        "similarity": 0.44586455821990967
+      },
+      {
+        "left_context_excerpt": "Cuộc tiến công của Liên Hiệp Quốc gây lo ngại rất lớn cho Trung Quốc. Họ lo lắng lực lượng Liên Hiệp Quốc sẽ không dừng lại ở Sông Áp Lục là ranh giới giữa Triều Tiên và Trung Quốc mà sẽ mở rộng chiến tranh vào lãnh thổ Trung Quốc. Nhiều người ở Tây phương bao gồm Tướng MacArthur nghĩ rằng mở rộng chiến tranh vào Trung Quốc là cần thiết. Tuy nhiên, Truman và những nhà lãnh đạo khác không đồng ý, và MacArthur được lệnh phải cẩn trọng khi tiến tới biên giới Trung Quốc. Dần dần, MacArthur không còn",
+        "left_group_id": "d28a37cc71dfdd3bfa88775d0eef45d2b4a9e5fea7a2085fa6b0ce4cc0f99560",
+        "right_context_excerpt": "Trung Quốc cảnh cáo các nhà lãnh đạo Hoa Kỳ qua các nhà ngoại giao trung lập rằng họ sẽ can thiệp để bảo vệ nền an ninh quốc gia. Truman xem các lời cảnh báo này như \"một mưu toan táo bạo để hù dọa Liên Hiệp Quốc\" và không coi trọng nó lắm. Ngày 15 tháng 10 năm 1950, Truman đến Đảo Wake để họp ngắn ngủi với MacArthur. Cục Tình báo Trung ương Mỹ trước đây có cho Truman biết rằng việc Trung Quốc tham chiến là không thể xảy ra. MacArthur suy đoán rằng có ít rủi ro về một cuộc chiến với Trung Quốc. ",
+        "right_group_id": "b8e479e237bbe55dcc3e2d4bd53e4da4ba211bd0aadf0e2999cd8d1932e4a408",
+        "similarity": 0.44557154178619385
+      },
+      {
+        "left_context_excerpt": "Từ năm 1952 đến này, chính trường Puerto Rico có sự phân chia giữa 3 đảng phái chính đại diện cho ba xu hướng chính trị khác nhau của đất nước này. Đảng Dân chủ Nhân dân Puerto Rico (PPD) muốn duy trì hiện trạng Puerto Rico với vai trò hiện nay là một lãnh thổ thịnh vượng chung thuộc Hoa Kỳ. Đảng thứ hai, Đảng Cấp tiến Mới Puerto Rico (PNP) muốn đưa Puerto Rico trở thành một tiểu bang của Hoa Kỳ còn trong khi đó, Đảng Độc lập Puerto Rico (PIP) lại muốn vùng đất này tách ra và trở thành một quốc ",
+        "left_group_id": "e8d6447e095701f62e765aba792dff9e780337980dd42b0f6f6ce7bd3b291c2c",
+        "right_context_excerpt": "Puerto Rico là một lãnh thổ chưa hợp nhất của Hoa Kỳ theo thể chế cộng hòa. Tất cả các quyền lực hiện tại của Puerto Rico là do Quốc hội Hoa Kỳ ủy quyền. Puerto Rico thiếu sự bảo vệ toàn phần từ Hiến pháp Hoa Kỳ vì không phải là một tiểu bang của Hoa Kỳ. Người đứng đầu nhà nước của Puerto Rico là tổng thống Mỹ. Chính quyền Puerto Rico theo chế độ cộng hòa, được tổ chức theo hệ thống tam quyền phân lập gồm ba nhánh: lập pháp, hành pháp và tư pháp. Nhánh hành pháp được đứng đầu bởi thống đốc Puert",
+        "right_group_id": "4dba14008023355be45d6eee65be7cc82322bd0e45b56d91e15879cef866f49c",
+        "similarity": 0.4380874037742615
+      },
+      {
+        "left_context_excerpt": "Bên cạnh đó, Đảng Lao động bề ngoài vẫn thừa nhận Đảng Nhân dân Cách mạng có tính độc lập tuy nhiên sau này thừa nhận Trung ương Cục là đại diện Đảng Lao động tại miền Nam. Lập trường quốc tế nói chung đa số vẫn thừa nhận Việt Nam có hai chính quyền ở hai miền theo mô hình nhà nước liên bang chứ không nói là hai nước theo cách hiểu thông thường, và sau nhiều nước thừa nhận Cộng hòa miền Nam Việt Nam là chính quyền hợp pháp tại Miền Nam. Do lập trường của Mặt trận và Cộng hòa miền Nam Việt Nam là",
+        "left_group_id": "32a5600407837e83a95ebdd630e7cca9dc24bc49c0a71f32ab0a49f221244dd8",
+        "right_context_excerpt": "Sau Đồng khởi, thì một vùng do Đảng Lao động và cách mạng kiểm soát ở Miền Nam hình thành, đồng thời miền Bắc bắt đầu viện trợ cho phong trào kháng chiến tại miền Nam một lượng lớn vũ khí, quân trang, quân dụng và cử nhiều cán bộ, binh sĩ vào Nam chiến đấu. Trong khi Mỹ và Việt Nam Cộng hòa đã đưa ra những chứng cớ mà họ cho là Miền Bắc vi phạm Hiệp định, do đó chủ trương của Đảng Lao động là thành lập một Mặt trận lấy danh nghĩa giải phóng Miền Nam để kiểm soát các vùng đất này, và tách đảng bộ",
+        "right_group_id": "a049ee681133fb3126d3d04e5d08eb86855e409c57dcaf821c625166f1c97c1a",
+        "similarity": 0.43615639209747314
+      },
+      {
+        "left_context_excerpt": "Trong thế kỷ XIX, Napoléon nắm quyền và lập ra Đệ Nhất Đế chế Pháp, các cuộc chiến tranh của Napoléon định hình tiến trình của châu Âu lục địa. Sau khi đế quốc sụp đổ, Pháp trải qua náo động với các chính phủ kế tiếp nhau, đỉnh điểm là thành lập Đệ Tam Cộng hòa Pháp vào năm 1870. Pháp là một bên tham chiến chính trong chiến tranh thế giới thứ nhất, và giành được đại thắng. Trong chiến tranh thế giới thứ hai, Pháp nằm trong khối Đồng Minh song bị phe Trục chiếm đóng vào năm 1940. Sau khi được giả",
+        "left_group_id": "5ea86e1906d3e56063ff6568777853baa852af3ee4378acd5dcc25bde4872e05",
+        "right_context_excerpt": "GPRF đặt nền móng cho một trật tự hiến pháp mới với kết quả là Đệ Tứ Cộng hòa Pháp, thời gian này trải qua tăng trưởng kinh tế ngoạn mục. Pháp là một trong các quốc gia thành lập NATO (1949). Pháp nỗ lực tái lập quyền kiểm soát Đông Dương song thất bại trước Việt Minh trong trận Điện Biên Phủ năm 1954. Vài tháng sau đó, Pháp phải đối diện với một xung đột chống thực dân khác tại Algérie. Hai bên đều tiến hành tra khảo và hành hình phi pháp, và tranh luận về sự cần thiết giữ quyền kiểm soát Algér",
+        "right_group_id": "e5a38362caf5caebc9f921135f1dfe381cc9b3cef7c045796b1f70858e3b9c43",
+        "similarity": 0.43596136569976807
+      },
+      {
+        "left_context_excerpt": "Thứ hai, ông đứng ra tổ chức và huấn luyện lục quân. Ông tuyển mộ quân chính quy và giao nhiệm vụ cho tướng von Steuben, một chuyên gia quân sự người Đức, huấn luyện họ. Ông không nhận trách nhiệm đối với nguồn tiếp liệu mà lúc nào cũng thiếu hụt nhưng ông luôn làm áp lực với Quốc hội và các tiểu bang cung cấp nhu yếu phẩm. Washington có tiếng nói quan trọng trong việc chọn lựa các tướng lãnh tư lệnh và trong việc hoạch định chiến lược cơ bản của họ. Những thành tựu của ông thì hỗn tạp vì một số",
+        "left_group_id": "a4c5ac70af75c6994a19c79f9abf870e122ef6c67e798fca3e29187c9f7b2ed4",
+        "right_context_excerpt": "Với tư cách là nhà chiến thuật mặt trận, Washington thường bị các vị đồng nhiệm đối thủ người Anh qua mặt với quân số đông hơn. Với tư cách là nhà chiến lược, ông có ý tưởng tốt hơn để làm sao đánh thắng so với họ. Người Anh phái bốn đội quân xâm lược đến. Chiến lược của Washington đã buộc đội quân thứ nhất ra khỏi Boston năm 1776, và buộc đội quân thứ hai và thứ ba đầu hàng tại Saratoga (1777) và Yorktown (1781). Ông giới hạn sự kiểm soát của người Anh đối với Thành phố New York và một vài nơi ",
+        "right_group_id": "cf66471e082a6ed8291dc74d4d62b79dd50b0c11955091e4e9d452084bcc6233",
+        "similarity": 0.42885804176330566
+      },
+      {
+        "left_context_excerpt": "Các cuộc điều tra dân số sau này tiến hành trong giai đoạn 1976-2001 sau sự phân chia trên thực tế của hòn đảo với chỉ số người sống trong vùng thuộc quyền kiểm soát của Chính phủ Cộng hoà Síp, số người Síp Thổ Nhĩ Kỳ sống ở miền Bắc Síp theo ước tính của Sở Thống kê Cộng hoà Síp theo các tỷ lệ tăng trưởng dân số và dữ liệu nhập cư. Trong cuộc điều tra dân số cuối cùng năm 2001 do Cộng hoà Síp tiến hành, dân số tại vùng chính phủ kiểm soát là 703.529 người. Số người Síp Thổ Nhĩ Kỳ ở miền Bắc Síp",
+        "left_group_id": "78bac2f9c3170e16254957a9aff0456857cee7129277392a2dc45425d4400737",
+        "right_context_excerpt": "Bởi sự phân chia của nền Cộng hoà diễn ra trên thực tế, chứ không phải về mặt pháp lý, miền bắc và miền nam đã đi theo những con đường khác nhau. Cộng hoà Síp là một chế độ dân chủ lập hiến đã đạt tới mức độ giàu có cao, với nền kinh tế bùng nổ và cơ sở hạ tầng tốt. Nó là một thành viên của Liên hiệp quốc, Liên minh châu Âu và nhiều tổ chức quốc tế khác và được các tổ chức này công nhận như chính phủ hợp pháp duy nhất của toàn bộ hòn đảo. Vùng không thuộc quyền quản lý của Cộng hoà Síp, Bắc Síp,",
+        "right_group_id": "0fe7bd524c96e4150892a121844c86c0701f53f8261df8252019ab52f59a0074",
+        "similarity": 0.4287170171737671
+      },
+      {
+        "left_context_excerpt": "Vào thời kỳ thụ phấn thì túi phôi nằm gần với lớp màng bao phủ noãn, sao cho ống phấn hoa có thể thâm nhập vào, lớp tế bào thành ngăn trở thành có thể hấp thụ và các tế bào đực (phấn hoa) được bơm vào trong túi phôi. Được dẫn dắt bởi tế bào trứng không phát triển đầy đủ, một tế bào đực sẽ chui được vào noãn cầu và hợp nhất với nó, hai nhân kết hợp lại, trong khi một tế bào khác sẽ hợp nhất với nhân cuối cùng, hay còn được gọi là nhân nội nhũ. Điều đáng chú ý thú vị này sẽ tăng gấp đôi khả năng t",
+        "left_group_id": "66f0814fbab7ef117b574f71754588f8827b5b3d440d180077ccc5302e3a3fde",
+        "right_context_excerpt": "Do sự phát triển của phôi và nội nhũ diễn ra trong túi phôi, thành của chúng phình to lên và thông thường chúng hấp thụ các chất của phôi tâm để đạt tới gần như giới hạn ngoài của nó, đồng thời kết hợp với nó và vỏ bọc để tạo ra vỏ hạt; hoặc là toàn bộ phôi tâm và thậm chí cả vỏ bọc cũng có thể bị hấp thụ. Ở một số thực vật thì phôi tâm không bị hấp thụ như vậy, nhưng tự nó trở thành nơi tích lũy thức ăn dự trữ tạo ra ngoại nhũ và nó có thể cùng tồn tại với nội nhũ, chẳng hạn như ở bộ hoa Súng, ",
+        "right_group_id": "a6556ad4528172726a8a4cb7237423837882dc4fd09245326257e8a2e067ee36",
+        "similarity": 0.42790842056274414
+      },
+      {
+        "left_context_excerpt": "Phraates III đã bị ám sát bởi những người con trai của ông là Orodes II của Parthia và Mithridates III của Parthia, nhưng sau đó Orodes quay lại đánh Mithridates, buộc ông ta phải chạy trốn khỏi Media để tới tỉnh Syria của La Mã. Aulus Gabinius, tổng đốc tỉnh Syria của La Mã, đã tiến quân trợ giúp cho Mithridates tới tận Euphrates, nhưng sau đó ông ta đã phải quay lại để hỗ trợ Ptolemaios XII Auletes (cai trị: 80-58, 55-51 TCN). dập tắt cuộc nổi loạn ở Ai Cập Mặc dù mất sự ủng hộ La Mã dành cho ",
+        "left_group_id": "59ff6187bf94d5ccd2fad5ab8a24c816939b1b04808d40362bbda823f1134777",
+        "right_context_excerpt": "Quan hệ giữa Parthia và vương quốc Hy Lạp-Bactria trở nên xấu đi sau khi Diodotus II bị lật đổ, khi đó Mithridates xâm chiếm hai tỉnh của vương quốc này, khi đó đang nằm dưới sự cai trị của vua Eucratides I (cai trị: 170-145 trước Công nguyên). Tiếp đó Mithridates chuyển sự chú ý của mình tới các vùng đất của vương quốc Seleukos, ông xua quân xâm lược xứ Media và chiếm đóng thành Ecbatana trong năm 148 hoặc 147 trước Công nguyên; khu vực này gần đây đã mất ổn định sau khi nhà Seleukos đàn áp một",
+        "right_group_id": "dcbe1430446f38630dcc9a23299cc62a038b12d6adc8054acecbed32e0d1b505",
+        "similarity": 0.42783135175704956
+      },
+      {
+        "left_context_excerpt": "Trong suốt chiến tranh Việt Nam, Đảng Nhân dân Cách mạng Việt Nam luôn tuyên bố công khai rõ ràng rằng họ là là một đảng cộng sản ở miền Nam, là tiên phong lãnh đạo Quân giải phóng Miền Nam thông qua Bộ Tư lệnh các lực lượng vũ trang miền Nam Việt nam, thành viên chủ chốt của Mặt trận cùng chung mục đích với Đảng Lao động Việt Nam là thống nhất đất nước, mang lại hòa bình cho Việt Nam, bảo vệ độc lập và dân chủ trong cả nước. Theo tài liệu Mỹ có được lúc đó quan hệ với đảng Lao động trên tình hu",
+        "left_group_id": "c14fe6223a51c26c1ffb809094c642f389dd3e05ee30ea193797fe4f045e769a",
+        "right_context_excerpt": "Sau Đồng khởi, thì một vùng do Đảng Lao động và cách mạng kiểm soát ở Miền Nam hình thành, đồng thời miền Bắc bắt đầu viện trợ cho phong trào kháng chiến tại miền Nam một lượng lớn vũ khí, quân trang, quân dụng và cử nhiều cán bộ, binh sĩ vào Nam chiến đấu. Trong khi Mỹ và Việt Nam Cộng hòa đã đưa ra những chứng cớ mà họ cho là Miền Bắc vi phạm Hiệp định, do đó chủ trương của Đảng Lao động là thành lập một Mặt trận lấy danh nghĩa giải phóng Miền Nam để kiểm soát các vùng đất này, và tách đảng bộ",
+        "right_group_id": "a049ee681133fb3126d3d04e5d08eb86855e409c57dcaf821c625166f1c97c1a",
+        "similarity": 0.42604196071624756
+      },
+      {
+        "left_context_excerpt": "Tại Israel thì người Do Thái gốc Ashkenazi chiếm khoảng 47,5% tổng dân số người Do Thái ở Israel (và do đó người Do Thái gốc Ashkenazi chiếm 35-36% tổng dân số người Israel). Người Do Thái Ashkenazi đã đóng một vai trò rất lớn và nổi bật trong nền kinh tế, truyền thông và chính trị của quốc gia Israel kể từ khi đất nước Israel hiện đại từ trong giai đoạn trứng nước cho đến khi được thành lập. Các đời tổng thống Israel từ khi quốc gia này được thành lập năm 1948 cho đến hiện này đều là người Ashk",
+        "left_group_id": "09759db32b838188476adf81c29c3b305d9bf3544083088060cef49ac16eba9d",
+        "right_context_excerpt": "Các nghiên cứu Nhiễm sắc thể Y có khuynh hướng ngụ ý một số lượng nhỏ những người tổ tiên trong một quần thể cổ đại mà các thành viên đã tách ra và đi theo những con đường di cư khác nhau. Trong hầu hết các quần thể Do Thái, những tổ tiên của người Do Thái chủ yếu là người Trung Đông. Ví dụ, người Do Thái Ashkenazi chia sẻ nhiều dòng dõi hệ cha phổ biến hơn với các nhóm Do Thái và các nhóm người Trung Đông khác so với những người không phải là người Do Thái ở các khu vực nơi người Do Thái sinh s",
+        "right_group_id": "e0903dbaba79f6bc31adefa1aeeb68b9e65152f75dd710d0be5f02b79b9ce091",
+        "similarity": 0.42560720443725586
+      },
+      {
+        "left_context_excerpt": "Bằng chứng sớm nhất về việc con người hiện diện tại Ireland có niên đại từ 10.500 TCN. Ireland Gael xuất hiện từ thế kỷ I. Đảo bị Cơ Đốc giáo hoá từ thế kỷ V trở đi. Sau khi người Norman xâm chiếm đảo vào thế kỷ XII, Anh yêu sách chủ quyền đối với Ireland. Tuy nhiên, quyền cai trị của Anh không bành trướng được đến toàn đảo cho đến cuộc chinh phục của Triều Tudor trong thế kỷ XVI-XVII, cuộc chinh phục này kéo theo những người định cư đến từ đảo Anh. Trong thập niên 1690, một hệ thống cai trị Anh",
+        "left_group_id": "29a34927dbc2a59293f5c6a936ad9d7430ce5834d21d7ccc5a41b0a0425eb0d8",
+        "right_context_excerpt": "Dù Bắc Ireland phần lớn tránh được xung đột trong nội chiến Ireland, song vào các thập niên sau khi phân chia đã xảy ra xung đột lẻ tẻ giữa các cộng đồng. Những người dân tộc chủ nghĩa chủ yếu là tín đồ Công giáo La Mã, họ muốn thống nhất đảo Ireland thành một nước cộng hoà, trong khi những người liên hiệp chủ nghĩa chủ yếu theo Tin Lành và muốn Bắc Ireland duy trì là bộ phận của Anh. Các cộng đồng Tin Lành và Công giáo La Mã tại Bắc Ireland phần lớn bỏ phiếu theo làn ranh giáo phái, đồng nghĩa ",
+        "right_group_id": "adc37637d2e45c7ec65d555077a7cc075f24cd24c18df10be46ef758f6d21b05",
+        "similarity": 0.42556333541870117
+      },
+      {
+        "left_context_excerpt": "Cuối mùa hè năm 1777, lực lượng Anh dưới sự chỉ huy của John Burgoyne đưa một quân đoàn xâm nhập lớn từ Quebec xuống phía Nam với ý định cắt đứt vùng Tân Anh nổi loạn. Tướng Anh là Howe tại New York đưa quân đoàn của ông về hướng nam đến Philadelphia thay vì lên phía trên sông Hudson để họp mặt với quân của Burgoyne gần Albany. Đây là một lỗi lầm chiến lược lớn đối với quân Anh. Washington liền vội vã tiến về Philadelphia để giáp chiến Howe trong khi đó theo dõi sát hành động trên vùng thượng ba",
+        "left_group_id": "846608aea424a86546522d75aca10f4cfb214b4c31bdae55aee0847727c4e777",
+        "right_context_excerpt": "Lục quân gồm 11 ngàn binh sĩ của Washington đến đóng quân mùa đông tại Valley Forge nằm ở phía bắc Philadelphia vào tháng 12 năm 1777. Trong khoảng thời gian 6 tháng, con số người chết trong trại lên đến hàng ngàn người (đa số do bệnh tật), theo các ước tính của các sử gia thì con số người chết có từ 2000 đến 2500 thậm chí lên đến trên 3000 binh sĩ. Tuy nhiên, đến mùa xuân, lục quân lộ diện từ Valley Forge trong đội hình tốt một phần nhờ vào một chương trình huấn luyện tầm cỡ do Baron von Steube",
+        "right_group_id": "e6933c7d45b03a0b7c15aa541c1f4158bc91ee9057056e5fca5919b534187400",
+        "similarity": 0.42543578147888184
+      },
+      {
+        "left_context_excerpt": "Hình của George Washington được in trên tiền của Hoa Kỳ trong đó có tiền giấy một đô la và tiền kim loại 25 xu. Trên tem thư Hoa Kỳ, hình của Washington được in vô số lần và trong nhiều loại khác nhau. Hình ông có trên một trong số những con tem đầu tiên do Bưu điện Hoa Kỳ phát hành vào năm 1847 cùng với hình của Benjamin Franklin. Bắt đầu vào năm 1908, Bưu điện Hoa Kỳ phát hành trong thời gian dài nhất một loạt tem thư trong lịch sử Bưu điện Hoa Kỳ khi phát hành bộ tem \"Washington-Franklin\". Đâ",
+        "left_group_id": "2c1dd3fec35ec8fbaf727263bc073285553b309abed7ea9e0420054325999b1c",
+        "right_context_excerpt": "Ngày nay, hình tượng và khuôn mặt của Washington thường được dùng như những biểu tượng quốc gia của Hoa Kỳ. Hình ảnh ông có mặt trên các loại tiền hiện thời trong đó có tiền giấy một đô la và tiền kim loại 25 xu, và trên các loại tem thư của Hoa Kỳ. Ngoài việc hình ảnh ông có mặt trên các loại tem thư đầu tiên do Bưu điện Hoa Kỳ phát hành năm 1847, Washington cùng với Theodore Roosevelt, Thomas Jefferson, và Lincoln, được tạc tượng trên Đài tượng niệm Núi Rushmore. Tượng đài Washington, một tron",
+        "right_group_id": "c4bb67797f0fc6a9485864dc2f502c84466f8fdb59a7825cc310500ab492e8bc",
+        "similarity": 0.4249659776687622
+      },
+      {
+        "left_context_excerpt": "Sau Cách mạng tháng Tám, Việt Minh thành lập Chính phủ Cách mạng lâm thời Việt Nam Dân chủ Cộng hòa trên cơ sở cải tổ Ủy ban Dân tộc giải phóng Việt Nam được thành lập tại Đại hội Quốc dân ngày 16 và 17-8-1945 tại Tân Trào. Thời điểm đó Hồ Chí Minh ít được biết đến còn Chính phủ của ông chưa được nước nào công nhận. Ông cảm thấy phải tìm cách làm cho Đồng Minh chú ý đến Chính phủ của ông trước khi quân đội của họ vào Việt Nam giải giáp quân đội Nhật. Cùng thời điểm đó, Bảo Đại cũng gửi cho lãnh ",
+        "left_group_id": "fc5ca7e77b9e0dd4d5bad16f27c3d69e17950e5c6beca2d535dbc002dd3e2fa7",
+        "right_context_excerpt": "Trong Chiến tranh thế giới thứ hai, Đế quốc Nhật Bản đảo chính Pháp và chiếm toàn thể Đông Dương. Với sự chuẩn bị từ trước đó trong nhiều năm và với sự ủng hộ của người dân, ngay sau khi hay tin Đế quốc Nhật đầu hàng quân Đồng Minh, Hồ Chí Minh đã lãnh đạo Việt Minh giành lại chính quyền từ tay Nhật. Ngày 2 tháng 9 năm 1945, Hồ Chí Minh đọc Tuyên ngôn Độc lập và thành lập nước Việt Nam Dân chủ Cộng hòa, nhà nước tự chủ đầu tiên của người Việt thời hiện đại. Tới tháng 1 năm 1946, Chính phủ lâm th",
+        "right_group_id": "c2a7abe80a9ba55e8a5bfc62e284ab2656de18ebc46658159d3dbac8d1d8459c",
+        "similarity": 0.42442184686660767
+      },
+      {
+        "left_context_excerpt": "Hai ngôn ngữ chính tại Ireland là tiếng Ireland và tiếng Anh, và chúng đều có đóng góp lớn cho văn học. Tiếng Ireland nay là ngôn ngữ thiểu số song vẫn có địa vị chính thức tại Cộng hoà Ireland, đây là tiếng mẹ đẻ của cư dân Ireland trong hơn hai nghìn năm. Ngôn ngữ Ireland có chữ viết sau khi đảo bị Cơ Đốc giáo hoá vào thế kỷ V, ngôn ngữ này còn được truyền bá đến Scotland và đảo Man rồi tiến hoá thành tiếng Gael Scotland và tiếng Manx. Tiếng Ireland bị suy thoái dưới thời Anh cai trị song vẫn ",
+        "left_group_id": "b049fe5ad2000c38075921affad2e91e1383ed41c0c600d1dac3d02b8777a3a3",
+        "right_context_excerpt": "Tôn giáo giữ vai trò đáng kể trong sinh hoạt văn hoá trên đảo kể từ thời cổ đại (và từ khi xuất hiện các đồn điền trong thế kỷ XVII thì tập trung vào bản sắc và phân chia chính trị trên đảo). Di sản tiền Cơ Đốc của Ireland kết hợp cùng Giáo hội Celt sau khi có các đoàn truyền giáo của Thánh Patrick trong thế kỷ V. Các đoàn truyền giáo Ireland-Scotland có khởi đầu là tu sĩ người Ireland Columba, chúng giúp truyền bá mô hình Cơ Đốc giáo Ireland đến Anh và Francia dị giáo. Các đoàn truyền giáo này ",
+        "right_group_id": "d82d9e6668b421a106f310f5ec63b28cf507c25a548118184f03142b1ec252b1",
+        "similarity": 0.4236358404159546
+      },
+      {
+        "left_context_excerpt": "Liên hiệp quốc, Liên minh châu Âu, Tổ chức An ninh và Hợp tác châu Âu (OSCE), Hội đồng Liên minh châu Âu, Tổ chức Hiệp ước Bắc Đại Tây Dương (NATO) và tất cả các quốc gia khác trên thế giới công nhận Nam Ossetia là một phần lãnh thổ Gruzia. Tuy nhiên, trên thực tế nước cộng hòa độc lập này, được cai quản bởi một chính phủ ly khai, đã tổ chức một cuộc trưng cầu dân ý về độc lập vào ngày 12 tháng 11 năm 2006, sau cuộc trưng cầu dân ý đầu tiên vào năm 1992 không được cộng đồng quốc tế coi là hợp ph",
+        "left_group_id": "1cad0cf808db11cc1b2c0572eed1e54493b7548b61c0c82578669671359525ab",
+        "right_context_excerpt": "Ngày 11 tháng 9 năm 2006, Ủy ban Thông tin và Báo chí Nam Ossetia thông báo rằng nước cộng hòa này sẽ tổ chức một cuộc trưng cầu dân ý về độc lập (cuộc trưng cầu dân ý đầu tiên vào năm 1992 đã không được cộng đồng quốc tế coi là hợp pháp) vào ngày 12 tháng 11 năm 2006. Các cử tri sẽ quyết định việc Nam Ossetia \"sẽ duy trì tình trạng hiện tại hay trở thành một nhà nước độc lập\". Gruzia lên án hành động này như một \"điều ngớ ngẩn chính trị\". Tuy nhiên, ngày 13 tháng 9 năm 2006, Tổng thư ký Hội đồn",
+        "right_group_id": "f7783de2f5e4632806e6bf41c1fd8801fcb84e628d05e0bc6010f323899a183b",
+        "similarity": 0.4231269955635071
+      },
+      {
+        "left_context_excerpt": "Sau khi đế chế Seleukos rút khỏi Lưỡng Hà, thống đốc Parthia của Babylon, Himerus, được lệnh của triều đình Arsaces phải chinh phục Characene, mà lúc đó được cai trị bởi Hyspaosines từ Charax Spasinu. Khi việc này không thành công, Hyspaosines xâm lược Babylon vào năm 127 trước Công nguyên và chiếm Seleucia. Tuy nhiên, năm 122 TCN, Mithridates II đa buộc Hyspaosines phải rút khỏi Babylon và biến các vị vua Characene thành chư hầu dưới quyền bá chủ của Parthia. Sau khi Mithridates mở rộng sự cai ",
+        "left_group_id": "7830fc055ac910f3342baab7b02c3160ea6aea0eda2a2f871a1eb37af427bb48",
+        "right_context_excerpt": "Quan hệ giữa Parthia và vương quốc Hy Lạp-Bactria trở nên xấu đi sau khi Diodotus II bị lật đổ, khi đó Mithridates xâm chiếm hai tỉnh của vương quốc này, khi đó đang nằm dưới sự cai trị của vua Eucratides I (cai trị: 170-145 trước Công nguyên). Tiếp đó Mithridates chuyển sự chú ý của mình tới các vùng đất của vương quốc Seleukos, ông xua quân xâm lược xứ Media và chiếm đóng thành Ecbatana trong năm 148 hoặc 147 trước Công nguyên; khu vực này gần đây đã mất ổn định sau khi nhà Seleukos đàn áp một",
+        "right_group_id": "dcbe1430446f38630dcc9a23299cc62a038b12d6adc8054acecbed32e0d1b505",
+        "similarity": 0.42265599966049194
+      },
+      {
+        "left_context_excerpt": "Sau khi nhận được thông điệp, Đại tá French đích thân nhận trách nhiệm gửi nó đi. Khi biết hệ thống liên lạc vô tuyến của Bộ Chiến tranh Hoa Kỳ đã không còn liên lạc được với Honolulu kể từ khoảng 10:20 sáng, ông liền quyết định rằng cách nhanh nhất để gửi nó đến Hawaii là bằng các phương tiện dịch vụ thương mại; có nghĩa là dùng dịch vụ điện tín \"Western Union\" đến San Francisco, và từ đó dùng sóng vô tuyến thương mại đến Honolulu. Thông điệp được lưu trữ tại trung tâm truyền tin Lục quân lúc 1",
+        "left_group_id": "09f0acaae776b88dbe1b9d8933d719735c12d4059ad4f6ce9852ef4c2b0e39c8",
+        "right_context_excerpt": "Cảnh báo được gửi đến các tư lệnh Lục quân và Hải quân Hoa Kỳ tại Hawaii nhưng tin tức này không được nhận đúng lúc vì lỗi của bộ máy hành chính. Thông điệp được gửi qua dịch vụ điện tín \"Western Union Telegram\" đến Tây Duyên hải Hoa Kỳ và sau đó qua dịch vụ vô tuyến \"RCA Radio\" đến thành phố Honolulu với nội dung đã được mã hóa. Đây là cách thức chuẩn liên lạc thông tin với các đảo của Hawaii vào thời đó khi điều kiện không gian không cho phép liên lạc thông tin trực tiếp như đã xảy ra vào ngày",
+        "right_group_id": "faa5d8d48c395d054f3a94ca3d63a396b2b8ac1ce3a504c2b30e2bb50df83ac9",
+        "similarity": 0.42178666591644287
+      },
+      {
+        "left_context_excerpt": "Trong quá trình tái cấu trúc sau hai sự kiện trên, Trump đã giải quyết xong một phần lớn khoản nợ cá nhân 900 triệu USD của mình vào năm 1994 và giảm đi khá nhiều khoản nợ kinh doanh gần 3,5 tỉ USD. Mặc dù phải bán đi du thuyền Trump Princess và công ty Trump Shuttle (mua năm 1989), ông vẫn giữ lại đựoc Trump Tower ở Thành phố New York và sở hữu ba sòng bạc tại Thành phố Atlantic. Trump nhượng lại quyền sở hữu West Side Yards cho các chủ đầu tư châu Á theo như điều khoản trong thỏa thuận của ông",
+        "left_group_id": "ab80879c8bfe36d373ad11ca565a7918547b67232e87a19f44fe331daf8ebd0b",
+        "right_context_excerpt": "Năm 1988, Trump mua lại Taj Mahal Casino sau một thương vụ với Merv Griffin và Resorts International, dẫn tới một khoản nợ lớn nên tới năm 1989, Trump không có khả năng trả các khoản vay. Mặc dù ông tìm đựoc các khoản vay mới và gia hạn việc trả lãi, nợ ngày một nhiều khiến công ty của Trump phá sản vào năm 1991. Ngân hàng và các chủ trái phiếu bị thiệt hại hàng trăm triệu USD nhưng lựa chọn việc tái cấu trúc lại nợ. Taj Mahal thoát khỏi phá sản vào ngày 5 tháng 10 năm 1991 khi Trump nhượng lại ",
+        "right_group_id": "206704ead99a522caa743e2d6329dafb839ec95d229ce1dd35a389c33a5ab7b8",
+        "similarity": 0.4207155704498291
+      },
+      {
+        "left_context_excerpt": "Người Ashkenazi Do Thái chiếm phần lớn đa số dân số người Do Thái hiện đại, với ít nhất 70% người Do Thái trên toàn thế giới (và lên đến 90% trước Chiến tranh thế giới II và Holocaust). Do sự di cư của họ từ châu Âu, Ashkenazim cũng đại diện cho phần lớn người Do Thái ở các lục địa Thế giới Mới, ở các quốc gia như Hoa Kỳ, Gia Nã Đại, Á Căn Đình, Úc và Brasil. Hiện nay thì cộng đồng người Do Thái ở nước Mỹ chủ yếu là Người Ashkenazi Do Thái chiếm 90% tổng dân số người Do Thái ở nước Mỹ. Ở xứ Pháp",
+        "left_group_id": "b530fd0ec0601f9fa9d4dd149837c7e5f9bd3f2914e35932d28756da68e8736b",
+        "right_context_excerpt": "Các nghiên cứu Nhiễm sắc thể Y có khuynh hướng ngụ ý một số lượng nhỏ những người tổ tiên trong một quần thể cổ đại mà các thành viên đã tách ra và đi theo những con đường di cư khác nhau. Trong hầu hết các quần thể Do Thái, những tổ tiên của người Do Thái chủ yếu là người Trung Đông. Ví dụ, người Do Thái Ashkenazi chia sẻ nhiều dòng dõi hệ cha phổ biến hơn với các nhóm Do Thái và các nhóm người Trung Đông khác so với những người không phải là người Do Thái ở các khu vực nơi người Do Thái sinh s",
+        "right_group_id": "e0903dbaba79f6bc31adefa1aeeb68b9e65152f75dd710d0be5f02b79b9ce091",
+        "similarity": 0.4199662208557129
+      },
+      {
+        "left_context_excerpt": "Hiến pháp quy định Tổng thống là người nắm quyền cao nhất quốc gia sau Lãnh tụ tối cao. Tổng thống được bầu theo phổ thông đầu phiếu với nhiệm kỳ bốn năm. Các ứng cử viên tổng thống phải được Hội đồng bảo vệ Cách mạng phê chuẩn trước khi được ra tranh cử. Tổng thống chịu trách nhiệm việc áp dụng Hiến pháp và thực hiện các quyền hành pháp, trừ những việc liên quan trực tiếp tới Lãnh tụ tối cao. Tổng thống chỉ định và giám sát Hội đồng bộ trường, phối hợp các quyết định của chính phủ, và lựa chọn ",
+        "left_group_id": "69c1a67bcc5e42b55410cf2fdd103340a56124ef44bf961465959dcf98f62b84",
+        "right_context_excerpt": "Hội đồng chuyên gia họp một tuần mỗi năm, gồm 86 tăng lữ \"đạo đức và thông thái\" được bầu bởi những cá nhân trưởng thành có quyền bầu cử với nhiệm kỳ tám năm. Tương tự như các cuộc bầu cử tổng thống và nghị viện, Hội đồng bảo vệ Cách mạng là cơ quan quyết định tư cách của ứng cử viên vào Hội đồng này. Hội đồng chuyên gia bầu ra Lãnh tụ tối cao và có quyền theo hiến pháp cách chức Lãnh tụ tối cao ở bất kỳ thời điểm nào. Tuy nhiên, Hội đồng này chưa từng phản đối bất kỳ một quyết định nào của Lãnh",
+        "right_group_id": "9d9e9c69443ff9fd50da3d22ee580764844b234d2f31e1935b5169fa25faf5d7",
+        "similarity": 0.4191077947616577
+      },
+      {
+        "left_context_excerpt": "Bệnh nhân AIDS và người nhiễm HIV là nguồn truyền nhiễm duy nhất của nhiễm HIV. Không có ổ chứa nhiễm trùng ở động vật. Tất cả mọi người điều có khả năng cảm nhiễm HIV. HIV được phân lập từ máu, tinh dịch, dịch tiết âm đạo, nước bọt, nước mắt, sữa mẹ, nước tiểu và các dịch khác của cơ thể, nhưng nhiều nghiên cứu về dịch tể học cho thấy rằng chỉ có máu, tinh dịch và dịch tiết âm đạo đống vai trò quan trọng trong việc lây truyền HIV. Do đó chỉ có 3 phương thức hay đường lây truyền chính của HIV, t",
+        "left_group_id": "9a167e37ecfefdb2e927bb0ac19191a03fac0168e8469d62f1894d903bd7a488",
+        "right_context_excerpt": "HIV có trong máu toàn phần và các thành phần của máu như hồng cầu, tiểu cầu, huyết tương, các yếu tố đông máu. Do đó HIV có thể được truyền qua máu hay các sản phẩm của máu có nhiễm HIV. Nguy cơ lây truyền qua đường máu có tỷ lệ rất cao, trên 90%. Kể từ năm 1985, sau khi có các xét nghiệm sàng lọc phát hiện kháng thể kháng HIV, nguy cơ lây truyền theo đường máu ở nhiều nước đã giảm đi rõ rệt. Tuy nhiên ngay cả khi xét nghiệm máu cho kết quả âm tính, khả năng lây nhiễm HIV vẫn có thể xảy ra, do m",
+        "right_group_id": "f80b520d5121957d81d29734c11fb3924501737fc624f3bc3d349b30e43bf912",
+        "similarity": 0.41743314266204834
+      },
+      {
+        "left_context_excerpt": "Lần doanh nghiệp phá sản thứ ba xảy ra vào ngày 21 tháng 10 năm 2004, khi Trump Hotels & Casino Resorts tuyên bố tái cấu trúc lại các khoản nợ. Theo kế hoạch đặt ra, cổ phần của Trump được giảm từ 56 phần trăm xuống 27 phần trăm, các chủ trái phiếu sẽ xóa bớt nợ để đổi lấy nhận được cổ phần từ công ty. Trump Hotels buộc phải nộp đơn tự nguyện phá sản lấy gói cứu trợ để tiếp tục kinh doanh. Sau khi công ty nộp đơn vào tháng 11 năm 2004, Trump chấp nhận từ bỏ vị trí giám đốc điều hành nhưng vẫn gi",
+        "left_group_id": "63abad04824d111a564944461c78b8aae3702b6c5615cacf06f234c70f4a52ad",
+        "right_context_excerpt": "Đã có bốn doanh nghiệp của Trump phải đệ đơn xin phá sản theo Điều 11 Luật Phá sản Mỹ. Theo một báo cáo của Forbes năm 2011, nguyên nhân đều do việc kinh doanh khách sạn và sòng bạc tại Thành phố Atlantic gặp quá nhiều nợ nần, bao gồm Trump Taj Mahal (1991), Trump Plaza Hotel (1992), Trump Hotels & Casino Resorts (2004) và Trump Entertainment Resorts (2009). Trump nói rằng \"Tôi đã vận dụng luật của nước mình để giảm bớt nợ... Chúng ta sẽ lập công ty. Chúng ta sẽ đệ đơn phá sản. Chúng ta sẽ thươn",
+        "right_group_id": "89ff050f5c39232455efef4d8299de02f6e95783b1ca7c8de1c10ecb213b5fc3",
+        "similarity": 0.4167458415031433
+      },
+      {
+        "left_context_excerpt": "Birmingham duy trì là thành phố tỉnh lẻ giàu có vượt trội tại Anh cho đến thập niên 1970, có thu nhập hộ gia đình cao hơn cả tại Luân Đôn và vùng đông nam, song đa dạng về kinh tế và năng lực cải tạo bị suy thoái trong các thập niên sau thế chiến do chính phủ trung ương tìm cách hạn chế tăng trưởng của thành phố và phân tán công nghiệp và cư dân đến các khu vực đình đốn tại Wales và Bắc Anh. Các biện pháp này cản trợ \"tự cải tạo tư nhiên của các doanh nghiệp tại Birmingham, để lại cho họ gánh nặ",
+        "left_group_id": "c5ec55e44bfc5cc470a0ee76f82d1bbedf16672eb77310e609b1d781cbeac071",
+        "right_context_excerpt": "Birmingham là một phố chợ cỡ trung bình vào thời kỳ trung cổ, sau đó trở nên nổi bật ở tầm quốc tế trong thế kỷ 18 khi là trọng tâm trong Khai sáng Midlands rồi cách mạng công nghiệp. Trong cách mạng công nghiệp, Birmingham đi tiên phong trong các tiến bộ toàn cầu về phát triển khoa học, kỹ thuật, và kinh tế, sản sinh hàng loạt sáng kiến giúp đặt một phần nền tảng cho xã hội công nghiệp hiện đại. Đến năm 1791, Birmingham được ca ngợi là \"thị trấn sản xuất đầu tiên trên thế giới\". Thành phố có hồ",
+        "right_group_id": "c8fa729f4747c61ca17f4bd7b8c1002e413d08947e66e95aa63a8aba7b6d99f4",
+        "similarity": 0.4145951271057129
+      },
+      {
+        "left_context_excerpt": "Năm 1958, Mitterrand là một trong số ít ứng cử viên để Charles de Gaulle chỉ định làm lãnh đạo chính phủ, và cho kế hoạch của de Gaulle về một nền Đệ ngũ Cộng hoà. Ông đã thay đổi sự đối lập của mình trong hoàn cảnh de Gaulle quay trở lại: cuộc khủng hoảng tháng 5 năm 1958 và áp lực quân đội. Tháng 9 năm 1958, quyết định đối đầu với Charles de Gaulle, Mitterrand đưa ra một lời kêu gọi bỏ phiếu \"phản đối\" trong cuộc trưng cầu dân ý về hiến pháp, tuy nhiên nó vẫn được thông qua ngày 4 tháng 10 năm",
+        "left_group_id": "79fb92f0f0419b14f34882e2713e8ee87afead622f26f57a2749350894497f91",
+        "right_context_excerpt": "Thái độ này có thể là một yếu tố khiến Mitterrand mất ghế trong cuộc bầu cử lập pháp năm 1958, bắt đầu một chiến dịch \"vượt sa mạc\" lâu dài (thuật ngữ này thường được áp dụng cho sự suy tàn ảnh hưởng của de Gaulle trong một giai đoạn tương tự). Quả thực, ở vòng hai cuộc bầu cử lập pháp, Mitterrand được những người Cộng sản ủng hộ tuy nhiên Nhóm Công nhân Quốc tế Pháp (SFIO) từ chối rút lui ứng cử viên của họ. Sự chia rẽ này khiến ứng cử viên phe phe de Gaulle được bầu. Một năm sau, ông trúng cử ",
+        "right_group_id": "1837d3d81aa553fd7b9cfab4b5ead4f9cea957ec506b7c76214cb67e6b915fb0",
+        "similarity": 0.41374945640563965
+      },
+      {
+        "left_context_excerpt": "Nếu vết thương hở tiếp xúc với máu bị nhiễm HIV thì sẽ bị lây truyền. Các đối tượng dễ bị lây nhiễm qua đường máu là những người tiêm chích ma túy, những bệnh nhân mắc bệnh rối loạn đông máu di truyền (bệnh ưa chảy máu), người nhận trong quá trình truyền máu (mặc dù hầu hết ở các nước thì máu khi dùng để truyền đều được xét nghiệm HIV) và các sản phẩm máu. Lây truyền HIV qua đường máu cũng là vấn đề lo ngại đối với những người được chăm sóc y tế tại các khu vực có vệ sinh không đạt tiêu chuẩn th",
+        "left_group_id": "6e79704a81c70fb6f370eab5c467de44b1be4b4c7305f7a8c3d111799859e96f",
+        "right_context_excerpt": "HIV có trong máu toàn phần và các thành phần của máu như hồng cầu, tiểu cầu, huyết tương, các yếu tố đông máu. Do đó HIV có thể được truyền qua máu hay các sản phẩm của máu có nhiễm HIV. Nguy cơ lây truyền qua đường máu có tỷ lệ rất cao, trên 90%. Kể từ năm 1985, sau khi có các xét nghiệm sàng lọc phát hiện kháng thể kháng HIV, nguy cơ lây truyền theo đường máu ở nhiều nước đã giảm đi rõ rệt. Tuy nhiên ngay cả khi xét nghiệm máu cho kết quả âm tính, khả năng lây nhiễm HIV vẫn có thể xảy ra, do m",
+        "right_group_id": "f80b520d5121957d81d29734c11fb3924501737fc624f3bc3d349b30e43bf912",
+        "similarity": 0.4114518165588379
+      },
+      {
+        "left_context_excerpt": "Đến thời kỳ Nội chiến Anh, do kinh tế Birmingham bùng nổ, dân số gia tăng, kết quả là mức độ cao về linh động xã hội và đa nguyên văn hoá, nên tại đây diễn ra phát triển các cấu trúc xã hội mới rất khác biệt so với các khu vực được củng cố hơn. Các quan hệ được gây dựng quanh liên kết thương mại thực dụng thay vì chủ nghĩa gia trưởng cứng rắn, do vậy làm suy yếu lòng tôn kính với xã hội phong kiến, lòng trung thành với tôn ti truyền thống của giáo hội và quý tộc. Danh tiếng cấp tiến chính trị và",
+        "left_group_id": "e1560ce42e427539ca30a622754685df0d6a00b4d8e907611787b12a786cb735",
+        "right_context_excerpt": "Birmingham là một phố chợ cỡ trung bình vào thời kỳ trung cổ, sau đó trở nên nổi bật ở tầm quốc tế trong thế kỷ 18 khi là trọng tâm trong Khai sáng Midlands rồi cách mạng công nghiệp. Trong cách mạng công nghiệp, Birmingham đi tiên phong trong các tiến bộ toàn cầu về phát triển khoa học, kỹ thuật, và kinh tế, sản sinh hàng loạt sáng kiến giúp đặt một phần nền tảng cho xã hội công nghiệp hiện đại. Đến năm 1791, Birmingham được ca ngợi là \"thị trấn sản xuất đầu tiên trên thế giới\". Thành phố có hồ",
+        "right_group_id": "c8fa729f4747c61ca17f4bd7b8c1002e413d08947e66e95aa63a8aba7b6d99f4",
+        "similarity": 0.4100642800331116
+      }
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "pairwise": {
+    "dev__test": {
+      "context_hash": 0,
+      "id": 0,
+      "prompt_hash": 0,
+      "response_hash": 0,
+      "triplet_hash": 0
+    },
+    "train__dev": {
+      "context_hash": 0,
+      "id": 0,
+      "prompt_hash": 0,
+      "response_hash": 0,
+      "triplet_hash": 0
+    },
+    "train__test": {
+      "context_hash": 0,
+      "id": 0,
+      "prompt_hash": 0,
+      "response_hash": 0,
+      "triplet_hash": 0
+    }
+  },
+  "splits": {
+    "dev": {
+      "class_counts": {
+        "extrinsic": 346,
+        "intrinsic": 367,
+        "no": 337
+      },
+      "class_proportions": {
+        "extrinsic": 0.3295238095238095,
+        "intrinsic": 0.3495238095238095,
+        "no": 0.32095238095238093
+      },
+      "groups": 589,
+      "rows": 1050
+    },
+    "test": {
+      "class_counts": {
+        "extrinsic": 348,
+        "intrinsic": 367,
+        "no": 335
+      },
+      "class_proportions": {
+        "extrinsic": 0.3314285714285714,
+        "intrinsic": 0.3495238095238095,
+        "no": 0.319047619047619
+      },
+      "groups": 583,
+      "rows": 1050
+    },
+    "train": {
+      "class_counts": {
+        "extrinsic": 1613,
+        "intrinsic": 1714,
+        "no": 1573
+      },
+      "class_proportions": {
+        "extrinsic": 0.32918367346938776,
+        "intrinsic": 0.3497959183673469,
+        "no": 0.3210204081632653
+      },
+      "groups": 2693,
+      "rows": 4900
+    }
+  },
+  "valid": true
+}

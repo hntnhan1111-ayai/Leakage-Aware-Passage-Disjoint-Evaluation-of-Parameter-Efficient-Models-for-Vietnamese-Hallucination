@@ -1,0 +1,75 @@
+encoder_defaults:
+  epochs: 4
+  gradient_accumulation_steps: 1
+  learning_rate: 2.0e-05
+  max_length: 256
+  per_device_eval_batch_size: 32
+  per_device_train_batch_size: 16
+  save_total_limit: 1
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+models:
+  gemma4_peft:
+    adapter_subdir: adapter
+    add_zero_mm_token_type_ids: true
+    family: peft_multimodal_text_only
+    hf_id: google/gemma-4-E2B-it
+    local_dir: .hf/hub/models--google--gemma-4-E2B-it/snapshots/179516f0c449474fdc46f08f30ead5b11e178497
+    lora_alpha: 128
+    lora_r: 64
+    lora_target_scope: text_only
+    revision: 179516f0c449474fdc46f08f30ead5b11e178497
+  phobert:
+    family: encoder
+    hf_id: vinai/phobert-base-v2
+    local_dir: .hf/hub/models--vinai--phobert-base-v2/snapshots/e2375d266bdf39c6e8e9a87af16a5da3190b0cc8
+    max_length: 256
+    requires_vncorenlp: true
+    revision: e2375d266bdf39c6e8e9a87af16a5da3190b0cc8
+  qwen35_peft:
+    adapter_subdir: adapter
+    add_zero_mm_token_type_ids: false
+    family: peft_multimodal_text_only
+    hf_id: Qwen/Qwen3.5-4B
+    local_dir: .hf/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a
+    lora_alpha: 128
+    lora_r: 64
+    lora_target_scope: text_only
+    revision: 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a
+  xlmr:
+    family: encoder
+    hf_id: FacebookAI/xlm-roberta-base
+    local_dir: .hf/hub/models--FacebookAI--xlm-roberta-base/snapshots/e73636d4f797dec63c3081bb6ed5c7b0bb3f2089
+    max_length: 512
+    requires_vncorenlp: false
+    revision: e73636d4f797dec63c3081bb6ed5c7b0bb3f2089
+peft_defaults:
+  bf16: true
+  epochs: 3
+  gradient_accumulation_steps: 16
+  inference_mode: candidate_label_mean_nll
+  learning_rate: 0.0001
+  lora_dropout: 0.05
+  max_prompt_tokens: 1024
+  max_seq_length: 1024
+  optimizer: paged_adamw_8bit
+  per_device_eval_batch_size: 1
+  per_device_train_batch_size: 1
+  quantization: nf4_4bit
+  save_total_limit: 1
+  warmup_ratio: 0.05
+  weight_decay: 0.01
+project:
+  dev_csv: data/processed/dev.csv
+  labels:
+  - false
+  - intrinsic
+  - extrinsic
+  output_root: results/models
+  primary_seed: 42
+  seeds:
+  - 42
+  - 43
+  - 44
+  test_csv: data/processed/test.csv
+  train_csv: data/processed/train.csv

@@ -216,3 +216,107 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Model weights and caches
+models/
+*.pt
+*.bin
+*.safetensors
+.hf/
+hf_cache/
+wandb/
+lightning_logs/
+
+# LaTeX build artifacts
+paper/camera_ready/*.aux
+paper/camera_ready/*.log
+paper/camera_ready/*.out
+paper/camera_ready/*.bbl
+paper/camera_ready/*.blg
+paper/camera_ready/*.toc
+paper/camera_ready/*.synctex.gz
+paper/camera_ready/*.fls
+paper/camera_ready/*.fdb_latexmk
+paper/camera_ready/*.xdv
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+
+# Model weights and caches
+models/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+.hf/
+hf_cache/
+wandb/
+lightning_logs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+ENV.bak/
+venv.bak/
+
+# Python
+__pycache__/
+*.py[codz]
+*.class
+*.egg-info/
+*.egg
+build/
+dist/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# LaTeX artifacts
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
+
+# Pytest
+.pytest_cache/
+
+# Temporary scripts
+fix_*.py
+check_*.py
+debug_*.py
+tmp_*.py
+scratch_*.py
+write_*.py
+setup_*.py
+update_*.py

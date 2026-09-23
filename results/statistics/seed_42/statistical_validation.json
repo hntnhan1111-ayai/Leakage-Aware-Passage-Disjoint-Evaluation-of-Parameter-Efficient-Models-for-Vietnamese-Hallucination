@@ -1,0 +1,41 @@
+{
+  "models": [
+    "qwen35_peft",
+    "gemma4_peft"
+  ],
+  "model_seed": 42,
+  "rows": 1050,
+  "bootstrap": {
+    "iterations": 10000,
+    "seed": 42,
+    "confidence": 0.95,
+    "models": {
+      "qwen35_peft": {
+        "point": 0.8251067761706059,
+        "ci_low": 0.80177358508192,
+        "ci_high": 0.8472642000852274
+      },
+      "gemma4_peft": {
+        "point": 0.8221524725190886,
+        "ci_low": 0.7987048570523358,
+        "ci_high": 0.8442734059422861
+      }
+    },
+    "differences": {
+      "qwen35_peft__minus__gemma4_peft": {
+        "point": 0.002954303651517276,
+        "ci_low": -0.014315125952411165,
+        "ci_high": 0.020128249703064184,
+        "two_sided_bootstrap_p": 0.7448
+      }
+    }
+  },
+  "mcnemar": {
+    "qwen35_peft__vs__gemma4_peft": {
+      "a_correct_b_wrong": 45,
+      "a_wrong_b_correct": 43,
+      "discordant": 88,
+      "exact_p_value": 0.9151865048428764
+    }
+  }
+}

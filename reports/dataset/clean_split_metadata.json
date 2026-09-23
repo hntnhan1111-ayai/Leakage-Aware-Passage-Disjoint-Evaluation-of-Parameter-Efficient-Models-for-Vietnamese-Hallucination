@@ -1,0 +1,42 @@
+{
+  "base_seed": 42,
+  "class_counts": {
+    "dev": {
+      "extrinsic": 346,
+      "intrinsic": 367,
+      "no": 337
+    },
+    "test": {
+      "extrinsic": 348,
+      "intrinsic": 367,
+      "no": 335
+    },
+    "train": {
+      "extrinsic": 1613,
+      "intrinsic": 1714,
+      "no": 1573
+    }
+  },
+  "effective_seed": 11073,
+  "group_counts": {
+    "dev": 589,
+    "test": 583,
+    "train": 2693
+  },
+  "group_key": "sha256(normalize_nfkc_lower_whitespace(context))",
+  "objective": 6.919409298528381e-06,
+  "proportions": [
+    0.7,
+    0.15,
+    0.15
+  ],
+  "row_counts": {
+    "dev": 1050,
+    "test": 1050,
+    "train": 4900
+  },
+  "search_trials": 20000,
+  "selected_trial": 11031,
+  "source_file": "data/raw/vihallu-train.csv",
+  "source_sha256": "52a9d8605688f77d5e2d4504c81765e8183f83e1d0ceab8957aeab67381c9bce"
+}

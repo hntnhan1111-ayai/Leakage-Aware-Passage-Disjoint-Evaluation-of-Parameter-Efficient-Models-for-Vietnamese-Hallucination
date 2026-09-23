@@ -1,0 +1,783 @@
+{
+  "created_at": "2026-07-19T10:22:13.197032",
+  "project_root": "/home/drnguyenvinh/vihallu_fisat2026_clean",
+  "master_log": "logs/resume_p1_p5_20260718_224141.log",
+  "recorded_exit_code": "0",
+  "review_passed": true,
+  "stages_started": [
+    "preflight",
+    "p1_seed42",
+    "p2_p4",
+    "p5_multiseed",
+    "paper_tables"
+  ],
+  "stage_exit_codes": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+  ],
+  "failed_stages": [],
+  "fatal_markers": [],
+  "warning_count": 0,
+  "warning_lines": [],
+  "completed_models": [
+    {
+      "model": "gemma4_peft",
+      "seed": 42,
+      "accuracy": null,
+      "macro_f1": null,
+      "weighted_f1": null,
+      "train_seconds": 4019.78859726293,
+      "best_checkpoint": "/home/drnguyenvinh/vihallu_fisat2026_clean/results/models/gemma4_peft/seed_42/trainer/checkpoint-614",
+      "completed_file": "results/models/gemma4_peft/seed_42/COMPLETED.json"
+    },
+    {
+      "model": "gemma4_peft",
+      "seed": 43,
+      "accuracy": null,
+      "macro_f1": null,
+      "weighted_f1": null,
+      "train_seconds": 4041.7696656947955,
+      "best_checkpoint": "/home/drnguyenvinh/vihallu_fisat2026_clean/results/models/gemma4_peft/seed_43/trainer/checkpoint-614",
+      "completed_file": "results/models/gemma4_peft/seed_43/COMPLETED.json"
+    },
+    {
+      "model": "gemma4_peft",
+      "seed": 44,
+      "accuracy": null,
+      "macro_f1": null,
+      "weighted_f1": null,
+      "train_seconds": 4034.930967253167,
+      "best_checkpoint": "/home/drnguyenvinh/vihallu_fisat2026_clean/results/models/gemma4_peft/seed_44/trainer/checkpoint-614",
+      "completed_file": "results/models/gemma4_peft/seed_44/COMPLETED.json"
+    },
+    {
+      "model": "phobert",
+      "seed": 42,
+      "accuracy": 0.7438095238095238,
+      "macro_f1": 0.7452127034708879,
+      "weighted_f1": 0.743795525986986,
+      "train_seconds": 107.11607589991763,
+      "best_checkpoint": "/home/drnguyenvinh/vihallu_fisat2026_clean/results/models/phobert/seed_42/trainer/checkpoint-921",
+      "completed_file": "results/models/phobert/seed_42/COMPLETED.json"
+    },
+    {
+      "model": "qwen35_peft",
+      "seed": 42,
+      "accuracy": null,
+      "macro_f1": null,
+      "weighted_f1": null,
+      "train_seconds": 3502.9031720850617,
+      "best_checkpoint": "/home/drnguyenvinh/vihallu_fisat2026_clean/results/models/qwen35_peft/seed_42/trainer/checkpoint-614",
+      "completed_file": "results/models/qwen35_peft/seed_42/COMPLETED.json"
+    },
+    {
+      "model": "qwen35_peft",
+      "seed": 43,
+      "accuracy": null,
+      "macro_f1": null,
+      "weighted_f1": null,
+      "train_seconds": 10509.87073669536,
+      "best_checkpoint": "/home/drnguyenvinh/vihallu_fisat2026_clean/results/models/qwen35_peft/seed_43/trainer/checkpoint-614",
+      "completed_file": "results/models/qwen35_peft/seed_43/COMPLETED.json"
+    },
+    {
+      "model": "qwen35_peft",
+      "seed": 44,
+      "accuracy": null,
+      "macro_f1": null,
+      "weighted_f1": null,
+      "train_seconds": 10451.842793723568,
+      "best_checkpoint": "/home/drnguyenvinh/vihallu_fisat2026_clean/results/models/qwen35_peft/seed_44/trainer/checkpoint-614",
+      "completed_file": "results/models/qwen35_peft/seed_44/COMPLETED.json"
+    },
+    {
+      "model": "xlmr",
+      "seed": 42,
+      "accuracy": 0.7295238095238096,
+      "macro_f1": 0.7294640840718922,
+      "weighted_f1": 0.7277050080918075,
+      "train_seconds": 216.30768480198458,
+      "best_checkpoint": "/home/drnguyenvinh/vihallu_fisat2026_clean/results/models/xlmr/seed_42/trainer/checkpoint-1228",
+      "completed_file": "results/models/xlmr/seed_42/COMPLETED.json"
+    }
+  ],
+  "required_artifact_groups": {
+    "P1 main results": true,
+    "P2 context ablation": true,
+    "P3 statistical validation": true,
+    "P4 error analysis": true,
+    "P5 multi-seed": true
+  },
+  "csv_checks": [
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/context_ablation_summary.csv",
+      "rows": 4,
+      "columns": 8,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/full/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/full/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/full/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/no_prompt/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/no_prompt/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/no_prompt/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/response_only/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/response_only/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/response_only/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/shuffled_context/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/shuffled_context/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/shuffled_context/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/context_ablation/qwen35_peft/seed_42/shuffled_context/shuffle_mapping.csv",
+      "rows": 1050,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/error_analysis/qwen35_peft/seed_42/error_review_queue.csv",
+      "rows": 50,
+      "columns": 20,
+      "empty_cells": 150,
+      "status": "ok"
+    },
+    {
+      "path": "results/error_analysis/qwen35_peft/seed_42/suggested_error_category_counts.csv",
+      "rows": 17,
+      "columns": 3,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/main_results/main_results_seed_42.csv",
+      "rows": 4,
+      "columns": 18,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_42/dev/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_42/dev/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_42/dev/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_42/test/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_42/test/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_42/test/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_43/dev/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_43/dev/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_43/dev/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_43/test/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_43/test/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_43/test/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_44/dev/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_44/dev/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_44/dev/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_44/test/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_44/test/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/gemma4_peft/seed_44/test/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/phobert/seed_42/dev/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/phobert/seed_42/dev/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/phobert/seed_42/dev/predictions.csv",
+      "rows": 1050,
+      "columns": 6,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/phobert/seed_42/test/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/phobert/seed_42/test/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/phobert/seed_42/test/predictions.csv",
+      "rows": 1050,
+      "columns": 6,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_42/dev/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_42/dev/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_42/dev/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_42/test/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_42/test/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_42/test/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_43/dev/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_43/dev/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_43/dev/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_43/test/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_43/test/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_43/test/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_44/dev/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_44/dev/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_44/dev/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_44/test/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_44/test/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/qwen35_peft/seed_44/test/predictions.csv",
+      "rows": 1050,
+      "columns": 15,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/xlmr/seed_42/dev/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/xlmr/seed_42/dev/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/xlmr/seed_42/dev/predictions.csv",
+      "rows": 1050,
+      "columns": 6,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/xlmr/seed_42/test/classification_report.csv",
+      "rows": 6,
+      "columns": 5,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/xlmr/seed_42/test/confusion_matrix.csv",
+      "rows": 3,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/models/xlmr/seed_42/test/predictions.csv",
+      "rows": 1050,
+      "columns": 6,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/multiseed/mean_std_summary.csv",
+      "rows": 2,
+      "columns": 14,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/multiseed/seed_level_metrics.csv",
+      "rows": 6,
+      "columns": 8,
+      "empty_cells": 0,
+      "status": "ok"
+    },
+    {
+      "path": "results/statistics/seed_42/aligned_predictions.csv",
+      "rows": 1050,
+      "columns": 4,
+      "empty_cells": 0,
+      "status": "ok"
+    }
+  ],
+  "artifact_count": 188,
+  "artifacts": [
+    "results/context_ablation/qwen35_peft/seed_42/context_ablation_summary.csv",
+    "results/context_ablation/qwen35_peft/seed_42/context_ablation_summary.md",
+    "results/context_ablation/qwen35_peft/seed_42/full/classification_report.csv",
+    "results/context_ablation/qwen35_peft/seed_42/full/classification_report.json",
+    "results/context_ablation/qwen35_peft/seed_42/full/confusion_matrix.csv",
+    "results/context_ablation/qwen35_peft/seed_42/full/confusion_matrix.png",
+    "results/context_ablation/qwen35_peft/seed_42/full/predictions.csv",
+    "results/context_ablation/qwen35_peft/seed_42/full/runtime.json",
+    "results/context_ablation/qwen35_peft/seed_42/full/summary_metrics.json",
+    "results/context_ablation/qwen35_peft/seed_42/no_prompt/classification_report.csv",
+    "results/context_ablation/qwen35_peft/seed_42/no_prompt/classification_report.json",
+    "results/context_ablation/qwen35_peft/seed_42/no_prompt/confusion_matrix.csv",
+    "results/context_ablation/qwen35_peft/seed_42/no_prompt/confusion_matrix.png",
+    "results/context_ablation/qwen35_peft/seed_42/no_prompt/predictions.csv",
+    "results/context_ablation/qwen35_peft/seed_42/no_prompt/runtime.json",
+    "results/context_ablation/qwen35_peft/seed_42/no_prompt/summary_metrics.json",
+    "results/context_ablation/qwen35_peft/seed_42/response_only/classification_report.csv",
+    "results/context_ablation/qwen35_peft/seed_42/response_only/classification_report.json",
+    "results/context_ablation/qwen35_peft/seed_42/response_only/confusion_matrix.csv",
+    "results/context_ablation/qwen35_peft/seed_42/response_only/confusion_matrix.png",
+    "results/context_ablation/qwen35_peft/seed_42/response_only/predictions.csv",
+    "results/context_ablation/qwen35_peft/seed_42/response_only/runtime.json",
+    "results/context_ablation/qwen35_peft/seed_42/response_only/summary_metrics.json",
+    "results/context_ablation/qwen35_peft/seed_42/shuffled_context/classification_report.csv",
+    "results/context_ablation/qwen35_peft/seed_42/shuffled_context/classification_report.json",
+    "results/context_ablation/qwen35_peft/seed_42/shuffled_context/confusion_matrix.csv",
+    "results/context_ablation/qwen35_peft/seed_42/shuffled_context/confusion_matrix.png",
+    "results/context_ablation/qwen35_peft/seed_42/shuffled_context/predictions.csv",
+    "results/context_ablation/qwen35_peft/seed_42/shuffled_context/runtime.json",
+    "results/context_ablation/qwen35_peft/seed_42/shuffled_context/shuffle_mapping.csv",
+    "results/context_ablation/qwen35_peft/seed_42/shuffled_context/summary_metrics.json",
+    "results/error_analysis/qwen35_peft/seed_42/README.md",
+    "results/error_analysis/qwen35_peft/seed_42/error_review_queue.csv",
+    "results/error_analysis/qwen35_peft/seed_42/suggested_error_category_counts.csv",
+    "results/main_results/main_results_seed_42.csv",
+    "results/main_results/main_results_seed_42.md",
+    "results/models/gemma4_peft/seed_42/COMPLETED.json",
+    "results/models/gemma4_peft/seed_42/adapter/README.md",
+    "results/models/gemma4_peft/seed_42/adapter/adapter_config.json",
+    "results/models/gemma4_peft/seed_42/adapter/tokenizer.json",
+    "results/models/gemma4_peft/seed_42/adapter/tokenizer_config.json",
+    "results/models/gemma4_peft/seed_42/dev/classification_report.csv",
+    "results/models/gemma4_peft/seed_42/dev/classification_report.json",
+    "results/models/gemma4_peft/seed_42/dev/confusion_matrix.csv",
+    "results/models/gemma4_peft/seed_42/dev/confusion_matrix.png",
+    "results/models/gemma4_peft/seed_42/dev/predictions.csv",
+    "results/models/gemma4_peft/seed_42/dev/runtime.json",
+    "results/models/gemma4_peft/seed_42/dev/summary_metrics.json",
+    "results/models/gemma4_peft/seed_42/test/classification_report.csv",
+    "results/models/gemma4_peft/seed_42/test/classification_report.json",
+    "results/models/gemma4_peft/seed_42/test/confusion_matrix.csv",
+    "results/models/gemma4_peft/seed_42/test/confusion_matrix.png",
+    "results/models/gemma4_peft/seed_42/test/predictions.csv",
+    "results/models/gemma4_peft/seed_42/test/runtime.json",
+    "results/models/gemma4_peft/seed_42/test/summary_metrics.json",
+    "results/models/gemma4_peft/seed_43/COMPLETED.json",
+    "results/models/gemma4_peft/seed_43/adapter/README.md",
+    "results/models/gemma4_peft/seed_43/adapter/adapter_config.json",
+    "results/models/gemma4_peft/seed_43/adapter/tokenizer.json",
+    "results/models/gemma4_peft/seed_43/adapter/tokenizer_config.json",
+    "results/models/gemma4_peft/seed_43/dev/classification_report.csv",
+    "results/models/gemma4_peft/seed_43/dev/classification_report.json",
+    "results/models/gemma4_peft/seed_43/dev/confusion_matrix.csv",
+    "results/models/gemma4_peft/seed_43/dev/confusion_matrix.png",
+    "results/models/gemma4_peft/seed_43/dev/predictions.csv",
+    "results/models/gemma4_peft/seed_43/dev/runtime.json",
+    "results/models/gemma4_peft/seed_43/dev/summary_metrics.json",
+    "results/models/gemma4_peft/seed_43/test/classification_report.csv",
+    "results/models/gemma4_peft/seed_43/test/classification_report.json",
+    "results/models/gemma4_peft/seed_43/test/confusion_matrix.csv",
+    "results/models/gemma4_peft/seed_43/test/confusion_matrix.png",
+    "results/models/gemma4_peft/seed_43/test/predictions.csv",
+    "results/models/gemma4_peft/seed_43/test/runtime.json",
+    "results/models/gemma4_peft/seed_43/test/summary_metrics.json",
+    "results/models/gemma4_peft/seed_44/COMPLETED.json",
+    "results/models/gemma4_peft/seed_44/adapter/README.md",
+    "results/models/gemma4_peft/seed_44/adapter/adapter_config.json",
+    "results/models/gemma4_peft/seed_44/adapter/tokenizer.json",
+    "results/models/gemma4_peft/seed_44/adapter/tokenizer_config.json",
+    "results/models/gemma4_peft/seed_44/dev/classification_report.csv",
+    "results/models/gemma4_peft/seed_44/dev/classification_report.json",
+    "results/models/gemma4_peft/seed_44/dev/confusion_matrix.csv",
+    "results/models/gemma4_peft/seed_44/dev/confusion_matrix.png",
+    "results/models/gemma4_peft/seed_44/dev/predictions.csv",
+    "results/models/gemma4_peft/seed_44/dev/runtime.json",
+    "results/models/gemma4_peft/seed_44/dev/summary_metrics.json",
+    "results/models/gemma4_peft/seed_44/test/classification_report.csv",
+    "results/models/gemma4_peft/seed_44/test/classification_report.json",
+    "results/models/gemma4_peft/seed_44/test/confusion_matrix.csv",
+    "results/models/gemma4_peft/seed_44/test/confusion_matrix.png",
+    "results/models/gemma4_peft/seed_44/test/predictions.csv",
+    "results/models/gemma4_peft/seed_44/test/runtime.json",
+    "results/models/gemma4_peft/seed_44/test/summary_metrics.json",
+    "results/models/phobert/seed_42/COMPLETED.json",
+    "results/models/phobert/seed_42/best_model/added_tokens.json",
+    "results/models/phobert/seed_42/best_model/config.json",
+    "results/models/phobert/seed_42/best_model/tokenizer_config.json",
+    "results/models/phobert/seed_42/dev/classification_report.csv",
+    "results/models/phobert/seed_42/dev/classification_report.json",
+    "results/models/phobert/seed_42/dev/confusion_matrix.csv",
+    "results/models/phobert/seed_42/dev/confusion_matrix.png",
+    "results/models/phobert/seed_42/dev/predictions.csv",
+    "results/models/phobert/seed_42/dev/summary_metrics.json",
+    "results/models/phobert/seed_42/test/classification_report.csv",
+    "results/models/phobert/seed_42/test/classification_report.json",
+    "results/models/phobert/seed_42/test/confusion_matrix.csv",
+    "results/models/phobert/seed_42/test/confusion_matrix.png",
+    "results/models/phobert/seed_42/test/predictions.csv",
+    "results/models/phobert/seed_42/test/summary_metrics.json",
+    "results/models/qwen35_peft/seed_42/COMPLETED.json",
+    "results/models/qwen35_peft/seed_42/adapter/README.md",
+    "results/models/qwen35_peft/seed_42/adapter/adapter_config.json",
+    "results/models/qwen35_peft/seed_42/adapter/tokenizer.json",
+    "results/models/qwen35_peft/seed_42/adapter/tokenizer_config.json",
+    "results/models/qwen35_peft/seed_42/dev/classification_report.csv",
+    "results/models/qwen35_peft/seed_42/dev/classification_report.json",
+    "results/models/qwen35_peft/seed_42/dev/confusion_matrix.csv",
+    "results/models/qwen35_peft/seed_42/dev/confusion_matrix.png",
+    "results/models/qwen35_peft/seed_42/dev/predictions.csv",
+    "results/models/qwen35_peft/seed_42/dev/runtime.json",
+    "results/models/qwen35_peft/seed_42/dev/summary_metrics.json",
+    "results/models/qwen35_peft/seed_42/test/classification_report.csv",
+    "results/models/qwen35_peft/seed_42/test/classification_report.json",
+    "results/models/qwen35_peft/seed_42/test/confusion_matrix.csv",
+    "results/models/qwen35_peft/seed_42/test/confusion_matrix.png",
+    "results/models/qwen35_peft/seed_42/test/predictions.csv",
+    "results/models/qwen35_peft/seed_42/test/runtime.json",
+    "results/models/qwen35_peft/seed_42/test/summary_metrics.json",
+    "results/models/qwen35_peft/seed_43/COMPLETED.json",
+    "results/models/qwen35_peft/seed_43/adapter/README.md",
+    "results/models/qwen35_peft/seed_43/adapter/adapter_config.json",
+    "results/models/qwen35_peft/seed_43/adapter/tokenizer.json",
+    "results/models/qwen35_peft/seed_43/adapter/tokenizer_config.json",
+    "results/models/qwen35_peft/seed_43/dev/classification_report.csv",
+    "results/models/qwen35_peft/seed_43/dev/classification_report.json",
+    "results/models/qwen35_peft/seed_43/dev/confusion_matrix.csv",
+    "results/models/qwen35_peft/seed_43/dev/confusion_matrix.png",
+    "results/models/qwen35_peft/seed_43/dev/predictions.csv",
+    "results/models/qwen35_peft/seed_43/dev/runtime.json",
+    "results/models/qwen35_peft/seed_43/dev/summary_metrics.json",
+    "results/models/qwen35_peft/seed_43/test/classification_report.csv",
+    "results/models/qwen35_peft/seed_43/test/classification_report.json",
+    "results/models/qwen35_peft/seed_43/test/confusion_matrix.csv",
+    "results/models/qwen35_peft/seed_43/test/confusion_matrix.png",
+    "results/models/qwen35_peft/seed_43/test/predictions.csv",
+    "results/models/qwen35_peft/seed_43/test/runtime.json",
+    "results/models/qwen35_peft/seed_43/test/summary_metrics.json",
+    "results/models/qwen35_peft/seed_44/COMPLETED.json",
+    "results/models/qwen35_peft/seed_44/adapter/README.md",
+    "results/models/qwen35_peft/seed_44/adapter/adapter_config.json",
+    "results/models/qwen35_peft/seed_44/adapter/tokenizer.json",
+    "results/models/qwen35_peft/seed_44/adapter/tokenizer_config.json",
+    "results/models/qwen35_peft/seed_44/dev/classification_report.csv",
+    "results/models/qwen35_peft/seed_44/dev/classification_report.json",
+    "results/models/qwen35_peft/seed_44/dev/confusion_matrix.csv",
+    "results/models/qwen35_peft/seed_44/dev/confusion_matrix.png",
+    "results/models/qwen35_peft/seed_44/dev/predictions.csv",
+    "results/models/qwen35_peft/seed_44/dev/runtime.json",
+    "results/models/qwen35_peft/seed_44/dev/summary_metrics.json",
+    "results/models/qwen35_peft/seed_44/test/classification_report.csv",
+    "results/models/qwen35_peft/seed_44/test/classification_report.json",
+    "results/models/qwen35_peft/seed_44/test/confusion_matrix.csv",
+    "results/models/qwen35_peft/seed_44/test/confusion_matrix.png",
+    "results/models/qwen35_peft/seed_44/test/predictions.csv",
+    "results/models/qwen35_peft/seed_44/test/runtime.json",
+    "results/models/qwen35_peft/seed_44/test/summary_metrics.json",
+    "results/models/xlmr/seed_42/COMPLETED.json",
+    "results/models/xlmr/seed_42/best_model/config.json",
+    "results/models/xlmr/seed_42/best_model/tokenizer.json",
+    "results/models/xlmr/seed_42/best_model/tokenizer_config.json",
+    "results/models/xlmr/seed_42/dev/classification_report.csv",
+    "results/models/xlmr/seed_42/dev/classification_report.json",
+    "results/models/xlmr/seed_42/dev/confusion_matrix.csv",
+    "results/models/xlmr/seed_42/dev/confusion_matrix.png",
+    "results/models/xlmr/seed_42/dev/predictions.csv",
+    "results/models/xlmr/seed_42/dev/summary_metrics.json",
+    "results/models/xlmr/seed_42/test/classification_report.csv",
+    "results/models/xlmr/seed_42/test/classification_report.json",
+    "results/models/xlmr/seed_42/test/confusion_matrix.csv",
+    "results/models/xlmr/seed_42/test/confusion_matrix.png",
+    "results/models/xlmr/seed_42/test/predictions.csv",
+    "results/models/xlmr/seed_42/test/summary_metrics.json",
+    "results/multiseed/mean_std_summary.csv",
+    "results/multiseed/mean_std_summary.md",
+    "results/multiseed/seed_level_metrics.csv",
+    "results/statistics/seed_42/aligned_predictions.csv",
+    "results/statistics/seed_42/statistical_validation.json",
+    "results/statistics/seed_42/statistical_validation.md"
+  ]
+}

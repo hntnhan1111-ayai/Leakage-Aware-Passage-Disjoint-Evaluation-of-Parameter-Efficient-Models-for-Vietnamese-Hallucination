@@ -1,0 +1,8 @@
+{
+  "condition": "shuffled_context",
+  "rows": 1050,
+  "total_seconds": 324.1187843102962,
+  "seconds_per_sample": 0.30868455648599635,
+  "samples_per_second": 3.2395530614935883,
+  "max_gpu_memory_reserved_bytes": 5226102784
+}

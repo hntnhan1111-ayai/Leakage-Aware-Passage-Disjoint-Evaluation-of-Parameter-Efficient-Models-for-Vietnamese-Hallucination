@@ -1,0 +1,14 @@
+raw:
+  labeled_source: data/raw/vihallu-train.csv
+  quarantined_duplicate_test: data/raw/vihallu-test-duplicated-quarantine.csv
+  unlabeled_private: data/raw/vihallu-private-test-unlabeled.csv
+processed_dir: data/processed
+reports_dir: reports/dataset
+split:
+  proportions: [0.70, 0.15, 0.15]
+  base_seed: 42
+  search_trials: 20000
+near_duplicate:
+  method: char_wb_tfidf_4_5gram_max100k_nearest_neighbor
+  thresholds: [0.90, 0.95, 0.98]
+  top_k_pairs: 50

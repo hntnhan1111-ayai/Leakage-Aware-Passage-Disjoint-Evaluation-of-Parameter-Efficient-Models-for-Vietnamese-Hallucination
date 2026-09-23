@@ -1,0 +1,8 @@
+{
+  "condition": "full",
+  "rows": 1050,
+  "total_seconds": 324.6627580728382,
+  "seconds_per_sample": 0.3092026267360364,
+  "samples_per_second": 3.2341251772537216,
+  "max_gpu_memory_reserved_bytes": 5037359104
+}
